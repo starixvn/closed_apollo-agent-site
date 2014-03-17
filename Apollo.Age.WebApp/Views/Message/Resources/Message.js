@@ -3,129 +3,128 @@
 'use strict';
 /* jshint maxlen:false */
 var MessagePortalPage = (function ($) {
-    return {
-        timerID: null,
-        moreIsLoading: false,
-        imagePath: null,
-        publicMessageId: null,
-        privateMessageId: null,
-        privateMsgContent: "",
-        publicMsgContent: "",
-        isFirstTime: false,
-        isShowLevelMessage: false,
-        publicLevelMessageId: 0,
-        publicLevelMessageContent: "",
+	return {
+		timerID: null,
+		moreIsLoading: false,
+		imagePath: null,
+		publicMessageId: null,
+		privateMessageId: null,
+		privateMsgContent: "",
+		publicMsgContent: "",
+		isFirstTime: false,
+		isShowLevelMessage: false,
+		publicLevelMessageId: 0,
+		publicLevelMessageContent: "",
 
-        init: function () {
-            MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
-            MessagePortalPage.announcement = $("#announcement").val();
+		init: function () {
+			MessagePortalPage.imagePath = APOLLO.resolveUrl('~/Views/Message/Images/loading_2.gif');
+			MessagePortalPage.announcement = $("#announcement").val();
 
-            MessagePortalPage.publicMessageId = 0;
-            MessagePortalPage.privateMessageId = 0;
-            MessagePortalPage.privateMsgContent = "";
-            MessagePortalPage.publicMsgContent = "";
-            MessagePortalPage.isFirstTime = false;
+			MessagePortalPage.publicMessageId = 0;
+			MessagePortalPage.privateMessageId = 0;
+			MessagePortalPage.privateMsgContent = "";
+			MessagePortalPage.publicMsgContent = "";
+			MessagePortalPage.isFirstTime = false;
 
-            MessagePortalPage.isShowLevelMessage = $("#isShowMessageLevel").val();
+			MessagePortalPage.isShowLevelMessage = $("#isShowMessageLevel").val();
 
-            MessagePortalPage.getMessages();
-            if (MessagePortalPage.isShowLevelMessage) {
-                MessagePortalPage.getLevelMessages();
-            }
-        },
+			MessagePortalPage.getMessages();
+			if (MessagePortalPage.isShowLevelMessage) {
+				MessagePortalPage.getLevelMessages();
+			}
+		},
 
-        showMsg: function (value) {
-            $('#PageQuery').val(value);
-            $('form').submit();
-        },
+		showMsg: function (value) {
+			$('#PageQuery').val(value);
+			$('form').submit();
+		},
 
-        getLevelMessages: function () {
-            $.ajax({
-                url: APOLLO.resolveUrl('~/Message/GetLevelMessage'),
-                type: 'POST',
-                dataType: 'JSON',
-                success: function (result) {
-                    if (result != null) {
-                        if (MessagePortalPage.publicLevelMessageId === 0 || MessagePortalPage.publicLevelMessageId !== result.public_message_id) {
-                            MessagePortalPage.publicLevelMessageId = result.public_message_id;
-                            MessagePortalPage.publicLevelMessageContent = result.public_message_content;
+		getLevelMessages: function () {
+			$.ajax({
+				url: APOLLO.resolveUrl('~/Message/GetLevelMessage'),
+				type: 'POST',
+				dataType: 'JSON',
+				success: function (result) {
+					if (result != null) {
+						if (MessagePortalPage.publicLevelMessageId === 0 || MessagePortalPage.publicLevelMessageId !== result.publicLevelMessageId) {
+							MessagePortalPage.publicLevelMessageId = result.publicLevelMessageId;
+							MessagePortalPage.publicLevelMessageContent = result.publicLevelMessageContent;
 
-                            $("#topnewsbylevel").html("<marquee scrolldelay='200'>" + MessagePortalPage.publicLevelMessageContent + "</marquee>");
-                        }
+							$("#topnewsbylevel").html("<marquee scrolldelay='200'>" + MessagePortalPage.publicLevelMessageContent + "</marquee>");
+						}
 
-                        setTimeout(MessagePortalPage.getLevelMessages, (60 * 1000));
-                    }
-                },
-                error: function (xhr, status, err) {
-                }
-            });
-        },
+						setTimeout(MessagePortalPage.getLevelMessages, (60 * 1000));
+					}
+				},
+				error: function () {
+				}
+			});
+		},
 
-        getMessages: function () {
-            function completedGetMessages(results) {
-                try {
-                    var publicMessage = (results.public_message != null && results.public_message !== 'undefined') ? results.public_message : 0;
-                    var privateMessage = (results.private_message != null && results.private_message !== 'undefined') ? results.private_message : 0;
-                    var unreadPriMsgCount = (results.unread_private_messages != null && results.unread_private_messages !== 'undefined') ? results.unread_private_messages : 0;
-                    var finalMessage = null;
-                    var MSGID = 0,
-                        MSGCONTENT = 1,
-                        MSGTYPE = 2;
+		getMessages: function () {
+			function completedGetMessages(results) {
+				try {
+					var publicMessage = (results.publicMessage != null && results.publicMessage !== 'undefined') ? results.publicMessage : 0;
+					var privateMessage = (results.privateMessages != null && results.privateMessages !== 'undefined') ? results.privateMessages : 0;
+					var finalMessage = null;
+					var MSGID = 0,
+						MSGCONTENT = 1,
+						MSGTYPE = 2;
 
-                    // Process Public Message: show new public message and its link to message form
-                    var url = APOLLO.resolveUrl("~/Message/NewMessage?pageQuery=");
+					// Process Public Message: show new public message and its link to message form
+					var url = APOLLO.resolveUrl("~/Message/NewMessage?pageQuery=");
 
-                    url += publicMessage[MSGTYPE];
+					url += publicMessage[MSGTYPE];
 
-                    if (publicMessage[MSGID] != null && MessagePortalPage.publicMessageId !== publicMessage[MSGID]) {
-                        MessagePortalPage.publicMsgContent = publicMessage[MSGCONTENT];
-                        MessagePortalPage.publicMessageId = publicMessage[MSGID];
-                    }
+					if (publicMessage[MSGID] != null && MessagePortalPage.publicMessageId !== publicMessage[MSGID]) {
+						MessagePortalPage.publicMsgContent = publicMessage[MSGCONTENT];
+						MessagePortalPage.publicMessageId = publicMessage[MSGID];
+					}
 
-                    // Process Private Message: show new private message
-                    if (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId !== privateMessage[MSGID]) {
-                        MessagePortalPage.privateMsgContent = privateMessage[MSGCONTENT];
-                        MessagePortalPage.privateMessageId = privateMessage[MSGID];
-                    }
+					// Process Private Message: show new private message
+					if (privateMessage[MSGID] != null && MessagePortalPage.privateMessageId !== privateMessage[MSGID]) {
+						MessagePortalPage.privateMsgContent = privateMessage[MSGCONTENT];
+						MessagePortalPage.privateMessageId = privateMessage[MSGID];
+					}
 
-                    if (MessagePortalPage.publicMsgContent !== "" && MessagePortalPage.privateMsgContent !== "") {
-                        finalMessage = MessagePortalPage.publicMsgContent + "; " + MessagePortalPage.privateMsgContent;
-                    }
-                    else {
-                        if (MessagePortalPage.publicMsgContent === "") {
-                            finalMessage = MessagePortalPage.privateMsgContent;
-                        }
-                        else {
-                            finalMessage = MessagePortalPage.publicMsgContent;
-                        }
-                    }
+					if (MessagePortalPage.publicMsgContent !== "" && MessagePortalPage.privateMsgContent !== "") {
+						finalMessage = MessagePortalPage.publicMsgContent + "; " + MessagePortalPage.privateMsgContent;
+					}
+					else {
+						if (MessagePortalPage.publicMsgContent === "") {
+							finalMessage = MessagePortalPage.privateMsgContent;
+						}
+						else {
+							finalMessage = MessagePortalPage.publicMsgContent;
+						}
+					}
 
-                    if (!MessagePortalPage.isFirstTime) {
-                        document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + finalMessage + "</marquee>";
-                        MessagePortalPage.isFirstTime = true;
-                    }
-                    else {
-                        if ((publicMessage[MSGID] != null && MessagePortalPage.publicMessageId !== publicMessage[MSGID]) || (privateMessage[MSGID] !== null && MessagePortalPage.privateMessageId !== privateMessage[MSGID])) {
-                            document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + finalMessage + "</marquee>";
-                        }
-                    }
-                } catch (e) {
-                    console.log(e);
-                }
+					if (!MessagePortalPage.isFirstTime) {
+						document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + finalMessage + "</marquee>";
+						MessagePortalPage.isFirstTime = true;
+					}
+					else {
+						if ((publicMessage[MSGID] != null && MessagePortalPage.publicMessageId !== publicMessage[MSGID]) || (privateMessage[MSGID] !== null && MessagePortalPage.privateMessageId !== privateMessage[MSGID])) {
+							document.getElementById('topnews').innerHTML = "<marquee scrolldelay='200'>" + finalMessage + "</marquee>";
+						}
+					}
+				} catch (e) {
+					console.log(e);
+				}
 
-                setTimeout(MessagePortalPage.getMessages, (60 * 1000));
-            }
+				setTimeout(MessagePortalPage.getMessages, (60 * 1000));
+			}
 
-            $.ajax({
-                url: APOLLO.resolveUrl('~/Message/GetMessage'),
-                type: 'POST',
-                dataType: 'JSON',
-                success: completedGetMessages,
-                error: function (xhr, status, err) {
-                }
-            });
-        }
-    };
+			$.ajax({
+				url: APOLLO.resolveUrl('~/Message/GetMessage'),
+				type: 'POST',
+				dataType: 'JSON',
+				success: completedGetMessages,
+				error: function () {
+				}
+			});
+		}
+	};
 } (jQuery));
 
 $(document).ready(function () {

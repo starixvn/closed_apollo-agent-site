@@ -65,7 +65,7 @@ var MEMBERLIST = (function ($) {
                 width: 980,
                 height: 470,
                 position: { my: "top+25%", at: "center top", of: window },
-                close: function (event, ui) {
+                close: function () {
                 }
             });
         },
@@ -82,7 +82,7 @@ var MEMBERLIST = (function ($) {
                     width: 980,
                     height: 470,
                     position: { my: "top+25%", at: "center top", of: window },
-                    close: function (event, ui) {
+                    close: function () {
                     }
                 });
             });
@@ -220,18 +220,18 @@ var MEMBERLIST = (function ($) {
                 }
             };
 
-            function ReRenderAfterPaged(page_index, itemsPerPage, jq) {
+            function ReRenderAfterPaged(pageIndex, itemsPerPage) {
                 $.ajax({
                     type: "POST",
                     url: APOLLO.resolveUrl("Account/GetMemberList"),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: JSON.stringify({ agentId: MEMBERLIST.AgentId, pageIndex: page_index, pageSize: itemsPerPage }),
+                    data: JSON.stringify({ agentId: MEMBERLIST.AgentId, pageIndex: pageIndex, pageSize: itemsPerPage }),
                     timeout: 120000
                 })
                     .done(function (result) {
                         gridOption.pagerOption.itemsPerPage = itemsPerPage;
-                        gridOption.pagerOption.currentPage = page_index;
+                        gridOption.pagerOption.currentPage = pageIndex;
                         gridOption.pagerOption.totalItem = result.TotalItem;
                         MEMBERLIST.AgentId = result.CurrentAgentId;
 

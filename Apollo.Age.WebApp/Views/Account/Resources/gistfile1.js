@@ -100,7 +100,6 @@
                 height = $marquee.attr('height') || $marquee.height(),
                 $marqueeRedux = $marquee.after('<div ' + (klass ? 'class="' + klass + '" ' : '') + 'style="display: block-inline; width: ' + width + 'px; height: ' + height + 'px; overflow: hidden;"><div style="float: left; white-space: nowrap;">' + $marquee.html() + '</div></div>').next(),
                 marqueeRedux = $marqueeRedux.get(0),
-                hitedge = 0,
                 direction = ($marquee.attr('direction') || 'left').toLowerCase(),
                 marqueeState = {
                     dir : /down|right/.test(direction) ? -1 : 1,
@@ -149,7 +148,7 @@
             if (i+1 === last) {
                 animateMarquee();
             }
-        });            
+        });
 
         return $(newMarquee);
     };

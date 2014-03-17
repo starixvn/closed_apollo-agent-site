@@ -131,7 +131,7 @@ if (typeof jQuery !== 'undefined') {
             alertGeneralError: function () {
                 alert(APOLLO.generalErrorMsg);
             },
-            handleAjaxError: function (jqXHR, textStatus, errorThrown) {
+            handleAjaxError: function () {
                 APOLLO.alertGeneralError();
             },
             /*jshint ignore:start */
@@ -258,8 +258,8 @@ if (typeof jQuery !== 'undefined') {
                         target.datepicker('setDate', new Date(y, m, d));
                     };
                     var defaultDate = function ($this) {
-                        var date_regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-                        if (!(date_regex.test($this.val()))) {
+                        var dateRegex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+                        if (!(dateRegex.test($this.val()))) {
                             var today = new Date();
                             return today.getYear + '-' + today.getMonth + '-' + today.getDay;
                         }
@@ -282,7 +282,7 @@ if (typeof jQuery !== 'undefined') {
                             beforeShow: function (input, inst) {
                                 inst.dpDiv.css({ marginTop: '2px' });
                             },
-                            onSelect: function (dateText, inst) {
+                            onSelect: function () {
                                 validateDate($this);
                             }
                         }).keydown(function (e) {
@@ -462,8 +462,8 @@ if (typeof jQuery !== 'undefined') {
             },
 
             IsValidDate: function (date) {
-                var date_regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-                if (!(date_regex.test(date))) {
+                var dateRegex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+                if (!(dateRegex.test(date))) {
                     return false;
                 }
 
@@ -581,7 +581,7 @@ String.prototype.contains = function (sub) {
     return this.indexOf(sub, 0) !== -1;
 };
 
-String.prototype.Format = function (args) {
+String.prototype.Format = function () {
     var formatted = this;
     for (var i = 0; i < arguments.length; i++) {
         var regexp = new RegExp('\\{' + i + '\\}', 'gi');

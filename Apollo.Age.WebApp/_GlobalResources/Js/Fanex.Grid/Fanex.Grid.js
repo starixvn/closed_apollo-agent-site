@@ -1064,22 +1064,22 @@
                 if (options.customPager && options.customPager == true) {
                     pagerOption =
                     {
-                        callback: function (page_index, itemsPerPage, jq) {
+                    	callback: function (pageIndex, itemsPerPage, jq) {
                             if (me.Options.pagerOption.itemsPerPage != itemsPerPage) {
-                                page_index = 0;
+                            	pageIndex = 0;
                             }
-                            options.pagerOption.pagerSelectCallBack(page_index, itemsPerPage, jq);
+                            options.pagerOption.pagerSelectCallBack(pageIndex, itemsPerPage, jq);
                         }
                     };
                 }
                 else {
                     pagerOption =
                     {
-                        callback: function (page_index, itemsPerPage, jq) {
+                    	callback: function (pageIndex, itemsPerPage, jq) {
                             if (me.Options.pagerOption.itemsPerPage != itemsPerPage) {
-                                page_index = 0;
+                            	pageIndex = 0;
                             }
-                            me.Options.pagerOption.currentPage = page_index;
+                            me.Options.pagerOption.currentPage = pageIndex;
                             me.Options.pagerOption.itemsPerPage = itemsPerPage;
                             me.RenderBody('', true);
                             me.gridOptions.isResetScroller = true;

@@ -266,7 +266,6 @@
     <Content Include="Views\Account\Resources\CustSettingEngine\BetType.js" />
     <Content Include="Views\Account\Resources\CustSettingEngine\BetTypeGroup.js" />
     <Content Include="Views\Account\Resources\CustSettingEngine\CommissionSetting.js" />
-    <Content Include="Views\Account\Resources\CustSettingEngine\Config.js" />
     <Content Include="Views\Account\Resources\CustSettingEngine\Core.js" />
     <Content Include="Views\Account\Resources\CustSettingEngine\Images\arrow-down.png" />
     <Content Include="Views\Account\Resources\CustSettingEngine\Images\arrow-up.png" />
@@ -316,7 +315,6 @@
     <Content Include="Views\BetList\Resources\Images\q_Icon2_1.png" />
     <Content Include="Views\BetList\Resources\Images\q_Icon_2.png" />
     <Content Include="Views\BetList\Resources\Images\ScoreMapWL.png" />
-    <Content Include="Views\BetList\Resources\Paging.js" />
     <Content Include="Views\Error\Resources\images\bg-maintenance.png" />
     <Content Include="Views\Error\Resources\images\icon-maintenance.png" />
     <Content Include="Views\Error\Resources\Unauthorized.js" />
@@ -610,7 +608,6 @@
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
     <Content Include="_GlobalResources\Js\select2.min.js" />
-    <Content Include="_GlobalResources\Js\shortcut.js" />
     <Content Include="_GlobalResources\Js\underscore.js" />
     <Content Include="_GlobalResources\Js\underscore.min.js" />
   </ItemGroup>

@@ -4,10 +4,6 @@
 'use strict';
 // Start up
 
-$(document).ready(function () {
-    setTimeout(function () { HEADER.init(); }, 100);
-});
-
 var HEADER = (function ($) {
     return {
         IsLoadTreeView: false,
@@ -190,3 +186,7 @@ var HEADER = (function ($) {
         }
     };
 } (jQuery));
+
+$(document).ready(function () {
+    setTimeout(function () { HEADER.init(); }, 100);
+});

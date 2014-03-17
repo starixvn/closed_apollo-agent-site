@@ -9,9 +9,6 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
 if (typeof (Fanex.CustSetting) === 'undefined') { // Require Fanex.CustSetting namespace
     alert('Require Fanex.CustSetting namespace');
 }
-if (typeof (Validators) === 'undefined') { // Require Validators library
-    alert('Require validators library');
-}
 Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
 	'use strict';
 	this.items = bettingLimitItems;

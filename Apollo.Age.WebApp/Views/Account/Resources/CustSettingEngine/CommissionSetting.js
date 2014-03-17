@@ -11,9 +11,6 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
 if (typeof (Fanex.CustSetting) === 'undefined') { // Require Fanex.CustSetting namespace
     alert('Require Fanex.CustSetting namespace');
 }
-if (typeof (Validators) === 'undefined') { // Require Validators library
-    alert('Require validators library');
-}
 Fanex.CustSetting.CommissionSetting = function (source) {
 	this.spinBoxItems = [];
 	this.items = source.CommissionItems;
@@ -278,7 +275,6 @@ Fanex.CustSetting.CommissionSetting = function (source) {
 		return trBox;
 	};
 	this.Render = function (owner) {
-		Validators.hide();
 		var context = Fanex.CustSetting.CURRENT_CONTEXT;
 		var container = document.createElement("DIV");
 		container.className = "commission-container-header";
@@ -412,7 +408,7 @@ Fanex.CustSetting.CommissionSetting = function (source) {
 			var self = this;
 
 			if (!isEditNonDirectMember && context.CanEditComGroup) {
-				groupSelect.onchange = function (event) {
+				this.groupSelect.onchange = function () {
 					var currentValue = this.value;
 					var selectedCom = self.GetUplineGroupDiscountForMember(currentValue);
 					//groupText1.value = selectedCom.Upline.Discount + Fanex.CustSetting.COM_LAST_LETTER;

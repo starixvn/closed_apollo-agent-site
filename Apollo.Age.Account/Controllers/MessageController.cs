@@ -211,13 +211,10 @@ namespace Apollo.Age.Account.Controllers
                 privateMessages[1] = priMessage.GetContent(CurrentSession.Language);
             }
 
-            var countPriMessage = this._messageService.CountUnreadPrivateMessage(this.CurrentSession.AgentId);
-
             return Json(new
             {
-                public_message = publicMessages,
-                private_message = privateMessages,
-                unread_private_messages = countPriMessage
+                publicMessage = publicMessages,
+                privateMessages = privateMessages
             });
         }
 
@@ -235,8 +232,8 @@ namespace Apollo.Age.Account.Controllers
                 return Json(
                     new
                     {
-                        public_message_content = messages.GetContent(CurrentSession.Language),
-                        public_message_id = messages.MessageId
+                        publicLevelMessageContent = messages.GetContent(CurrentSession.Language),
+                        publicLevelMessageId = messages.MessageId
                     },
                 JsonRequestBehavior.AllowGet);
             }
@@ -244,8 +241,8 @@ namespace Apollo.Age.Account.Controllers
             return Json(
                 new
                 {
-                    public_message_content = string.Empty,
-                    public_message_id = 0
+                    publicLevelMessageContent = string.Empty,
+                    publicLevelMessageId = 0
                 },
             JsonRequestBehavior.AllowGet);
         }

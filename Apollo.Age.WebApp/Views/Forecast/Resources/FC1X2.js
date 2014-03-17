@@ -57,7 +57,7 @@ if (typeof jQuery !== 'undefined') {
                             width: 930,
                             height: 700,
                             position: { my: "top+30", at: "center top", of: window },
-                            close: function (event) {
+                            close: function () {
                                 countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
                             }
                         });

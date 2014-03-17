@@ -26,16 +26,16 @@
 				$("body").append(dupe);
 				dupe.find('.i-am-closing-now').remove();
 				dupe.find('li').css('display', 'block');
-				var actual_height = dupe.height();
+				var actualHeight = dupe.height();
 				dupe.remove();
 
 				if ($(this).hasClass('i-am-new')) {
 					$(this).css({
-						top: ($(window).height() - actual_height) / 2 + 'px'
+						top: ($(window).height() - actualHeight) / 2 + 'px'
 					});
 				} else {
 					$(this).animate({
-						top: ($(window).height() - actual_height) / 2 + 'px'
+						top: ($(window).height() - actualHeight) / 2 + 'px'
 					}, 500);
 				}
 

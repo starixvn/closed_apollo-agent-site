@@ -109,7 +109,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function () { // a1
     minContainer.appendChild(uplineMinSpan);
 
     //// Preset K Change Affect to Max K
-    presetSpinBox.input.onchange = function (event) {
+    presetSpinBox.input.onchange = function () {
         var maxValue = maxSpinBox.getValue();
         var presetValue = presetSpinBox.getValue();
         var presetCorrectValue = presetValue;
@@ -147,7 +147,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function () { // a1
     };
 
     //// Max K Change affect To Min K and Preset K
-    maxSpinBox.input.onchange = function (event) {
+    maxSpinBox.input.onchange = function () {
         if (!presetSpinBox.isValid()) {
             return;
         }
@@ -162,7 +162,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function () { // a1
     };
 
     //// Min K Change affect To Max K
-    minSpinBox.input.onchange = function (event) {
+    minSpinBox.input.onchange = function () {
         if (!minSpinBox.digistIsValid() || !minSpinBox.isValid()) {
             return;
         }
@@ -253,7 +253,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function () {
     uplineShareSpan.className = "upline-agent-share";
     ptContainer.appendChild(uplineShareSpan);
 
-    ptSpinBox.input.onchange = function (event) {
+    ptSpinBox.input.onchange = function () {
         if (!ptSpinBox.isValid()) {
             return;
         }
@@ -360,7 +360,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function () {
     uplineMinSpan.className = "upline-agent-share";
     minContainer.appendChild(uplineMinSpan);
     //// Max K Change affect To Min K and Preset K
-    maxSpinBox.input.onchange = function (event) {
+    maxSpinBox.input.onchange = function () {
         var maxValue = maxSpinBox.getValue();
         var maxValueCorrect = maxValue;
         if (maxValue > currentPt.Upline.Max) {
@@ -382,7 +382,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function () {
         //minSpinBox.input.onchange();
     };
     //// Min K Change affect To Max K
-    minSpinBox.input.onchange = function (event) {
+    minSpinBox.input.onchange = function () {
         var minValue = minSpinBox.getValue();
         if (minSpinBox.isValid()) {
             var checkMinValue = Math.max(minValue, currentPt.Upline.Min);
@@ -571,7 +571,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function () {
     minContainer.appendChild(uplineMinSpan);
 
     //// Preset K Change Affect to Max K
-    presetSpinBox.input.onchange = function (event) {
+    presetSpinBox.input.onchange = function () {
         var presetValue = presetSpinBox.getValue();
         var presetValueCorrect = presetValue;
         if (presetValue > currentPt.MaxPresetSpan) {
@@ -605,7 +605,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function () {
         minSpinBox.setValue(newMinValue);
     };
     //// Max K Change affect To Min K and Preset K
-    maxSpinBox.input.onchange = function (event) {
+    maxSpinBox.input.onchange = function () {
         if (!presetSpinBox.isValid() || !maxSpinBox.isValid()) {
             return;
         }
@@ -616,7 +616,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function () {
         uplineMinSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMinSpan, currentPt.MaxMinSpan);
     };
 
-    minSpinBox.input.onchange = function (event) {
+    minSpinBox.input.onchange = function () {
         if (!minSpinBox.isValid()) {
             return;
         }
@@ -697,7 +697,8 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function () {
     uplineMaxSpan.innerHTML = Fanex.CustSetting.BuildMinMaxShareString(currentPt.MinMaxSpan, currentPt.Upline.Max);
     uplineMaxSpan.className = "upline-agent-share";
     valueContainer.appendChild(uplineMaxSpan);
-    maxSpinBox.input.onchange = function (event) {
+
+    maxSpinBox.input.onchange = function () {
         if (!maxSpinBox.isValid()) {
             return;
         }
@@ -758,7 +759,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function () {
     uplineMaxSpan.className = "upline-agent-share";
     maxContainer.appendChild(uplineMaxSpan);
 
-    valueSpinBox.input.onchange = function (event) {
+    valueSpinBox.input.onchange = function () {
         if (!valueSpinBox.isValid()) {
             return;
         }
