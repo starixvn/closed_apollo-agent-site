@@ -21,7 +21,6 @@ if (typeof jQuery !== 'undefined') {
                 positionTakingContainer.innerHTML = "";
                 EDITPOSITIONTAKING.positionTakingElement.Render(positionTakingContainer);
 
-
                 if (isSimpleMode) {
                     var simpleModeWidthClass = settingContext.TargetRoleId === 2 ? "simple-mode-share-setting-preset-width" : "simple-mode-share-setting-width";
                     $("#page_main").removeClass("advanced-mode-share-setting-width").addClass(simpleModeWidthClass);
@@ -102,10 +101,6 @@ if (typeof jQuery !== 'undefined') {
                             //                                try { $.unblockUI(); } catch (e) { };
                             //                            });
                         }
-
-                        // 
-
-
                     }
 
                 });
@@ -136,7 +131,6 @@ if (typeof jQuery !== 'undefined') {
                 if (DEFAULT_LAYOUT.isMaster) {
                     $('#tbl-edit').show();
                 }
-
             },
             updatePositionTakingSetting: function (postionTakingValue) {
 
@@ -173,7 +167,6 @@ if (typeof jQuery !== 'undefined') {
                                             errorMessage += ' + ' + val + '<br/>';
                                         }
                                     });
-
                                 }
                                 else {
                                     $.each(innerMessage.split(';'), function (i, val) {
@@ -209,7 +202,7 @@ if (typeof jQuery !== 'undefined') {
                     try { $.unblockUI(); } catch (e) { }
                 });
             },
-            completeUpdate: function (result) {
+            completeUpdate: function () {
                 var backLink = $('#backUrl').val();
 
                 //setTimeout(function () {

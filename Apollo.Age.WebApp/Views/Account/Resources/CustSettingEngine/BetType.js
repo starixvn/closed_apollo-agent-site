@@ -13,7 +13,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Require Fanex.CustSetting n
 
 Fanex.CustSetting.BetType.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetType.prototype.Render_3_2_1 =
-Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
+Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function () { // a1
     'use strict';
     var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
     var box = document.createElement("DIV");
@@ -24,8 +24,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
     header.title = this.title;
     //ja-JP
     header.className = "bet-type-header";
-    if (currentContext.Language === 'ja-JP'
-    && this.id === 8 && this.sportId === 1) {
+    if (currentContext.Language === 'ja-JP' && this.id === 8 && this.sportId === 1) {
         header.className += " minimize-fontsize";
     }
     box.appendChild(header); // Header bet type name
@@ -219,7 +218,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function (owner) { // a1
 
 Fanex.CustSetting.BetType.prototype.Render_2_1_5 =
 Fanex.CustSetting.BetType.prototype.Render_2_1_2 =
-Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
+Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function () {
     'use strict';
     var box = document.createElement("DIV");
 
@@ -294,7 +293,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function (owner) {
     return box;
 };
 
-Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
+Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function () {
     'use strict';
     var box = document.createElement("DIV");
     var currentPt = this.pt;
@@ -449,7 +448,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function (owner) {
 //// Simple Mode
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_2_1 =
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_2_1 =
-Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function () {
     //box.appendChild(tableShareSetting);
     // Table
     'use strict';
@@ -645,7 +644,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function (owner) {
     return tableShareSetting;
 };
 
-Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function () {
     //box.appendChild(tableShareSetting);
     // Table
     'use strict';
@@ -720,7 +719,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function (owner) {
 
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_5 =
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_2 =
-Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function () {
     //box.appendChild(tableShareSetting);
     // Table
     'use strict';
@@ -783,7 +782,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function (owner) {
 
 //// View Setting
 Fanex.CustSetting.BetType.prototype.Render_2_2_3 =
-Fanex.CustSetting.BetType.prototype.Render_3_3_3 = function (owner) {
+Fanex.CustSetting.BetType.prototype.Render_3_3_3 = function () {
     'use strict';
     var box = document.createElement("DIV");
 
@@ -824,7 +823,7 @@ Fanex.CustSetting.BetType.prototype.Render_3_3_3 = function (owner) {
 };
 
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_3 =
-Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_3_3 = function (owner) {
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_3_3 = function () {
     'use strict';
     var currentPt = this.currentPtValue;
     var tableShareSetting = document.createElement("TABLE");
@@ -860,7 +859,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_3_3 = function (owner) {
 //// Shadow Account view
 Fanex.CustSetting.BetType.prototype.Render_4_2_4 =
 Fanex.CustSetting.BetType.prototype.Render_3_2_4 =
-Fanex.CustSetting.BetType.prototype.Render_2_2_4 = function (owner) { // a1
+Fanex.CustSetting.BetType.prototype.Render_2_2_4 = function () { // a1
     'use strict';
     var box = document.createElement("DIV");
 
@@ -902,7 +901,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_4 = function (owner) { // a1
     return box;
 };
 
-Fanex.CustSetting.BetType.prototype.Render_2_1_4 = function (owner) {
+Fanex.CustSetting.BetType.prototype.Render_2_1_4 = function () {
     'use strict';
     var box = document.createElement("DIV");
 
@@ -926,7 +925,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_4 = function (owner) {
     return box;
 };
 
-Fanex.CustSetting.BetType.prototype.Render_4_3_4 = function (owner) {
+Fanex.CustSetting.BetType.prototype.Render_4_3_4 = function () {
     'use strict';
     var box = document.createElement("DIV");
 
@@ -964,7 +963,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_4 = function (owner) {
 //// Simple Mode
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_2_4 =
 Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_3_2_4 =
-Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_4 = function (owner) {
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_4 = function () {
     'use strict';
     //box.appendChild(tableShareSetting);
     // Table
@@ -1038,7 +1037,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_4 = function (owner) {
     return tableShareSetting;
 };
 
-Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_4 = function (owner) {
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_4 = function () {
     'use strict';
     //box.appendChild(tableShareSetting);
     // Table
@@ -1076,7 +1075,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_4 = function (owner) {
     return tableShareSetting;
 };
 
-Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_4 = function (owner) {
+Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_4 = function () {
     'use strict';
     //box.appendChild(tableShareSetting);
     // Table

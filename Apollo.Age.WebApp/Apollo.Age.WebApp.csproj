@@ -477,7 +477,6 @@
     <Content Include="_GlobalResources\Images\top_04.png" />
     <Content Include="_GlobalResources\Js\BlockUI\jquery.blockUI.js" />
     <Content Include="_GlobalResources\Js\Core.js" />
-    <Content Include="_GlobalResources\Js\ErrorMsg\ErrorMsg.js" />
     <Content Include="_GlobalResources\Js\ErrorMsg\Images\cross.png" />
     <Content Include="_GlobalResources\Js\ErrorMsg\Images\emsg_1_1.gif" />
     <Content Include="_GlobalResources\Js\ErrorMsg\Images\emsg_1_2.gif" />
@@ -647,8 +646,6 @@
     <Content Include="Views\Account\Resources\CustSettingEngine\CoreOverride.less" />
     <Content Include="Views\Account\Resources\ContactUs.less" />
     <Content Include="Views\Account\Resources\LogLogin.less" />
-    <Content Include="Views\Account\Resources\MiniAccount.less" />
-    <Content Include="Views\Account\Resources\ViewSetting.less" />
     <Content Include="Views\Account\Shared\_CustSettingLayout.cshtml" />
     <Content Include="Views\Account\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Shared\_LayoutAccountList.cshtml" />

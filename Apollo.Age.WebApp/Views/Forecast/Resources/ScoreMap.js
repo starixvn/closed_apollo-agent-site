@@ -2,7 +2,7 @@
 /*global DEFAULT_OBJECT*/
 /*global DEFAULT_LAYOUT*/
 /*global APOLLO*/
-/*global ageMsg*/
+
 'use strict';
 if (typeof jQuery !== 'undefined') {
     var SCOREMAP = (function ($) {
@@ -96,7 +96,8 @@ if (typeof jQuery !== 'undefined') {
                 }
 
                 if (betTypesLive === "" && betTypesDead === "") {
-                    ageMsg.Show(DEFAULT_OBJECT.plsChooseBetType, 0);
+                	document.getElementById('spmsgerr').innerHTML = DEFAULT_OBJECT.plsChooseBetType;
+                	document.getElementById('diverrmsg').style.display = IE ? 'block' : 'table';
                     $("#mainContent").html('');
                     return;
                 }
@@ -108,7 +109,7 @@ if (typeof jQuery !== 'undefined') {
                 }
                 $.get(url, function (contentView) {
                     //// Hide Loading and Hide Message
-                    ageMsg.Hide();
+                	document.getElementById('diverrmsg').style.display = 'none';
                     $("#mainContent").html(contentView);
                     SCOREMAP.registerEventsForResultMatch($("#content_main"));
                 });

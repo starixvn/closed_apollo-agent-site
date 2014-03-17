@@ -167,7 +167,7 @@ if (typeof jQuery !== 'undefined') {
                     });
                 }
             },
-            completeUpdate: function (result) {
+            completeUpdate: function () {
                 var backLink = $('#backUrl').val();
                 //setTimeout(function () {
                 try { $.unblockUI(); } catch (e) { }

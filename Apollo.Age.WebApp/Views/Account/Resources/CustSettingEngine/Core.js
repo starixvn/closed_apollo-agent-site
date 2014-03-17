@@ -325,7 +325,7 @@ var Validators = {
                 do {
                     curleft += obj.offsetLeft;
                     curtop += obj.offsetTop;
-                } while (obj = obj.offsetParent);
+                } while (obj == obj.offsetParent);
             }
             return [curleft, curtop];
         },

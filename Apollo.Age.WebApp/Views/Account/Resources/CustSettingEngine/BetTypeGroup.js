@@ -13,7 +13,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Require Fanex.CustSetting n
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_5 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_2 =
-Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function (owner) { // a1
+Fanex.CustSetting.BetTypeGroup.prototype.Render_2_1_1 = function () { // a1
     'use strict';
     // There is no decorating for this implementation
     var box = document.createElement("DIV");
@@ -38,7 +38,7 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_4 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_2_1 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_2_1 =
-Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
+Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function () {
     'use strict';
     var box = document.createElement("DIV");
 
@@ -80,7 +80,7 @@ Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_1 = function (owner) {
 Fanex.CustSetting.BetTypeGroup.prototype.Render_2_2_3 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_3_3_3 =
 Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_4 =
-Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_1 = function (owner) {
+Fanex.CustSetting.BetTypeGroup.prototype.Render_4_3_1 = function () {
     'use strict';
     var box = document.createElement("DIV");
     var emptyLabel = document.createElement("DIV");

@@ -80,7 +80,7 @@ if (typeof jQuery !== 'undefined') {
 
                 }
             },
-            completeUpdate: function (result) {
+            completeUpdate: function () {
                 setTimeout(function () {
                     if (typeof (parent.MEMBERLIST) !== 'undefined') {
                         parent.MEMBERLIST.loadMemberList();
