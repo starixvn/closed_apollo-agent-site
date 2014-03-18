@@ -1,5 +1,4 @@
-﻿/// <reference path="Languages/en.js" />
-/// <reference path="PTSetting.js" />
+﻿/// <reference path="PTSetting.js" />
 /*global Language*/
 /*global maxBetLimit*/
 /* jshint maxlen:false */
@@ -246,6 +245,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
 		container.appendChild(header);
 
 		var box;
+		var item;
 
 		if (context.IsSimpleMode === false) {
 			box = document.createElement("DIV");
@@ -273,7 +273,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
 			var showLimitBox = false;
 			var c = this.items.length;
 			for (var i = 0; i < c; i++) {
-				var item = this.items[i];
+				item = this.items[i];
 				var box2 = document.createElement("DIV");
 				if (typeof (item.MinBet) === 'undefined') { // For Add new case
 					item.MinBet = item.MinBetMax;
@@ -474,7 +474,7 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
 			presetLabel.className = "bet-setting-label";
 			trSetting.appendChild(presetLabel);
 
-			var item = this.items[0];
+			item = this.items[0];
 
 			/// Max Per Match
 			item.maxPerMatchElement = this.RenderBetLimitBlock(isEditNonDirectMember,

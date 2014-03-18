@@ -33,7 +33,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 		PT_LAST_LETTER: '',
 		COM_LAST_LETTER: '',
 		MIN_CONSTRAIN_VALUE: 50,
-		Min_WIDTH_BET_TYPE_GROUP: 185,
+		MIN_WIDTH_BET_TYPE_GROUP: 185,
 		DisableChildren: function (element, cssApplied) { // Check dublicated disable
 			'use strict';
 			if (typeof (element) !== 'object') { return false; }
@@ -134,11 +134,11 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 		SizingChildren: function (element) { // For element has each child as no-child no-float div
 			'use strict';
 			if (typeof (element) !== 'object') {
-				return false; 
+				return false;
 			}
 			var count = element.childNodes.length;
 			if (typeof (count) === 'undefined') {
-				return false; 
+				return false;
 			}
 			// Calculate max min-width
 			var maxLength = 0;
@@ -152,7 +152,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 				}
 			}
 			// Set children min-width
-			var minWidth = Fanex.CustSetting.Min_WIDTH_BET_TYPE_GROUP;
+			var minWidth = Fanex.CustSetting.MIN_WIDTH_BET_TYPE_GROUP;
 			for (i = 0; i < count; i++) {
 				element.childNodes[i].style.minWidth = minWidth + 'px';
 			}
@@ -236,7 +236,8 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 				var roleId = this.context.RoleId; //(this.context.TargetRoleId == 1 || formId != Fanex.CustSetting.FormTypes.EDIT_PT) ? this.context.RoleId : 0;
 				var targetRoleId = this.context.TargetRoleId;
 				var box = null;
-				var method = this['Render_'.concat(roleId, '_', targetRoleId, '_', formId)];
+				var methodName = 'Render_'.concat(roleId, '_', targetRoleId, '_', formId);
+				var method = this[methodName];
 				if (typeof (method) === "function") {
 					box = method.call(this, owner);
 				} else {
@@ -371,7 +372,8 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 						var roleId = this.context.RoleId; //(this.context.TargetRoleId == 1) ? this.context.RoleId : 0; // Just edit member form require roldId in implementation
 						var targetRoleId = this.context.TargetRoleId;
 						var formId = this.context.FormId;
-						var method = this['Render_'.concat(roleId, '_', targetRoleId, '_', formId)];
+						var methodName = 'Render_'.concat(roleId, '_', targetRoleId, '_', formId);
+						var method = this[methodName];
 
 						if (typeof (method) === "function") {
 							header = method.call(this, owner);
@@ -872,6 +874,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 			this.Render = function (owner) {
 				var currentContext = Fanex.CustSetting.CURRENT_CONTEXT;
 				var box = null;
+				var header;
 				var informationButton;
 				if (currentContext.IsSimpleMode === false) {
 					var elements = []; // Child sport type elements
@@ -880,7 +883,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 					} else {
 						box = document.createElement("DIV");
 						//// Position Taking Header
-						var header = document.createElement("DIV");
+						header = document.createElement("DIV");
 						header.innerHTML = Language.POSITION_SETTING_HEADER;
 						header.className = "pt-grid-header";
 						informationButton = document.createElement("SPAN");
@@ -1030,7 +1033,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 					box.className = "simple-mode-container";
 					//Fanex.CustSetting.SPINNER_BOX_WIDTH = 80;
 					//// Position Taking Header
-					var header = document.createElement("DIV");
+					header = document.createElement("DIV");
 					header.innerHTML = Language.POSITION_SETTING_SIMPLE_MODE_HEADER;
 					header.className = "pt-grid-header";
 					informationButton = document.createElement("SPAN");

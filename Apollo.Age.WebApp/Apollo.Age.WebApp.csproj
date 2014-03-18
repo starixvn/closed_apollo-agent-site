@@ -275,15 +275,12 @@
     <Content Include="Views\Account\Resources\CustSettingEngine\Images\info_black.png" />
     <Content Include="Views\Account\Resources\CustSettingEngine\Images\pointer.png" />
     <Content Include="Views\Account\Resources\CustSettingEngine\Images\pointerDown.png" />
-    <Content Include="Views\Account\Resources\CustSettingEngine\Languages\en.js" />
     <Content Include="Views\Account\Resources\CustSettingEngine\PTSetting.js" />
     <Content Include="Views\Account\Resources\DownlineInfo.js" />
     <Content Include="Views\Account\Resources\EditBetLimit.js" />
     <Content Include="Views\Account\Resources\EditCommission.js" />
     <Content Include="Views\Account\Resources\EditPositionTaking.js" />
     <Content Include="Views\Account\Resources\EditSetting.js" />
-    <Content Include="Views\Account\Resources\gistfile1.js" />
-    <Content Include="Views\Account\Resources\gistfile1.min.js" />
     <Content Include="Views\Account\Resources\header.js" />
     <Content Include="Views\Account\Resources\Images\ajax-loader.gif" />
     <Content Include="Views\Account\Resources\Images\bg_buttonsite.jpg" />

@@ -59,7 +59,6 @@
     <Content Include="Templates\AgentShare.htm" />
     <Content Include="Templates\Discount.htm" />
     <Content Include="Templates\Status.htm" />
-    <Content Include="Templates\Template.htm" />
     <Content Include="Templates\Stake.htm" />
     <Content Include="Templates\Odds.htm" />
     <Content Include="Templates\Resources\BetList.css" />
@@ -244,7 +243,6 @@
     <Compile Include="Templates\Odds.htm.cs" />
     <Compile Include="Templates\Stake.htm.cs" />
     <Compile Include="Templates\Status.htm.cs" />
-    <Compile Include="Templates\Template.htm.cs" />
     <Compile Include="Templates\Time.htm.cs" />
     <Compile Include="Templates\Trans.htm.cs" />
     <Compile Include="Utils\Cast.cs" />

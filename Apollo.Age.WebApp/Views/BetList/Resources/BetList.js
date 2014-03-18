@@ -5,34 +5,6 @@
 
 'use strict';
 
-function ViewMixParlayResult(refnoMixParlay, refno) {
-	var width = 760,
-		height = 450,
-		params = '?refNo=' + refnoMixParlay,
-		detailTitle = $('#' + refno).find('a:first').text();
-
-	APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Results/ParlayResult" + params),
-		detailTitle, { width: width, height: height });
-}
-
-function ViewSportBookResult(matchId, sportId, refno) {
-	var width = 730;
-	var height = 250;
-	var params = '?matchId= ' + matchId + '&sportId=' + sportId;
-	var detailTitle = $('#' + refno).find('.league').html().replace(/<\/?[^>]+>/gi, "").replace("&nbsp;", " - ");
-
-	APOLLO.openDialogFrame(APOLLO.resolveUrl("~/Results/ResultByMatch" + params),
-		detailTitle, { width: width, height: height });
-}
-
-function ViewResult(matchid, race, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, is_outright) {
-	if (bettype === 9 || bettype === 29) {//view mix parlay & combination mix parlay
-		ViewMixParlayResult(refnoMixParlay, refno);
-	} else {
-		ViewSportBookResult(matchid, sporttype, refno);
-	}
-}
-
 function showMP(transid) {
     var divEvent = document.getElementById('divEvent_' + transid);
     if (divEvent.style.display === 'none') {

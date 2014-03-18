@@ -1,5 +1,4 @@
 ﻿/* File Created: February 26, 2013 */
-/// <reference path="Languages/en.js" />
 /// <reference path="PTSetting.js" />
 /*global Language*/
 /* jshint maxlen:false */

@@ -44,7 +44,7 @@ if (typeof jQuery !== 'undefined') {
 					height: 350,
 					position: { my: "top+50", at: "center top", of: window },
 					close: function () {
-						countDownTimer = setTimeout(CountDownRefresh_Tick, 1000);
+						countDownTimer = setTimeout(CountDownRefreshTick, 1000);
 					}
 				});
 			});
@@ -71,7 +71,6 @@ if (typeof jQuery !== 'undefined') {
 		FCHANDICAPOU.init();
 	}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
-
 
 function UpdateForecastHDValue() {
     var url = APOLLO.resolveUrl("Forecast/FCHandicapOverUnder?leagueId=" + FCHANDICAPOU.currentLeague);

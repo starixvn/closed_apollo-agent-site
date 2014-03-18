@@ -3,6 +3,9 @@
 /*global noty*/
 /*global settingContext*/
 /*global betLimits*/
+/*global isSimpleMode*/
+/*global maxBetLimit*/
+
 'use strict';
 if (typeof jQuery !== 'undefined') {
 	var BETLIMIT = (function ($) {

@@ -41,7 +41,8 @@ if (typeof jQuery !== 'undefined') {
 
                 APOLLO.initPageInfo();
             },
-            init: function (settingContext, positionTakingSetting) {
+            //init: function (settingContext, positionTakingSetting) {
+            init: function (settingContext) {
                 //$('#page_main').addClass("simple-mode-share-setting-width");
 
                 EDITPOSITIONTAKING.initOthers(settingContext.IsSimpleMode);

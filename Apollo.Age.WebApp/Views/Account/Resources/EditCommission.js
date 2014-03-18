@@ -3,6 +3,8 @@
 /*global noty*/
 /*global settingContext*/
 /*global commissionSetting*/
+/*global isSimpleMode*/
+
 'use strict';
 if (typeof jQuery !== 'undefined') {
 	var EDITCOMMISSION = (function ($) {
