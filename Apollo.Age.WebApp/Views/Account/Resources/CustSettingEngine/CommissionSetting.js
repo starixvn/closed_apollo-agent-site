@@ -3,6 +3,7 @@
 /// <reference path="PTSetting.js" />
 /*global Language*/
 /* jshint maxlen:false */
+/*jshint maxstatements:false*/
 'use strict';
 
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace

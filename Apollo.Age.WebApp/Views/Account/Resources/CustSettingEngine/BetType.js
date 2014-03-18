@@ -1,7 +1,7 @@
 ﻿/// <reference path="Core.js" />
 /*global Language*/
 /*jshint camelcase: false */
-
+/*jshint maxstatements:false*/
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
 }

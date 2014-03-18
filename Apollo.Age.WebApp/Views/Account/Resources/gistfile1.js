@@ -4,6 +4,7 @@
 */
 'use strict';
 /* jshint maxlen:false */
+/*jshint maxdepth:false*/
 (function ($) {
     $.fn.marquee = function (klass) {
         var newMarquee = [],

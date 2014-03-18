@@ -4,6 +4,7 @@
 /*global DEFAULT_LAYOUT*/
 /*global APOLLO*/
 /*global settingContext*/
+/*jshint maxdepth:false*/
 'use strict';
 if (typeof jQuery !== 'undefined') {
     var EDITSETTING = (function ($) {
