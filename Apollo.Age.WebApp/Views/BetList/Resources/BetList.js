@@ -1,8 +1,6 @@
 ﻿/*global APOLLO*/
 /*global LANGUAGES*/
 /*global ApoRes*/
-/*global _page*/
-
 'use strict';
 
 function showMP(transid) {
@@ -80,36 +78,6 @@ function InitBetList() {
     }
 
     APOLLO.hidePopupBlockLoading();
-}
-
-function OpenScoreMap(matchIds, bettype, liveindicator, custId) {
-    var mainShareHolderId = 0;
-    var url = APOLLO.resolveUrl("~/Forecast/ScoreMap?matchIds=" + matchIds +
-			(liveindicator === 1 ? "&liveBetTypes=" + bettype : "&deadBallBetTypes=" + bettype));
-
-    if (typeof ($("#MainShareHolderId").val()) !== 'undefined' && $("#MainShareHolderId").val() !== "") {
-        mainShareHolderId = $("#MainShareHolderId").val();
-        if (mainShareHolderId > 0) {
-            url += "&mainShareHolderId=" + mainShareHolderId;
-        }
-    }
-
-    var mainShareHolderUsername = $("#MainShareHolderUsername").val();
-    if (typeof (mainShareHolderUsername) !== 'undefined' && mainShareHolderUsername !== "") {
-        mainShareHolderUsername = " - " + mainShareHolderUsername;
-    }
-    url += "&custId=" + custId;
-
-    var titleScoreMap = _page.titleScoreMap + mainShareHolderUsername;
-    var wnd = parent.IsApoRoot ? window : parent;
-    var singleFrame = false; // allow multiple instances of dialog to keep BetList opened
-    // Check IE7
-    if (APOLLO.browser.msie && (parseInt(APOLLO.browser.version, 10) === 7
-		|| parseInt(APOLLO.browser.version, 10) === 8)) {
-        wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 610, position: { my: "center", at: "center", of: window} }, singleFrame);
-    } else {
-        wnd.APOLLO.openDialogFrame(url, titleScoreMap, { width: 1000, height: 625 }, singleFrame);
-    }
 }
 
 InitBetList();

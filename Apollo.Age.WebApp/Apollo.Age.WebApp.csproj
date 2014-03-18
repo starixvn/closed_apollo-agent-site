@@ -315,20 +315,6 @@
     <Content Include="Views\Error\Resources\images\bg-maintenance.png" />
     <Content Include="Views\Error\Resources\images\icon-maintenance.png" />
     <Content Include="Views\Error\Resources\Unauthorized.js" />
-    <Content Include="Views\Forecast\Resources\FC1X2.js" />
-    <Content Include="Views\Forecast\Resources\FCByMatch.js" />
-    <Content Include="Views\Forecast\Resources\FCHandicapOU.js" />
-    <Content Include="Views\Forecast\Resources\Images\center_score.png" />
-    <Content Include="Views\Forecast\Resources\Images\col_score - Copy.png" />
-    <Content Include="Views\Forecast\Resources\Images\col_score.png" />
-    <Content Include="Views\Forecast\Resources\Images\exp_score.png" />
-    <Content Include="Views\Forecast\Resources\Images\first_score.png" />
-    <Content Include="Views\Forecast\Resources\Images\iLoading.png" />
-    <Content Include="Views\Forecast\Resources\Images\iLoadingWhite.png" />
-    <Content Include="Views\Forecast\Resources\Images\last_score.png" />
-    <Content Include="Views\Forecast\Resources\Images\Loading.gif" />
-    <Content Include="Views\Forecast\Resources\Images\Refresh.png" />
-    <Content Include="Views\Forecast\Resources\ScoreMap.js" />
     <Content Include="Views\Home\Resources\Default.js" />
     <Content Include="Views\Home\Resources\img\bg-mainpage.png" />
     <Content Include="Views\Home\Resources\img\buttons.png" />
@@ -658,20 +644,6 @@
     <Content Include="Views\Error\Resources\Index.less" />
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Error\UnderMaintenance.cshtml" />
-    <Content Include="Views\Forecast\FC1X2.cshtml" />
-    <Content Include="Views\Forecast\FC1X2Matches.cshtml" />
-    <Content Include="Views\Forecast\FCHandicapOverUnder.cshtml" />
-    <Content Include="Views\Forecast\FCHandicapOverUnderMatches.cshtml" />
-    <Content Include="Views\Forecast\ForecastByMatch.cshtml" />
-    <Content Include="Views\Forecast\ForecastByMatchContent.cshtml" />
-    <Content Include="Views\Forecast\Resources\FC.less" />
-    <Content Include="Views\Forecast\Resources\ScoreMap.less" />
-    <Content Include="Views\Forecast\ScoreMap.cshtml" />
-    <Content Include="Views\Forecast\ScoreMapBetType.cshtml" />
-    <Content Include="Views\Forecast\ScoreMapLeagues.cshtml" />
-    <Content Include="Views\Forecast\ScoreMapMatch.cshtml" />
-    <Content Include="Views\Forecast\ScoreMapResult.cshtml" />
-    <Content Include="Views\Forecast\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
     <Content Include="Views\Home\Resources\Index.less" />
     <Content Include="Views\Instruction\en-US\AgentBetSetting.cshtml" />
@@ -917,10 +889,6 @@
     <ProjectReference Include="..\Apollo.Age.BetList\Apollo.Age.BetList.csproj">
       <Project>{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}</Project>
       <Name>Apollo.Age.BetList</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Apollo.Age.Forecast\Apollo.Age.Forecast.csproj">
-      <Project>{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}</Project>
-      <Name>Apollo.Age.Forecast</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Integration\Apollo.Age.Integration.csproj">
       <Project>{5065F780-0CF8-4AE4-96F2-70D8BE40332C}</Project>
