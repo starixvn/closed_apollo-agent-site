@@ -1,6 +1,7 @@
 ﻿/// <reference path="Languages/en.js" />
 /// <reference path="PTSetting.js" />
 /*global Language*/
+/*global maxBetLimit*/
 /* jshint maxlen:false */
 
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace

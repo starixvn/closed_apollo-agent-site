@@ -184,7 +184,7 @@ Fanex.CustSetting.CommissionSetting = function (source) {
 		};
 	};
 	this.RenderSpinBox = function (comContainer, discount, uplineDiscount) {
-		var spinBox = Fanex.CustSetting.PT_RenderSpinner(comContainer,
+		var spinBox = Fanex.CustSetting.RenderSpinner(comContainer,
 				{
 					minimum: 0,
 					maximum: uplineDiscount,

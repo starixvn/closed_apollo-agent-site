@@ -1,6 +1,8 @@
 ﻿/* File Created: March 13, 2013 */
 /*global APOLLO*/
 /*global noty*/
+/*global settingContext*/
+/*global commissionSetting*/
 'use strict';
 if (typeof jQuery !== 'undefined') {
 	var EDITCOMMISSION = (function ($) {

@@ -1,5 +1,6 @@
 ﻿/// <reference path="Core.js" />
 /*global Language*/
+/*jshint camelcase: false */
 
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
@@ -47,7 +48,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function () { // a1
 
     var presetContainer = document.createElement("DIV");
     presetContainer.className = "bet-type-select-preset";
-    var presetSpinBox = Fanex.CustSetting.PT_RenderSpinner(presetContainer,
+    var presetSpinBox = Fanex.CustSetting.RenderSpinner(presetContainer,
     {
         minimum: currentPt.MinPresetSpan,
         maximum: currentPt.MaxPresetSpan,
@@ -70,7 +71,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function () { // a1
 
     var maxContainer = document.createElement("DIV");
     maxContainer.className = "bet-type-select";
-    var maxSpinBox = Fanex.CustSetting.PT_RenderSpinner(maxContainer,
+    var maxSpinBox = Fanex.CustSetting.RenderSpinner(maxContainer,
     {
         minimum: currentPt.MinMaxSpan,
         maximum: currentPt.MaxMaxSpan,
@@ -93,7 +94,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_2_1 = function () { // a1
     currentPt.MinMinSpan = Fanex.CustSetting.CURRENT_CONTEXT.HasMinConstrain ? Fanex.CustSetting.MIN_CONSTRAIN_VALUE : 0;
     var minContainer = document.createElement("DIV");
     minContainer.className = "bet-type-select";
-    var minSpinBox = Fanex.CustSetting.PT_RenderSpinner(minContainer, {
+    var minSpinBox = Fanex.CustSetting.RenderSpinner(minContainer, {
         minimum: currentPt.MinMinSpan,
         maximum: currentPt.MaxMinSpan,
         decimals: Fanex.CustSetting.PT_DECIMALS,
@@ -238,7 +239,7 @@ Fanex.CustSetting.BetType.prototype.Render_2_1_1 = function () {
     var ptContainer = document.createElement("DIV");
     ptContainer.className = "bet-type-select";
     box.appendChild(ptContainer);
-    var ptSpinBox = Fanex.CustSetting.PT_RenderSpinner(ptContainer, {
+    var ptSpinBox = Fanex.CustSetting.RenderSpinner(ptContainer, {
         minimum: this.pt.Upline.Min,
         maximum: this.pt.Upline.Max,
         decimals: Fanex.CustSetting.PT_DECIMALS,
@@ -324,7 +325,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function () {
     currentPt.MinMaxSpan = Math.max(this.pt.Upline.Min, this.pt.Min);
     var maxContainer = document.createElement("DIV");
     maxContainer.className = "bet-type-select";
-    var maxSpinBox = Fanex.CustSetting.PT_RenderSpinner(maxContainer,
+    var maxSpinBox = Fanex.CustSetting.RenderSpinner(maxContainer,
 {
     minimum: currentPt.MinMaxSpan,
     maximum: currentPt.MaxMaxSpan,
@@ -346,7 +347,7 @@ Fanex.CustSetting.BetType.prototype.Render_4_3_1 = function () {
     minContainer.className = "bet-type-select";
     box.appendChild(minContainer);
     currentPt.MaxMinSpan = this.pt.Max;
-    var minSpinBox = Fanex.CustSetting.PT_RenderSpinner(minContainer, {
+    var minSpinBox = Fanex.CustSetting.RenderSpinner(minContainer, {
         minimum: 0,
         maximum: currentPt.MaxMinSpan,
         decimals: Fanex.CustSetting.PT_DECIMALS,
@@ -491,7 +492,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function () {
     var presetContainer = document.createElement("TD");
     presetContainer.className = "share-setting-value";
     trSetting.appendChild(presetContainer);
-    var presetSpinBox = Fanex.CustSetting.PT_RenderSpinner(presetContainer,
+    var presetSpinBox = Fanex.CustSetting.RenderSpinner(presetContainer,
                     {
                         minimum: currentPt.MinPresetSpan,
                         maximum: currentPt.MaxPresetSpan,
@@ -523,7 +524,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function () {
     currentPt.MinMaxSpan = Math.max(Fanex.RoundNumber(currentPt.Upline.MinGiven - currentPt.Preset, 2), 0, currentPt.Upline.Min);
     maxContainer.className = "share-setting-value";
     trSetting.appendChild(maxContainer);
-    var maxSpinBox = Fanex.CustSetting.PT_RenderSpinner(maxContainer,
+    var maxSpinBox = Fanex.CustSetting.RenderSpinner(maxContainer,
                     {
                         minimum: currentPt.MinMaxSpan,
                         maximum: currentPt.MaxMaxSpan,
@@ -554,7 +555,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_2_1 = function () {
     currentPt.MinMinSpan = Fanex.CustSetting.CURRENT_CONTEXT.HasMinConstrain ? Fanex.CustSetting.MIN_CONSTRAIN_VALUE : 0;
     minContainer.className = "share-setting-value";
     trSetting.appendChild(minContainer);
-    var minSpinBox = Fanex.CustSetting.PT_RenderSpinner(minContainer,
+    var minSpinBox = Fanex.CustSetting.RenderSpinner(minContainer,
                     {
                         minimum: currentPt.MinMinSpan,
                         maximum: currentPt.MaxMinSpan,
@@ -683,7 +684,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_4_3_1 = function () {
     currentPt.MinMaxSpan = Math.max(currentPt.Upline.Min, currentPt.Min);
     valueContainer.className = "share-setting-value";
     trSetting.appendChild(valueContainer);
-    var maxSpinBox = Fanex.CustSetting.PT_RenderSpinner(valueContainer,
+    var maxSpinBox = Fanex.CustSetting.RenderSpinner(valueContainer,
 {
     minimum: currentPt.MinMaxSpan,
     maximum: currentPt.Upline.Max,
@@ -743,7 +744,7 @@ Fanex.CustSetting.PTGrid.prototype.RenderSimpleMode_2_1_1 = function () {
     var maxContainer = document.createElement("TD");
     maxContainer.className = "share-setting-value";
     trSetting.appendChild(maxContainer);
-    var valueSpinBox = Fanex.CustSetting.PT_RenderSpinner(maxContainer,
+    var valueSpinBox = Fanex.CustSetting.RenderSpinner(maxContainer,
                     {
                         minimum: currentPt.Upline.Min,
                         maximum: currentPt.Upline.Max,

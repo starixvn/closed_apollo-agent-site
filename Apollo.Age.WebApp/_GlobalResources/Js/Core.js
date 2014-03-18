@@ -1,6 +1,8 @@
 ﻿/*jshint strict:false*/
 /*global ApoRes*/
 /* jshint maxlen:false */
+/* jshint freeze: false */
+
 var APOLLO = {}; // Global namespace for common functions
 
 if (typeof jQuery !== 'undefined') {

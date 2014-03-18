@@ -40,7 +40,6 @@ if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     String.prototype.escapeHtml = function () { // Replace all ampersands with &amp; and all <’s and >’s with &lt; and &gt;, respectively:
         'use strict';
         var result = String.Empty;
-        'use strict';
         for (var i = 0; i < this.length; i++) {
             if (this.charAt(i) === "&" && this.length - i - 1 >= 4 && this.substr(i, 4) !== "&amp;") {
                 result = result + "&amp;";

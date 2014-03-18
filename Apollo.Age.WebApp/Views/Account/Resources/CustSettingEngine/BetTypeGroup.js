@@ -1,5 +1,6 @@
 ﻿/// <reference path="PTSetting.js" />
 /*global Language*/
+/*jshint camelcase: false */
 
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};

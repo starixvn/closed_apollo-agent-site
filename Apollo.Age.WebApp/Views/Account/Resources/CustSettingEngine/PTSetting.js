@@ -105,7 +105,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 			digits = digits || 2;
 			return ' ' + Language.MIN + ' = ' + Fanex.RoundNumber(minShare, digits) + ' || ' + Language.MAX + ' = ' + Fanex.RoundNumber(maxShare, digits);
 		},
-		PT_RenderSpinner: function (spinBoxElement, spinOptions, maxLength) {
+		RenderSpinner: function (spinBoxElement, spinOptions, maxLength) {
 			'use strict';
 			spinBoxElement.style.width = spinOptions.minWidth + 'px';
 			var minInput = document.createElement("INPUT");

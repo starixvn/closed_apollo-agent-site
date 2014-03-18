@@ -3,6 +3,7 @@
 /*global Language*/
 /*global DEFAULT_LAYOUT*/
 /*global APOLLO*/
+/*global settingContext*/
 'use strict';
 if (typeof jQuery !== 'undefined') {
     var EDITSETTING = (function ($) {

@@ -2,6 +2,8 @@
 /*global APOLLO*/
 /*global DEFAULT_LAYOUT*/
 /*global Language*/
+/*global settingContext*/
+/*global positionTakingSetting*/
 'use strict';
 if (typeof jQuery !== 'undefined') {
     var EDITPOSITIONTAKING = (function ($) {
