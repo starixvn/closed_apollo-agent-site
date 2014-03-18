@@ -17,7 +17,7 @@
  * Date: Mon Nov 21 21:11:03 2011 -0500
  */
 'use strict';
-
+/*jshint maxdepth:false*/
 (function(){
 
   // String to Object flags format cache

@@ -1,6 +1,9 @@
 ﻿/*global Language*/
 /*global Validators*/
 /* jshint maxlen:false */
+/*jshint maxdepth:false*/
+/*jshint maxstatements:false*/
+
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};
 }

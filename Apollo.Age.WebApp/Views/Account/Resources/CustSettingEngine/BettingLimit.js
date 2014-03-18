@@ -2,6 +2,8 @@
 /*global Language*/
 /*global maxBetLimit*/
 /* jshint maxlen:false */
+/*jshint maxstatements:false*/
+/*jshint forin:false*/
 
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
     Fanex = {};

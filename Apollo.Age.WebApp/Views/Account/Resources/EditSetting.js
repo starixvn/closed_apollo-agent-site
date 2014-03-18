@@ -4,9 +4,7 @@
 /*global DEFAULT_LAYOUT*/
 /*global APOLLO*/
 /*global settingContext*/
-/*global commissionSetting*/
-/*global betLimits*/
-/*global maxBetLimit*/
+/*jshint maxdepth:false*/
 'use strict';
 if (typeof jQuery !== 'undefined') {
     var EDITSETTING = (function ($) {
