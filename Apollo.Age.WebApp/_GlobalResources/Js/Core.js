@@ -476,7 +476,7 @@ if (typeof jQuery !== 'undefined') {
                     }
                     if (mm === 2) {
                         var lyear = false;
-                        if ((!(yy % 4) && yy % 100) || !(yy % 400)) {
+                        if (((yy % 4 === 0) && (yy % 100 !== 0)) || (yy % 400 === 0)) {
                             lyear = true;
                         }
 

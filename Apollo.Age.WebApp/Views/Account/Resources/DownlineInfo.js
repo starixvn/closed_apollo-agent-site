@@ -1,6 +1,7 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /// <reference path="../../../_GlobalResources/Js/jquery.cookie.js" />
 /*global APOLLO*/
+/*exported DOWNLINE */
 'use strict';
 var DOWNLINE = (function ($) {
     return {
