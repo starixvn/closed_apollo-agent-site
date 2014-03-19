@@ -4,6 +4,8 @@
 /*global Language*/
 /*global settingContext*/
 /*global positionTakingSetting*/
+/* jshint loopfunc:true */
+
 'use strict';
 if (typeof jQuery !== 'undefined') {
     var EDITPOSITIONTAKING = (function ($) {

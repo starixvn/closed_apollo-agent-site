@@ -3,7 +3,7 @@
 /*jshint camelcase: false */
 
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
-    Fanex = {};
+    Fanex = {}; // jshint ignore:line
 }
 if (typeof (Fanex.CustSetting) === 'undefined') { // Require Fanex.CustSetting namespace
     alert('Require Fanex.CustSetting namespace');

@@ -4,9 +4,9 @@
 /* jshint maxlen:false */
 /*jshint maxstatements:false*/
 /*jshint forin:false*/
-
+/* jshint loopfunc:true */
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
-    Fanex = {};
+    Fanex = {}; // jshint ignore:line
 }
 if (typeof (Fanex.CustSetting) === 'undefined') { // Require Fanex.CustSetting namespace
     alert('Require Fanex.CustSetting namespace');
@@ -547,6 +547,6 @@ Fanex.CustSetting.BettingLimit = function (bettingLimitItems) {
 				parentElement.appendChild(constrainBetSettingContainer);
 			}
 		}
-		return inputValue;
+return inputValue; // jshint ignore:line
 	};
 };

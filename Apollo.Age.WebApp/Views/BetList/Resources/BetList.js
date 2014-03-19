@@ -3,85 +3,6 @@
 /*global ApoRes*/
 'use strict';
 
-function showMP(transid) {
-    var divEvent = document.getElementById('divEvent_' + transid);
-    if (divEvent.style.display === 'none') {
-        if (divEvent.innerHTML === "") {
-            ajax.Request(APOLLO.resolveUrl("~/BetList/MixParlay"), { method: 'get', parameters: 'transid=' + transid,
-                onSuccess: function (data) {
-                    if (data.errCode === 500) {
-                        divEvent.innerHTML = data.errMsg;
-                        divEvent.style.display = '';
-                    }
-                    else {
-                        divEvent.innerHTML = data.responseText;
-                        divEvent.style.display = '';
-                    }
-                }
-            });
-        }
-        else {
-            divEvent.style.display = '';
-        }
-    }
-    else {
-        divEvent.style.display = 'none';
-    }
-}
-
-function showCombMPDetail(refno, winlostdate, transid, betid, custid, target) {
-    if (parent.RefreshCountDown) { parent.RefreshCountDown.stopTimeout(); }
-    var width = 750,
-		height = 350,
-		params = '?refno=' + refno + '&winlossDate=' + winlostdate + '&transid=' + transid + '&betid=' + betid + '&custid=' + custid,
-		detailTitle = $(target).siblings('.combinationLink').find('#hidden0').text() + " - " + ApoRes.RefNo + ": " + transid;
-    APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/CombinationMixParlay" + params),
-		detailTitle,
-        {
-            width: width,
-            height: height,
-            close: function () {
-                if (parent.RefreshCountDown) {
-                    parent.RefreshCountDown.startTimeout();
-                }
-            }
-        });
-}
-
-function InitBetList() {
-    if (parent.APOLLO && parent.APOLLO.currentOpenDialog) {
-        var heightPopup = 630;
-        if (APOLLO.browser.msie) {
-            heightPopup = 615;
-            if (parseInt(APOLLO.browser.version, 10) === 7) {
-                $('#content_main').css({ 'padding-bottom': '130px' });
-            }
-        }
-
-        if (parent.APOLLO.isResizeDialog) {
-            // resolution for screens
-            if (window.parent.$("#page_main").width() >= 1024) {
-                parent.APOLLO.resizeDialog(1000, heightPopup);
-            } else {
-                // check IE
-                if (APOLLO.browser.msie) {
-                    parent.APOLLO.resizeDialog(960, 500);
-                } else {
-                    parent.APOLLO.resizeDialog(960, 510);
-                }
-            }
-        }
-    }
-
-    if (document.getElementById("exporttoexcel") != null) {
-        document.getElementById("exporttoexcel").style.display = "none";
-    }
-
-    APOLLO.hidePopupBlockLoading();
-}
-
-InitBetList();
-
 var BETLIST = {};
 
 if (typeof jQuery !== "undefined") {
@@ -119,6 +40,22 @@ if (typeof jQuery !== "undefined") {
 
                 $("#btnSubmitTransaction").click(function () {
                     BETLIST.Transaction();
+                });
+
+                $("a[name='mixParlayDetail']").click(function () {
+                    var $this = $(this);
+                    BETLIST.showMixParlay($this.attr("data-transid"));
+                });
+
+                $(".detail").click(function () {
+                    var $this = $(this);
+                    //(refNo, winlostDate, transId, betId, custId, target)
+                    BETLIST.showCompileMixParlay(
+                    $this.attr("data-refno"),
+                    $this.attr("data-winlostdate"),
+                    $this.attr("data-transid"),
+                    $this.attr("data-betid"),
+                    $this.attr("data-custid"));
                 });
 
                 $('#backLink').click(function () {
@@ -391,7 +328,57 @@ if (typeof jQuery !== "undefined") {
 
                     return false;
                 });
+            },
+
+            showMixParlay: function (transId) {
+                $.ajax({
+                    url: APOLLO.resolveUrl("~/Betlist/MixParlay"),
+                    data: {
+                        transid: transId
+                    },
+                    success: function (data) {
+                        var mixParlayDetail = $('#' + transId);
+
+                        if (data.errCode === 500) {
+                            mixParlayDetail.html(data.errMsg);
+                        }
+                        else {
+                            mixParlayDetail.html(data.responseText);
+                        }
+
+                        if (mixParlayDetail.is(':hidden')) {
+                            mixParlayDetail.show();
+                        }
+                        else {
+                            mixParlayDetail.hide();
+                        }
+                    }
+                });
+            },
+
+            showCompileMixParlay: function (refNo, winlostDate, transId, betId, custId) {
+                if (parent.RefreshCountDown) {
+                    parent.RefreshCountDown.stopTimeout();
+                }
+
+                var width = 750;
+                var height = 350;
+                var params = '?refno=' + refNo + '&winlossDate=' + winlostDate + '&transid=' + transId + '&betid=' + betId + '&custid=' + custId;
+                var detailTitle = ApoRes.SystemParlay + " - " + ApoRes.RefNo + ": " + transId;
+
+                APOLLO.openDialogFrame(APOLLO.resolveUrl("~/BetList/CombinationMixParlay" + params),
+                detailTitle,
+                {
+                    width: width,
+                    height: height,
+                    close: function () {
+                        if (parent.RefreshCountDown) {
+                            parent.RefreshCountDown.startTimeout();
+                        }
+                    }
+                });
             }
+
         };
     } (jQuery));
 
@@ -503,5 +490,5 @@ if (typeof jQuery !== "undefined") {
                 }
             }
         });
-    });         //.ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    });
 }

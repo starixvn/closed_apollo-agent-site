@@ -1,6 +1,8 @@
 ﻿/// <reference path="../../../_GlobalResources/Js/jquery.js" />
 /*global DEFAULT_LAYOUT*/
 /*global APOLLO*/
+/*jshint unused:false*/
+/*exported TOTALBETS*/
 'use strict';
 var TOTALBETS = (function ($) {
     return {

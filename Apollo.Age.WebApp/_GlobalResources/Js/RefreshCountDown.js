@@ -1,4 +1,5 @@
 ﻿'use strict';
+/*jshint evil:true*/
 var RefreshCountDown = (function ($) {
     return {
         interval: 0,

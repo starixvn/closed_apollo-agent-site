@@ -1,10 +1,12 @@
 ﻿/* File Created: March 14, 2013 */
 /*global DEFAULT_OBJECT*/
-/*global Language*/
+/*global Language,commissionSetting,betLimits,maxBetLimit*/
 /*global DEFAULT_LAYOUT*/
 /*global APOLLO*/
 /*global settingContext*/
 /*jshint maxdepth:false*/
+/* jshint loopfunc:true */
+
 'use strict';
 if (typeof jQuery !== 'undefined') {
     var EDITSETTING = (function ($) {

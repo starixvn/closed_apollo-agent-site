@@ -17,6 +17,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using NPOI.SS.UserModel;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Combination Mix Parlay.
@@ -101,10 +102,11 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed. Suppression is OK here.")]
         protected override void BuildChoice(
-            ITicket ticket, 
-            ITicketHelper ticketHelper, 
-            List<ITicketData> ticketData, 
+            ITicket ticket,
+            ITicketHelper ticketHelper,
+            List<ITicketData> ticketData,
             IList<ITicket> ticketMixParlay)
         {
             this.Template.handicap = BetList.vs;
@@ -113,40 +115,25 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             string mixParlay = string.Empty;
             string custid = HttpContext.Current.Request["custid"] ?? ticket.CustId.ToString();
 
-            mixParlay = string.Join(
+            string systemParlay = string.Join(
                 null,
-                    "<div class=\"combinationLink\"><a id=\"hidden0\" href=\"javascript:showMP(&quot;",
-                    ticket.TransId.ToString(),
-                    "&quot;);\">",
-                    betTypeName,
-                    "</a>",
-                    " - ",
-                    "<span>",
-                    GetCombinationOfferName(ticket.BetTeam),
-                    "</span>",
-                    "</div>",
-                    "<div id=\"divEvent_",
-                    ticket.TransId.ToString(),
-                    "\" style=\"display: block\" >" + RenderMixParlayDetail(ticket, ticketMixParlay, ticketHelper) + "</div>",
-                    "<div class=\"detail\" onclick=\"showCombMPDetail(&quot;",
-                    ticket.RefNo,
-                    "&quot;",
-                    ",&quot;",
-                    ticket.WinlostDate.ToString(),
-                    "&quot;",
-                    ",&quot;",
-                    ticket.TransId.ToString(),
-                    "&quot;",
-                    ",&quot;",
-                    ticket.BetId.ToString(),
-                    "&quot;",
-                    ",&quot;",
-                    custid,
-                    "&quot;, this);\">",
-                    BetList.details,
-                    "</div>");
+                "<div class='combinationLink'>",
+                "<a name='mixParlayDetail' data-transId='" + ticket.TransId.ToString() + "' href='javascript:void(0);'>",
+                betTypeName,
+                "</a>",
+                " - ",
+                "<span>",
+                GetCombinationOfferName(ticket.BetTeam),
+                "</span><br/>",
+                "<div id='" + ticket.TransId.ToString() + "'>",
+                RenderMixParlayDetail(ticket, ticketMixParlay, ticketHelper),
+                "</div>",
+                "<div class='detail' data-refno='" + ticket.RefNo + "' data-winlostDate='" + ticket.WinlostDate.ToString() + "' data-transid='" + ticket.TransId.ToString() + "' data-betid='" + ticket.BetId.ToString() + "' data-custid='" + custid + "'>",
+                BetList.details,
+                "</div>",
+                "</div>");
 
-            this.Template.SetValue(mixParlay);
+            this.Template.SetValue(systemParlay);
         }
 
         /// <summary>
@@ -192,7 +179,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 }
 
                 result += builder.GetBetList().Replace(
-                    "<div class=\"league\">", 
+                    "<div class=\"league\">",
                     string.Format("<div class=\"league\"> <span class=\"red-color\"> {0} </span> ", ticketHelper.GetSportNameById(item.SportTypeId)));
             }
 

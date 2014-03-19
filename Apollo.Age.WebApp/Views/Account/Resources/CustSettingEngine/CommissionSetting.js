@@ -1,12 +1,12 @@
 ﻿/* File Created: February 26, 2013 */
 /// <reference path="PTSetting.js" />
-/*global Language*/
+/*global Language,Fanex*/
 /* jshint maxlen:false */
 /*jshint maxstatements:false*/
 'use strict';
 
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
-    Fanex = {};
+    Fanex = {}; // jshint ignore:line
 }
 if (typeof (Fanex.CustSetting) === 'undefined') { // Require Fanex.CustSetting namespace
     alert('Require Fanex.CustSetting namespace');

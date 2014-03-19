@@ -37,28 +37,22 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// Choice Template.
         /// </returns>
         public override Choice_Template Render(
-            ITicket ticket, 
-            ITicketHelper ticketHelper, 
-            List<ITicketData> ticketData, 
-            IList<ITicket> ticketMixParlay, 
+            ITicket ticket,
+            ITicketHelper ticketHelper,
+            List<ITicketData> ticketData,
+            IList<ITicket> ticketMixParlay,
             bool isShowScoreMap)
         {
             this.Template.handicap = BetList.vs;
             string betTypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
 
-            string mixParlay = string.Join(
+            string mixParlayContent = string.Join(
                 null,
-                "<a id=\"hidden0\" href=\"javascript:showMP(&quot;",
-                ticket.TransId.ToString(),
-                "&quot;);\">",
-                betTypeName,
-                "</a>",
+                "<a name='mixParlayDetail' data-transId='" + ticket.TransId.ToString() + "' href='javascript:void(0);'>" + betTypeName + "</a>",
                 "<br/>",
-                "<div id=\"divEvent_",
-                ticket.TransId.ToString(),
-                "\" style=\"display: block\" >" + RenderMixParlayDetail(ticket, ticketMixParlay, ticketHelper) + "</div>");
+                "<div id='" + ticket.TransId.ToString() + "'>" + RenderMixParlayDetail(ticket, ticketMixParlay, ticketHelper) + "</div>");
 
-            this.Template.SetValue(mixParlay);
+            this.Template.SetValue(mixParlayContent);
 
             return this.Template;
         }
@@ -76,11 +70,11 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// Choice Template.
         /// </returns>
         public override List<IRichTextString> RenderRTF(
-            ITicket ticket, 
-            ITicketHelper ticketHelper, 
-            List<ITicketData> ticketData, 
-            IList<ITicket> ticketMixParlay, 
-            bool isShowScoreMap, 
+            ITicket ticket,
+            ITicketHelper ticketHelper,
+            List<ITicketData> ticketData,
+            IList<ITicket> ticketMixParlay,
+            bool isShowScoreMap,
             RTFHelper rtfHelper)
         {
             rtfHelper.RTFRenderer.AddText(BetList.lblMixParlay + "\n\n", rtfHelper.BlueNoBold);
@@ -150,7 +144,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 string sportName = ticketHelper.GetSportNameById(item.SportTypeId);
 
                 result += builder.GetBetList().Replace(
-                    "<div class=\"league\">", 
+                    "<div class=\"league\">",
                     string.Format("<div class=\"league\"> <span class=\"red-color\"> {0} </span> ", sportName));
             }
 

@@ -5,7 +5,7 @@
 /*jshint maxstatements:false*/
 
 if (typeof (Fanex) === 'undefined') { // Require Fanex namespace
-    Fanex = {};
+    Fanex = {}; // jshint ignore:line
 }
 if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting namespace
 	'use strict';
@@ -172,7 +172,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 			this.HasMinConstrain = currentContext.HasMinConstrain;
 			this.CanEditComGroup = currentContext.CanEditComGroup;
 			if (this.Language === 'cn-CN') {
-				Language = "new language";
+			    Language = "new language"; // jshint ignore:line
 			}
 		},
 		CURRENT_CONTEXT: {
@@ -472,7 +472,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 						};
 					}
 				}
-				this.minWidth = totalGroupWidth;
+                this.minWidth = totalGroupWidth; // jshint ignore:line
 				box.className = "pt-group";
 				this.DOM = box;
 				// Append or return the object
@@ -929,7 +929,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 					if (box != null) {
 						box.className = "pt-grid";
 						var items = this.items;
-						var elements = this.elements;
+						var elements = this.elements; // jshint ignore:line
 						if (currentContext.FormId !== Fanex.CustSetting.FormTypes.VIEW_SETTING
 						&& currentContext.FormId !== Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
 							// Implementation for clone button of Soccer 1 and Basketball 2
