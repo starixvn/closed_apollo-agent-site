@@ -501,7 +501,7 @@ if (typeof jQuery !== 'undefined') {
                 //APOLLO.initFreeHeader();
             },
             resolutionForScreens: function (width, height) {
-                var resolution = new Array();
+                var resolution = new Array(); // jshint ignore:line
                 if (($(window).width() >= 1024)) {
                     resolution["width"] = width;
                     resolution["height"] = height;
