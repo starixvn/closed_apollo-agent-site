@@ -879,8 +879,9 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 				var box = null;
 				var header;
 				var informationButton;
+				var elements;
 				if (currentContext.IsSimpleMode === false) {
-					var elements = []; // Child sport type elements
+					elements = []; // Child sport type elements
 					if (typeof (this.sportTypes) !== 'object' || typeof (this.sportTypes.length) === 'undefined') {
 						console.log("Input data source sportTypes is empty.");
 					} else {
