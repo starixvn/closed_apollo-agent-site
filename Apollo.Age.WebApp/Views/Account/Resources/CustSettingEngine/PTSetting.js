@@ -879,8 +879,9 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 				var box = null;
 				var header;
 				var informationButton;
+				var elements;
 				if (currentContext.IsSimpleMode === false) {
-					var elements = []; // Child sport type elements
+					elements = []; // Child sport type elements
 					if (typeof (this.sportTypes) !== 'object' || typeof (this.sportTypes.length) === 'undefined') {
 						console.log("Input data source sportTypes is empty.");
 					} else {
@@ -929,7 +930,7 @@ if (typeof (Fanex.CustSetting) === 'undefined') { // Define Fanex.CustSetting na
 					if (box != null) {
 						box.className = "pt-grid";
 						var items = this.items;
-						var elements = this.elements;
+						elements = this.elements;
 						if (currentContext.FormId !== Fanex.CustSetting.FormTypes.VIEW_SETTING
 						&& currentContext.FormId !== Fanex.CustSetting.FormTypes.SHADOW_VIEW) {
 							// Implementation for clone button of Soccer 1 and Basketball 2

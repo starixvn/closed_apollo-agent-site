@@ -2,13 +2,12 @@
 /*global BASELANGUAGES*/
 /*global APOLLO*/
 'use strict';
-var FUNDOUT = function ($) {
+var FUNDOUT = (function ($) {
     return {
         memberId: 0,
         oldSportCredit: 0,
         newSportCredit: 0,
         init: function () {
-
             FUNDOUT.oldSportCredit = $('#SportCredit').val();
             FUNDOUT.memberId = $('#MemberId').val();
             FUNDOUT.bindingSubmitButton();
@@ -23,7 +22,6 @@ var FUNDOUT = function ($) {
                     alert(BASELANGUAGES.fundoutamountmessage.replace('{0}', FUNDOUT.oldSportCredit));
                     return;
                 }
-               
 
                 $.ajax({
                     url: APOLLO.resolveUrl('/Account/PostFundOut'),
@@ -36,8 +34,8 @@ var FUNDOUT = function ($) {
                     })
                 }).done(function (data) {
                     if (data.ErrCode === 0) {
-                        parent.location.reload();                    
-                    } else {                      
+                        parent.location.reload();
+                    } else {
                         alert(data.ErrMsg);
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -46,7 +44,7 @@ var FUNDOUT = function ($) {
             });
         }
     };
-} (jQuery);
+} (jQuery));
 
 $(document).ready(function () {
     FUNDOUT.init();

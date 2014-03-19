@@ -4,6 +4,9 @@
 /*global DEFAULT_LAYOUT*/
 /*global APOLLO*/
 /*global settingContext*/
+/*global betLimits*/
+/*global maxBetLimit*/
+/*global commissionSetting*/
 /*jshint maxdepth:false*/
 'use strict';
 if (typeof jQuery !== 'undefined') {
