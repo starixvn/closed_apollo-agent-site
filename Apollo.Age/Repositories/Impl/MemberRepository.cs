@@ -14,6 +14,7 @@ namespace Apollo.Age.Repositories.Impl
     using Apollo.Age.Entities;
     using Apollo.Age.Repositories.Interface;
     using Fanex.Data;
+    using Fanex.NAP.Framework.Command;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
@@ -69,6 +70,6 @@ namespace Apollo.Age.Repositories.Impl
         public ICommandResult Update(Member entity)
         {
             throw new NotImplementedException();
-        }     
+        }
     }
 }

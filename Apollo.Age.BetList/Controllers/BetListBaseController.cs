@@ -11,7 +11,6 @@ namespace Apollo.Age.BetList.Controllers
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.BetList.Services;
     using Apollo.Age.BetList.ViewModels;

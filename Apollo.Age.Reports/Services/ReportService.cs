@@ -258,7 +258,7 @@ namespace Apollo.Age.Reports.Services
 
             if (isBold)
             {
-                newfont.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.BOLD;
+                newfont.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.Bold;
             }
 
             newfont.IsItalic = isItalic;
@@ -278,7 +278,7 @@ namespace Apollo.Age.Reports.Services
         public ICellStyle CreateStyle(
             HSSFWorkbook hssfworkbook,
             short backgroundColor = -1,
-            HorizontalAlignment align = HorizontalAlignment.LEFT,
+            HorizontalAlignment align = HorizontalAlignment.Left,
             IFont font = null,
             bool isBorder = true)
         {
@@ -286,12 +286,12 @@ namespace Apollo.Age.Reports.Services
             if (backgroundColor != -1)
             {
                 style.FillForegroundColor = backgroundColor;
-                style.FillPattern = FillPatternType.SOLID_FOREGROUND;
+                style.FillPattern = FillPattern.SolidForeground;
                 style.FillBackgroundColor = backgroundColor;
             }
 
             style.Alignment = align;
-            style.VerticalAlignment = VerticalAlignment.CENTER;
+            style.VerticalAlignment = VerticalAlignment.Center;
             if (font != null)
             {
                 style.SetFont(font);
@@ -299,10 +299,10 @@ namespace Apollo.Age.Reports.Services
 
             if (isBorder)
             {
-                style.BorderTop = BorderStyle.THIN;
-                style.BorderLeft = BorderStyle.THIN;
-                style.BorderRight = BorderStyle.THIN;
-                style.BorderBottom = BorderStyle.THIN;
+                style.BorderTop = BorderStyle.Thin;
+                style.BorderLeft = BorderStyle.Thin;
+                style.BorderRight = BorderStyle.Thin;
+                style.BorderBottom = BorderStyle.Thin;
             }
 
             return style;
@@ -321,7 +321,7 @@ namespace Apollo.Age.Reports.Services
             var cell = row.CreateCell(columIndex);
 
             cell.CellStyle = style;
-            cell.SetCellType(CellType.NUMERIC);
+            cell.SetCellType(CellType.Numeric);
             cell.CellStyle.DataFormat = numberFormat;
             cell.SetCellValue(value);
         }
@@ -349,14 +349,14 @@ namespace Apollo.Age.Reports.Services
         {
             var palette = hssfworkbook.GetCustomPalette();
 
-            palette.SetColorAtIndex(HSSFColor.BLUE_GREY.index, (byte)141, (byte)200, (byte)245);
-            palette.SetColorAtIndex(HSSFColor.BROWN.index, (byte)104, (byte)119, (byte)128);
-            palette.SetColorAtIndex(HSSFColor.RED.index, (byte)153, (byte)0, (byte)0);
+            palette.SetColorAtIndex(HSSFColor.BlueGrey.Index, (byte)141, (byte)200, (byte)245);
+            palette.SetColorAtIndex(HSSFColor.Brown.Index, (byte)104, (byte)119, (byte)128);
+            palette.SetColorAtIndex(HSSFColor.Red.Index, (byte)153, (byte)0, (byte)0);
 
-            palette.SetColorAtIndex(HSSFColor.DARK_RED.index, (byte)193, (byte)0, (byte)0);
-            palette.SetColorAtIndex(HSSFColor.GREY_25_PERCENT.index, (byte)219, (byte)229, (byte)238);
-            palette.SetColorAtIndex(HSSFColor.GREY_50_PERCENT.index, (byte)196, (byte)217, (byte)238);
-            palette.SetColorAtIndex(HSSFColor.GREEN.index, (byte)0, (byte)128, (byte)129);
+            palette.SetColorAtIndex(HSSFColor.DarkRed.Index, (byte)193, (byte)0, (byte)0);
+            palette.SetColorAtIndex(HSSFColor.Grey25Percent.Index, (byte)219, (byte)229, (byte)238);
+            palette.SetColorAtIndex(HSSFColor.Grey50Percent.Index, (byte)196, (byte)217, (byte)238);
+            palette.SetColorAtIndex(HSSFColor.Green.Index, (byte)0, (byte)128, (byte)129);
         }
 
         /// <summary>

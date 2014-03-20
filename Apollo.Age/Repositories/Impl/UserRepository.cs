@@ -20,6 +20,7 @@ namespace Apollo.Age.Repositories.Impl
     using Apollo.Age.Repositories.Interface;
     using Fanex.Common;
     using Fanex.Data;
+    using Fanex.NAP.Framework.Command;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

@@ -171,7 +171,7 @@ namespace Apollo.Age.Reports.Services
                 double totalOutstanding = 0, totalShareAmount = 0, currentOutStanding = 0, currentShareAmount = 0;
                 string userName = string.Empty;
 
-                var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
+                var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.Right);
                 var bodyStyleLeft = CreateStyle(hssfworkbook);
 
                 sheet.CreateFreezePane(0, rowIndex);
@@ -207,9 +207,9 @@ namespace Apollo.Age.Reports.Services
                 //// If not is supper, then add total row
                 if (!isSuper)
                 {
-                    var fontFooter = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
-                    var footerStyleRight = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.RIGHT, fontFooter);
-                    var footerStyleLeft = CreateStyle(hssfworkbook, HSSFColor.RED.index, HorizontalAlignment.LEFT, fontFooter);
+                    var fontFooter = CreateFont(hssfworkbook, HSSFColor.White.Index, 10);
+                    var footerStyleRight = CreateStyle(hssfworkbook, HSSFColor.Red.Index, HorizontalAlignment.Right, fontFooter);
+                    var footerStyleLeft = CreateStyle(hssfworkbook, HSSFColor.Red.Index, HorizontalAlignment.Left, fontFooter);
 
                     RenderExcelBodyRows(
                         sheet,
@@ -278,13 +278,13 @@ namespace Apollo.Age.Reports.Services
             //// Report Title
             var row = sheet.CreateRow(fromRow);
 
-            var fontTitle = CreateFont(workBook, HSSFColor.BLACK.index, 14, true);
-            var styleTitle = CreateStyle(workBook, align: HorizontalAlignment.CENTER, font: fontTitle, isBorder: false);
+            var fontTitle = CreateFont(workBook, HSSFColor.Black.Index, 14, true);
+            var styleTitle = CreateStyle(workBook, align: HorizontalAlignment.Center, font: fontTitle, isBorder: false);
             CreateStringCell(row, 0, styleTitle, string.Format("{0} {1} {2}", reportType, Lang.outstanding, Lang.lblReport));
             sheet.AddMergedRegion(new CellRangeAddress(fromRow, fromRow, 0, 2));
 
             var rowFilter = sheet.CreateRow(rownum: 2);
-            var fontFilter = CreateFont(workBook, HSSFColor.BLUE.index, 11, true, true);
+            var fontFilter = CreateFont(workBook, HSSFColor.Blue.Index, 11, true, true);
             var styleFilter = CreateStyle(workBook, font: fontFilter, isBorder: false);
             CreateStringCell(rowFilter, 0, styleFilter, string.Format("{0} -- {1}: {2} -- {3}: {4}", userName, Lang.lblReport, sportName, Lang.WagerType, betTypeName));
 
@@ -300,8 +300,8 @@ namespace Apollo.Age.Reports.Services
         private void RenderExcelHeader(HSSFWorkbook workBook, ISheet sheet, int fromRow)
         {
             var row = sheet.CreateRow(fromRow);
-            var font = CreateFont(workBook, HSSFColor.WHITE.index, 11);
-            var headerStyle = CreateStyle(workBook, HSSFColor.BROWN.index, HorizontalAlignment.CENTER, font);
+            var font = CreateFont(workBook, HSSFColor.White.Index, 11);
+            var headerStyle = CreateStyle(workBook, HSSFColor.Brown.Index, HorizontalAlignment.Center, font);
 
             var usernameCell = row.CreateCell(0);
             usernameCell.CellStyle = headerStyle;

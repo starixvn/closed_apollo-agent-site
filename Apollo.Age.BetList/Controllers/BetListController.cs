@@ -164,7 +164,7 @@ namespace Apollo.Age.BetList.Controllers
                 model.FromDate.ToString("yyyyMMdd"),
                 model.ToDate.ToString("yyyyMMdd"));
 
-            return new ExcelResult(excelResult, fileName);
+            return ExcelResult(excelResult, fileName);
         }
 
         /// <summary>
@@ -330,7 +330,7 @@ namespace Apollo.Age.BetList.Controllers
                 model.FromDate.ToString("yyyyMMdd"),
                 model.ToDate.ToString("yyyyMMdd"));
 
-            return new ExcelResult(excelResult, fileName);
+            return ExcelResult(excelResult, fileName);
         }
 
         /// <summary>
@@ -444,7 +444,7 @@ namespace Apollo.Age.BetList.Controllers
                 model.FromDate.ToString("yyyyMMdd"),
                 model.ToDate.ToString("yyyyMMdd"));
 
-            return new ExcelResult(excelResult, fileName);
+            return ExcelResult(excelResult, fileName);
         }
 
         /// <summary>
@@ -519,7 +519,7 @@ namespace Apollo.Age.BetList.Controllers
                 username,
                 DateTime.Now.ToString("yyyyMMdd"));
 
-            return new ExcelResult(excelResult, fileName);
+            return ExcelResult(excelResult, fileName);
         }
 
         /// <summary>
@@ -619,7 +619,7 @@ namespace Apollo.Age.BetList.Controllers
                 fromDate.ToString("yyyyMMdd"),
                 toDate.ToString("yyyyMMdd"));
 
-            return new ExcelResult(excelResult, fileName);
+            return ExcelResult(excelResult, fileName);
         }
 
         /// <summary>
@@ -714,7 +714,7 @@ namespace Apollo.Age.BetList.Controllers
             var fileName = string.Format(
                 "BetList-{0}-{1}-{2}", "Forecast", title, DateTime.Now.ToString("yyyyMMdd"));
 
-            return new ExcelResult(excelResult, fileName);
+            return ExcelResult(excelResult, fileName);
         }
 
         /// <summary>
@@ -889,7 +889,7 @@ namespace Apollo.Age.BetList.Controllers
 
             var excelResult = this.TicketExcel(mainTickets, BetListPage.Wager, sheetName, betlistName, titleBetlist);
 
-            return new ExcelResult(excelResult, fileName);
+            return ExcelResult(excelResult, fileName);
         }
 
         /// <summary>

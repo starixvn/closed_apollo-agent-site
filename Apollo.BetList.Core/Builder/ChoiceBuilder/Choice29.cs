@@ -12,12 +12,12 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web;
     using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using NPOI.SS.UserModel;
-    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// Combination Mix Parlay.

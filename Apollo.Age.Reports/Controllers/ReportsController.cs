@@ -223,7 +223,7 @@ namespace Apollo.Age.Reports.Controllers
                 HttpUtility.UrlDecode(betTypeName),
                 isSupper);
 
-            return new ExcelResult(excelResult, string.Format("Outstanding_{0}_{1}", agentUsername, this._outstandingService.ShortDateFormat(DateTime.Now)));
+            return ExcelResult(excelResult, string.Format("Outstanding_{0}_{1}", agentUsername, this._outstandingService.ShortDateFormat(DateTime.Now)));
         }
 
         /// <summary>
@@ -664,7 +664,7 @@ namespace Apollo.Age.Reports.Controllers
                 agentName,
                 this._winLossService.ShortDateFormat(model.FromDate),
                 this._winLossService.ShortDateFormat(model.ToDate));
-            return new ExcelResult(excelResult, fileName);
+            return ExcelResult(excelResult, fileName);
         }
 
         /// <summary>
@@ -759,7 +759,7 @@ namespace Apollo.Age.Reports.Controllers
                 this._winLossService.ShortDateFormat(model.FromDate),
                 this._winLossService.ShortDateFormat(model.ToDate));
 
-            return new ExcelResult(excelResult, fileName);
+            return ExcelResult(excelResult, fileName);
         }
 
         #endregion Agent Win Loss Report
@@ -858,7 +858,7 @@ namespace Apollo.Age.Reports.Controllers
 
             var fileName = string.Format("LineSportCredit_{0}_{1}", model.Username, this._sportCreditService.ShortDateFormat(DateTime.Now));
 
-            return new ExcelResult(excelResult, fileName);
+            return ExcelResult(excelResult, fileName);
         }
 
         #endregion Line sport credit

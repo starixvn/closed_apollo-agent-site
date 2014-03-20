@@ -150,21 +150,21 @@ namespace Apollo.Age.Reports.Services
 
                 this.CustomizeColor(hssfworkbook);
 
-                var fontHeaderWhite = this.CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
-                var fontHeaderBlack = this.CreateFont(hssfworkbook, HSSFColor.BLACK.index, 10);
+                var fontHeaderWhite = this.CreateFont(hssfworkbook, HSSFColor.White.Index, 10);
+                var fontHeaderBlack = this.CreateFont(hssfworkbook, HSSFColor.Black.Index, 10);
 
-                var headerStyleShare = this.CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
-                var headerStyleMember = this.CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-                var headerStyleAgent = this.CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
-                var headerStyleUpline = this.CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-                var headerStyleOutstanding = this.CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+                var headerStyleShare = this.CreateStyle(hssfworkbook, HSSFColor.Grey50Percent.Index, HorizontalAlignment.Center, fontHeaderBlack);
+                var headerStyleMember = this.CreateStyle(hssfworkbook, HSSFColor.Green.Index, HorizontalAlignment.Center, fontHeaderWhite);
+                var headerStyleAgent = this.CreateStyle(hssfworkbook, HSSFColor.Grey50Percent.Index, HorizontalAlignment.Center, fontHeaderBlack);
+                var headerStyleUpline = this.CreateStyle(hssfworkbook, HSSFColor.Green.Index, HorizontalAlignment.Center, fontHeaderWhite);
+                var headerStyleOutstanding = this.CreateStyle(hssfworkbook, HSSFColor.Grey50Percent.Index, HorizontalAlignment.Center, fontHeaderBlack);
 
-                var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
+                var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.Right);
                 var bodyStyleLeft = CreateStyle(hssfworkbook);
 
-                var fontFooter = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
-                var footerStyleRight = CreateStyle(hssfworkbook, HSSFColor.DARK_RED.index, HorizontalAlignment.RIGHT, fontFooter);
-                var footerStyleLeft = CreateStyle(hssfworkbook, HSSFColor.DARK_RED.index, HorizontalAlignment.LEFT, fontFooter);
+                var fontFooter = CreateFont(hssfworkbook, HSSFColor.White.Index, 10);
+                var footerStyleRight = CreateStyle(hssfworkbook, HSSFColor.DarkRed.Index, HorizontalAlignment.Right, fontFooter);
+                var footerStyleLeft = CreateStyle(hssfworkbook, HSSFColor.DarkRed.Index, HorizontalAlignment.Left, fontFooter);
 
                 IDataFormat format = hssfworkbook.CreateDataFormat();
                 var numberFormat = format.GetFormat("#,##0.00");
@@ -289,12 +289,12 @@ namespace Apollo.Age.Reports.Services
                 }
 
                 var rowTitle = sheet.CreateRow(rownum: 1);
-                var fontTitle = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 14, true);
-                var styleTitle = CreateStyle(hssfworkbook, align: HorizontalAlignment.CENTER, font: fontTitle, isBorder: false);
+                var fontTitle = CreateFont(hssfworkbook, HSSFColor.Black.Index, 14, true);
+                var styleTitle = CreateStyle(hssfworkbook, align: HorizontalAlignment.Center, font: fontTitle, isBorder: false);
                 this.CreateStringCell(rowTitle, 0, styleTitle, title);
 
                 var rowFilter = sheet.CreateRow(rownum: 2);
-                var fontFilter = CreateFont(hssfworkbook, HSSFColor.BLUE.index, 11, true, true);
+                var fontFilter = CreateFont(hssfworkbook, HSSFColor.Blue.Index, 11, true, true);
                 var styleFilter = CreateStyle(hssfworkbook, font: fontFilter, isBorder: false);
                 this.CreateStringCell(rowFilter, 0, styleFilter, filter);
 
@@ -332,15 +332,15 @@ namespace Apollo.Age.Reports.Services
 
             this.CustomizeColor(hssfworkbook);
 
-            var fontHeaderWhite = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
-            var fontHeaderBlack = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 10);
+            var fontHeaderWhite = CreateFont(hssfworkbook, HSSFColor.White.Index, 10);
+            var fontHeaderBlack = CreateFont(hssfworkbook, HSSFColor.Black.Index, 10);
 
-            var headerStyleShare = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-            var headerStyleMember = CreateStyle(hssfworkbook, HSSFColor.GREY_25_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
-            var headerStyleDownline = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-            var headerStyleAgent = CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
+            var headerStyleShare = CreateStyle(hssfworkbook, HSSFColor.Green.Index, HorizontalAlignment.Center, fontHeaderWhite);
+            var headerStyleMember = CreateStyle(hssfworkbook, HSSFColor.Grey25Percent.Index, HorizontalAlignment.Center, fontHeaderBlack);
+            var headerStyleDownline = CreateStyle(hssfworkbook, HSSFColor.Green.Index, HorizontalAlignment.Center, fontHeaderWhite);
+            var headerStyleAgent = CreateStyle(hssfworkbook, HSSFColor.Grey50Percent.Index, HorizontalAlignment.Center, fontHeaderBlack);
 
-            var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
+            var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.Right);
             var bodyStyleLeft = CreateStyle(hssfworkbook);
 
             IDataFormat format = hssfworkbook.CreateDataFormat();
@@ -427,12 +427,12 @@ namespace Apollo.Age.Reports.Services
             }
 
             var rowTitle = sheet.CreateRow(rownum: 1);
-            var fontTitle = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 14, isBold: true);
-            var styleTitle = CreateStyle(hssfworkbook, align: HorizontalAlignment.CENTER, font: fontTitle, isBorder: false);
+            var fontTitle = CreateFont(hssfworkbook, HSSFColor.Black.Index, 14, isBold: true);
+            var styleTitle = CreateStyle(hssfworkbook, align: HorizontalAlignment.Center, font: fontTitle, isBorder: false);
             this.CreateStringCell(rowTitle, 0, styleTitle, title);
 
             var rowFilter = sheet.CreateRow(rownum: 2);
-            var fontFilter = CreateFont(hssfworkbook, HSSFColor.BLUE.index, 11, isBold: true, isItalic: true);
+            var fontFilter = CreateFont(hssfworkbook, HSSFColor.Blue.Index, 11, isBold: true, isItalic: true);
             var filterStyle = CreateStyle(hssfworkbook, font: fontFilter, isBorder: false);
             this.CreateStringCell(rowFilter, 0, filterStyle, filter);
 
@@ -466,21 +466,21 @@ namespace Apollo.Age.Reports.Services
             var sheet = hssfworkbook.CreateSheet(Lang.agentwinloss);
 
             this.CustomizeColor(hssfworkbook);
-            var fontHeaderWhite = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
-            var fontHeaderBlack = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 10);
+            var fontHeaderWhite = CreateFont(hssfworkbook, HSSFColor.White.Index, 10);
+            var fontHeaderBlack = CreateFont(hssfworkbook, HSSFColor.Black.Index, 10);
 
-            var headerStyleShare = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-            var headerStyleMember = CreateStyle(hssfworkbook, HSSFColor.GREY_25_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
-            var headerStyleDownline = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
-            var headerStyleAgent = CreateStyle(hssfworkbook, HSSFColor.GREY_50_PERCENT.index, HorizontalAlignment.CENTER, fontHeaderBlack);
-            var headerStyleUpline = CreateStyle(hssfworkbook, HSSFColor.GREEN.index, HorizontalAlignment.CENTER, fontHeaderWhite);
+            var headerStyleShare = CreateStyle(hssfworkbook, HSSFColor.Green.Index, HorizontalAlignment.Center, fontHeaderWhite);
+            var headerStyleMember = CreateStyle(hssfworkbook, HSSFColor.Grey25Percent.Index, HorizontalAlignment.Center, fontHeaderBlack);
+            var headerStyleDownline = CreateStyle(hssfworkbook, HSSFColor.Green.Index, HorizontalAlignment.Center, fontHeaderWhite);
+            var headerStyleAgent = CreateStyle(hssfworkbook, HSSFColor.Grey50Percent.Index, HorizontalAlignment.Center, fontHeaderBlack);
+            var headerStyleUpline = CreateStyle(hssfworkbook, HSSFColor.Green.Index, HorizontalAlignment.Center, fontHeaderWhite);
 
-            var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.RIGHT);
+            var bodyStyleRight = CreateStyle(hssfworkbook, align: HorizontalAlignment.Right);
             var bodyStyleLeft = CreateStyle(hssfworkbook);
 
-            var fontFooter = CreateFont(hssfworkbook, HSSFColor.WHITE.index, 10);
-            var styleFooterRight = CreateStyle(hssfworkbook, HSSFColor.DARK_RED.index, HorizontalAlignment.RIGHT, fontFooter);
-            var styleFooterLeft = CreateStyle(hssfworkbook, HSSFColor.DARK_RED.index, HorizontalAlignment.LEFT, fontFooter);
+            var fontFooter = CreateFont(hssfworkbook, HSSFColor.White.Index, 10);
+            var styleFooterRight = CreateStyle(hssfworkbook, HSSFColor.DarkRed.Index, HorizontalAlignment.Right, fontFooter);
+            var styleFooterLeft = CreateStyle(hssfworkbook, HSSFColor.DarkRed.Index, HorizontalAlignment.Left, fontFooter);
 
             IDataFormat format = hssfworkbook.CreateDataFormat();
             var numberFormat = format.GetFormat("#,##0.00");
@@ -640,12 +640,12 @@ namespace Apollo.Age.Reports.Services
             }
 
             var rowTitle = sheet.CreateRow(1);
-            var fontTitle = CreateFont(hssfworkbook, HSSFColor.BLACK.index, 14, true);
-            var styleTitle = CreateStyle(hssfworkbook, align: HorizontalAlignment.CENTER, font: fontTitle, isBorder: false);
+            var fontTitle = CreateFont(hssfworkbook, HSSFColor.Black.Index, 14, true);
+            var styleTitle = CreateStyle(hssfworkbook, align: HorizontalAlignment.Center, font: fontTitle, isBorder: false);
             this.CreateStringCell(rowTitle, 0, styleTitle, title);
 
             var rowFilter = sheet.CreateRow(2);
-            var fontFilter = CreateFont(hssfworkbook, HSSFColor.BLUE.index, 11, true, true);
+            var fontFilter = CreateFont(hssfworkbook, HSSFColor.Blue.Index, 11, true, true);
             var styleFilter = CreateStyle(hssfworkbook, font: fontFilter, isBorder: false);
             this.CreateStringCell(rowFilter, 0, styleFilter, filter);
 

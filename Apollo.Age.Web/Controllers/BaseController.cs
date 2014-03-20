@@ -17,6 +17,7 @@ namespace Apollo.Age.Web
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Web.Mvc;
     using Apollo.Age.Core;
     using Apollo.Age.Enumerations;
@@ -26,6 +27,7 @@ namespace Apollo.Age.Web
     using Fanex.Caching;
     using Fanex.Common;
     using Fanex.Logging;
+    using NPOI.HSSF.UserModel;
 
     [SuppressMessage("CSharp.Nexcel.NexcelCustom", "SP2101:CSharp.Nexcel.NexcelCustom", Justification = "Reviewed.")]
 
@@ -108,6 +110,21 @@ namespace Apollo.Age.Web
         protected string GetResourceData(string key)
         {
             return LanguageManager.GetResourceData(key);
+        }
+
+        /// <summary>
+        /// Excels the result.
+        /// </summary>
+        /// <param name="workBook">The work book.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns>Return action result.</returns>
+        protected ActionResult ExcelResult(HSSFWorkbook workBook, string fileName)
+        {
+            var stream = new MemoryStream();
+            workBook.Write(stream);
+            stream.Close();
+
+            return File(stream.ToArray(), "application/vnd.ms-excel", fileName);
         }
 
         #region Override functions
