@@ -225,7 +225,7 @@ namespace Apollo.BetList.Core.Builder
         {
             _worksheet = _workbook.CreateSheet(sheetName);
             _worksheet.DisplayGridlines = false;
-            _worksheet.DefaultRowHeight = singleRowHeight;
+            //_worksheet.DefaultRowHeight = singleRowHeight;
             _reportColumnsNum = numberOfColumns;
 
             return this;
@@ -253,7 +253,7 @@ namespace Apollo.BetList.Core.Builder
             cellStyle.FillForegroundColor = HSSFColor.LightBlue.Index;
             cellStyle.FillPattern = FillPattern.SolidForeground;
             cellStyle.Alignment = HorizontalAlignment.Left;
-            cellStyle.VerticalAlignment = VerticalAlignment.Center;
+            cellStyle.VerticalAlignment = VerticalAlignment.Top;
 
             RTFHelper.RTFRenderer.AddText(title, RTFHelper.WhiteColor);
             var rtfString = RTFHelper.RTFRenderer.Render();
@@ -290,7 +290,7 @@ namespace Apollo.BetList.Core.Builder
 
             cellStyle.FillForegroundColor = HSSFColor.Grey50Percent.Index;
             cellStyle.FillPattern = FillPattern.SolidForeground;
-            cellStyle.VerticalAlignment = VerticalAlignment.Center;
+            cellStyle.VerticalAlignment = VerticalAlignment.Top;
             RTFHelper.RTFRenderer.AddText(columnTitle, RTFHelper.WhiteColor);
             var rtfString = RTFHelper.RTFRenderer.Render();
 
@@ -316,7 +316,7 @@ namespace Apollo.BetList.Core.Builder
 
             cellStyle.FillPattern = FillPattern.SolidForeground;
             cellStyle.Alignment = HorizontalAlignment.Right;
-            cellStyle.VerticalAlignment = VerticalAlignment.Center;
+            cellStyle.VerticalAlignment = VerticalAlignment.Top;
             cellStyle.BorderTop = BorderStyle.Double;
             cellStyle.TopBorderColor = HSSFColor.Orange.Index;
             cellStyle.FillForegroundColor = HSSFColor.Grey25Percent.Index;
@@ -479,7 +479,7 @@ namespace Apollo.BetList.Core.Builder
             ICell lastCell = lastRow.CreateCell(mergedRange.FirstColumn);
             lastCell.CellStyle = cellStyle;
             lastCell.SetCellValue(rtfString);
-
+            
             return new CellAddress(lastCell.RowIndex, _nextCellIndex);
         }
 
@@ -562,7 +562,7 @@ namespace Apollo.BetList.Core.Builder
 
             cellStyle.FillPattern = FillPattern.SolidForeground;
             cellStyle.Alignment = HorizontalAlignment.Right;
-            cellStyle.VerticalAlignment = VerticalAlignment.Center;
+            cellStyle.VerticalAlignment = VerticalAlignment.Top;
             cellStyle.FillForegroundColor = HSSFColor.White.Index;
             cellStyle.BorderTop = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.Thin;
             cellStyle.TopBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.Black.Index;
@@ -636,7 +636,7 @@ namespace Apollo.BetList.Core.Builder
             var cellStyle = _workbook.CreateCellStyle();
             cellStyle.FillPattern = FillPattern.SolidForeground;
             cellStyle.Alignment = HorizontalAlignment.Right;
-            cellStyle.VerticalAlignment = VerticalAlignment.Center;
+            cellStyle.VerticalAlignment = VerticalAlignment.Top;
             cellStyle.FillForegroundColor = HSSFColor.White.Index;
             cellStyle.BorderTop = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.Thin;
             cellStyle.TopBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.Black.Index;
@@ -1022,7 +1022,7 @@ namespace Apollo.BetList.Core.Builder
         private void InitDefaultCellStyles()
         {
             OddCellStyle.Alignment = EvenCellStyle.Alignment = HorizontalAlignment.Right;
-            OddCellStyle.VerticalAlignment = EvenCellStyle.VerticalAlignment = VerticalAlignment.Center;
+            OddCellStyle.VerticalAlignment = EvenCellStyle.VerticalAlignment = VerticalAlignment.Top;
             OddCellStyle.FillPattern = EvenCellStyle.FillPattern = FillPattern.SolidForeground;
 
             OddCellStyle.TopBorderColor =
@@ -1049,12 +1049,12 @@ namespace Apollo.BetList.Core.Builder
             OddCellStyleCenterAligned.CloneStyleFrom(OddCellStyle);
             OddCellStyleCenterAligned.Alignment = HorizontalAlignment.Center;
             OddCellStyleCenterAligned.SetFont(RTFHelper.NormalFont);
-            OddCellStyleCenterAligned.VerticalAlignment = VerticalAlignment.Center;
+            OddCellStyleCenterAligned.VerticalAlignment = VerticalAlignment.Top;
 
             EvenCellStyleCenterAligned.CloneStyleFrom(EvenCellStyle);
             EvenCellStyleCenterAligned.Alignment = HorizontalAlignment.Center;
             EvenCellStyleCenterAligned.SetFont(RTFHelper.NormalFont);
-            EvenCellStyleCenterAligned.VerticalAlignment = VerticalAlignment.Center;
+            EvenCellStyleCenterAligned.VerticalAlignment = VerticalAlignment.Top;
 
             // For line-breaks in MS Office
             OddCellStyle.WrapText = true;
