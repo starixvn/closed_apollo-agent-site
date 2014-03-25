@@ -23,8 +23,8 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
-    using NPOI.SS.UserModel;
     using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Handicap bet type class.

@@ -11,9 +11,8 @@
 namespace Apollo.BetList.Core.Entities
 {
     using Apollo.BetList.Core.Utils;
-    using NPOI.SS.UserModel;
-    using NPOI.HSSF.UserModel;
     using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
 
     public struct RTFHelper
     {
@@ -24,7 +23,6 @@ namespace Apollo.BetList.Core.Entities
         /// <summary>
         /// Fonts the specified work book.
         /// </summary>
-        /// <param name="workBook">The work book.</param>
         /// <param name="color">The color.</param>
         /// <param name="boldWeight">The bold weight.</param>
         /// <param name="isTrike">If set to <c>true</c> [is trike].</param>
@@ -46,18 +44,24 @@ namespace Apollo.BetList.Core.Entities
         /// <summary>
         /// Cells the style.
         /// </summary>
-        /// <param name="workBook">The work book.</param>
         /// <param name="align">The align.</param>
-        /// <param name="vAlign">The v align.</param>
+        /// <param name="valign">The vertical align.</param>
         /// <param name="fontColor">Color of the font.</param>
         /// <param name="backgroundColor">Color of the background.</param>
         /// <param name="isBorder">If set to <c>true</c> [is border].</param>
-        /// <returns>Return cell style.</returns>
-        public ICellStyle CellStyle(HorizontalAlignment align, VerticalAlignment vAlign, short fontColor = HSSFColor.Black.Index, short backgroundColor = HSSFColor.White.Index, bool isBorder = false)
+        /// <returns>
+        /// Return cell style.
+        /// </returns>
+        public ICellStyle CellStyle(
+            HorizontalAlignment align, 
+            VerticalAlignment valign, 
+            short fontColor = HSSFColor.Black.Index, 
+            short backgroundColor = HSSFColor.White.Index, 
+            bool isBorder = false)
         {
             ICellStyle cellStyle = this.Workbook.CreateCellStyle();
             cellStyle.Alignment = align;
-            cellStyle.VerticalAlignment = vAlign;
+            cellStyle.VerticalAlignment = valign;
             cellStyle.FillForegroundColor = fontColor;
             cellStyle.FillBackgroundColor = backgroundColor;
             cellStyle.WrapText = true;

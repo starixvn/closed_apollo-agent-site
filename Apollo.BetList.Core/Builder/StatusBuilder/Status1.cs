@@ -15,8 +15,8 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
     using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
-    using NPOI.SS.UserModel;
     using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Build Status cell.
@@ -57,24 +57,31 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
                 case BetStatus.Running:
                     result = BetList.running;
                     break;
+
                 case BetStatus.Reject:
                     result = BetList.reject;
                     break;
+
                 case BetStatus.Won:
                     result = BetList.won;
                     break;
+
                 case BetStatus.Lose:
                     result = BetList.lose;
                     break;
+
                 case BetStatus.Draw:
                     result = BetList.draw;
                     break;
+
                 case BetStatus.Waiting:
                     result = BetList.waiting;
                     break;
+
                 case BetStatus.Void:
                     result = BetList.voided;
                     break;
+
                 case BetStatus.Refund:
                     result = BetList.refund;
                     break;

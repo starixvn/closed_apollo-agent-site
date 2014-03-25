@@ -181,7 +181,6 @@ namespace Apollo.BetList.Core.Builder
         {
             _worksheet = _workbook.CreateSheet(sheetName);
             _worksheet.DisplayGridlines = false;
-            //_worksheet.DefaultRowHeight = singleRowHeight;
             _reportColumnsNum = numberOfColumns;
 
             return this;
@@ -323,11 +322,15 @@ namespace Apollo.BetList.Core.Builder
 
             if (lastRow.RowNum % 2 == 0)
             {
-                lastCell = lastRow.CreateCell(_nextCellIndex, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index,HSSFColor.White.Index,true));
+                lastCell = lastRow.CreateCell(
+                    _nextCellIndex, 
+                    RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
             }
             else
             {
-                lastCell = lastRow.CreateCell(_nextCellIndex, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
+                lastCell = lastRow.CreateCell(
+                    _nextCellIndex, 
+                    RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
             }
 
             lastCell.SetCellValue(rtfString);

@@ -17,8 +17,8 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     using System.Web;
     using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
-    using NPOI.SS.UserModel;
     using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Combination Mix Parlay.

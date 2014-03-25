@@ -12,8 +12,8 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
 {
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
-    using NPOI.SS.UserModel;
     using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Discount class.

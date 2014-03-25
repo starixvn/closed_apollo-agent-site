@@ -14,8 +14,8 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
-    using NPOI.SS.UserModel;
     using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Odds class.
@@ -91,7 +91,10 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
         {
             string odds = Template.odds;
 
-            var rtfNumberRenderer = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal), rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal));
+            var rtfNumberRenderer = new RTFNumber(
+                rtfHelper.RTFRenderer, 
+                rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal), 
+                rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal));
 
             rtfNumberRenderer.Render(odds);
 

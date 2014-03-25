@@ -20,8 +20,8 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
     using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
     using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Win Place.
@@ -205,7 +205,10 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
             string odds_WinVal = ExtractStringBetweenTag("b", odds_WinString);
             string odds_PlaceVal = ExtractStringBetweenTag("b", odds_PlaceString);
 
-            var rtfNumberRenderer = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal), rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal));
+            var rtfNumberRenderer = new RTFNumber(
+                rtfHelper.RTFRenderer, 
+                rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal), 
+                rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal));
 
             // Add Win
             rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { BetList.win, ": " }), rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal));

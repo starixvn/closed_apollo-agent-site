@@ -14,8 +14,8 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
-    using NPOI.SS.UserModel;
     using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// Casino game.
@@ -59,14 +59,14 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
         /// Rich Text String.
         /// </returns>
         public IRichTextString RenderRTF(
-            ITicket ticket, 
-            List<ITicketData> ticketData, 
-            GetCachePropertyById funcGetOddsTypeName, 
+            ITicket ticket,
+            List<ITicketData> ticketData,
+            GetCachePropertyById funcGetOddsTypeName,
             RTFHelper rtfHelper)
         {
             Render(ticket, ticketData, funcGetOddsTypeName);
             var rtfOdds = BuildRTFOdds(rtfHelper);
-            
+
             return rtfOdds;
         }
 
@@ -79,7 +79,10 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
         {
             string odds = Template.odds;
 
-            var rtfNumberRenderer = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal), rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal));
+            var rtfNumberRenderer = new RTFNumber(
+                rtfHelper.RTFRenderer, 
+                rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal), 
+                rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal));
 
             rtfNumberRenderer.Render(odds);
 
