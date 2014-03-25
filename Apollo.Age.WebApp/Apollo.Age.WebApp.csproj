@@ -590,8 +590,6 @@
     <Content Include="_GlobalResources\Js\Pager\jquery.sbpager.js" />
     <Content Include="_GlobalResources\Js\RefreshCountDown.js" />
     <Content Include="_GlobalResources\Js\select2.min.js" />
-    <Content Include="_GlobalResources\Js\underscore.js" />
-    <Content Include="_GlobalResources\Js\underscore.min.js" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
