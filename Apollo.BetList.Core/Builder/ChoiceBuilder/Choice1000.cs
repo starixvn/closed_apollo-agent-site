@@ -14,6 +14,8 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
+    using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
 
     /// <summary>
     /// P2P Games.
@@ -60,7 +62,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         /// </returns>
         protected override NPOI.SS.UserModel.IRichTextString BuildRTFChoice(ITicket ticket, RTFHelper rtfHelper, ITicketHelper ticketHelper)
         {
-            rtfHelper.RTFRenderer.AddText(Apollo.Age.Resources.BetList.p2pGame, rtfHelper.PosFont);
+            rtfHelper.RTFRenderer.AddText(Apollo.Age.Resources.BetList.p2pGame, rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Bold));
 
             var choiceRtf = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();

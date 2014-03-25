@@ -18,6 +18,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using NPOI.SS.UserModel;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Combination Mix Parlay.
@@ -61,7 +62,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
         {
             string sportName = string.Join(null, new string[] { BetList.lblSystemParlay, " - ", GetCombinationOfferName(ticket.BetTeam), "\n\n" });
 
-            rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.BlueNoBold);
+            rtfHelper.RTFRenderer.AddText(sportName, rtfHelper.Font(HSSFColor.Blue.Index, FontBoldWeight.Normal));
 
             if (ticketMixParlay != null)
             {

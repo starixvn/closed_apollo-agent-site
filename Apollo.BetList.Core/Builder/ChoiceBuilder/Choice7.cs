@@ -34,8 +34,8 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 if (ticketBetStatus == BetStatus.Won || ticketBetStatus == BetStatus.Draw || ticketBetStatus == BetStatus.Lose
                     || (ticket.StatusId != null && ticket.StatusId.Value > 1))
                 {
-                    this.Template.Score.finalHomeScore = ticket.HaftTimeHomeScore.ToString();
-                    this.Template.Score.finalAwayScore = ticket.HaftTimeAwayScore.ToString();
+                    this.Template.Score.finalHomeScore = ticket.HalfTimeHomeScore.ToString();
+                    this.Template.Score.finalAwayScore = ticket.HalfTimeAwayScore.ToString();
                 }
                 else
                 {

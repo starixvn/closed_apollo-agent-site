@@ -13,6 +13,7 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using NPOI.SS.UserModel;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Discount class.
@@ -104,11 +105,11 @@ namespace Apollo.BetList.Core.Builder.DiscountBuilder
 
             if (ticket.PlayerDiscount == 0)
             {
-                rtfHelper.RTFRenderer.AddText("0", rtfHelper.RedNoBold);
+                rtfHelper.RTFRenderer.AddText("0", rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal));
             }
             else
             {
-                rtfHelper.RTFRenderer.AddText((ticket.PlayerDiscount * 100).ToString("N2"), rtfHelper.RedNoBold);
+                rtfHelper.RTFRenderer.AddText((ticket.PlayerDiscount * 100).ToString("N2"), rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal));
             }
 
             IRichTextString rtfDiscount = rtfHelper.RTFRenderer.Render();

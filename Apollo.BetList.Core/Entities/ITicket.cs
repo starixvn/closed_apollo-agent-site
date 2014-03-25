@@ -471,7 +471,7 @@ namespace Apollo.BetList.Core.Entities
         /// <value>
         /// The haft time home score.
         /// </value>
-        int HaftTimeHomeScore { get; set; }
+        int HalfTimeHomeScore { get; set; }
 
         /// <summary>
         /// Gets or sets the haft time away score.
@@ -479,6 +479,6 @@ namespace Apollo.BetList.Core.Entities
         /// <value>
         /// The haft time away score.
         /// </value>
-        int HaftTimeAwayScore { get; set; }
+        int HalfTimeAwayScore { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
     using NPOI.SS.UserModel;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Mix Parlay.
@@ -77,7 +78,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             bool isShowScoreMap,
             RTFHelper rtfHelper)
         {
-            rtfHelper.RTFRenderer.AddText(BetList.lblMixParlay + "\n\n", rtfHelper.BlueNoBold);
+            rtfHelper.RTFRenderer.AddText(BetList.lblMixParlay + "\n\n", rtfHelper.Font(HSSFColor.Blue.Index, FontBoldWeight.Normal));
 
             if (ticketMixParlay != null)
             {

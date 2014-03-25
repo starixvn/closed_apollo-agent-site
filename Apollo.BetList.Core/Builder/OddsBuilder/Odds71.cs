@@ -15,6 +15,7 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
     using NPOI.SS.UserModel;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Casino game.
@@ -78,7 +79,7 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
         {
             string odds = Template.odds;
 
-            var rtfNumberRenderer = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
+            var rtfNumberRenderer = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal), rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal));
 
             rtfNumberRenderer.Render(odds);
 

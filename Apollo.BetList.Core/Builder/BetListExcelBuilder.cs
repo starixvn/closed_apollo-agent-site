@@ -59,60 +59,16 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder()
         {
             _workbook = new HSSFWorkbook();
-
-            OddCellStyle = _workbook.CreateCellStyle();
-            EvenCellStyle = _workbook.CreateCellStyle();
-            OddCellStyleCenterAligned = _workbook.CreateCellStyle();
-            EvenCellStyleCenterAligned = _workbook.CreateCellStyle();
-
             _nextCellIndex = -1;
 
             RTFHelper = new RTFHelper()
             {
-                NegFont = _workbook.CreateFont(),
-                NegFontTrike = _workbook.CreateFont(),
-                NormalFont = _workbook.CreateFont(),
-                PosFont = _workbook.CreateFont(),
-                PosFontTrike = _workbook.CreateFont(),
-                ScoreFont = _workbook.CreateFont(),
-                ScoreFontTrike = _workbook.CreateFont(),
-                BlueAndBold = _workbook.CreateFont(),
-                BlueNoBold = _workbook.CreateFont(),
-                RedAndBold = _workbook.CreateFont(),
-                RedNoBold = _workbook.CreateFont(),
-                NegFontCrossed = _workbook.CreateFont(),
-
-                BlueAndBoldTrike = _workbook.CreateFont(),
-                BlueNoBoldTrike = _workbook.CreateFont(),
-                RedAndBoldTrike = _workbook.CreateFont(),
-                RedNoBoldTrike = _workbook.CreateFont(),
-
-                NormalFontCrossed = _workbook.CreateFont(),
-                PosFontCrossed = _workbook.CreateFont(),
-                GreenAndBold = _workbook.CreateFont(),
-                GreenNoBold = _workbook.CreateFont(),
-
-                GreenAndBoldTrike = _workbook.CreateFont(),
-                GreenNoBoldTrike = _workbook.CreateFont(),
-
-                WhiteColor = _workbook.CreateFont(),
-                TrikeFont = _workbook.CreateFont(),
-                RTFRenderer = new RtfTextRender()
+                RTFRenderer = new RtfTextRender(),
+                Workbook = _workbook
             };
-
-            InitDefaultRTFHelper();
-            InitDefaultCellStyles();
         }
 
         #region Properties
-
-        public ICellStyle OddCellStyle { get; set; }
-
-        public ICellStyle EvenCellStyle { get; set; }
-
-        public ICellStyle OddCellStyleCenterAligned { get; set; }
-
-        public ICellStyle EvenCellStyleCenterAligned { get; set; }
 
         public RTFHelper RTFHelper { get; set; }
 
@@ -255,7 +211,7 @@ namespace Apollo.BetList.Core.Builder
             cellStyle.Alignment = HorizontalAlignment.Left;
             cellStyle.VerticalAlignment = VerticalAlignment.Top;
 
-            RTFHelper.RTFRenderer.AddText(title, RTFHelper.WhiteColor);
+            RTFHelper.RTFRenderer.AddText(title, RTFHelper.Font(HSSFColor.White.Index));
             var rtfString = RTFHelper.RTFRenderer.Render();
 
             AddMergedCell(rtfString, mergeRange, cellStyle);
@@ -291,7 +247,7 @@ namespace Apollo.BetList.Core.Builder
             cellStyle.FillForegroundColor = HSSFColor.Grey50Percent.Index;
             cellStyle.FillPattern = FillPattern.SolidForeground;
             cellStyle.VerticalAlignment = VerticalAlignment.Top;
-            RTFHelper.RTFRenderer.AddText(columnTitle, RTFHelper.WhiteColor);
+            RTFHelper.RTFRenderer.AddText(columnTitle, RTFHelper.Font(HSSFColor.White.Index));
             var rtfString = RTFHelper.RTFRenderer.Render();
 
             AddCell(rtfString, cellStyle);
@@ -322,7 +278,7 @@ namespace Apollo.BetList.Core.Builder
             cellStyle.FillForegroundColor = HSSFColor.Grey25Percent.Index;
             cellStyle.BorderBottom = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.Thin;
             cellStyle.BottomBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.Black.Index;
-            cellStyle.SetFont(RTFHelper.PosFont);
+            cellStyle.SetFont(RTFHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Bold));
 
             if (mergeRange != null)
             {
@@ -331,7 +287,7 @@ namespace Apollo.BetList.Core.Builder
             }
             else
             {
-                RTFHelper.RTFRenderer.AddText(value, RTFHelper.WhiteColor);
+                RTFHelper.RTFRenderer.AddText(value, RTFHelper.Font(HSSFColor.White.Index));
                 var rftTotalValue = RTFHelper.RTFRenderer.Render();
                 if (!string.IsNullOrWhiteSpace(value))
                 {
@@ -367,11 +323,11 @@ namespace Apollo.BetList.Core.Builder
 
             if (lastRow.RowNum % 2 == 0)
             {
-                lastCell = lastRow.CreateCell(_nextCellIndex, EvenCellStyle);
+                lastCell = lastRow.CreateCell(_nextCellIndex, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index,HSSFColor.White.Index,true));
             }
             else
             {
-                lastCell = lastRow.CreateCell(_nextCellIndex, OddCellStyle);
+                lastCell = lastRow.CreateCell(_nextCellIndex, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
             }
 
             lastCell.SetCellValue(rtfString);
@@ -479,7 +435,7 @@ namespace Apollo.BetList.Core.Builder
             ICell lastCell = lastRow.CreateCell(mergedRange.FirstColumn);
             lastCell.CellStyle = cellStyle;
             lastCell.SetCellValue(rtfString);
-            
+
             return new CellAddress(lastCell.RowIndex, _nextCellIndex);
         }
 
@@ -586,7 +542,7 @@ namespace Apollo.BetList.Core.Builder
         {
             IStatus statusBuilder = this.CreateStatusBuilder(ticket.BetTypeId);
             IRichTextString rtfStatus = statusBuilder.RenderRTF(ticket, ticketData, RTFHelper);
-            this.AddCell(rtfStatus, OddCellStyleCenterAligned);
+            this.AddCell(rtfStatus, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
             return this;
         }
 
@@ -604,7 +560,7 @@ namespace Apollo.BetList.Core.Builder
 
             IRichTextString rtfTime = timeBuilder.RenderRTF(ticket, page, RTFHelper);
 
-            this.AddCell(rtfTime, OddCellStyleCenterAligned);
+            this.AddCell(rtfTime, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
 
             return this;
         }
@@ -620,7 +576,7 @@ namespace Apollo.BetList.Core.Builder
             var discountBuilder = new Discount();
             IRichTextString rtfDiscount = discountBuilder.RenderRTF(ticket, page, RTFHelper);
 
-            this.AddCell(rtfDiscount, OddCellStyleCenterAligned);
+            this.AddCell(rtfDiscount, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
 
             return this;
         }
@@ -692,7 +648,7 @@ namespace Apollo.BetList.Core.Builder
         {
             ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);
             IRichTextString rtfTrans = transBuilder.RenderRTF(ticket, ticketHelper, page, RTFHelper, funcGetOddsTypeName);
-            this.AddCell(rtfTrans, OddCellStyleCenterAligned);
+            this.AddCell(rtfTrans, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
 
             return this;
         }
@@ -904,163 +860,6 @@ namespace Apollo.BetList.Core.Builder
             {
                 return Activator.CreateInstance(type) as IAgentComm;
             }
-        }
-
-        /// <summary>
-        /// Initializes the default RTF helper.
-        /// </summary>
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-        private void InitDefaultRTFHelper()
-        {
-            RTFHelper.PosFont.Boldweight = RTFHelper.PosFontCrossed.Boldweight = (short)FontBoldWeight.Bold;
-            RTFHelper.NegFont.Boldweight = RTFHelper.NegFontCrossed.Boldweight = (short)FontBoldWeight.Bold;
-            RTFHelper.NormalFont.Boldweight = RTFHelper.NormalFontCrossed.Boldweight = (short)FontBoldWeight.Normal;
-
-            RTFHelper.NegFont.FontName =
-            RTFHelper.NormalFont.FontName =
-            RTFHelper.PosFont.FontName =
-            RTFHelper.ScoreFont.FontName =
-            RTFHelper.BlueAndBold.FontName =
-            RTFHelper.BlueNoBold.FontName =
-            RTFHelper.RedAndBold.FontName =
-            RTFHelper.NegFontCrossed.FontName =
-            RTFHelper.NormalFontCrossed.FontName =
-            RTFHelper.PosFontCrossed.FontName =
-            RTFHelper.GreenAndBold.FontName =
-            RTFHelper.GreenNoBold.FontName =
-            RTFHelper.GreenNoBoldTrike.FontName =
-            RTFHelper.BlueAndBoldTrike.FontName =
-            RTFHelper.BlueNoBoldTrike.FontName =
-            RTFHelper.RedAndBoldTrike.FontName =
-            RTFHelper.ScoreFontTrike.FontName =
-            RTFHelper.NegFontTrike.FontName =
-            RTFHelper.RedNoBold.FontName = "Tahoma";
-
-            RTFHelper.NegFont.FontHeightInPoints =
-            RTFHelper.NormalFont.FontHeightInPoints =
-            RTFHelper.PosFont.FontHeightInPoints =
-            RTFHelper.ScoreFont.FontHeightInPoints =
-            RTFHelper.BlueAndBold.FontHeightInPoints =
-            RTFHelper.BlueNoBold.FontHeightInPoints =
-            RTFHelper.RedAndBold.FontHeightInPoints =
-            RTFHelper.NormalFontCrossed.FontHeightInPoints =
-            RTFHelper.PosFontCrossed.FontHeightInPoints =
-            RTFHelper.NegFontCrossed.FontHeightInPoints =
-            RTFHelper.GreenAndBold.FontHeightInPoints =
-            RTFHelper.GreenNoBold.FontHeightInPoints =
-            RTFHelper.ScoreFontTrike.FontHeightInPoints =
-            RTFHelper.BlueAndBoldTrike.FontHeightInPoints =
-            RTFHelper.BlueNoBoldTrike.FontHeightInPoints =
-            RTFHelper.RedAndBoldTrike.FontHeightInPoints =
-            RTFHelper.RedNoBoldTrike.FontHeightInPoints =
-            RTFHelper.NegFontTrike.FontHeightInPoints =
-            RTFHelper.RedNoBold.FontHeightInPoints = 9;
-
-            RTFHelper.NormalFontCrossed.IsStrikeout = RTFHelper.PosFontCrossed.IsStrikeout = RTFHelper.NegFontCrossed.IsStrikeout = true;
-
-            RTFHelper.NegFontTrike.Color = RTFHelper.NegFont.Color = RTFHelper.NegFontCrossed.Color = IndexedColors.Red.Index;
-            RTFHelper.NegFontTrike.IsStrikeout = true;
-
-            RTFHelper.ScoreFont.Color = IndexedColors.Green.Index;
-            RTFHelper.ScoreFont.Boldweight = (short)FontBoldWeight.Bold;
-
-            RTFHelper.ScoreFontTrike.Color = IndexedColors.Green.Index;
-            RTFHelper.ScoreFontTrike.Boldweight = (short)FontBoldWeight.Bold;
-            RTFHelper.ScoreFontTrike.IsStrikeout = true;
-
-            RTFHelper.BlueAndBold.Color = IndexedColors.Blue.Index;
-            RTFHelper.BlueAndBold.Boldweight = (short)FontBoldWeight.Bold;
-
-            RTFHelper.BlueAndBoldTrike.Color = IndexedColors.Blue.Index;
-            RTFHelper.BlueAndBoldTrike.Boldweight = (short)FontBoldWeight.Bold;
-            RTFHelper.BlueAndBoldTrike.IsStrikeout = true;
-
-            RTFHelper.BlueNoBold.Color = IndexedColors.Blue.Index;
-            RTFHelper.BlueNoBold.Boldweight = (short)FontBoldWeight.Normal;
-
-            RTFHelper.BlueNoBoldTrike.Color = IndexedColors.Blue.Index;
-            RTFHelper.BlueNoBoldTrike.Boldweight = (short)FontBoldWeight.Normal;
-            RTFHelper.BlueNoBoldTrike.IsStrikeout = true;
-
-            RTFHelper.RedAndBold.Color = IndexedColors.Red.Index;
-            RTFHelper.RedAndBold.Boldweight = (short)FontBoldWeight.Bold;
-
-            RTFHelper.RedAndBoldTrike.Color = IndexedColors.Red.Index;
-            RTFHelper.RedAndBoldTrike.Boldweight = (short)FontBoldWeight.Bold;
-            RTFHelper.RedAndBoldTrike.IsStrikeout = true;
-
-            RTFHelper.RedNoBold.Color = IndexedColors.Red.Index;
-            RTFHelper.RedNoBold.Boldweight = (short)FontBoldWeight.Normal;
-
-            RTFHelper.RedNoBoldTrike.Color = IndexedColors.Red.Index;
-            RTFHelper.RedNoBoldTrike.Boldweight = (short)FontBoldWeight.Normal;
-            RTFHelper.RedNoBoldTrike.IsStrikeout = true;
-
-            RTFHelper.GreenAndBold.Color = IndexedColors.Green.Index;
-            RTFHelper.GreenAndBold.Boldweight = (short)FontBoldWeight.Bold;
-
-            RTFHelper.GreenAndBoldTrike.Color = IndexedColors.Green.Index;
-            RTFHelper.GreenAndBoldTrike.Boldweight = (short)FontBoldWeight.Bold;
-            RTFHelper.GreenAndBoldTrike.IsStrikeout = true;
-
-            RTFHelper.GreenNoBold.Color = IndexedColors.Green.Index;
-            RTFHelper.GreenNoBold.Boldweight = (short)FontBoldWeight.Normal;
-
-            RTFHelper.GreenNoBoldTrike.Color = IndexedColors.Green.Index;
-            RTFHelper.GreenNoBoldTrike.Boldweight = (short)FontBoldWeight.Normal;
-            RTFHelper.GreenNoBoldTrike.IsStrikeout = true;
-
-            RTFHelper.WhiteColor.Color = IndexedColors.White.Index;
-            RTFHelper.WhiteColor.Boldweight = (short)FontBoldWeight.Bold;
-
-            RTFHelper.TrikeFont.IsStrikeout = true;
-        }
-
-        /// <summary>
-        /// Initializes the default cell styles.
-        /// </summary>
-        private void InitDefaultCellStyles()
-        {
-            OddCellStyle.Alignment = EvenCellStyle.Alignment = HorizontalAlignment.Right;
-            OddCellStyle.VerticalAlignment = EvenCellStyle.VerticalAlignment = VerticalAlignment.Top;
-            OddCellStyle.FillPattern = EvenCellStyle.FillPattern = FillPattern.SolidForeground;
-
-            OddCellStyle.TopBorderColor =
-            OddCellStyle.RightBorderColor =
-            OddCellStyle.BottomBorderColor =
-            OddCellStyle.LeftBorderColor =
-            EvenCellStyle.TopBorderColor =
-            EvenCellStyle.RightBorderColor =
-            EvenCellStyle.BottomBorderColor =
-            EvenCellStyle.LeftBorderColor = HSSFColor.Black.Index;
-
-            OddCellStyle.BorderTop = OddCellStyle.BorderLeft = OddCellStyle.BorderRight = OddCellStyle.BorderBottom = BorderStyle.Thin;
-            EvenCellStyle.BorderTop = EvenCellStyle.BorderLeft = EvenCellStyle.BorderRight = EvenCellStyle.BorderBottom = BorderStyle.Thin;
-
-            OddCellStyle.FillForegroundColor = HSSFColor.White.Index;
-            OddCellStyle.FillBackgroundColor = HSSFColor.White.Index;
-
-            EvenCellStyle.FillForegroundColor = HSSFColor.White.Index;
-            EvenCellStyle.FillBackgroundColor = HSSFColor.White.Index;
-
-            OddCellStyle.SetFont(RTFHelper.NormalFont);
-            EvenCellStyle.SetFont(RTFHelper.NormalFont);
-
-            OddCellStyleCenterAligned.CloneStyleFrom(OddCellStyle);
-            OddCellStyleCenterAligned.Alignment = HorizontalAlignment.Center;
-            OddCellStyleCenterAligned.SetFont(RTFHelper.NormalFont);
-            OddCellStyleCenterAligned.VerticalAlignment = VerticalAlignment.Top;
-
-            EvenCellStyleCenterAligned.CloneStyleFrom(EvenCellStyle);
-            EvenCellStyleCenterAligned.Alignment = HorizontalAlignment.Center;
-            EvenCellStyleCenterAligned.SetFont(RTFHelper.NormalFont);
-            EvenCellStyleCenterAligned.VerticalAlignment = VerticalAlignment.Top;
-
-            // For line-breaks in MS Office
-            OddCellStyle.WrapText = true;
-            EvenCellStyle.WrapText = true;
-            EvenCellStyleCenterAligned.WrapText = true;
-            OddCellStyleCenterAligned.WrapText = true;
         }
     }
 }

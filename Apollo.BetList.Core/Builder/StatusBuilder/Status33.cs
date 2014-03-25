@@ -18,6 +18,7 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
     using Apollo.Age.Resources;
     using Apollo.BetList.Core.Entities;
     using NPOI.SS.UserModel;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Win Place bet type.
@@ -128,7 +129,7 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
             // Status != Win/Lose
             if (this.Template.result.Length < 80)
             {
-                rtfHelper.RTFRenderer.AddText(this.Template.result, rtfHelper.PosFont);
+                rtfHelper.RTFRenderer.AddText(this.Template.result, rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal));
             }
             else
             {
@@ -140,7 +141,7 @@ namespace Apollo.BetList.Core.Builder.StatusBuilder
                 string status_Win = ExtractStringBetweenTag("b", status_WinString);
                 string status_Place = ExtractStringBetweenTag("b", status_PlaceString);
 
-                rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": ", status_Win, "\n", Apollo.Age.Resources.BetList.place, ": ", status_Place }), rtfHelper.PosFont);
+                rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { Apollo.Age.Resources.BetList.win, ": ", status_Win, "\n", Apollo.Age.Resources.BetList.place, ": ", status_Place }), rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal));
             }
 
             var rtfStatus = rtfHelper.RTFRenderer.Render();

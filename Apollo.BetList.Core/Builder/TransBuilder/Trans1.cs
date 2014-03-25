@@ -15,6 +15,7 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
     using NPOI.SS.UserModel;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Transaction 1.
@@ -95,7 +96,7 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
 
             oddsType = string.IsNullOrEmpty(ticket.OddsType) ? "0" : funcGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType));
 
-            rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { oddsType.ToString(), " \n " }), rtfHelper.GreenNoBold);
+            rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { oddsType.ToString(), " \n " }), rtfHelper.Font(HSSFColor.Green.Index, FontBoldWeight.Normal));
             rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { Template.transId, " \n " }));
 
             string sportName = Template.sportName.Replace("<br/>", string.Empty).Replace("&nbsp;", string.Empty);

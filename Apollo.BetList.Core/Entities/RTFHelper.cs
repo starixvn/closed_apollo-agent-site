@@ -12,78 +12,63 @@ namespace Apollo.BetList.Core.Entities
 {
     using Apollo.BetList.Core.Utils;
     using NPOI.SS.UserModel;
+    using NPOI.HSSF.UserModel;
+    using NPOI.HSSF.Util;
 
     public struct RTFHelper
     {
-        public IFont NormalFont { get; set; }
-
-        public IFont PosFont { get; set; }
-
-        public IFont PosFontTrike { get; set; }
-
-        public IFont NegFont { get; set; }
-
-        public IFont NegFontTrike { get; set; }
-
-        public IFont RedAndBold { get; set; }
-
-        public IFont RedNoBold { get; set; }
-
-        public IFont RedAndBoldTrike { get; set; }
-
-        public IFont RedNoBoldTrike { get; set; }
-
-        public IFont BlueAndBold { get; set; }
-
-        public IFont BlueNoBold { get; set; }
-
-        public IFont BlueAndBoldTrike { get; set; }
-
-        public IFont BlueNoBoldTrike { get; set; }
-
-        public IFont GreenAndBold { get; set; }
-
-        public IFont GreenNoBold { get; set; }
-
-        public IFont GreenAndBoldTrike { get; set; }
-
-        public IFont GreenNoBoldTrike { get; set; }
-
-        public IFont WhiteColor { get; set; }
-
-        public IFont ScoreFont { get; set; }
-
-        public IFont ScoreFontTrike { get; set; }
-
-        public IFont NormalFontCrossed { get; set; }
-
-        public IFont PosFontCrossed { get; set; }
-
-        public IFont NegFontCrossed { get; set; }
-
-        public IFont TrikeFont { get; set; }
+        public IWorkbook Workbook { get; set; }
 
         public RtfTextRender RTFRenderer { get; set; }
 
         /// <summary>
-        /// Clones this instance.
+        /// Fonts the specified work book.
         /// </summary>
-        /// <returns>RTF Helper.</returns>
-        public RTFHelper Clone()
+        /// <param name="workBook">The work book.</param>
+        /// <param name="color">The color.</param>
+        /// <param name="boldWeight">The bold weight.</param>
+        /// <param name="isTrike">If set to <c>true</c> [is trike].</param>
+        /// <returns>
+        /// Return the font.
+        /// </returns>
+        public IFont Font(short color, FontBoldWeight boldWeight = FontBoldWeight.Normal, bool isTrike = false)
         {
-            RTFHelper tmp = new RTFHelper();
+            IFont font = this.Workbook.CreateFont();
+            font.FontName = "Tahoma";
+            font.FontHeightInPoints = 9;
+            font.IsStrikeout = isTrike;
+            font.Color = color;
+            font.Boldweight = (short)boldWeight;
 
-            tmp.PosFont = this.PosFont;
-            tmp.NegFont = this.NegFont;
-            tmp.NormalFont = this.NormalFont;
+            return font;
+        }
 
-            tmp.NormalFontCrossed = this.NormalFontCrossed;
-            tmp.PosFontCrossed = this.PosFontCrossed;
-            tmp.NegFontCrossed = this.NegFontCrossed;
+        /// <summary>
+        /// Cells the style.
+        /// </summary>
+        /// <param name="workBook">The work book.</param>
+        /// <param name="align">The align.</param>
+        /// <param name="vAlign">The v align.</param>
+        /// <param name="fontColor">Color of the font.</param>
+        /// <param name="backgroundColor">Color of the background.</param>
+        /// <param name="isBorder">If set to <c>true</c> [is border].</param>
+        /// <returns>Return cell style.</returns>
+        public ICellStyle CellStyle(HorizontalAlignment align, VerticalAlignment vAlign, short fontColor = HSSFColor.Black.Index, short backgroundColor = HSSFColor.White.Index, bool isBorder = false)
+        {
+            ICellStyle cellStyle = this.Workbook.CreateCellStyle();
+            cellStyle.Alignment = align;
+            cellStyle.VerticalAlignment = vAlign;
+            cellStyle.FillForegroundColor = fontColor;
+            cellStyle.FillBackgroundColor = backgroundColor;
+            cellStyle.WrapText = true;
 
-            tmp.RTFRenderer = new RtfTextRender();
+            if (isBorder)
+            {
+                cellStyle.BorderTop = cellStyle.BorderBottom = cellStyle.BorderRight = cellStyle.BorderLeft = BorderStyle.Thin;
+                cellStyle.TopBorderColor = cellStyle.BottomBorderColor = cellStyle.RightBorderColor = cellStyle.LeftBorderColor = HSSFColor.Black.Index;
+            }
 
-            return tmp;
+            return cellStyle;
         }
     }
 }

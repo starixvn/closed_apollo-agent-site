@@ -14,6 +14,7 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
     using NPOI.SS.UserModel;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Agent share.
@@ -82,7 +83,7 @@ namespace Apollo.BetList.Core.Builder.AgentShareBuilder
             {
                 if (ticket.AWinlost < 0)
                 {
-                    rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AWinlost), rtfHelper.RedNoBold);
+                    rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AWinlost), rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal, false));
                 }
                 else
                 {

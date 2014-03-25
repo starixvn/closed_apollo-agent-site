@@ -13,6 +13,7 @@ namespace Apollo.BetList.Core.Builder.AgentCommBuilder
     using Apollo.BetList.Core.Templates;
     using Apollo.BetList.Core.Utils;
     using NPOI.SS.UserModel;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Agent commission.
@@ -90,7 +91,7 @@ namespace Apollo.BetList.Core.Builder.AgentCommBuilder
             {
                 if (ticket.AComm < 0)
                 {
-                    rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AComm), rtfHelper.RedNoBold);
+                    rtfHelper.RTFRenderer.AddText(string.Format(Formatter.DECIMAL_FORMAT20, ticket.AComm), rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal, false));
                 }
                 else
                 {

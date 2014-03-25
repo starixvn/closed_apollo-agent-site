@@ -21,6 +21,7 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
     using Apollo.BetList.Core.Utils;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Win Place.
@@ -204,14 +205,14 @@ namespace Apollo.BetList.Core.Builder.OddsBuilder
             string odds_WinVal = ExtractStringBetweenTag("b", odds_WinString);
             string odds_PlaceVal = ExtractStringBetweenTag("b", odds_PlaceString);
 
-            var rtfNumberRenderer = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.PosFont, rtfHelper.NegFont);
+            var rtfNumberRenderer = new RTFNumber(rtfHelper.RTFRenderer, rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal), rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal));
 
             // Add Win
-            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { BetList.win, ": " }), rtfHelper.PosFont);
+            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { BetList.win, ": " }), rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal));
             rtfNumberRenderer.Render(odds_WinVal);
 
             // Add Place
-            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", BetList.place, ": " }), rtfHelper.PosFont);
+            rtfHelper.RTFRenderer.AddText(string.Join(null, new string[] { "\n", BetList.place, ": " }), rtfHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Normal));
             rtfNumberRenderer.Render(odds_PlaceVal);
 
             var rtfOdds = rtfHelper.RTFRenderer.Render();
