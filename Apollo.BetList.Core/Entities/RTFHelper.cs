@@ -46,31 +46,64 @@ namespace Apollo.BetList.Core.Entities
         /// </summary>
         /// <param name="align">The align.</param>
         /// <param name="valign">The vertical align.</param>
-        /// <param name="fontColor">Color of the font.</param>
+        /// <param name="font">The font style.</param>
         /// <param name="backgroundColor">Color of the background.</param>
         /// <param name="isBorder">If set to <c>true</c> [is border].</param>
         /// <returns>
         /// Return cell style.
         /// </returns>
         public ICellStyle CellStyle(
-            HorizontalAlignment align, 
-            VerticalAlignment valign, 
-            short fontColor = HSSFColor.Black.Index, 
-            short backgroundColor = HSSFColor.White.Index, 
+            HorizontalAlignment align,
+            VerticalAlignment valign,
+            IFont font,
+            short backgroundColor = HSSFColor.White.Index,
             bool isBorder = false)
         {
             ICellStyle cellStyle = this.Workbook.CreateCellStyle();
             cellStyle.Alignment = align;
             cellStyle.VerticalAlignment = valign;
-            cellStyle.FillForegroundColor = fontColor;
-            cellStyle.FillBackgroundColor = backgroundColor;
+            cellStyle.SetFont(font);
+            cellStyle.FillForegroundColor = backgroundColor;
             cellStyle.WrapText = true;
+            cellStyle.FillPattern = FillPattern.SolidForeground;
 
             if (isBorder)
             {
                 cellStyle.BorderTop = cellStyle.BorderBottom = cellStyle.BorderRight = cellStyle.BorderLeft = BorderStyle.Thin;
                 cellStyle.TopBorderColor = cellStyle.BottomBorderColor = cellStyle.RightBorderColor = cellStyle.LeftBorderColor = HSSFColor.Black.Index;
             }
+
+            return cellStyle;
+        }
+
+        /// <summary>
+        /// Cells the style.
+        /// </summary>
+        /// <param name="align">The align.</param>
+        /// <param name="valign">The vertical align.</param>
+        /// <param name="font">The font style.</param>
+        /// <param name="backgroundColor">Color of the background.</param>
+        /// <param name="borderStyle">The border style.</param>
+        /// <param name="borderColor">Color of the border.</param>
+        /// <returns>
+        /// Return cell style.
+        /// </returns>
+        public ICellStyle CellStyle(
+            HorizontalAlignment align,
+            VerticalAlignment valign,
+            IFont font,
+            short backgroundColor = HSSFColor.White.Index,
+            BorderStyle borderStyle = BorderStyle.Thin,
+            short borderColor = HSSFColor.Black.Index)
+        {
+            ICellStyle cellStyle = this.Workbook.CreateCellStyle();
+            cellStyle.Alignment = align;
+            cellStyle.VerticalAlignment = valign;
+            cellStyle.SetFont(font);
+            cellStyle.FillBackgroundColor = backgroundColor;
+            cellStyle.WrapText = true;
+            cellStyle.BorderTop = cellStyle.BorderBottom = cellStyle.BorderRight = cellStyle.BorderLeft = borderStyle;
+            cellStyle.TopBorderColor = cellStyle.BottomBorderColor = cellStyle.RightBorderColor = cellStyle.LeftBorderColor = borderColor;
 
             return cellStyle;
         }

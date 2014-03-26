@@ -239,14 +239,10 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddHeader(string columnTitle)
         {
-            var cellStyle = _workbook.CreateCellStyle();
+            var font = RTFHelper.Font(HSSFColor.White.Index);
+            var cellStyle = RTFHelper.CellStyle(HorizontalAlignment.Center, VerticalAlignment.Top, font, HSSFColor.Grey50Percent.Index, true);
 
-            cellStyle.Alignment = HorizontalAlignment.Center;
-
-            cellStyle.FillForegroundColor = HSSFColor.Grey50Percent.Index;
-            cellStyle.FillPattern = FillPattern.SolidForeground;
-            cellStyle.VerticalAlignment = VerticalAlignment.Top;
-            RTFHelper.RTFRenderer.AddText(columnTitle, RTFHelper.Font(HSSFColor.White.Index));
+            RTFHelper.RTFRenderer.AddText(columnTitle);
             var rtfString = RTFHelper.RTFRenderer.Render();
 
             AddCell(rtfString, cellStyle);
@@ -267,17 +263,16 @@ namespace Apollo.BetList.Core.Builder
         /// </returns>
         public BetListExcelBuilder AddTotal(string value = "", CellRangeAddress mergeRange = null, bool isformatNumber = false)
         {
-            var cellStyle = _workbook.CreateCellStyle();
+            var font = RTFHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Bold);
+            var cellStyle = RTFHelper.CellStyle(
+                HorizontalAlignment.Right, 
+                VerticalAlignment.Top,
+                font, 
+                HSSFColor.Grey25Percent.Index, 
+                true);
 
-            cellStyle.FillPattern = FillPattern.SolidForeground;
-            cellStyle.Alignment = HorizontalAlignment.Right;
-            cellStyle.VerticalAlignment = VerticalAlignment.Top;
             cellStyle.BorderTop = BorderStyle.Double;
             cellStyle.TopBorderColor = HSSFColor.Orange.Index;
-            cellStyle.FillForegroundColor = HSSFColor.Grey25Percent.Index;
-            cellStyle.BorderBottom = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.Thin;
-            cellStyle.BottomBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.Black.Index;
-            cellStyle.SetFont(RTFHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Bold));
 
             if (mergeRange != null)
             {
@@ -319,18 +314,18 @@ namespace Apollo.BetList.Core.Builder
             }
 
             ICell lastCell;
-
+            var font = RTFHelper.Font(HSSFColor.Black.Index);
             if (lastRow.RowNum % 2 == 0)
             {
                 lastCell = lastRow.CreateCell(
-                    _nextCellIndex, 
-                    RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
+                    _nextCellIndex,
+                    RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
             }
             else
             {
                 lastCell = lastRow.CreateCell(
-                    _nextCellIndex, 
-                    RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
+                    _nextCellIndex,
+                    RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
             }
 
             lastCell.SetCellValue(rtfString);
@@ -545,7 +540,8 @@ namespace Apollo.BetList.Core.Builder
         {
             IStatus statusBuilder = this.CreateStatusBuilder(ticket.BetTypeId);
             IRichTextString rtfStatus = statusBuilder.RenderRTF(ticket, ticketData, RTFHelper);
-            this.AddCell(rtfStatus, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
+            var font = RTFHelper.Font(HSSFColor.Black.Index);
+            this.AddCell(rtfStatus, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
             return this;
         }
 
@@ -562,8 +558,8 @@ namespace Apollo.BetList.Core.Builder
             var timeBuilder = new Time();
 
             IRichTextString rtfTime = timeBuilder.RenderRTF(ticket, page, RTFHelper);
-
-            this.AddCell(rtfTime, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
+            var font = RTFHelper.Font(HSSFColor.Black.Index);
+            this.AddCell(rtfTime, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
 
             return this;
         }
@@ -578,8 +574,8 @@ namespace Apollo.BetList.Core.Builder
         {
             var discountBuilder = new Discount();
             IRichTextString rtfDiscount = discountBuilder.RenderRTF(ticket, page, RTFHelper);
-
-            this.AddCell(rtfDiscount, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
+            var font = RTFHelper.Font(HSSFColor.Black.Index);
+            this.AddCell(rtfDiscount, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
 
             return this;
         }
@@ -592,15 +588,14 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddResult(ITicket ticket, BetListPage page)
         {
-            var cellStyle = _workbook.CreateCellStyle();
-            cellStyle.FillPattern = FillPattern.SolidForeground;
-            cellStyle.Alignment = HorizontalAlignment.Right;
-            cellStyle.VerticalAlignment = VerticalAlignment.Top;
-            cellStyle.FillForegroundColor = HSSFColor.White.Index;
-            cellStyle.BorderTop = cellStyle.BorderLeft = cellStyle.BorderRight = BorderStyle.Thin;
-            cellStyle.TopBorderColor = cellStyle.LeftBorderColor = cellStyle.RightBorderColor = HSSFColor.Black.Index;
-
+            var cellStyle = RTFHelper.CellStyle(
+                HorizontalAlignment.Right, 
+                VerticalAlignment.Top, 
+                RTFHelper.Font(HSSFColor.Black.Index), 
+                HSSFColor.White.Index, 
+                true);
             var resultBuilder = new Result();
+
             IRichTextString rtfResult = resultBuilder.RenderRTF(ticket, page, RTFHelper);
             this.AddCellNumber(Convert.ToDouble(rtfResult.String), cellStyle, true);
 
@@ -651,7 +646,8 @@ namespace Apollo.BetList.Core.Builder
         {
             ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);
             IRichTextString rtfTrans = transBuilder.RenderRTF(ticket, ticketHelper, page, RTFHelper, funcGetOddsTypeName);
-            this.AddCell(rtfTrans, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, HSSFColor.Black.Index, HSSFColor.White.Index, true));
+            var font = RTFHelper.Font(HSSFColor.Black.Index);
+            this.AddCell(rtfTrans, RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
 
             return this;
         }
