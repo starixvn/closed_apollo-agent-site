@@ -7,6 +7,7 @@
 namespace Apollo.Age.WebApp
 {
     using System;
+    using System.Data.SqlClient;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Optimization;
@@ -21,15 +22,13 @@ namespace Apollo.Age.WebApp
     /// </summary>
     public class MvcApplication : HttpApplication
     {
-        private static UnderMaintenanceService _maintenanceService = null;
-
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            _maintenanceService = new UnderMaintenanceService();
+
             DbSettingProviderManager.Current.Start();
         }
 
@@ -45,13 +44,23 @@ namespace Apollo.Age.WebApp
 
             if (!Request.IsLocal)
             {
+                // Get base exception data
                 string message = ex.Message +
+                    "\r\nType: " + ex.GetType().ToString() +
                     "\r\nSource: " + ex.Source +
                     "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
                     "\r\nForm: " + Request.Form.ToString() +
                     "\r\nQueryString: " + Request.QueryString.ToString() +
                     "\r\nTargetSite: " + ex.TargetSite +
                     "\r\nStackTrace: " + ex.StackTrace;
+
+                // Get additional exception data
+                if (ex is SqlException)
+                {
+                    message += "\r\nProcedure: " + ((SqlException)ex).Procedure +
+                        "\r\nLine Number: " + ((SqlException)ex).LineNumber +
+                        "\r\nServer: " + ((SqlException)ex).Server;
+                }
 
                 LogService.Error(message);
             }
@@ -92,7 +101,9 @@ namespace Apollo.Age.WebApp
                     && executeFileName.IndexOf(".gif") == -1
                     && executeFileName.IndexOf(".png") == -1)
                 {
-                    if (_maintenanceService.MaintenanceInfo.Status)
+                    var maintenanceService = new UnderMaintenanceService();
+
+                    if (maintenanceService.MaintenanceInfo.Status)
                     {
                         Response.Redirect(ApoURLs.URLs.RedirectToUM, false);
                     }

@@ -12,6 +12,7 @@
 namespace Apollo.Age.Repositories.Impl
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
@@ -234,12 +235,13 @@ namespace Apollo.Age.Repositories.Impl
         {
             if (criteria.IsValid())
             {
-                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    var currentParams = criteria.GetSpParams();
-                    objectDb.ExecuteNonQuery(currentParams);
+                    Hashtable param = criteria.GetSpParams();
 
-                    return Converter.ToBool(currentParams["allowed"]);
+                    objectDb.ExecuteNonQuery(param);
+
+                    return Converter.ToBool(param["allowed"]);
                 }
             }
 
@@ -255,10 +257,15 @@ namespace Apollo.Age.Repositories.Impl
         {
             if (criteria.IsValid())
             {
-                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
                     return objectDb.Query<FunctionPolicy, Function, FunctionGroup, FunctionPolicy>(
-                        (fp, f, fg) => { fp.Function = f; f.FunctionGroup = fg; return fp; },
+                        (fp, f, fg) => 
+                        { 
+                            fp.Function = f; 
+                            f.FunctionGroup = fg; 
+                            return fp; 
+                        },
                         "FunctionId,FunctionGroupId",
                         criteria.GetSpParams());
                 }
@@ -275,9 +282,9 @@ namespace Apollo.Age.Repositories.Impl
         {
             if (criteria.IsValid())
             {
-                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    var param = criteria.GetSpParams();
+                    Hashtable param = criteria.GetSpParams();
 
                     objectDb.ExecuteNonQuery(param);
 
@@ -298,9 +305,9 @@ namespace Apollo.Age.Repositories.Impl
         {
             if (criteria.IsValid())
             {
-                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
                 {
-                    var param = criteria.GetSpParams();
+                    Hashtable param = criteria.GetSpParams();
 
                     objectDb.ExecuteNonQuery(param);
 
@@ -320,10 +327,10 @@ namespace Apollo.Age.Repositories.Impl
         /// </returns>
         public int SSOCheckIn(SSOCheckInCriteria criteria)
         {
-            var param = criteria.GetSpParams();
-
             using (var db = new ObjectDb(criteria.GetSettingKey()))
             {
+                Hashtable param = criteria.GetSpParams();
+
                 db.ExecuteNonQuery(param);
 
                 return Convert.ToInt32(param["onuserid"]);

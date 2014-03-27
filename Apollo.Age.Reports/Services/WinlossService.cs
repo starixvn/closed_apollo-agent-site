@@ -134,18 +134,6 @@ namespace Apollo.Age.Reports.Services
 
             if (model != null && model.MemberWinLossList != null && model.MemberWinLossList.Any())
             {
-                var title = string.Format("{0} {1}", Lang.lblMemberWinLoss, Lang.lblReport);
-                var filter = string.Format(
-                    "{0} -- {1}: {2} ~ {3} -- {4}: {5} -- {6}: {7}",
-                    model.AgentName,
-                    Lang.dateRange,
-                    ShortDateFormat(model.FromDate),
-                    ShortDateFormat(model.ToDate),
-                    Lang.lblReport,
-                    model.SportName,
-                    Lang.WagerType,
-                    model.BettypeName);
-
                 var sheet = hssfworkbook.CreateSheet(Lang.lblMemberWinLoss);
 
                 this.CustomizeColor(hssfworkbook);
@@ -169,8 +157,7 @@ namespace Apollo.Age.Reports.Services
                 IDataFormat format = hssfworkbook.CreateDataFormat();
                 var numberFormat = format.GetFormat("#,##0.00");
 
-                int rowIndex, startIndex;
-                rowIndex = startIndex = 4;
+                int rowIndex = 4;
                 var columIndex = 0;
                 var row = sheet.CreateRow(rowIndex);
 
@@ -279,23 +266,38 @@ namespace Apollo.Age.Reports.Services
                 this.CreateNumberCell(row, columIndex++, footerStyleRight, numberFormat, (double)totalOutstandingAmount);
                 this.CreateNumberCell(row, columIndex++, footerStyleRight, numberFormat, (double)totalOutstandingShareAmount);
 
+                int startIndex = 4;
+
                 sheet.CreateFreezePane(0, startIndex + 2);
 
                 for (var i = 0; i < sheet.GetRow(startIndex).LastCellNum; i++)
                 {
                     sheet.AutoSizeColumn(i);
-                    var currentWidth = sheet.GetColumnWidth(i);
+                    int currentWidth = sheet.GetColumnWidth(i);
                     sheet.SetColumnWidth(i, currentWidth + 500);
                 }
 
-                var rowTitle = sheet.CreateRow(rownum: 1);
+                var rowTitle = sheet.CreateRow(1);
                 var fontTitle = CreateFont(hssfworkbook, HSSFColor.Black.Index, 14, true);
                 var styleTitle = CreateStyle(hssfworkbook, align: HorizontalAlignment.Center, font: fontTitle, isBorder: false);
+                var title = string.Format("{0} {1}", Lang.lblMemberWinLoss, Lang.lblReport);
+
                 this.CreateStringCell(rowTitle, 0, styleTitle, title);
 
-                var rowFilter = sheet.CreateRow(rownum: 2);
+                var rowFilter = sheet.CreateRow(2);
                 var fontFilter = CreateFont(hssfworkbook, HSSFColor.Blue.Index, 11, true, true);
                 var styleFilter = CreateStyle(hssfworkbook, font: fontFilter, isBorder: false);
+                var filter = string.Format(
+                    "{0} -- {1}: {2} ~ {3} -- {4}: {5} -- {6}: {7}",
+                    model.AgentName,
+                    Lang.dateRange,
+                    ShortDateFormat(model.FromDate),
+                    ShortDateFormat(model.ToDate),
+                    Lang.lblReport,
+                    model.SportName,
+                    Lang.WagerType,
+                    model.BettypeName);
+
                 this.CreateStringCell(rowFilter, 0, styleFilter, filter);
 
                 sheet.AddMergedRegion(new CellRangeAddress(1, 1, 0, 13));
@@ -698,16 +700,16 @@ namespace Apollo.Age.Reports.Services
         /// <returns>List MatchEnteredModel object.</returns>
         private List<MatchEnteredModel> ConvertToMatchEnteredModel(List<MatchEntered> enteredFromList)
         {
-            List<MatchEnteredModel> enteredToList = null;
-            enteredFromList = enteredFromList.OrderBy(t => t.SportType).ThenBy(t => t.EventDate).ToList();
+            var enteredToList = new List<MatchEnteredModel>();
 
             if (enteredFromList != null && enteredFromList.Any())
             {
+                enteredFromList = enteredFromList.OrderBy(t => t.SportType).ThenBy(t => t.EventDate).ToList();
+
                 var sportType = 0;
                 MatchEnteredModel matchEntered = null;
-                enteredToList = new List<MatchEnteredModel>();
 
-                foreach (var item in enteredFromList)
+                foreach (MatchEntered item in enteredFromList)
                 {
                     if (item.SportType == sportType)
                     {
