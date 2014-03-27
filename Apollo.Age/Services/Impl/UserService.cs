@@ -277,6 +277,7 @@ namespace Apollo.Age.Services.Impl
                     NetSessionId = netSessionId,
                     Ip = ip
                 });
+
                 return result;
             }
             catch
@@ -296,7 +297,7 @@ namespace Apollo.Age.Services.Impl
 
             try
             {
-                var result = _userRepository.InternalReCheckIn(new InternalReCheckinCriteria
+                byte result = _userRepository.InternalReCheckIn(new InternalReCheckinCriteria
                 {
                     OnUserId = onlineUserId,
                     IsKickedOut = 0
@@ -323,7 +324,7 @@ namespace Apollo.Age.Services.Impl
 
             try
             {
-                var result = _userRepository.InternalLogout(new InternalLogoutCriteria
+                int result = _userRepository.InternalLogout(new InternalLogoutCriteria
                 {
                     OnUserId = onlineUserId
                 });
@@ -343,13 +344,13 @@ namespace Apollo.Age.Services.Impl
         /// <returns>True: allowed, false: not allowed.</returns>
         public bool AllowLineAccountSSO(string username)
         {
-            bool isAllowed = false;
-
-            isAllowed = _userRepository.CheckBelongToUpline(new CheckBelongToUplinesCriteria
+            var criteria = new CheckBelongToUplinesCriteria
             {
                 Username = username,
                 Allowed = false
-            });
+            };
+
+            bool isAllowed = _userRepository.CheckBelongToUpline(criteria);
 
             return isAllowed;
         }
@@ -444,7 +445,7 @@ namespace Apollo.Age.Services.Impl
         {
             var userPermission = new Dictionary<string, byte>();
 
-            foreach (var item in listUserPermission)
+            foreach (FunctionPolicy item in listUserPermission)
             {
                 userPermission.Add(item.Function.FunctionKey, item.Policy);
             }

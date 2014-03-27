@@ -262,8 +262,6 @@ namespace Apollo.Age.Web
                 int currentOnUserId = Convert.ToInt32(Cryptography.CfsDeCrypt(onlineUserId));
                 int currentAdminId = Convert.ToInt32(Cryptography.CfsDeCrypt(adminId));
                 string currentAdminName = Cryptography.CfsDeCrypt(adminName);
-                int siteId = AppSettings.SSOSiteId;
-                int onlineAdminId = 0;
 
                 DateTime currentTime = _userService.SSOGetTime(new SSOGetTimeCriteria
                 {
@@ -278,14 +276,14 @@ namespace Apollo.Age.Web
                     {
                         CheckOnUserId = currentOnUserId,
                         OnUserId = 0,
-                        SiteId = siteId,
+                        SiteId = AppSettings.SSOSiteId,
                         LoginDate = DateTime.Now,
                         NetSessionId = Session.SessionID,
                         UserId = currentAdminId,
                         IP = _deviceService.ClientIp
                     };
 
-                    onlineAdminId = _userService.SSOCheckIn(criteria);
+                    int onlineAdminId = _userService.SSOCheckIn(criteria);
 
                     if (onlineAdminId > 0)
                     {
@@ -548,16 +546,16 @@ namespace Apollo.Age.Web
             if (!string.IsNullOrWhiteSpace(agentName))
             {
                 User user = _userService.InternalGetAgentByUsername(agentName);
+
                 if (user != null)
                 {
                     var userStatus = _userService.GetUserStatus(user.Agent.Id, user.Id);
+
                     switch (userStatus)
                     {
                         case (int)CustomerStatus.Active:
-                            var onlineAgentId = _userService.InternalCheckIn(
-                                adminId,
-                                HttpContext.Session.SessionID,
-                                _deviceService.ClientIp);
+                            var onlineAgentId = 
+                                _userService.InternalCheckIn(adminId, HttpContext.Session.SessionID, _deviceService.ClientIp);
                             if (onlineAgentId == 0)
                             {
                                 // Kick out user.
@@ -569,12 +567,12 @@ namespace Apollo.Age.Web
 
                             // Login successfully.
                             return 0;
-                        case (int)CustomerStatus.Locked:
 
+                        case (int)CustomerStatus.Locked:
                             // Account is locked.
                             return 1;
-                        default:
 
+                        default:
                             // Account is stopped.
                             return 2;
                     }
@@ -605,38 +603,27 @@ namespace Apollo.Age.Web
             switch (userChecking)
             {
                 case 0:
-                    {
-                        CreateLoginSession(adminId, adminName, language, isAllowUpdate, agentUser, onlineUserId);
-
-                        break;
-                    }
+                    CreateLoginSession(adminId, adminName, language, isAllowUpdate, agentUser, onlineUserId);
+                    break;
 
                 case 1:
-                    {
-                        // Account is locked.
-                        ModelState.AddModelError("Agent", Lang.lblAccountWasLocked);
-                        break;
-                    }
+                    // Account is locked.
+                    ModelState.AddModelError("Agent", Lang.lblAccountWasLocked);
+                    break;
 
                 case 2:
-                    {
-                        // Account is stopped.
-                        ModelState.AddModelError("Agent", Lang.lblAccountWasStopped);
-                        break;
-                    }
+                    // Account is stopped.
+                    ModelState.AddModelError("Agent", Lang.lblAccountWasStopped);
+                    break;
 
                 case 3:
-                    {
-                        // Kick out account.
-                        return SignOut();
-                    }
+                    // Kick out account.
+                    return SignOut();
 
                 default:
-                    {
-                        // Agent is not found.
-                        ModelState.AddModelError("Agent", Lang.AgentNotFound);
-                        break;
-                    }
+                    // Agent is not found.
+                    ModelState.AddModelError("Agent", Lang.AgentNotFound);
+                    break;
             }
 
             return View();
