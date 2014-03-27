@@ -12,7 +12,6 @@ namespace Apollo.Age.Account.Repositories.Interface
     using System.Collections.Generic;
     using Apollo.Age.Account.Criterias;
     using Apollo.Age.Account.Models;
-    using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
     using Fanex.NAP.Framework.Data;
 

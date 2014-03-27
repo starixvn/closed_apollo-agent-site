@@ -7,7 +7,7 @@
 //   <change who="Edward.Nguyen" date="2013.10.2">Created</change>
 // </history>
 
-namespace Apollo.Age.PermissionControl.Criterias
+namespace Apollo.Age.Criterias
 {
     using Fanex.NAP.Framework.Data;
 

@@ -18,7 +18,6 @@ namespace Apollo.Age.Account.Services
     using Apollo.Age.Account.Repositories.Impl;
     using Apollo.Age.Account.Repositories.Interface;
     using Apollo.Age.Configurations;
-    using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
     using Apollo.Age.Enumerations;
     using Apollo.Age.Repositories.Impl;

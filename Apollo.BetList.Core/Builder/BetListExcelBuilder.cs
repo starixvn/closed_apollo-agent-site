@@ -515,7 +515,8 @@ namespace Apollo.BetList.Core.Builder
             var font = RTFHelper.Font(HSSFColor.Black.Index);
             var cellStyle = RTFHelper.CellStyle(
                 HorizontalAlignment.Right, 
-                VerticalAlignment.Top, font, 
+                VerticalAlignment.Top, 
+                font, 
                 HSSFColor.White.Index, 
                 true);
 

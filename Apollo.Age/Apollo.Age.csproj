@@ -128,7 +128,6 @@
     <Compile Include="Services\Impl\UserService.cs" />
     <Compile Include="Services\Interface\IFunctionService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
-    <Compile Include="Entities\Language.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">

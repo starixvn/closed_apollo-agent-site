@@ -17,7 +17,6 @@ namespace Apollo.Age.BetList.Services
     using Apollo.Age.BetList.Repositories.Interface;
     using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
-    using Apollo.Age.Web.Services;
     using Apollo.BetList.Core.Entities;
 
     /// <summary>

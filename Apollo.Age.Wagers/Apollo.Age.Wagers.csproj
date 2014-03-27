@@ -79,7 +79,7 @@
     <Compile Include="Services\IWagersService.cs" />
     <Compile Include="Services\WagersService.cs" />
     <Compile Include="ViewModels\Basketball\ParlayViewModel.cs" />
-    <Compile Include="ViewModels\Basketball\FirstHaftViewModel.cs" />
+    <Compile Include="ViewModels\Basketball\FirstHalfViewModel.cs" />
     <Compile Include="ViewModels\Basketball\SpecialViewModel.cs" />
     <Compile Include="ViewModels\Basketball\StraightViewModel.cs" />
     <Compile Include="ViewModels\Outright\OutrightViewModel.cs" />

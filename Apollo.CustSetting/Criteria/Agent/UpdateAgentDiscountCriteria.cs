@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.3.5">Created</change>
 // </history>
+
 namespace Apollo.CustSetting.Criteria.Agent
 {
     using Fanex.NAP.Framework.Data;

@@ -10,8 +10,8 @@
 namespace Apollo.Age.Services.Impl
 {
     using System.Collections.Generic;
+    using Apollo.Age.Criterias;
     using Apollo.Age.Entities;
-    using Apollo.Age.PermissionControl.Criterias;
     using Apollo.Age.Repositories.Impl;
     using Apollo.Age.Repositories.Interface;
     using Apollo.Age.Services.Interface;

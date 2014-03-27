@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="FirstHaftViewModel.cs" company="Nexcel Solutions Vietnam">
+// <copyright file="FirstHalfViewModel.cs" company="Nexcel Solutions Vietnam">
 // Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------
@@ -13,7 +13,7 @@ namespace Apollo.Age.Wagers.ViewModels.Basketball
     /// <summary>
     /// First half view model.
     /// </summary>
-    public class FirstHaftViewModel : WagerViewModel
+    public class FirstHalfViewModel : WagerViewModel
     {
         public decimal HomeStakeHTHDP { get; set; }
 

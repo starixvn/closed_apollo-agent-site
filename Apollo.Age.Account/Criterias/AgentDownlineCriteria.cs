@@ -7,7 +7,7 @@
 //   <change who="Quinn.Vo" date="2013.3.22">Created</change>
 // </history>
 
-namespace Apollo.Age.Criterias.Accounts
+namespace Apollo.Age.Account.Criterias
 {
     using Fanex.NAP.Framework.Data;
 

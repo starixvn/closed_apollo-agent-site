@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.04.17">Created and Implement</change>
 // </history>
+
 namespace Apollo.Age.BetList.Criterias
 {
     using System;

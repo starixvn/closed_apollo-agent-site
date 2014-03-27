@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Ricky.Nguyen" date="2013.5.7">Created</change>
 // </history>
+
 namespace Apollo.Age.Criterias
 {
     using Fanex.NAP.Framework.Data;

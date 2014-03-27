@@ -7,13 +7,13 @@
 //   <change who="Kaden.Trinh" date="2013.04.17">Created and Implement</change>
 //   <change who="Kaden.Trinh" date="2013.05.20">Add more function get agent upline of member</change>
 // </history>
+
 namespace Apollo.Age.BetList.Services
 {
     using System.Collections.Generic;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.Entities;
     using Apollo.BetList.Core.Entities;
-    using NPOI.HSSF.UserModel;
 
     /// <summary>
     /// Service Interface.

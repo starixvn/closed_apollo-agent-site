@@ -7,7 +7,7 @@
 //   <change who="Terry.Nguyen" date="2013.12.25">Created</change>
 // </history>
 
-namespace Apollo.Age.Reports.Models
+namespace Apollo.Age.Reports.ViewModels
 {
     using System;
 

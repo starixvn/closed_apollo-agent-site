@@ -7,7 +7,7 @@
 //   <change who="Terry.Nguyen" date="2013.6.29">Created</change>
 // </history>
 
-namespace Apollo.Age.Wagers.Criterias.CorrectScore
+namespace Apollo.Age.Wagers.Criterias.Soccer
 {
     using Apollo.Age.Wagers.Criterias;
 

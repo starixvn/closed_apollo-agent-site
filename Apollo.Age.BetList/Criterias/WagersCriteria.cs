@@ -7,6 +7,7 @@
 //   <change who="Kaden.Trinh" date="2013.04.09">Created and Implement</change>
 //   <change who="Terry.Nguyen" date="2013.7.15">Add param IsSuperView</change>
 // </history>
+
 namespace Apollo.Age.BetList.Criterias
 {
     using System;

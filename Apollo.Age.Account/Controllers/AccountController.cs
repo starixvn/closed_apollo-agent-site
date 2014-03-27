@@ -27,9 +27,7 @@ namespace Apollo.Age.Account.Controllers
     using Apollo.Age.Account.Entities;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Services;
-    using Apollo.Age.Account.ViewModels;
     using Apollo.Age.Core;
-    using Apollo.Age.Criterias.Accounts;
     using Apollo.Age.Entities;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;

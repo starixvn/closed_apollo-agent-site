@@ -68,7 +68,7 @@ namespace Apollo.Age.Wagers.Controllers
             criteria.LoggedId = criteria.LoggedId > 0 ? criteria.LoggedId : CurrentSession.AgentId;
             criteria.IsSuperView = CurrentSession.IsSuper;
 
-            var list = WagerService.GetWagerData<FirstHaftViewModel>(criteria);
+            var list = WagerService.GetWagerData<FirstHalfViewModel>(criteria);
 
             ViewBag.SportName = criteria.SportName;
             ViewBag.TotalItems = criteria.TotalItems;

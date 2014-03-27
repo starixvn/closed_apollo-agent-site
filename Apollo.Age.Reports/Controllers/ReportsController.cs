@@ -32,7 +32,6 @@ namespace Apollo.Age.Reports.Controllers
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
-    using Fanex.NAP.Framework.Mvc;
 
     /// <summary>
     /// Reports Controller.

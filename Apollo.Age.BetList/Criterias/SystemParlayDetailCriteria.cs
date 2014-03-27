@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Kaden.Trinh" date="2013.05.16">System Parlay Detail Criteria</change>
 // </history>
+
 namespace Apollo.Age.BetList.Criterias
 {
     using System;

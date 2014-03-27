@@ -24,14 +24,6 @@ namespace Apollo.Age.Account.Core
 
         public const string Private = "private";
 
-        public const string LastPostTimeKey = "lastPostTime";
-
-        public const int LogActionDiscount = 2;
-
-        public const int LogActionBetSetting = 3;
-
-        public const int LogActionPositionTaking = 4;
-
         public static readonly Dictionary<int, string> AgentLevelDictionary = new Dictionary<int, string>
         {
             { 0, "lblSuper" },

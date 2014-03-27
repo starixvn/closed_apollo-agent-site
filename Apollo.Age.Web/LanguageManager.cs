@@ -7,6 +7,7 @@
 //   <change who="Terry" date="2013.6.3">Created</change>
 //   <change who="Edward.Nguyen" date="2013.7.2">Change to static class</change>
 // </history>
+
 namespace Apollo.Age.Web
 {
     using System.Diagnostics.CodeAnalysis;

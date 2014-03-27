@@ -6,6 +6,7 @@
 // <history>
 //   <change who="Terry.Nguyen" date="2013.7.3">Created</change>
 // </history>
+
 namespace Apollo.Age.Wagers.Criterias
 {
     /// <summary>

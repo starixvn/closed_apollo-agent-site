@@ -8,6 +8,7 @@
 //   <change who="Anders.Le" date="2013.7.1">Add paging params</change>
 //   <change who="Edward.Nguyen" date="2013.7.1">Add get page size from app setting</change>
 // </history>
+
 namespace Apollo.Age.Wagers.Criterias
 {
     using System;
