@@ -13,7 +13,6 @@ namespace Apollo.BetList.Core.Builder
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using Apollo.BetList.Core.Builder.AgentCommBuilder;
     using Apollo.BetList.Core.Builder.AgentShareBuilder;
     using Apollo.BetList.Core.Builder.ChoiceBuilder;
@@ -265,10 +264,10 @@ namespace Apollo.BetList.Core.Builder
         {
             var font = RTFHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Bold);
             var cellStyle = RTFHelper.CellStyle(
-                HorizontalAlignment.Right, 
+                HorizontalAlignment.Right,
                 VerticalAlignment.Top,
-                font, 
-                HSSFColor.Grey25Percent.Index, 
+                font,
+                HSSFColor.Grey25Percent.Index,
                 true);
 
             cellStyle.BorderTop = BorderStyle.Double;
@@ -514,9 +513,10 @@ namespace Apollo.BetList.Core.Builder
         {
             var font = RTFHelper.Font(HSSFColor.Black.Index);
             var cellStyle = RTFHelper.CellStyle(
-                HorizontalAlignment.Right, 
-                VerticalAlignment.Top, font, 
-                HSSFColor.White.Index, 
+                HorizontalAlignment.Right,
+                VerticalAlignment.Top, 
+                font,
+                HSSFColor.White.Index,
                 true);
 
             IStake stakeBuilder = CreateStakeBuilder(ticket.BetTypeId);
@@ -587,10 +587,10 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder AddResult(ITicket ticket, BetListPage page)
         {
             var cellStyle = RTFHelper.CellStyle(
-                HorizontalAlignment.Right, 
-                VerticalAlignment.Top, 
-                RTFHelper.Font(HSSFColor.Black.Index), 
-                HSSFColor.White.Index, 
+                HorizontalAlignment.Right,
+                VerticalAlignment.Top,
+                RTFHelper.Font(HSSFColor.Black.Index),
+                HSSFColor.White.Index,
                 true);
             var resultBuilder = new Result();
 
