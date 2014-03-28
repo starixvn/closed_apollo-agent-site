@@ -32,8 +32,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.UMService", "Apollo.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.BetList.Core", "Apollo.BetList.Core\Apollo.BetList.Core.csproj", "{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.BetList.Core.TicketHelper", "Apollo.BetList.Core.TicketHelper\Apollo.BetList.Core.TicketHelper.csproj", "{5384E9C5-8CF1-42F8-8D12-8089EA725351}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.CustSetting", "Apollo.CustSetting\Apollo.CustSetting.csproj", "{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{6B0FB15E-B80F-46A2-BC23-75005632EA1D}"
@@ -95,10 +93,6 @@ Global
 		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0838D04-2306-4362-AF22-9FCD0BE6F8E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5384E9C5-8CF1-42F8-8D12-8089EA725351}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E962BA8-7D6D-427E-8C30-C8EF81BF166F}.Release|Any CPU.ActiveCfg = Release|Any CPU

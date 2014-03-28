@@ -28,12 +28,11 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.TotalBets.Services;
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
+    using Apollo.BetList.Core;
     using Apollo.BetList.Core.Builder;
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Factories;
-    using Apollo.BetList.Core.TicketHelper;
     using Apollo.BetList.Core.Utils;
-    using Fanex.NAP.Framework.Mvc;
     using NPOI.HSSF.UserModel;
     using NPOI.SS.Util;
 

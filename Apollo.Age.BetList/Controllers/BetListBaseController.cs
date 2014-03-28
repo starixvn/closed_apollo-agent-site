@@ -19,7 +19,7 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.Age.Resources;
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Web;
-    using Apollo.BetList.Core.TicketHelper;
+    using Apollo.BetList.Core;
 
     /// <summary>
     /// Bet list base controller class.
