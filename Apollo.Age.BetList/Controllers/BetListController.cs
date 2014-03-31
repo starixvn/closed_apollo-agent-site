@@ -321,14 +321,16 @@ namespace Apollo.Age.BetList.Controllers
                 Resources.BetList.agentComm
             };
 
-            var excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName, titleBetlist);
+            var excelResult = new HSSFWorkbook();
+
+            excelResult = this.TicketExcel(mainTickets, BetListPage.Report, sheetName, betlistName, titleBetlist);
 
             var fileName = string.Format(
-                "BetList-{0}-{1}-From-{2}-To-{3}",
-                "Transactions",
-                model.Username,
-                model.FromDate.ToString("yyyyMMdd"),
-                model.ToDate.ToString("yyyyMMdd"));
+                    "BetList-{0}-{1}-From-{2}-To-{3}",
+                    "Transactions",
+                    model.Username,
+                    model.FromDate.ToString("yyyyMMdd"),
+                    model.ToDate.ToString("yyyyMMdd"));
 
             return ExcelResult(excelResult, fileName);
         }
@@ -1020,7 +1022,7 @@ namespace Apollo.Age.BetList.Controllers
             var ticketHelper = new TicketHelper();
             BetListExcelFactory factory = new BetListExcelFactory();
             BetListExcelBuilder builder = factory.CreateBuilder();
-            var tickets = ticketResult.TicketList;
+            var tickets = ticketResult != null ? ticketResult.TicketList : null;
             short columnNumber = 9;
             builder.BuildWorksheet(sheetName, columnNumber, 20);
             decimal totalAmount = 0;
@@ -1050,54 +1052,56 @@ namespace Apollo.Age.BetList.Controllers
             }
 
             int rowNumber = 3;
-            foreach (var ticket in tickets)
+            if (tickets != null && tickets.Any())
             {
-                if (ticket.AgentLevel == 0 && CurrentSession.AgentLevel != 0)
+                foreach (var ticket in tickets)
                 {
-                    ticket.AgentLevel = CurrentSession.AgentLevel;
+                    if (ticket.AgentLevel == 0 && CurrentSession.AgentLevel != 0)
+                    {
+                        ticket.AgentLevel = CurrentSession.AgentLevel;
+                    }
+
+                    builder.AddTime(ticket, betListPage)
+                           .AddDiscount(ticket, betListPage)
+                           .AddGameType(ticket, ticketHelper, betListPage, funcGetOddsTypeName)
+                           .AddChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay)
+                           .AddStake(ticket)
+                           .AddResult(ticket, betListPage)
+                           .AddStatus(ticket, ticketResult.TicketDataList)
+                           .AddShare(ticket, ticketResult.TicketDataList, betListPage)
+                           .AddComm(ticket);
+
+                    builder.SetRowHigh(rowNumber, 6, 3);
+
+                    totalAmount += ticket.Stake;
+
+                    string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
+                    if (ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Won
+                        || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Draw
+                        || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Lose
+                        || (ticket.StatusId != null && ticket.StatusId.Value > 110 && ticket.StatusId.Value < 114))
+                    {
+                        var result = ticket.Winlost + ticket.PlayerComm;
+                        totalResult += result;
+                        totalShare += ticket.AWinlost;
+                    }
+
+                    totalComm += ticket.AComm;
+
+                    rowNumber++;
                 }
 
-                builder.AddTime(ticket, betListPage)
-                       .AddDiscount(ticket, betListPage)
-                       .AddGameType(ticket, ticketHelper, betListPage, funcGetOddsTypeName)
-                       .AddChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay)
-                       .AddStake(ticket)
-                       .AddResult(ticket, betListPage)
-                       .AddStatus(ticket, ticketResult.TicketDataList)
-                       .AddShare(ticket, ticketResult.TicketDataList, betListPage)
-                       .AddComm(ticket);
-
-                builder.SetRowHigh(rowNumber, 6, 3);
-
-                totalAmount += ticket.Stake;
-
-                string ticketBetStatus = string.IsNullOrEmpty(ticket.Status) ? string.Empty : ticket.Status.ToLower();
-                if (ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Won
-                    || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Draw
-                    || ticketBetStatus == Apollo.BetList.Core.Entities.BetStatus.Lose
-                    || (ticket.StatusId != null && ticket.StatusId.Value > 110 && ticket.StatusId.Value < 114))
-                {
-                    var result = ticket.Winlost + ticket.PlayerComm;
-                    totalResult += result;
-                    totalShare += ticket.AWinlost;
-                }
-
-                totalComm += ticket.AComm;
-
-                rowNumber++;
+                builder
+                    .AddTotal()
+                    .AddTotal()
+                    .AddTotal()
+                    .AddTotal(tickets.Count.ToString())
+                    .AddTotal(Formatter.FormatNumber20(totalAmount, Formatter.CULT_NAME_ENG), null, true)
+                    .AddTotal(Formatter.FormatNumber20(totalResult, Formatter.CULT_NAME_ENG), null, true)
+                    .AddTotal()
+                    .AddTotal(Formatter.FormatNumber20(totalShare, Formatter.CULT_NAME_ENG), null, true)
+                    .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG), null, true);
             }
-
-            builder
-                .AddTotal()
-                .AddTotal()
-                .AddTotal()
-                .AddTotal(tickets.Count.ToString())
-                .AddTotal(Formatter.FormatNumber20(totalAmount, Formatter.CULT_NAME_ENG), null, true)
-                .AddTotal(Formatter.FormatNumber20(totalResult, Formatter.CULT_NAME_ENG), null, true)
-                .AddTotal()
-                .AddTotal(Formatter.FormatNumber20(totalShare, Formatter.CULT_NAME_ENG), null, true)
-                .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG), null, true);
-
             builder
                 .SetRowHigh(0, 2)
                 .SetRowHigh(2, 2)

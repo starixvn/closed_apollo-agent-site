@@ -161,10 +161,17 @@ if (typeof jQuery !== "undefined") {
                         $('#container').html(data);
                         BETLIST.initEditLink();
                         BETLIST.ExportTransaction();
+
+                        $("a[name='mixParlayDetail']").click(function () {
+                            var $this = $(this);
+                            BETLIST.showMixParlay($this.attr("data-transid"));
+                        });
                     }
                 });
 
                 $("form:first").attr("action", "/betlist/transactions");
+
+                
             },
 
             initPager: function (pageIndex) {
@@ -175,6 +182,7 @@ if (typeof jQuery !== "undefined") {
                     callback: function (currentPage) {
                         BETLIST.pageIndex = currentPage;
                         BETLIST.getBetListData();
+                                               
                     }
                 });
             },
