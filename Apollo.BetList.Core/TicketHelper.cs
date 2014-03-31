@@ -7,7 +7,7 @@
 //   <change who="Terry.Nguyen" date="2013.11.4">Created</change>
 // </history>
 
-namespace Apollo.BetList.Core.TicketHelper
+namespace Apollo.BetList.Core
 {
     using System;
     using Apollo.BetList.Core.Entities;

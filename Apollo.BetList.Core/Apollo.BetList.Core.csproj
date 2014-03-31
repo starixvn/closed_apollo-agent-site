@@ -45,6 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\NPOI.dll</HintPath>
     </Reference>
+    <Reference Include="RemotingRef">
+      <HintPath>..\Dependencies\RemotingRef.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -215,6 +218,7 @@
     <Compile Include="Builder\TransBuilder\Trans3.cs" />
     <Compile Include="Builder\TransBuilder\ITrans.cs" />
     <Compile Include="Builder\TransBuilder\Trans1.cs" />
+    <Compile Include="CacheRef.cs" />
     <Compile Include="Entities\BetStatus.cs" />
     <Compile Include="Entities\CellAddress.cs" />
     <Compile Include="Entities\ISystemParlaySerial.cs" />
@@ -245,6 +249,7 @@
     <Compile Include="Templates\Status.htm.cs" />
     <Compile Include="Templates\Time.htm.cs" />
     <Compile Include="Templates\Trans.htm.cs" />
+    <Compile Include="TicketHelper.cs" />
     <Compile Include="Utils\Cast.cs" />
     <Compile Include="Utils\ConvertByBetType.cs" />
     <Compile Include="Utils\Formatter.cs">
