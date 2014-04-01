@@ -1,0 +1,75 @@
+﻿@using Apollo.Age.Forecast.Models
+@{
+    Layout = "~/Views/Forecast/Shared/_Layout.cshtml";
+    ViewBag.Title = Lang.lblScoreMap;
+    var leagues = (IEnumerable<LeagueModel>)ViewBag.Leagues;
+    var showLeaguesStyle = leagues == null ? "display:none;" : string.Empty;
+    var matchIds = ViewBag.MatchIds;
+    var liveBetTypes = ViewBag.LiveBetTypes;
+    var deadBallBetTypes = ViewBag.DeadBallBetTypes;
+}
+@section css
+{
+    <link type="text/css" rel="Stylesheet" href="~/views/forecast/resources/scoremap.less" />
+}
+<div id="box_header" class="clearfix selectLeague">
+    <div style="@(showLeaguesStyle)">
+        @{
+            if (leagues != null && leagues.Any())
+            {
+            <div class="row">
+                <div class="cell">
+                    <div class="label">
+                        <label for="ddlLeague">@Lang.league</label>
+                    </div>
+                    <div class="editor">
+                        <select id="ddlLeague" name="ddlLeague" style="position: relative;">
+                            @foreach (var league in leagues)
+                            {
+                                <option value="@(league.LeagueId)">@(league.LeagueName)</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="editor">
+                        <input type="button" class="btn" id="dSelMatch" value="@Lang.SelectMatch">
+                    </div>
+                    <div title="@Lang.RefreshLeagues" class="iconRefresh clearfix" id="RefreshLeagues">
+                    </div>
+                </div>
+            </div>
+            }
+            else
+            {
+            <label> @Lang.noInfo </label>
+            }
+        }
+    </div>
+    <div id="tblLiveDead">
+        <div id="bet-type-container" class="clearfix">
+        </div>
+        <div class="btn-submit clearfix">
+            <input type="button" value="@Lang.submit" id="dSubmit" class="btn" />
+            <span id="loadingSubmit"></span>
+        </div>
+    </div>
+</div>
+<div id="diverrmsg">
+    <span id="spmsgerr" class="msgerr"></span>
+</div>
+<div id="mainContent"></div>
+<div id="BoxMatchWL" style="display: none"></div>
+<input id="match-ids" type="hidden" value="@(matchIds)" />
+<input id="bet-types-live" type="hidden" value="@(liveBetTypes)" />
+<input id="bet-types-dead" type="hidden" value="@(deadBallBetTypes)" />
+@section scripts
+{
+    <script type="text/javascript">
+        var DEFAULT_OBJECT = function () {
+            return {
+                plsChooseBetType: "@(Lang.plsChooseBetType)",
+                plsChooseMatch: "@(Lang.plsChooseMatch)"
+            };
+        }();
+    </script>
+    <script src="~/views/forecast/resources/scoremap.js" type="text/javascript"></script>
+}

@@ -1,0 +1,48 @@
+﻿@using Apollo.Age.Forecast.Models
+@{
+    Layout = null;
+}
+@model IEnumerable<ScoreMapMatch>
+<div id="BoxMatchWL">
+    <div class="poup-title">
+        <div id="iconSelMatch">@Lang.SelectMatch</div>
+        <div id="closeBoxMatch">
+        </div>
+    </div>
+    <div class="boderBoxMatch">
+        <div class="ContentMatchWL">
+            <!--ContentMatch-->
+            @{
+                if (Model != null && Model.Any())
+                {
+                <ul class="ListMatch">
+                    <li>
+                        <input class="hand" type="checkbox" id="chLCheckAll">
+                        <label class="hand" for="chLCheckAll">
+                            <b>@Lang.all</b>
+						</label>
+                    </li>
+                    @foreach (var match in Model)
+                    {
+                        <li>
+                            <input class="hand match-item" type="checkbox" id="chL@(match.MatchId)" value="@(match.MatchId)" />
+                            <label class="hand" for="chL@(match.MatchId)">@(match.MatchName)</label>
+                        </li>
+                    }
+                </ul>
+                }
+                else
+                {
+                    <label>@Lang.noInfo</label>
+                }
+            }
+            <!--/ContentMatch-->
+        </div>
+        <div class="btn-select">
+            <input type="button" class="btn" id="dSubmitInMatch" value="@Lang.select">
+        </div>
+        <div id="tblMsgMatch">
+            <span class="msgerr" id="msgMatchErr">@Lang.plsChooseBetType</span>
+        </div>
+    </div>
+</div>
