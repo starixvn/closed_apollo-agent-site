@@ -67,6 +67,8 @@ if (typeof jQuery !== 'undefined') {
 		$('#header_main').hide();
 	}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
+/*jshint ignore:start */
 function UpdateForecastValue() {
 	FORECASTBYMATCH.loadContentView();
 }
+/*jshint ignore:end */

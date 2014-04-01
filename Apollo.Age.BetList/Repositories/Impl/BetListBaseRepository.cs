@@ -18,7 +18,6 @@ namespace Apollo.Age.BetList.Repositories.Impl
     using Fanex.Common;
     using Fanex.Data;
     using Fanex.NAP.Framework.Data;
-using System.Collections;
 
     /// <summary>
     /// Bet list base repository class.

@@ -2,6 +2,7 @@
 /*global DEFAULT_OBJECT*/
 /*global DEFAULT_LAYOUT*/
 /*global APOLLO*/
+/*global CountDownRefreshTick*/
 'use strict';
 if (typeof jQuery !== 'undefined') {
     var FC1X2 = (function ($) {
@@ -106,7 +107,7 @@ if (typeof jQuery !== 'undefined') {
 		FC1X2.init();
 	}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
-
+/*jshint ignore:start */
 function UpdateForecast1x2Value() {
 	if (FC1X2.matchId > 0) {
 		window.location.href = window.location.href;
@@ -119,3 +120,4 @@ function UpdateForecast1x2Value() {
 		window.location.href = url;
 	}
 }
+/*jshint ignore:end */

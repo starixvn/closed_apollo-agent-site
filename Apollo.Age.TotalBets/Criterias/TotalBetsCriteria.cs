@@ -27,7 +27,7 @@ namespace Apollo.Age.TotalBets.Criterias
 
         public int LoggedId { get; set; }
 
-        [SpParam(Ignored=true)]
+        [SpParam(Ignored = true)]
         public int BetType { get; set; }
 
         /// <summary>

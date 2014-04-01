@@ -95,8 +95,10 @@ if (typeof jQuery !== 'undefined') {
 				}
 
 				if (betTypesLive === "" && betTypesDead === "") {
-					document.getElementById('spmsgerr').innerHTML = DEFAULT_OBJECT.plsChooseBetType;
-					document.getElementById('diverrmsg').style.display = IE ? 'block' : 'table';
+				document.getElementById('spmsgerr').innerHTML = DEFAULT_OBJECT.plsChooseBetType;
+				/*jshint ignore:start */
+				document.getElementById('diverrmsg').style.display = IE ? 'block' : 'table';
+				/*jshint ignore:end */
 					$("#mainContent").html('');
 					return;
 				}

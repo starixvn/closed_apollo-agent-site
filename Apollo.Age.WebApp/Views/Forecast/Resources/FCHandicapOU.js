@@ -44,7 +44,9 @@ if (typeof jQuery !== 'undefined') {
 					height: 350,
 					position: { my: "top+50", at: "center top", of: window },
 					close: function () {
-						countDownTimer = setTimeout(CountDownRefreshTick, 1000);
+					/*jshint ignore:start */
+					countDownTimer = setTimeout(CountDownRefreshTick, 1000);
+					/*jshint ignore:end */
 					}
 				});
 			});
@@ -71,7 +73,7 @@ if (typeof jQuery !== 'undefined') {
 		FCHANDICAPOU.init();
 	}).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 }
-
+/*jshint ignore:start */
 function UpdateForecastHDValue() {
     var url = APOLLO.resolveUrl("Forecast/FCHandicapOverUnder?leagueId=" + FCHANDICAPOU.currentLeague);
     if (DEFAULT_LAYOUT.currentMainShareHolderId > 0) {
@@ -79,3 +81,4 @@ function UpdateForecastHDValue() {
     }
     window.location.href = url;
 }
+/*jshint ignore:end */
