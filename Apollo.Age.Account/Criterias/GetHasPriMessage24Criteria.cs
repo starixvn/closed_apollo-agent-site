@@ -19,6 +19,7 @@ namespace Apollo.Age.Account.Criterias
         [SpParam(SqlParamName = "TargetId")]
         public int UserId { get; set; }
 
+        [SpParam(Ignored = true)]
         public bool IsAgent { get; set; }
 
         public bool IsTest { get; set; }

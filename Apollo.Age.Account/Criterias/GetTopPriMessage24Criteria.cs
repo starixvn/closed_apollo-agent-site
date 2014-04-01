@@ -19,9 +19,10 @@ namespace Apollo.Age.Account.Criterias
         [SpParam(SqlParamName = "TargetId")]
         public int UserId { get; set; }
 
+        [SpParam(Ignored = true)]
         public bool IsAgent { get; set; }
 
-        [SpParam(SqlParamName = "LatestMsgID")]
+        [SpParam(Ignored = true)]
         public int LastMessageId { get; set; }
 
         public bool IsTest { get; set; }

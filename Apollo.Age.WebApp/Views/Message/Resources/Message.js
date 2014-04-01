@@ -136,11 +136,6 @@ $(document).ready(function () {
         MessagePortalPage.showMsg(value);
     });
 
-    $(document).delegate('.message', 'click', function () {
-        var messageId = $(this).attr('id');
-        MessagePortalPage.toggleAnnouncementContent(messageId);
-    });
-
     $(document).delegate('#announcement-link', 'click', function () {
         var myWindow = window.open(APOLLO.resolveUrl('~/Message/Announcement'), '_blank', 'scrollbars=1,width=520,height=800');
         myWindow.focus();
