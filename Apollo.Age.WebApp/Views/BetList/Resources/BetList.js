@@ -143,6 +143,31 @@ if (typeof jQuery !== "undefined") {
                 BETLIST.ExportForcast();
                 BETLIST.ExportWager();
                 BETLIST.ExportAccountInfo();
+
+                if (parent.APOLLO && parent.APOLLO.currentOpenDialog) {
+                    var heightPopup = 630;
+                    if (APOLLO.browser.msie) {
+                        heightPopup = 615;
+                        if (parseInt(APOLLO.browser.version, 10) === 7) {
+                            $('#content_main').css({ 'padding-bottom': '130px' });
+                        }
+                    }
+
+                    if (parent.APOLLO.isResizeDialog) {
+                        // resolution for screens
+                        if (window.parent.$("#page_main").width() >= 1024) {
+                            parent.APOLLO.resizeDialog(1000, heightPopup);
+                        } else {
+                            // check IE
+                            if (APOLLO.browser.msie) {
+                                parent.APOLLO.resizeDialog(960, 500);
+                            } else {
+                                parent.APOLLO.resizeDialog(960, 510);
+                            }
+                        }
+                    }
+                }
+
             },
 
             getBetListData: function () {

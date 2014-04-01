@@ -50,7 +50,7 @@ var Wagers = (function ($) {
                 Wagers.isDirectMember = false;
             }
             else {
-                Wagers.isDirectMember = (Wagers.viewOption === 0 ? false : true);
+                Wagers.isDirectMember = (parseInt(Wagers.viewOption) === 0 ? false : true);
             }
             if (Wagers.isOR === "true") {
                 Wagers.url = "~/wagers/Outright/WagerOutright";
@@ -72,7 +72,7 @@ var Wagers = (function ($) {
                     Wagers.isDirectMember = false;
                 }
                 else {
-                    Wagers.isDirectMember = ($this.val() === 0 ? false : true);
+                    Wagers.isDirectMember = (parseInt($this.val()) === 0 ? false : true);
                 }
                 if (Wagers.isOR === "true") {
                     Wagers.getLeagues(true, 0);
