@@ -911,6 +911,10 @@
       <Project>{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}</Project>
       <Name>Apollo.Age.BetList</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.Forecast\Apollo.Age.Forecast.csproj">
+      <Project>{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}</Project>
+      <Name>Apollo.Age.Forecast</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Integration\Apollo.Age.Integration.csproj">
       <Project>{5065F780-0CF8-4AE4-96F2-70D8BE40332C}</Project>
       <Name>Apollo.Age.Integration</Name>
