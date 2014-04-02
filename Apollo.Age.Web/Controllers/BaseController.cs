@@ -124,7 +124,7 @@ namespace Apollo.Age.Web
             workBook.Write(stream);
             stream.Close();
 
-            return File(stream.ToArray(), "application/vnd.ms-excel", fileName);
+            return File(stream.ToArray(), "application/vnd.ms-excel", fileName + ".xls");
         }
 
         #region Override functions
