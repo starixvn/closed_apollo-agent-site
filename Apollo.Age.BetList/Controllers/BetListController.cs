@@ -1101,6 +1101,7 @@ namespace Apollo.Age.BetList.Controllers
                     .AddTotal(Formatter.FormatNumber20(totalShare, Formatter.CULT_NAME_ENG), null, true)
                     .AddTotal(Formatter.FormatNumber20(totalComm, Formatter.CULT_NAME_ENG), null, true);
             }
+
             builder
                 .SetRowHigh(0, 2)
                 .SetRowHigh(2, 2)
