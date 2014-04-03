@@ -23,7 +23,7 @@ namespace Apollo.UMService
     {
         private const string MaintenanceCacheKey = "Fanex.Cache.Apollo.Maintenance"; // Cache Key.
 
-        private const int _DefaultTimeout = 30000; // 0.5 minutes timeout
+        private const int _DefaultTimeout = 1000; // 0.5 minutes timeout
 
         private readonly ICache _cacheManager;
 
@@ -50,9 +50,19 @@ namespace Apollo.UMService
             {
                 underMaintenanceCtrlUrl = string.Format(_underMaintenanceUrlFormat, underMaintenanceCtrlUrl, siteName);
 
-                var task = MakeAsyncRequest(underMaintenanceCtrlUrl, "text/json");
+                try
+                {
+                    var task = MakeAsyncRequest(underMaintenanceCtrlUrl, "text/json");
 
-                underMaintenanceInfo = Json.Decode<UnderMaintenanceModel>(task.Result);
+                    if (task.Result != null)
+                    {
+                        underMaintenanceInfo = Json.Decode<UnderMaintenanceModel>(task.Result);
+                    }
+                }
+                catch 
+                {
+                    return new UnderMaintenanceModel { Status = false };
+                }
 
                 underMaintenanceInfo = underMaintenanceInfo != null ? underMaintenanceInfo : new UnderMaintenanceModel { Status = false };
 
