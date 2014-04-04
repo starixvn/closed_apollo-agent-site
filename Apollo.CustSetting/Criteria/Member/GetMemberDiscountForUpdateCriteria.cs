@@ -16,7 +16,6 @@ namespace Apollo.CustSetting.Criteria.Member
     /// </summary>
     public class GetMemberDiscountForUpdateCriteria : CriteriaBase
     {
-        [SpParam(Ignored = true)]
         public int CustId { get; set; }
 
         public string UGroup { get; set; }
