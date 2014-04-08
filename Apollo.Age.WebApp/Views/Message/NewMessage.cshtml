@@ -19,22 +19,22 @@
         case Constants.Normal:
             normal = "id=current";
             break;
-			
+
         case Constants.Special:
             special = "id=current";
             color = "Red";
             break;
-			
+
         case Constants.AllSpecial:
             special = "id=current";
             color = "Red";
             break;
-			
+
         case Constants.Private:
             color = "Green";
             pri = "id=current";
             break;
-			
+
         default:
             normal = "id=current";
             break;
@@ -137,26 +137,26 @@
             </tr>
         </thead>
         <tbody>
-    @if (listMessage != null && listMessage.Any())
-    {
-		int count = 0;
-        foreach (MessageModel itemMessage in listMessage)
-        {
-            count++;
-            string rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
-            <tr @Html.Raw(rowClass)>
-                <td class="c">
-                    @count
-                </td>
-                <td class="c">
-                    @itemMessage.PostTime.ToString("yyyy-MM-dd hh:mm:ss")
-                </td>
-                <td class="message_content">
-                    @itemMessage.GetContent(lang)
-                </td>
-            </tr>
-        }
-    }
+            @if (listMessage != null && listMessage.Any())
+            {
+                int count = 0;
+                foreach (MessageModel itemMessage in listMessage)
+                {
+                    count++;
+                    string rowClass = count % 2 == 0 ? string.Empty : "class='alt'";
+                <tr @Html.Raw(rowClass)>
+                    <td class="c">
+                        @count
+                    </td>
+                    <td class="c">
+                        @itemMessage.PostTime.ToString("yyyy-MM-dd hh:mm:ss")
+                    </td>
+                    <td class="message_content">
+                        @itemMessage.GetContent(lang, itemMessage.MsgType == 1)
+                    </td>
+                </tr>
+                }
+            }
         </tbody>
     </table>
     @Html.Hidden("messagePrivate", Lang.privatemessage)

@@ -77,9 +77,12 @@ namespace Apollo.Age.Account.Models
         /// Get content.
         /// </summary>
         /// <param name="language">The language.</param>
-        /// <returns>Language content.</returns>
+        /// <param name="isPrivate">If set to <c>true</c> [is private].</param>
+        /// <returns>
+        /// Language content.
+        /// </returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-        public string GetContent(string language = "", bool isPrivateMessage = false)
+        public string GetContent(string language = "", bool isPrivate = false)
         {
             string content = string.Empty;
 
@@ -123,7 +126,7 @@ namespace Apollo.Age.Account.Models
             content = content != null ? content : string.Empty;
 
             // Private message.
-            if (isPrivateMessage)
+            if (isPrivate)
             {
                 content = content.Replace("@@", this.BettransID == null ? string.Empty : this.BettransID);
             }
