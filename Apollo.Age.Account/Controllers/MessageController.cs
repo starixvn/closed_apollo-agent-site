@@ -208,7 +208,7 @@ namespace Apollo.Age.Account.Controllers
             if (!ReferenceEquals(priMessage, null))
             {
                 privateMessages[0] = priMessage.MessageId;
-                privateMessages[1] = priMessage.GetContent(CurrentSession.Language);
+                privateMessages[1] = priMessage.GetContent(CurrentSession.Language, true);
             }
 
             return Json(new
