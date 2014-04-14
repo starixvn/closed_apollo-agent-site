@@ -146,7 +146,7 @@ namespace Apollo.Age.Configurations
                 if (string.IsNullOrWhiteSpace(periodDate))
                 {
                     return DateTime.Now;
-                } 
+                }
 
                 return Convert.ToDateTime(GetValue("PeriodDateRange"));
             }
@@ -165,6 +165,14 @@ namespace Apollo.Age.Configurations
             get
             {
                 return Convert.ToInt32(GetValue("SSOSiteId"));
+            }
+        }
+
+        public static int SSOTimeOut
+        {
+            get
+            {
+                return Convert.ToInt32(GetValue("SSOTimeout"));
             }
         }
 

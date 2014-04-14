@@ -48,7 +48,6 @@ namespace Apollo.Age.Web
         private const int ServerId = 2;
         private const string _RandomString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         private readonly int _randomStringLength = _RandomString.Length;
-        private readonly int _expirationTime = 120; // 120s for expirating.
 
         #endregion Const
 
@@ -269,7 +268,7 @@ namespace Apollo.Age.Web
                 });
 
                 var expirationTime = currentTime - currentLoginTime;
-                if (expirationTime.TotalSeconds <= _expirationTime)
+                if (expirationTime.TotalSeconds <= AppSettings.SSOTimeOut)
                 {
                     // SSO Check-in again.
                     var criteria = new SSOCheckInCriteria
