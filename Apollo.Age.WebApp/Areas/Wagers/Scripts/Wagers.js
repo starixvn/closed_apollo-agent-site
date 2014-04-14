@@ -99,7 +99,7 @@ var Wagers = (function ($) {
 
             $('#EmDate').on('change', function () {
                 Wagers.fromDate = $(this).val();
-                Wagers.getLeagues(false, 0);
+                Wagers.getLeagues(0);
             });
 
             if (Wagers.isOR === "true") {
@@ -139,7 +139,7 @@ var Wagers = (function ($) {
                     if (Wagers.fromDate !== newFromDate || newToDate !== Wagers.toDate) {
                         Wagers.fromDate = newFromDate;
                         Wagers.toDate = newToDate;
-                        Wagers.getLeagues(true, 0);
+                        Wagers.getLeagues(0);
                     }
                     else {
                         Wagers.getWagerData();
@@ -149,18 +149,18 @@ var Wagers = (function ($) {
         },
 
         autoRefresh: function () {
-            Wagers.getLeagues(false, Wagers.League);
+            Wagers.getLeagues(Wagers.League);
             // Wagers.getWagerData($('#pager').sbPager('getCurrentPage'));
         },
 
-        getLeagues: function (isOutright, indexId) {
+        getLeagues: function (indexId) {
             $.ajax({
                 url: APOLLO.resolveUrl("~/wagers/wager/GetJsonLeague"),
                 data: {
                     fromDate: Wagers.fromDate,
                     toDate: Wagers.isOR === "true" ? Wagers.toDate : null,
                     sportTypes: Wagers.sportTypeIds,
-                    isOutright: isOutright
+                    isOutright: Wagers.isOR === "true"
                 },
                 success: function (data) {
                     $('#League').empty();

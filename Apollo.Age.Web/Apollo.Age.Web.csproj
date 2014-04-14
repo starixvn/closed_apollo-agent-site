@@ -92,6 +92,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InternalController.cs" />
     <Compile Include="CurrentSession.cs" />
+    <Compile Include="Filters\AjaxAuthorizeAttribute.cs" />
     <Compile Include="Filters\AllowUpdateCheckingAttribute.cs" />
     <Compile Include="Filters\BelongCheckingAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
