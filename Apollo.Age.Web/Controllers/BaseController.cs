@@ -43,12 +43,10 @@ namespace Apollo.Age.Web
         private const string CheckDownlineMemberCacheKey = "Fanex.Cache.Apollo.DownlineMember";
         private readonly IUserService _userService;
         private readonly ICache _cacheManager;
-        private readonly UnderMaintenanceService _maintenanceService;
 
         public BaseController()
         {
             _userService = new UserService();
-            _maintenanceService = new UnderMaintenanceService();
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
         }
 

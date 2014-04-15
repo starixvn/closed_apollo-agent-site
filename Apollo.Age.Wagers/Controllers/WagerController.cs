@@ -389,11 +389,10 @@ namespace Apollo.Age.Wagers.Controllers
 
             if (CurrentSession != null)
             {
-                policy = UserService.GetUserPolicy(CurrentSession.UserId, functionKey);                
+                policy = UserService.GetUserPolicy(CurrentSession.UserId, functionKey);
             }
 
             return policy < (byte)Policy.Query;
-
         }
     }
 }
