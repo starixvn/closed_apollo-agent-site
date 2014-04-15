@@ -70,6 +70,9 @@ namespace Apollo.Age.Web
 
             if (maintenanceInfo.Status)
             {
+                Session.Abandon();
+                Response.Cookies.Clear();
+
                 return View(maintenanceInfo);
             }
             else
@@ -132,9 +135,6 @@ namespace Apollo.Age.Web
         /// <returns>View model.</returns>
         public ActionResult RedirectToUM()
         {
-            Session.Abandon();
-            Response.Cookies.Clear();
-
             return View();
         }
     }

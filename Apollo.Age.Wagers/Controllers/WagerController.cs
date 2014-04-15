@@ -385,9 +385,15 @@ namespace Apollo.Age.Wagers.Controllers
                 functionKey = ApolloFunctionKeys.Outright;
             }
 
-            var policy = UserService.GetUserPolicy(CurrentSession.UserId, functionKey);
+            byte policy = 0;
+
+            if (CurrentSession != null)
+            {
+                policy = UserService.GetUserPolicy(CurrentSession.UserId, functionKey);                
+            }
 
             return policy < (byte)Policy.Query;
+
         }
     }
 }
