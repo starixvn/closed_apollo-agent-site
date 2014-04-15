@@ -114,19 +114,5 @@ namespace Apollo.Age.WebApp
                 LogService.Error(ex.Message, ex);
             }
         }
-
-        /// <summary>
-        /// Handles the EndRequest event of the Application control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        protected void Application_EndRequest(Object sender, EventArgs e)
-        {
-            if (Context.Items["AjaxPermissionDenied"] is bool)
-            {
-                Context.Response.StatusCode = 403;
-                Context.Response.End();
-            }
-        }
     }
 }

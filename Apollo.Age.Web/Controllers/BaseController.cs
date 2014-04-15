@@ -24,6 +24,7 @@ namespace Apollo.Age.Web
     using Apollo.Age.Services.Impl;
     using Apollo.Age.Services.Interface;
     using Apollo.Age.Web.Filters;
+    using Apollo.Age.Web.Services;
     using Fanex.Caching;
     using Fanex.Common;
     using Fanex.Logging;
@@ -42,10 +43,12 @@ namespace Apollo.Age.Web
         private const string CheckDownlineMemberCacheKey = "Fanex.Cache.Apollo.DownlineMember";
         private readonly IUserService _userService;
         private readonly ICache _cacheManager;
+        private readonly UnderMaintenanceService _maintenanceService;
 
         public BaseController()
         {
             _userService = new UserService();
+            _maintenanceService = new UnderMaintenanceService();
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
         }
 

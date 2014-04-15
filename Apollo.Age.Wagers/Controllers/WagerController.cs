@@ -32,7 +32,6 @@ namespace Apollo.Age.Wagers.Controllers
     using Apollo.Age.Web;
     using Apollo.Age.Web.Web.Attribute;
     using Fanex.Common;
-    using Apollo.Age.Web.Filters;
 
     /// <summary>
     /// Wager Controller.
@@ -94,7 +93,7 @@ namespace Apollo.Age.Wagers.Controllers
                 });
             }
 
-            return leagues != null ? result.OrderBy(x => x.Name).ToList() : new List<League>();
+            return result != null && result.Any() ? result.OrderBy(x => x.Name).ToList() : new List<League>();
         }
 
         /// <summary>
@@ -105,7 +104,6 @@ namespace Apollo.Age.Wagers.Controllers
         /// <param name="sportTypes">Sport type id.</param>
         /// <param name="isOutright">Return true is out right.</param>
         /// <returns>Return value with JSON format.</returns>
-        [AjaxAuthorizeAttribute]
         public JsonResult GetJsonLeague(
             DateTime fromDate,
             DateTime? toDate = null,
@@ -138,7 +136,6 @@ namespace Apollo.Age.Wagers.Controllers
         /// <returns>View result.</returns>
         [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
         [ApolloAuth(FunctionKey = ApolloFunctionKeys.Wagers + ";" + ApolloFunctionKeys.EMWagers + ";" + ApolloFunctionKeys.Outright, Policy = Policy.Query)]
-        [AjaxAuthorizeAttribute]
         public ActionResult Index(
             string sportName,
             string groupBetName = "Straight",

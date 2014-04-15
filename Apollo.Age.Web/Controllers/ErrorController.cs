@@ -132,6 +132,9 @@ namespace Apollo.Age.Web
         /// <returns>View model.</returns>
         public ActionResult RedirectToUM()
         {
+            Session.Abandon();
+            Response.Cookies.Clear();
+
             return View();
         }
     }

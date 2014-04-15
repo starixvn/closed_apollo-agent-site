@@ -182,6 +182,11 @@ var Wagers = (function ($) {
                         }
                     });
                     Wagers.getWagerData();
+                },
+                error: function (jqXHR) {
+                    if (jqXHR.status === 403) {
+                        location.href = APOLLO.resolveUrl("~/Error/AccessDenied");
+                    }
                 }
             });
         },
