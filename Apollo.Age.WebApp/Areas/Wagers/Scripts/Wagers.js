@@ -183,6 +183,11 @@ var Wagers = (function ($) {
                     });
                     Wagers.getWagerData();
                 },
+                statusCode: {
+                    999: function() {
+                        location.href = APOLLO.resolveUrl("~/Error/RedirectToUM");
+                    }
+                },
                 error: function (jqXHR) {
                     if (jqXHR.status === 403) {
                         location.href = APOLLO.resolveUrl("~/Error/AccessDenied");

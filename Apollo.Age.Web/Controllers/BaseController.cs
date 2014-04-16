@@ -43,11 +43,13 @@ namespace Apollo.Age.Web
         private const string CheckDownlineMemberCacheKey = "Fanex.Cache.Apollo.DownlineMember";
         private readonly IUserService _userService;
         private readonly ICache _cacheManager;
+        private readonly UnderMaintenanceService _maintenanceService = new UnderMaintenanceService();
 
         public BaseController()
         {
             _userService = new UserService();
             _cacheManager = CacheService.CreateInstance(CacheType.MemoryCache);
+            _maintenanceService = new UnderMaintenanceService();
         }
 
         #region PROPERTIES
@@ -155,6 +157,25 @@ namespace Apollo.Age.Web
             }
 
             base.OnActionExecuting(filterContext);
+        }
+
+        /// <summary>
+        /// Called after the action method is invoked.
+        /// </summary>
+        /// <param name="filterContext">Information about the current request and action.</param>
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            var response = filterContext.HttpContext.Response;
+
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
+            {
+                if (_maintenanceService.MaintenanceInfo.Status)
+                {
+                    response.StatusCode = 999;
+                }
+            }
+
+            base.OnActionExecuted(filterContext);
         }
 
         /// <summary>
