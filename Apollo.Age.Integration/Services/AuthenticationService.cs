@@ -133,7 +133,10 @@ namespace Apollo.Age.Integration.Services
             request.Method = WebRequestMethods.Http.Post; // It is required.
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = requestData.Length;
-            request.GetRequestStream().Write(requestData, 0, requestData.Length);
+            using (Stream stream = request.GetRequestStream())
+            {
+                stream.Write(requestData, 0, requestData.Length);
+            }
 
             var response = (HttpWebResponse)request.GetResponse();
 
