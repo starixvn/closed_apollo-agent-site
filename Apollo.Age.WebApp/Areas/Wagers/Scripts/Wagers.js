@@ -185,7 +185,7 @@ var Wagers = (function ($) {
                 },
                 statusCode: {
                     999: function() {
-                        location.href = APOLLO.resolveUrl("~/Error/RedirectToUM");
+                        parent.location.href = APOLLO.resolveUrl("~/Error/RedirectToUM");
                     }
                 },
                 error: function (jqXHR) {

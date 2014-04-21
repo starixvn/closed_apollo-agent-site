@@ -58,7 +58,7 @@ var MessagePortalPage = (function ($) {
                 },
                 statusCode: {
                     999: function () {
-                        location.href = APOLLO.resolveUrl("~/Error/RedirectToUM");
+                        parent.location.href = APOLLO.resolveUrl("~/Error/RedirectToUM");
                     }
                 },
                 error: function () {
@@ -129,7 +129,7 @@ var MessagePortalPage = (function ($) {
                 },
                 statusCode: {
                     999: function() {
-                        location.href = APOLLO.resolveUrl("~/Error/RedirectToUM");
+                        parent.location.href = APOLLO.resolveUrl("~/Error/RedirectToUM");
                     }
                 }
             });
