@@ -17,14 +17,13 @@
 	    document.cookie = 'searching-name' + '="";-1; path=/';
 	    document.cookie = 'searching-ismember' + '="false";-1; path=/';
 
-		TGP.authorize_endpoint = "@OAuthSettings.Settings.AuthorizeUrl";
+	    TGP.domain = "@OAuthSettings.Settings.AuthorizeUrl";
 
 		TGP.authorize({
 			client_id: "@OAuthSettings.Settings.AppId",
 			redirect_uri: "@OAuthSettings.Settings.RedirectUri?username=@ViewBag.Username&language=@ViewBag.Language",
-			user_id: "@ViewBag.Username",
-			lang : "@ViewBag.Language",
-			state: "sso"
+            response_type: "code",
+			state: ""
 		});
 	</script>
 </body>
