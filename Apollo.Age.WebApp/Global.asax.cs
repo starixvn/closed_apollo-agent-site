@@ -62,7 +62,10 @@ namespace Apollo.Age.WebApp
                         "\r\nServer: " + ((SqlException)ex).Server;
                 }
 
-                LogService.Error(message);
+                if (!(ex is HttpException))
+                {
+                    LogService.Error(message);
+                }
             }
 
             // Redirect to Error pages
