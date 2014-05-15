@@ -454,8 +454,12 @@
     <Content Include="_GlobalResources\Css\select2\select2.png" />
     <Content Include="_GlobalResources\Css\select2\select2x2.png" />
     <Content Include="_GlobalResources\Css\select2\spinner.gif" />
-    <Content Include="_GlobalResources\Images\1F.gif" />
-    <Content Include="_GlobalResources\Images\1L.gif" />
+    <Content Include="_GlobalResources\Images\1F.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_GlobalResources\Images\1L.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="_GlobalResources\Images\ajax-loader.gif" />
     <Content Include="_GlobalResources\Images\breadcrumb.gif" />
     <Content Include="_GlobalResources\Images\btLoading.gif" />
