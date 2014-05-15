@@ -2,229 +2,266 @@
 @using Apollo.Age.Reports.Core
 @using Apollo.Age.Resources
 @{
-	Layout = null;
+    Layout = null;
 }
 @model IEnumerable<MatchResultModel>
-
 <table class="tblRpt soccer">
-	<thead>
-		<tr>
-			<th style="width: 100px">
-				@Lang.time
-			</th>
-			<th style="width: 300px">
-				@Lang.league
-			</th>
-			<th style="width: 300px">
-				@Lang.HomeGuest
-			</th>
-			<th style="width: 100px">
-				@Lang.lblhalf
-			</th>
-			<th class="nowrap" style="width: 100px">
-				@Lang.lblfinal
-			</th>
-			<th class="nowrap" style="width: 100px">
-				@Lang.status
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		@if (Model != null && Model.Any())
-		{
-			foreach (var item in Model)
-			{
-			@ShowMatch(item)
-			}
-		}		
-	</tbody>
+    <thead>
+        <tr>
+            <th style="width: 100px">
+                @Lang.time
+            </th>
+            <th style="width: 300px">
+                @Lang.league
+            </th>
+            <th style="width: 300px">
+                @Lang.HomeGuest
+            </th>
+            <th style="width: 100px">
+                @Lang.lblhalf
+            </th>
+            <th class="nowrap" style="width: 100px">
+                @Lang.lblfinal
+            </th>
+            <th class="nowrap" style="width: 100px">
+                @Lang.status
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+            @ShowMatch(item)
+            }
+        }
+    </tbody>
 </table>
-
 @helper ShowMatch(MatchResultModel item)
-	{
-	<tr class="c">
-		<td class="width-80">
-			@Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
-		</td>
-		<td class="l">
-			@item.LeagueName
-		</td>
-		<td class="l">
-			@item.HomeTeam
-			@FirstAndLastGoal(item, isRowHome: true)
-			<br />
-			@item.AwayTeam
-			@FirstAndLastGoal(item, isRowHome: false)
-		</td>
-		@BindScore(item)
-		<td class="border-right">
-			@Html.Raw(item.EventStatusTranslation)
-		</td>
-	</tr>
+    {
+    <tr class="c">
+        <td class="width-80">
+            @Html.Raw(Formater.FormatDateTime22(item.KickoffTime))
+        </td>
+        <td class="l">
+            @item.LeagueName
+        </td>
+        <td class="l">
+            @item.HomeTeam
+            @FirstAndLastGoal(item, isRowHome: true)
+            <br />
+            @item.AwayTeam
+            @FirstAndLastGoal(item, isRowHome: false)
+        </td>
+        @BindScore(item)
+        <td class="border-right">
+            @Html.Raw(item.EventStatusTranslation)
+        </td>
+    </tr>
 }
 @helper FirstAndLastGoal(MatchResultModel item, bool isRowHome)
-	{
-		// Base on [BetStatus] to get First/Last Goal
-		// Example [BetStatus] = "FL:1-2", "Refund FT;FL:0-2"
+    {
+        // Base on [BetStatus] to get First/Last Goal
+        // Example [BetStatus] = "1FL:2-2;FL:2-1", "Refund HT;1FL:0-0;FL:1-1"
 
-		var betStatus = string.Empty;
-		if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundFT))
-		{
-			if (!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.Contains(";"))
-			{
-				string[] refundArray = item.BetStatus.Split(';');
-				if (refundArray.Length == 2 && refundArray[1].ToString() != string.Empty)
-				{
-					betStatus = refundArray[1].ToString();
-				}
-			}
-		}
-		else if (!item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund)
-			&& !item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundHT))
-		{
-			if (!string.IsNullOrWhiteSpace(item.BetStatus) && item.BetStatus.Contains(":"))
-			{
-				betStatus = item.BetStatus;
-			}
-		}
+        int firstGoal = 0;
+        int lastGoal = 0;
+        int firstHalfFG = 0;
+        int firstHalfLG = 0;
+        
+        
+        if (!string.IsNullOrWhiteSpace(item.BetStatus))
+        {
 
-		if (!string.IsNullOrWhiteSpace(betStatus) && betStatus.Contains(":"))
-		{
-			var valueArr = betStatus.Split(':');
-			if (string.Compare(valueArr[0], "FL", true) == 0)
-			{
-				var firstGoal = valueArr[1].Split('-')[0];
-				var lastGoal = valueArr[1].Split('-')[1];
+            string[] matchStatus = item.BetStatus.Split(';');
 
-				if (isRowHome)
-				{
-					if (firstGoal == "1")
-					{
-	<div class="first_goal">
-		&nbsp;</div>
-					}
-					if (lastGoal == "1")
-					{
-	<div class="last_goal">
-		&nbsp;</div>
-					}
-				}
-				else
-				{
-					if (firstGoal == "2")
-					{
-	<div class="first_goal">
-		&nbsp;</div>
-					}
-					if (lastGoal == "2")
-					{
-	<div class="last_goal">
-		&nbsp;</div>
-					}
-				}
-			}
-		}
+            foreach (var status in matchStatus)
+            {
+                // For 1H FG LG
+                if (status.Contains("1FL:"))
+                {
+                    string[] FirstHalfFGLG = status.Split(':');
+                    if (FirstHalfFGLG.Length > 0)
+                    {
+                        string[] goals = FirstHalfFGLG[1].Split('-');
+                        if (goals.Length > 0)
+                        {
+                            firstHalfFG = Convert.ToInt16(goals[0]);
+                            firstHalfLG = Convert.ToInt16(goals[1]);
+                        }
+                    }
+                }
+                else if (status.Contains("FL:"))
+                {
+                    string[] FGLG = status.Split(':');
+                    if (FGLG.Length > 0)
+                    {
+                        string[] goals = FGLG[1].Split('-');
+                        if (goals.Length > 0)
+                        {
+                            firstGoal = Convert.ToInt16(goals[0]);
+                            lastGoal = Convert.ToInt16(goals[1]);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (isRowHome)
+        {
+            if (firstGoal == 1)
+            {
+                <div class="first_goal">
+                    &nbsp;</div>
+            }
+            if (lastGoal == 1)
+            {
+                <div class="last_goal">
+                    &nbsp;</div>
+            }
+
+            if (firstHalfFG == 1)
+            {
+                <div class="ft_first_goal">
+                    &nbsp;</div>
+            }
+            if (firstHalfLG == 1)
+                {
+                <div class="ft_last_goal">
+                    &nbsp;</div>
+                }
+        }
+        else
+        {
+            if (firstGoal == 2)
+            {
+                <div class="first_goal">
+                    &nbsp;</div>
+            }
+            if (lastGoal == 2)
+            {
+                <div class="last_goal">
+                    &nbsp;</div>
+            }
+            
+            if (firstHalfFG == 2)
+                    {
+                        <div class="ft_first_goal">
+                            &nbsp;</div>
+                    }
+            if (firstHalfLG == 2)
+            {
+                        <div class="ft_last_goal">
+                            &nbsp;</div>
+            }
+        }
 }
 @helper BindScore(MatchResultModel item)
-	{
-		if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund))
-		{
-	<td>
-		@Lang.lblNA
-	</td>
-	<td>
-		@Lang.lblNA
-	</td>
-		}
-		else if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundFT))
-		{
-	<td>
-		@if (item.HalfTimeHomeScore == null)
-		{
-			<span>-</span>
-		}
-		else
-		{
-			@item.HalfTimeHomeScore
-		}
-		<br />
-		@if (item.HalfTimeAwayScore == null)
-		{
-			<span>-</span>
-		}
-		else
-		{
-			@item.HalfTimeAwayScore
-		}
-	</td>
-	<td>
-		@Lang.lblNA
-		<br />
-		@Lang.lblNA
-	</td>
+    {
+        if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.Refund))
+        {
+    <td>
+        @Lang.lblNA
+    </td>
+    <td>
+        @Lang.lblNA
+    </td>
+        }
+        else if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundFT))
+        {
+    <td>
+        @if (item.HalfTimeHomeScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.HalfTimeHomeScore
+        }
+        <br />
+        @if (item.HalfTimeAwayScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.HalfTimeAwayScore
+        }
+    </td>
+    <td>
+        @Lang.lblNA
+        <br />
+        @Lang.lblNA
+    </td>
 
-		}
-		else if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundHT))
-		{
-	<td>
-		@Lang.lblNA
-		<br />
-		@Lang.lblNA
-	</td>
-	<td>
-		@if (item.FinalHomeScore == null)
-		{
-			<span>-</span>
-		}
-		else
-		{
-			@item.FinalHomeScore
-		}
-		<br />
-		{ <span>-</span> } else {
-		@item.FinalAwayScore
-		}
-	</td>
-		}
-		else
-		{
-	<td>
-		@if (item.HalfTimeHomeScore == null)
-		{
-			<span>-</span>
-		}
-		else
-		{
-			@item.HalfTimeHomeScore
-		}
-		<br />
-		@if (item.HalfTimeAwayScore == null)
-		{
-			<span>-</span>
-		}
-		else
-		{
-			@item.HalfTimeAwayScore
-		}
-	</td>
-	<td>
-		@if (item.FinalHomeScore == null)
-		{
-			<span>-</span>
-		}
-		else
-		{
-			@item.FinalHomeScore
-		}
-		<br />
-		@if (item.FinalAwayScore == null)
-		{
-			<span>-</span>
-		}
-		else
-		{
-			@item.FinalAwayScore
-		}
-	</td>
-		}
+        }
+        else if (item.EventStatus.Equals(Apollo.Age.Reports.Core.Constants.RefundHT))
+        {
+    <td>
+        @Lang.lblNA
+        <br />
+        @Lang.lblNA
+    </td>
+    <td>
+        @if (item.FinalHomeScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.FinalHomeScore
+        }
+        <br />
+        @if(item.FinalAwayScore == null)        
+        { 
+            <span>-</span> 
+        } 
+        else
+        {
+            @item.FinalAwayScore
+        }
+    </td>
+        }
+        else
+        {
+    <td>
+        @if (item.HalfTimeHomeScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.HalfTimeHomeScore
+        }
+        <br />
+        @if (item.HalfTimeAwayScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.HalfTimeAwayScore
+        }
+    </td>
+    <td>
+        @if (item.FinalHomeScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.FinalHomeScore
+        }
+        <br />
+        @if (item.FinalAwayScore == null)
+        {
+            <span>-</span>
+        }
+        else
+        {
+            @item.FinalAwayScore
+        }
+    </td>
+        }
 }
