@@ -447,7 +447,12 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>
         /// Bet List Excel Builder.
         /// </returns>
-        public BetListExcelBuilder AddChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, ICellStyle cellStyle)
+        public BetListExcelBuilder AddChoice(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            List<ITicketData> ticketData, 
+            IList<ITicket> ticketMixParlay, 
+            ICellStyle cellStyle)
         {
             IChoice choiceBuilder = CreateChoiceBuilder(ticket.BetTypeId);
             List<IRichTextString> rtfChoiceList = choiceBuilder.RenderRTF(ticket, ticketHelper, ticketData, ticketMixParlay, false, RTFHelper);
@@ -620,7 +625,12 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>
         /// Bet List Excel Builder.
         /// </returns>
-        public BetListExcelBuilder AddGameType(ITicket ticket, ITicketHelper ticketHelper, BetListPage page, GetCachePropertyById funcGetOddsTypeName, ICellStyle cellStyle)
+        public BetListExcelBuilder AddGameType(
+            ITicket ticket, 
+            ITicketHelper ticketHelper, 
+            BetListPage page, 
+            GetCachePropertyById funcGetOddsTypeName, 
+            ICellStyle cellStyle)
         {
             ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);
             IRichTextString rtfTrans = transBuilder.RenderRTF(ticket, ticketHelper, page, RTFHelper, funcGetOddsTypeName);
