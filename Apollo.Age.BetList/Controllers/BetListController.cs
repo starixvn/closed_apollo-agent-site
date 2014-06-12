@@ -34,6 +34,8 @@ namespace Apollo.Age.BetList.Controllers
     using Apollo.BetList.Core.Factories;
     using Apollo.BetList.Core.Utils;
     using NPOI.HSSF.UserModel;
+    using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
     using NPOI.SS.Util;
 
     /// <summary>
@@ -1031,6 +1033,11 @@ namespace Apollo.Age.BetList.Controllers
 
             CellRangeAddress rangeAddress = new CellRangeAddress(0, 0, 0, 8);
 
+            var font = builder.RTFHelper.Font(HSSFColor.Black.Index);
+
+            var centerCellStyle = builder.RTFHelper.CellStyle(HorizontalAlignment.Center, VerticalAlignment.Top, font, HSSFColor.White.Index, true);
+            var alignRightCellStyle = builder.RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, font, HSSFColor.White.Index, true);
+
             builder
                 .SetColumnWidth(0, 15)
                 .SetColumnWidth(1, 20)
@@ -1060,15 +1067,15 @@ namespace Apollo.Age.BetList.Controllers
                         ticket.AgentLevel = CurrentSession.AgentLevel;
                     }
 
-                    builder.AddTime(ticket, betListPage)
-                           .AddDiscount(ticket, betListPage)
-                           .AddGameType(ticket, ticketHelper, betListPage, funcGetOddsTypeName)
-                           .AddChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay)
-                           .AddStake(ticket)
-                           .AddResult(ticket, betListPage)
-                           .AddStatus(ticket, ticketResult.TicketDataList)
-                           .AddShare(ticket, ticketResult.TicketDataList, betListPage)
-                           .AddComm(ticket);
+                    builder.AddTime(ticket, betListPage, centerCellStyle)
+                           .AddDiscount(ticket, betListPage, centerCellStyle)
+                           .AddGameType(ticket, ticketHelper, betListPage, funcGetOddsTypeName, centerCellStyle)
+                           .AddChoice(ticket, ticketHelper, ticketResult.TicketDataList, ticketResult.TicketListMixParlay, alignRightCellStyle)
+                           .AddStake(ticket, alignRightCellStyle)
+                           .AddResult(ticket, betListPage, alignRightCellStyle)
+                           .AddStatus(ticket, ticketResult.TicketDataList, centerCellStyle)
+                           .AddShare(ticket, ticketResult.TicketDataList, betListPage, alignRightCellStyle)
+                           .AddComm(ticket, alignRightCellStyle);
 
                     builder.SetRowHigh(rowNumber, 6, 3);
 

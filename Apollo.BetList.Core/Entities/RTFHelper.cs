@@ -59,7 +59,8 @@ namespace Apollo.BetList.Core.Entities
             short backgroundColor = HSSFColor.White.Index,
             bool isBorder = false)
         {
-            ICellStyle cellStyle = this.Workbook.CreateCellStyle();
+            ICellStyle cellStyle = Workbook.CreateCellStyle();
+
             cellStyle.Alignment = align;
             cellStyle.VerticalAlignment = valign;
             cellStyle.SetFont(font);
@@ -69,8 +70,14 @@ namespace Apollo.BetList.Core.Entities
 
             if (isBorder)
             {
-                cellStyle.BorderTop = cellStyle.BorderBottom = cellStyle.BorderRight = cellStyle.BorderLeft = BorderStyle.Thin;
-                cellStyle.TopBorderColor = cellStyle.BottomBorderColor = cellStyle.RightBorderColor = cellStyle.LeftBorderColor = HSSFColor.Black.Index;
+                cellStyle.BorderTop =
+                                                cellStyle.BorderBottom =
+                                                cellStyle.BorderRight =
+                                                cellStyle.BorderLeft = BorderStyle.Thin;
+                cellStyle.TopBorderColor =
+                                                    cellStyle.BottomBorderColor =
+                                                    cellStyle.RightBorderColor =
+                                                    cellStyle.LeftBorderColor = HSSFColor.Black.Index;
             }
 
             return cellStyle;
@@ -96,7 +103,8 @@ namespace Apollo.BetList.Core.Entities
             BorderStyle borderStyle = BorderStyle.Thin,
             short borderColor = HSSFColor.Black.Index)
         {
-            ICellStyle cellStyle = this.Workbook.CreateCellStyle();
+            ICellStyle cellStyle = Workbook.CreateCellStyle();
+
             cellStyle.Alignment = align;
             cellStyle.VerticalAlignment = valign;
             cellStyle.SetFont(font);

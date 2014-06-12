@@ -191,6 +191,8 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Return Work book.</returns>
         public IWorkbook GetBetList()
         {
+            HSSFOptimiser.OptimiseCellStyles((HSSFWorkbook)_workbook);
+
             return _workbook;
         }
 
@@ -202,7 +204,7 @@ namespace Apollo.BetList.Core.Builder
         /// <returns>Bet List Excel Builder.</returns>
         public BetListExcelBuilder AddTitle(string title, CellRangeAddress mergeRange = null)
         {
-            var cellStyle = _workbook.CreateCellStyle();
+            var cellStyle = this.CreateCellStyle();
 
             cellStyle.FillForegroundColor = HSSFColor.LightBlue.Index;
             cellStyle.FillPattern = FillPattern.SolidForeground;
@@ -221,7 +223,7 @@ namespace Apollo.BetList.Core.Builder
 
         public BetListExcelBuilder AddRow(int cellNumber)
         {
-            var cellStyle = _workbook.CreateCellStyle();
+            var cellStyle = this.CreateCellStyle();
 
             for (int i = 0; i < cellNumber; i++)
             {
@@ -239,6 +241,7 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder AddHeader(string columnTitle)
         {
             var font = RTFHelper.Font(HSSFColor.White.Index);
+            var createCellStyle = this.CreateCellStyle();
             var cellStyle = RTFHelper.CellStyle(HorizontalAlignment.Center, VerticalAlignment.Top, font, HSSFColor.Grey50Percent.Index, true);
 
             RTFHelper.RTFRenderer.AddText(columnTitle);
@@ -263,6 +266,7 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder AddTotal(string value = "", CellRangeAddress mergeRange = null, bool isformatNumber = false)
         {
             var font = RTFHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Bold);
+            var createCellStyle = this.CreateCellStyle();
             var cellStyle = RTFHelper.CellStyle(
                 HorizontalAlignment.Right,
                 VerticalAlignment.Top,
@@ -295,41 +299,6 @@ namespace Apollo.BetList.Core.Builder
             }
 
             return this;
-        }
-
-        /// <summary>
-        /// Adds the cell.
-        /// </summary>
-        /// <param name="rtfString">The RTF string.</param>
-        /// <returns>Cell Address.</returns>
-        public CellAddress AddCell(IRichTextString rtfString)
-        {
-            _nextCellIndex++;
-            IRow lastRow = GetLastRow();
-
-            if (_nextCellIndex >= _reportColumnsNum)
-            {
-                _nextCellIndex = 0;
-            }
-
-            ICell lastCell;
-            var font = RTFHelper.Font(HSSFColor.Black.Index);
-            if (lastRow.RowNum % 2 == 0)
-            {
-                lastCell = lastRow.CreateCell(
-                    _nextCellIndex,
-                    RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
-            }
-            else
-            {
-                lastCell = lastRow.CreateCell(
-                    _nextCellIndex,
-                    RTFHelper.CellStyle(HorizontalAlignment.Right, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
-            }
-
-            lastCell.SetCellValue(rtfString);
-
-            return new CellAddress(lastCell.RowIndex, _nextCellIndex);
         }
 
         /// <summary>
@@ -474,16 +443,17 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="ticketMixParlay">The ticket mix parlay.</param>
+        /// <param name="cellStyle">The cell style.</param>
         /// <returns>
         /// Bet List Excel Builder.
         /// </returns>
-        public BetListExcelBuilder AddChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay)
+        public BetListExcelBuilder AddChoice(ITicket ticket, ITicketHelper ticketHelper, List<ITicketData> ticketData, IList<ITicket> ticketMixParlay, ICellStyle cellStyle)
         {
             IChoice choiceBuilder = CreateChoiceBuilder(ticket.BetTypeId);
             List<IRichTextString> rtfChoiceList = choiceBuilder.RenderRTF(ticket, ticketHelper, ticketData, ticketMixParlay, false, RTFHelper);
             foreach (IRichTextString rtfString in rtfChoiceList)
             {
-                AddCell(rtfString);
+                AddCell(rtfString, cellStyle);
             }
 
             return this;
@@ -495,12 +465,15 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
-        /// <returns>Bet List Excel Builder.</returns>
-        public BetListExcelBuilder AddOdds(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById funcGetOddsTypeName)
+        /// <param name="cellStyle">The cell style.</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
+        public BetListExcelBuilder AddOdds(ITicket ticket, List<ITicketData> ticketData, GetCachePropertyById funcGetOddsTypeName, ICellStyle cellStyle)
         {
             IOdds oddsBuilder = CreateOddsBuilder(ticket.BetTypeId);
             IRichTextString rtfOdds = oddsBuilder.RenderRTF(ticket, ticketData, funcGetOddsTypeName, RTFHelper);
-            AddCell(rtfOdds);
+            AddCell(rtfOdds, cellStyle);
             return this;
         }
 
@@ -508,17 +481,12 @@ namespace Apollo.BetList.Core.Builder
         /// Adds the stake.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns>Bet List Excel Builder.</returns>
-        public BetListExcelBuilder AddStake(ITicket ticket)
+        /// <param name="cellStyle">The cell style.</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
+        public BetListExcelBuilder AddStake(ITicket ticket, ICellStyle cellStyle)
         {
-            var font = RTFHelper.Font(HSSFColor.Black.Index);
-            var cellStyle = RTFHelper.CellStyle(
-                HorizontalAlignment.Right,
-                VerticalAlignment.Top, 
-                font,
-                HSSFColor.White.Index,
-                true);
-
             IStake stakeBuilder = CreateStakeBuilder(ticket.BetTypeId);
             IRichTextString rtfStake = stakeBuilder.RenderRTF(ticket, RTFHelper);
             this.AddCellNumber(Convert.ToDouble(rtfStake.String), cellStyle, true);
@@ -531,15 +499,17 @@ namespace Apollo.BetList.Core.Builder
         /// </summary>
         /// <param name="ticket">The ticket.</param>
         /// <param name="ticketData">The ticket data.</param>
+        /// <param name="cellStyle">The cell style.</param>
         /// <returns>
         /// Bet List Excel Builder.
         /// </returns>
-        public BetListExcelBuilder AddStatus(ITicket ticket, List<ITicketData> ticketData)
+        public BetListExcelBuilder AddStatus(ITicket ticket, List<ITicketData> ticketData, ICellStyle cellStyle)
         {
             IStatus statusBuilder = this.CreateStatusBuilder(ticket.BetTypeId);
             IRichTextString rtfStatus = statusBuilder.RenderRTF(ticket, ticketData, RTFHelper);
-            var font = RTFHelper.Font(HSSFColor.Black.Index);
-            this.AddCell(rtfStatus, RTFHelper.CellStyle(HorizontalAlignment.Center, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
+
+            this.AddCell(rtfStatus, cellStyle);
+
             return this;
         }
 
@@ -548,16 +518,17 @@ namespace Apollo.BetList.Core.Builder
         /// </summary>
         /// <param name="ticket">The ticket need to build.</param>
         /// <param name="page">The page bet list.</param>
+        /// <param name="cellStyle">The cell style.</param>
         /// <returns>
         /// Bet List Excel Builder.
         /// </returns>
-        public BetListExcelBuilder AddTime(ITicket ticket, BetListPage page)
+        public BetListExcelBuilder AddTime(ITicket ticket, BetListPage page, ICellStyle cellStyle)
         {
             var timeBuilder = new Time();
 
             IRichTextString rtfTime = timeBuilder.RenderRTF(ticket, page, RTFHelper);
-            var font = RTFHelper.Font(HSSFColor.Black.Index);
-            this.AddCell(rtfTime, RTFHelper.CellStyle(HorizontalAlignment.Center, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
+
+            this.AddCell(rtfTime, cellStyle);
 
             return this;
         }
@@ -567,13 +538,16 @@ namespace Apollo.BetList.Core.Builder
         /// </summary>
         /// <param name="ticket">The ticket item.</param>
         /// <param name="page">The bet list page.</param>
-        /// <returns>Bet List Excel Builder.</returns>
-        public BetListExcelBuilder AddDiscount(ITicket ticket, BetListPage page)
+        /// <param name="cellStyle">The cell style.</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
+        public BetListExcelBuilder AddDiscount(ITicket ticket, BetListPage page, ICellStyle cellStyle)
         {
             var discountBuilder = new Discount();
             IRichTextString rtfDiscount = discountBuilder.RenderRTF(ticket, page, RTFHelper);
-            var font = RTFHelper.Font(HSSFColor.Black.Index);
-            this.AddCell(rtfDiscount, RTFHelper.CellStyle(HorizontalAlignment.Center, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
+
+            this.AddCell(rtfDiscount, cellStyle);
 
             return this;
         }
@@ -583,15 +557,12 @@ namespace Apollo.BetList.Core.Builder
         /// </summary>
         /// <param name="ticket">The ticket item.</param>
         /// <param name="page">The bet list page.</param>
-        /// <returns>Bet List Excel Builder.</returns>
-        public BetListExcelBuilder AddResult(ITicket ticket, BetListPage page)
+        /// <param name="cellStyle">The cell style.</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
+        public BetListExcelBuilder AddResult(ITicket ticket, BetListPage page, ICellStyle cellStyle)
         {
-            var cellStyle = RTFHelper.CellStyle(
-                HorizontalAlignment.Right,
-                VerticalAlignment.Top,
-                RTFHelper.Font(HSSFColor.Black.Index),
-                HSSFColor.White.Index,
-                true);
             var resultBuilder = new Result();
 
             IRichTextString rtfResult = resultBuilder.RenderRTF(ticket, page, RTFHelper);
@@ -606,13 +577,16 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="ticket">The ticket item.</param>
         /// <param name="ticketData">The ticket data.</param>
         /// <param name="page">The bet list page.</param>
-        /// <returns>Bet List Excel Builder.</returns>
-        public BetListExcelBuilder AddShare(ITicket ticket, List<ITicketData> ticketData, BetListPage page)
+        /// <param name="cellStyle">The cell style.</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
+        public BetListExcelBuilder AddShare(ITicket ticket, List<ITicketData> ticketData, BetListPage page, ICellStyle cellStyle)
         {
             IAgentShare agentShareBuilder = this.CreateAgentShareBuilder(ticket.BetTypeId);
 
             IRichTextString rtfAgentShare = agentShareBuilder.RenderRTF(ticket, ticketData, page, RTFHelper);
-            this.AddCell(rtfAgentShare);
+            this.AddCell(rtfAgentShare, cellStyle);
 
             return this;
         }
@@ -621,13 +595,16 @@ namespace Apollo.BetList.Core.Builder
         /// Adds the commission.
         /// </summary>
         /// <param name="ticket">The ticket.</param>
-        /// <returns>Bet List Excel Builder.</returns>
-        public BetListExcelBuilder AddComm(ITicket ticket)
+        /// <param name="cellStyle">The cell style.</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
+        public BetListExcelBuilder AddComm(ITicket ticket, ICellStyle cellStyle)
         {
             IAgentComm agentCommBuilder = this.CreateAgentCommBuilder(ticket.BetTypeId);
 
             IRichTextString rtfAgentComm = agentCommBuilder.RenderRTF(ticket, RTFHelper);
-            this.AddCell(rtfAgentComm);
+            this.AddCell(rtfAgentComm, cellStyle);
 
             return this;
         }
@@ -639,13 +616,16 @@ namespace Apollo.BetList.Core.Builder
         /// <param name="ticketHelper">The ticket helper.</param>
         /// <param name="page">The bet list page.</param>
         /// <param name="funcGetOddsTypeName">Name of the function get odds type.</param>
-        /// <returns>Bet List Excel Builder.</returns>
-        public BetListExcelBuilder AddGameType(ITicket ticket, ITicketHelper ticketHelper, BetListPage page, GetCachePropertyById funcGetOddsTypeName)
+        /// <param name="cellStyle">The cell style.</param>
+        /// <returns>
+        /// Bet List Excel Builder.
+        /// </returns>
+        public BetListExcelBuilder AddGameType(ITicket ticket, ITicketHelper ticketHelper, BetListPage page, GetCachePropertyById funcGetOddsTypeName, ICellStyle cellStyle)
         {
             ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);
             IRichTextString rtfTrans = transBuilder.RenderRTF(ticket, ticketHelper, page, RTFHelper, funcGetOddsTypeName);
-            var font = RTFHelper.Font(HSSFColor.Black.Index);
-            this.AddCell(rtfTrans, RTFHelper.CellStyle(HorizontalAlignment.Center, VerticalAlignment.Top, font, HSSFColor.White.Index, true));
+
+            this.AddCell(rtfTrans, cellStyle);
 
             return this;
         }
