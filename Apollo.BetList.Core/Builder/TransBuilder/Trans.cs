@@ -11,7 +11,9 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
 {
     using Apollo.BetList.Core.Entities;
     using Apollo.BetList.Core.Templates;
+    using Apollo.BetList.Core.Utils;
     using NPOI.SS.UserModel;
+    using NPOI.HSSF.Util;
 
     /// <summary>
     /// Transaction class.
@@ -47,6 +49,7 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
             this.Template.oddsName = string.Empty;
             this.Template.transId = ticket.TransId.ToString();
             this.Template.bettypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
+            this.Template.betfrom = Common.BetFromFormat(ticket.BetFrom);
 
             switch (betListPage)
             {
@@ -84,9 +87,13 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
             Render(ticket, ticketHelper, funcGetOddsTypeName, page);
 
             rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { Template.transId, " \n " }));
-            
+
             string sportName = Template.sportName.Replace("<br/>", string.Empty).Replace("&nbsp;", string.Empty);
             rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { sportName, " ", Template.bettypeName }));
+
+            IFont redFont = rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal, false);
+            string betFrom = Common.BetFromFormat(ticket.BetFrom);
+            rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { "\n", betFrom }), redFont);
 
             IRichTextString rtfTrans = rtfHelper.RTFRenderer.Render();
             rtfHelper.RTFRenderer.Clear();

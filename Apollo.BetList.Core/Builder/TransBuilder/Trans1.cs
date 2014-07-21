@@ -56,6 +56,7 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
             this.Template.oddsName = funcGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, oddsType));
             this.Template.transId = ticket.TransId.ToString();
             this.Template.bettypeName = ticketHelper.GetBetTypeNameById(ticket.BetTypeId);
+            this.Template.betfrom = Common.BetFromFormat(ticket.BetFrom);
 
             switch (betListPage)
             {
@@ -97,7 +98,7 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
             oddsType = string.IsNullOrEmpty(ticket.OddsType) ? "0" : funcGetOddsTypeName(ConvertByBetType.OddsType(ticket.BetTypeId, ticket.OddsType));
 
             rtfHelper.RTFRenderer.AddText(
-                string.Join(string.Empty, new string[] { oddsType.ToString(), " \n " }), 
+                string.Join(string.Empty, new string[] { oddsType.ToString(), " \n " }),
                 rtfHelper.Font(HSSFColor.Green.Index, FontBoldWeight.Normal));
             rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { Template.transId, " \n " }));
 
@@ -105,11 +106,15 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
 
             rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { sportName, " ", Template.bettypeName }));
 
+            IFont redFont = rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal, false);
+            string betFrom = Common.BetFromFormat(ticket.BetFrom);
+            rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { "\n", betFrom }), redFont);
+
             IRichTextString rtfTrans = rtfHelper.RTFRenderer.Render();
 
             rtfHelper.RTFRenderer.Clear();
 
             return rtfTrans;
         }
-    }
+   }
 }

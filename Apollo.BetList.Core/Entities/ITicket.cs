@@ -480,5 +480,13 @@ namespace Apollo.BetList.Core.Entities
         /// The haft time away score.
         /// </value>
         int HalfTimeAwayScore { get; set; }
+
+        /// <summary>
+        /// Gets or sets the bet from.
+        /// </summary>
+        /// <value>
+        /// The bet from.
+        /// </value>
+        string BetFrom { get; set; }
     }
 }

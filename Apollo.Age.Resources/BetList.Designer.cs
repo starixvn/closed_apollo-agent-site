@@ -583,6 +583,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mini Game.
+        /// </summary>
+        public static string minigame {
+            get {
+                return ResourceManager.GetString("minigame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string next {
@@ -813,6 +822,15 @@ namespace Apollo.Age.Resources {
         public static string Share {
             get {
                 return ResourceManager.GetString("Share", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smart Device.
+        /// </summary>
+        public static string smartdevice {
+            get {
+                return ResourceManager.GetString("smartdevice", resourceCulture);
             }
         }
         

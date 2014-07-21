@@ -43,5 +43,7 @@ namespace Apollo.Age.BetList.Criterias
         public string AgentShare { get; set; }
 
         public string Status { get; set; }
+
+        public string BetFrom { get; set; }
     }
 }

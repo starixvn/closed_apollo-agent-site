@@ -435,4 +435,10 @@
   <data name="TransDiscount" xml:space="preserve">
     <value>退水</value>
   </data>
+  <data name="minigame" xml:space="preserve">
+    <value>小遊戲</value>
+  </data>
+  <data name="smartdevice" xml:space="preserve">
+    <value>移動裝置</value>
+  </data>
 </root>

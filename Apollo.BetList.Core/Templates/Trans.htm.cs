@@ -20,6 +20,7 @@ namespace Apollo.BetList.Core
 			protected static string s2 = " ";
 			public string sportName = "{sportName}";
 			public string bettypeName = "{bettypeName}";
+			public string betfrom = "{betfrom}";
 			protected static string s3 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
@@ -33,6 +34,7 @@ namespace Apollo.BetList.Core
 					bd.Append(s2);
 					bd.Append(sportName);
 					bd.Append(bettypeName);
+					bd.Append(betfrom);
 					bd.Append(s3);
 				}
 				if(IsAssigned){bd.Append(Value);}
