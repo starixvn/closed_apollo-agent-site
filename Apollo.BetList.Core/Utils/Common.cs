@@ -2,6 +2,9 @@
 {
     using Apollo.Age.Resources;
 
+    /// <summary>
+    /// Common class.
+    /// </summary>
     public static class Common
     {
         /// <summary>
