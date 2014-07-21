@@ -12,16 +12,27 @@
         public static string BetFromFormat(string betFrom)
         {
             string betFromFormat = "</br><span class='red-color'>{0}</span>";
+
+            return string.Format(betFromFormat, IndicatedBetFrom(betFrom));
+        }
+
+        /// <summary>
+        /// Indicateds the bet from.
+        /// </summary>
+        /// <param name="betFrom">The bet from.</param>
+        /// <returns>Indicated bet from.</returns>
+        public static string IndicatedBetFrom(string betFrom)
+        {
             switch (betFrom.ToLower())
             {
                 case "s":
                     {
-                        return string.Format(betFromFormat, BetList.smartdevice);
+                        return BetList.smartdevice;
                     }
 
                 case "a":
                     {
-                        return string.Format(betFromFormat, BetList.minigame);
+                        return BetList.minigame;
                     }
 
                 default:

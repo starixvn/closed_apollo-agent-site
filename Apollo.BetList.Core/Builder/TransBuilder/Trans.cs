@@ -92,7 +92,7 @@ namespace Apollo.BetList.Core.Builder.TransBuilder
             rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { sportName, " ", Template.bettypeName }));
 
             IFont redFont = rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal, false);
-            string betFrom = Common.BetFromFormat(ticket.BetFrom);
+            string betFrom = Common.IndicatedBetFrom(ticket.BetFrom);
             rtfHelper.RTFRenderer.AddText(string.Join(string.Empty, new string[] { "\n", betFrom }), redFont);
 
             IRichTextString rtfTrans = rtfHelper.RTFRenderer.Render();
