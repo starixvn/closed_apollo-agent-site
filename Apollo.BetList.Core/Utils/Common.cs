@@ -17,10 +17,12 @@
         }
 
         /// <summary>
-        /// Indicateds the bet from.
+        /// Indicate the bet from.
         /// </summary>
         /// <param name="betFrom">The bet from.</param>
-        /// <returns>Indicated bet from.</returns>
+        /// <returns>
+        /// Indicated bet from.
+        /// </returns>
         public static string IndicatedBetFrom(string betFrom)
         {
             switch (betFrom.ToLower())
