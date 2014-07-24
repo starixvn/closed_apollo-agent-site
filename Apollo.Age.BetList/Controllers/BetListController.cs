@@ -963,18 +963,12 @@ namespace Apollo.Age.BetList.Controllers
             var criteria = new BetListCriteria
             {
                 LoggedId = this.CurrentSession.AgentId,
-                TransId = transId,
-                FromDate = ResetStartDate(!fromDate.HasValue ? moveBetsDay : Convert.ToDateTime(fromDate)),
-                ToDate = ResetEndDate(!toDate.HasValue ? DateTime.Now : Convert.ToDateTime(toDate)),
-                BalanceUpDay = balanceUpDay,
-                MoveBetsDay = moveBetsDay
+                TransId = transId
             };
-            if (criteria.IsValid())
-            {
-                listAgentComm = betListService.GetDetailWinLossAgentComm(criteria);
 
-                viewModel.TicketList = this.Ticket(listAgentComm);
-            }
+            listAgentComm = betListService.GetDetailWinLossAgentComm(criteria);
+
+            viewModel.TicketList = this.Ticket(listAgentComm);
 
             return this.View(viewModel);
         }
