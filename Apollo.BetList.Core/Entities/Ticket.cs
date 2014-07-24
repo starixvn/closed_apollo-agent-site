@@ -133,5 +133,7 @@ namespace Apollo.BetList.Core.Entities
         public int HalfTimeHomeScore { get; set; }
 
         public int HalfTimeAwayScore { get; set; }
+
+        public string BetFrom { get; set; }
     }
 }

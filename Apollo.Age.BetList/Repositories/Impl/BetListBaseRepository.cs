@@ -122,6 +122,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
             var containsIP = columnCollection.Contains("ip");
             var containsOddsType = columnCollection.Contains("oddstype");
             var containsUGroup = columnCollection.Contains("ugroup");
+            var containtBetFrom = columnCollection.Contains("betfrom");
 
             // Int
             var containsMatchId = columnCollection.Contains("matchid");
@@ -183,6 +184,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 ticket.IP = containsIP ? Converter.ToString2(dataRow["ip"]) : string.Empty;
                 ticket.OddsType = containsOddsType ? Converter.ToString2(dataRow["oddstype"]) : "0";
                 ticket.UGroup = containsUGroup ? Converter.ToString2(dataRow["ugroup"]) : string.Empty;
+                ticket.BetFrom = containtBetFrom ? Converter.ToString2(dataRow["betfrom"]) : string.Empty;
 
                 // Int
                 ticket.MatchId = containsMatchId ? Converter.ToInt(dataRow["matchid"]) : 0;

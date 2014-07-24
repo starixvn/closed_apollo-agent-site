@@ -251,6 +251,7 @@
     <Compile Include="Templates\Trans.htm.cs" />
     <Compile Include="TicketHelper.cs" />
     <Compile Include="Utils\Cast.cs" />
+    <Compile Include="Utils\Common.cs" />
     <Compile Include="Utils\ConvertByBetType.cs" />
     <Compile Include="Utils\Formatter.cs">
       <SubType>Code</SubType>
