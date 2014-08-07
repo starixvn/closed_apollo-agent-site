@@ -123,26 +123,26 @@
                                             {
                                                 if (FunctionPermissions[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query)
                                                 {
-                                                    defaultReportURL = "/Reports/matchentered";
+                                                    defaultReportURL = "Reports/matchentered";
                                                 }
                                                 else if (FunctionPermissions[ApolloFunctionKeys.Outstanding] >= (byte)Policy.Query)
                                                 {
-                                                    defaultReportURL = "/Reports/outstanding";
+                                                    defaultReportURL = "Reports/outstanding";
                                                 }
                                                 else if (FunctionPermissions[ApolloFunctionKeys.Transactions] >= (byte)Policy.Query)
                                                 {
-                                                    defaultReportURL = "/betlist/transactions";
+                                                    defaultReportURL = "betlist/transactions";
                                                 }
                                                 else if (FunctionPermissions[ApolloFunctionKeys.CancelledTickets] >= (byte)Policy.Query)
                                                 {
-                                                    defaultReportURL = "/betlist/ticketcancel";
+                                                    defaultReportURL = "betlist/ticketcancel";
                                                 }
                                                 else if (FunctionPermissions[ApolloFunctionKeys.LineSportCredits] >= (byte)Policy.Query)
                                                 {
-                                                    defaultReportURL = "/Reports/sportcredit";
+                                                    defaultReportURL = "Reports/sportcredit";
                                                 }
                                             }
-                                <li id="report-link"><a url="@defaultReportURL" target="main" class="menu-list txtRed">
+                                <li id="report-link"><a url="~/@defaultReportURL" target="main" class="menu-list txtRed">
                                     [@Lang.lblReport]</a> </li>
                                         }
                                         if (FunctionPermissions[ApolloFunctionKeys.Result] >= (byte)Policy.Query)
