@@ -441,4 +441,16 @@
   <data name="smartdevice" xml:space="preserve">
     <value>Smart Device</value>
   </data>
+  <data name="awayfg" xml:space="preserve">
+    <value>Away FG</value>
+  </data>
+  <data name="awaylg" xml:space="preserve">
+    <value>Away LG</value>
+  </data>
+  <data name="homefg" xml:space="preserve">
+    <value>Home FG</value>
+  </data>
+  <data name="homelg" xml:space="preserve">
+    <value>Home LG</value>
+  </data>
 </root>

@@ -193,6 +193,16 @@ namespace Apollo.Age.Reports.Services
                     },
                     new SingbetBettype
                     {
+                        Id = BettypeGroup.FirstHalfTotalGoal,
+                        Name = Lang.lbl1sttotalgoal
+                    },
+                    new SingbetBettype
+                    {
+                        Id = BettypeGroup.FirstHalfFirstGoalLastGoal,
+                        Name = Lang.lblfirstgoallastgoal
+                    },
+                    new SingbetBettype
+                    {
                         Id = BettypeGroup.OtherBettype,
                         Name = Lang.Othertypes
                     },

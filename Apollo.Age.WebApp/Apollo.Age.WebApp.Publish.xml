@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
-  <publishProfile publishUrl="D:\Apollo-Deploy\ApolloAgentSite-07232014" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
-    <file relUrl="bin/th-TH/Apollo.Age.Resources.resources.dll" publishTime="07/23/2014 09:30:46" />
+  <publishProfile publishUrl="D:\Apollo-Deploy\ApolloAgentSite-08272014" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/th-TH/Apollo.Age.Resources.resources.dll" publishTime="08/21/2014 16:46:47" />
     <file relUrl="Views/Results/Others.cshtml" publishTime="04/10/2014 10:49:18" />
     <file relUrl="_GlobalResources/Images/edit.gif" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/ko-KR/MemberCommissionSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/Resources/CustSettingEngine/BetTypeGroup.js" publishTime="04/10/2014 10:49:17" />
-    <file relUrl="bin/Apollo.Age.Resources.dll" publishTime="07/23/2014 09:30:46" />
+    <file relUrl="bin/Apollo.Age.Resources.dll" publishTime="08/21/2014 16:46:47" />
     <file relUrl="Views/Account/Resources/jquery.treeview.async.js" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/zh-TW/AgentCommissionSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Js/select2.min.js" publishTime="03/07/2014 13:46:27" />
@@ -32,7 +32,7 @@
     <file relUrl="bin/NetUtility.dll" publishTime="03/07/2014 13:46:28" />
     <file relUrl="Views/Instruction/ja-JP/AgentShareSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Message/Resources/message.less" publishTime="04/10/2014 10:49:17" />
-    <file relUrl="bin/Apollo.BetList.Core.pdb" publishTime="07/23/2014 09:30:51" />
+    <file relUrl="bin/Apollo.BetList.Core.pdb" publishTime="08/27/2014 10:40:27" />
     <file relUrl="Views/Error/Unauthorized.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Account/Resources/Images/icon-close.gif" publishTime="03/07/2014 13:46:26" />
     <file relUrl="Areas/Wagers/Views/Web.config" publishTime="03/07/2014 13:46:26" />
@@ -54,7 +54,7 @@
     <file relUrl="Views/Account/Resources/CustSettingEngine/Images/copyUnChecked.png" publishTime="03/07/2014 13:46:26" />
     <file relUrl="Views/Account/Resources/EditSetting.js" publishTime="04/10/2014 10:49:17" />
     <file relUrl="bin/System.Xml.Linq.dll" publishTime="03/18/2010 19:31:26" />
-    <file relUrl="bin/zh-TW/Apollo.Age.Resources.resources.dll" publishTime="07/23/2014 09:30:47" />
+    <file relUrl="bin/zh-TW/Apollo.Age.Resources.resources.dll" publishTime="08/21/2014 16:46:47" />
     <file relUrl="Views/Account/Resources/header.less" publishTime="04/10/2014 10:49:17" />
     <file relUrl="_GlobalResources/Css/img/cal/calendar_del.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Reports/MatchEntered.cshtml" publishTime="04/10/2014 10:49:17" />
@@ -88,13 +88,13 @@
     <file relUrl="Views/Instruction/th-TH/MemberBetSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Images/1F.gif" publishTime="05/20/2014 09:27:06" />
     <file relUrl="Areas/Wagers/Views/Soccer/Correctscore.cshtml" publishTime="03/07/2014 13:46:26" />
-    <file relUrl="bin/Apollo.Age.dll" publishTime="07/23/2014 09:30:51" />
+    <file relUrl="bin/Apollo.Age.dll" publishTime="08/27/2014 10:18:49" />
     <file relUrl="Views/Instruction/vi-VN/MemberBetSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/zh-CN/ViewAgentShareSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/en-US/ViewMainShareHolderShareSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/en-US/ViewAgentCommissionSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-bg_glass_40_F1F1F1_1x400.png" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.Age.Forecast.pdb" publishTime="07/23/2014 09:30:57" />
+    <file relUrl="bin/Apollo.Age.Forecast.pdb" publishTime="08/27/2014 10:18:51" />
     <file relUrl="Views/Reports/Outstanding.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Forecast/Resources/Images/exp_score.png" publishTime="04/01/2014 12:35:15" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo-backup/images/ui-icons_222222_256x240.png" publishTime="03/07/2014 13:46:27" />
@@ -109,7 +109,7 @@
     <file relUrl="Views/TotalBets/Index.cshtml" publishTime="04/10/2014 10:49:18" />
     <file relUrl="Views/Internal/SignIn.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Instruction/zh-TW/ViewAgentCommissionSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="Views/TotalBets/TotalGoal.cshtml" publishTime="04/10/2014 10:49:18" />
+    <file relUrl="Views/TotalBets/TotalGoal.cshtml" publishTime="08/27/2014 10:23:36" />
     <file relUrl="Views/Log/Resources/images/bg-demo-docs-param.gif" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Js/noty/layouts/topCenter.js" publishTime="03/07/2014 13:46:27" />
     <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll" publishTime="03/07/2014 13:46:28" />
@@ -117,11 +117,10 @@
     <file relUrl="bin/System.Web.Optimization.dll" publishTime="03/07/2014 13:46:28" />
     <file relUrl="Views/Error/UnderMaintenance.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="bin/System.Web.Mvc.dll" publishTime="03/07/2014 13:46:28" />
-    <file relUrl="bin/Apollo.Age.Forecast.dll" publishTime="07/23/2014 09:30:57" />
+    <file relUrl="bin/Apollo.Age.Forecast.dll" publishTime="08/27/2014 10:18:51" />
     <file relUrl="Views/Instruction/en-US/AgentCommissionSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/Resources/ViewShare.js" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Instruction/en-US/ViewAgentBetSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="Views/Account/EditAgentSetting.cshtml" publishTime="04/10/2014 10:49:16" />
     <file relUrl="Views/Home/Index2.cshtml" publishTime="05/15/2014 08:56:29" />
     <file relUrl="Views/Instruction/zh-CN/MemberBetSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-bg_inset-hard_45_fee1e1_1x100.png" publishTime="03/07/2014 13:46:27" />
@@ -130,7 +129,7 @@
     <file relUrl="_GlobalResources/Js/Fanex.Grid/images/expand-icon.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/ko-KR/MemberShareSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Log/Resources/Log.js" publishTime="04/10/2014 10:49:17" />
-    <file relUrl="bin/Apollo.Age.Reports.pdb" publishTime="07/23/2014 09:30:56" />
+    <file relUrl="bin/Apollo.Age.Reports.pdb" publishTime="08/27/2014 10:18:51" />
     <file relUrl="Views/Instruction/zh-CN/ViewAgentBetSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Css/img/cal/calendar_4.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/BetList/Resources/Images/lastGoal.gif" publishTime="03/07/2014 13:46:27" />
@@ -165,9 +164,9 @@
     <file relUrl="bin/DotNetOpenAuth.Core.dll" publishTime="03/07/2014 13:46:28" />
     <file relUrl="Views/Instruction/zh-TW/ViewAgentBetSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/Resources/Images/treeview-default.gif" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.Age.WebApp.pdb" publishTime="07/23/2014 11:32:00" />
+    <file relUrl="bin/Apollo.Age.WebApp.pdb" publishTime="08/27/2014 10:40:32" />
     <file relUrl="Views/Account/EditPositionTaking.cshtml" publishTime="04/10/2014 10:49:16" />
-    <file relUrl="bin/Apollo.Age.TotalBets.dll" publishTime="07/23/2014 09:30:55" />
+    <file relUrl="bin/Apollo.Age.TotalBets.dll" publishTime="08/27/2014 10:18:50" />
     <file relUrl="bin/System.Web.Mvc.xml" publishTime="03/07/2014 13:46:28" />
     <file relUrl="Views/Instruction/zh-CN/MainShareHolderBetSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Css/img/glyphicons-halflings-red.png" publishTime="03/07/2014 13:46:27" />
@@ -188,7 +187,7 @@
     <file relUrl="Views/Instruction/zh-CN/ViewMainShareHolderShareSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Message/Images/loading_2.gif" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/zh-TW/MainShareHolderBetSetting.cshtml" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="Views/Account/TopBar.cshtml" publishTime="04/10/2014 10:49:17" />
+    <file relUrl="Views/Account/TopBar.cshtml" publishTime="08/07/2014 10:39:51" />
     <file relUrl="Views/BetList/Winloss.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Forecast/Resources/Images/first_score.png" publishTime="04/01/2014 12:35:15" />
     <file relUrl="_GlobalResources/Images/btRefresh.png" publishTime="03/07/2014 13:46:27" />
@@ -240,9 +239,9 @@
     <file relUrl="Views/_ViewStart.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Reports/SportCredit.cshtml" publishTime="04/10/2014 10:49:18" />
     <file relUrl="Areas/Wagers/Views/Basketball/Parlay.cshtml" publishTime="04/10/2014 10:49:16" />
-    <file relUrl="bin/Apollo.Age.Reports.dll" publishTime="07/23/2014 09:30:56" />
+    <file relUrl="bin/Apollo.Age.Reports.dll" publishTime="08/27/2014 10:18:51" />
     <file relUrl="Views/OAuth/Index.cshtml" publishTime="04/22/2014 14:34:45" />
-    <file relUrl="Web.config" publishTime="07/23/2014 09:32:52" />
+    <file relUrl="Web.config" publishTime="08/21/2014 16:47:21" />
     <file relUrl="Views/Forecast/FC1X2.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/OAuth/GetCode.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-icons_ffcf29_256x240.png" publishTime="03/07/2014 13:46:27" />
@@ -257,7 +256,7 @@
     <file relUrl="Views/Account/IndirectMemberList.cshtml" publishTime="04/10/2014 10:49:16" />
     <file relUrl="Views/Forecast/Resources/Images/last_score.png" publishTime="04/01/2014 12:35:15" />
     <file relUrl="bin/ru-ru/BundleTransformer.Core.resources.dll" publishTime="03/07/2014 13:46:28" />
-    <file relUrl="bin/vi-VN/Apollo.Age.Resources.resources.dll" publishTime="07/23/2014 09:30:46" />
+    <file relUrl="bin/vi-VN/Apollo.Age.Resources.resources.dll" publishTime="08/21/2014 16:46:47" />
     <file relUrl="Views/Instruction/vi-VN/AgentBetSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Message/NewMessage.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Home/Resources/img/buttons.png" publishTime="03/07/2014 13:46:27" />
@@ -269,7 +268,7 @@
     <file relUrl="Views/Error/Resources/images/bg-maintenance.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/zh-TW/AgentShareSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/Resources/DownlineInfo.js" publishTime="04/10/2014 10:49:17" />
-    <file relUrl="Views/BetList/Resources/BetList.js" publishTime="04/10/2014 10:49:17" />
+    <file relUrl="Views/BetList/Resources/BetList.js" publishTime="08/21/2014 16:46:42" />
     <file relUrl="Views/Instruction/zh-CN/ViewAgentBetSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/Resources/CustSettingEngine/Images/close.jpg" publishTime="03/07/2014 13:46:26" />
     <file relUrl="_GlobalResources/Js/ErrorMsg/ErrorMsg.less" publishTime="04/10/2014 10:49:18" />
@@ -279,6 +278,7 @@
     <file relUrl="Views/BetList/Resources/Images/firstGoal.gif" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/ja-JP/MainShareHolderBetSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-bg_highlight-hard_100_f9f9f9_1x100.png" publishTime="03/07/2014 13:46:27" />
+    <file relUrl="Views/Message/Resources/Message.js" publishTime="04/22/2014 14:34:45" />
     <file relUrl="Views/Log/LogActionType4.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="_GlobalResources/Js/Fanex.Grid/images/white-top-bottom.gif" publishTime="03/07/2014 13:46:27" />
     <file relUrl="bin/System.Web.WebPages.Razor.dll" publishTime="03/07/2014 13:46:28" />
@@ -293,7 +293,7 @@
     <file relUrl="Views/Account/EditBetSetting.cshtml" publishTime="03/07/2014 13:46:26" />
     <file relUrl="Views/Account/Resources/MemberList.js" publishTime="04/10/2014 10:49:17" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-icons_fff_256x240.png" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.Age.Web.dll" publishTime="07/23/2014 09:30:53" />
+    <file relUrl="bin/Apollo.Age.Web.dll" publishTime="08/27/2014 10:18:50" />
     <file relUrl="Areas/Wagers/Views/Soccer/HalfFull.cshtml" publishTime="03/07/2014 13:46:26" />
     <file relUrl="Views/Message/Shared/_Layout.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Instruction/th-TH/MainShareHolderBetSetting.cshtml" publishTime="03/07/2014 13:46:27" />
@@ -340,8 +340,8 @@
     <file relUrl="Views/Instruction/zh-CN/ViewMainShareHolderShareSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/zh-CN/AgentCommissionSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/BetList/Resources/Images/q_Icon2_1.png" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.Age.Integration.pdb" publishTime="07/23/2014 09:30:58" />
-    <file relUrl="Areas/Wagers/Views/Soccer/Total.cshtml" publishTime="03/07/2014 13:46:26" />
+    <file relUrl="bin/Apollo.Age.Integration.pdb" publishTime="08/27/2014 10:18:52" />
+    <file relUrl="Areas/Wagers/Views/Soccer/Total.cshtml" publishTime="08/21/2014 17:05:49" />
     <file relUrl="_GlobalResources/Js/jquery-ui-1.10.2/dialog.min.js" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/ja-JP/MemberCommissionSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Css/img/calendar.gif" publishTime="03/07/2014 13:46:27" />
@@ -376,14 +376,14 @@
     <file relUrl="_GlobalResources/Css/select2/select2.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Js/Fanex.Grid/images/excel-icon.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/en-US/MemberBetSetting.cshtml" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.Age.TotalBets.pdb" publishTime="07/23/2014 09:30:55" />
+    <file relUrl="bin/Apollo.Age.TotalBets.pdb" publishTime="08/27/2014 10:18:50" />
     <file relUrl="_GlobalResources/Css/img/edit.gif" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/BetList/Resources/Images/q_Icon_2.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/PermissionUserControl/Resources/AssignFunction.js" publishTime="04/10/2014 10:49:17" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-bg_flat_75_ffffff_40x100.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/zh-CN/ViewMainShareHolderCommissionSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Js/Fanex.Grid/images/bg_gloss_wave.png" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.Age.Integration.dll" publishTime="07/23/2014 09:30:59" />
+    <file relUrl="bin/Apollo.Age.Integration.dll" publishTime="08/27/2014 10:18:53" />
     <file relUrl="Views/Forecast/FCHandicapOverUnderMatches.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Home/Resources/Index.less" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/th-TH/AgentShareSetting.cshtml" publishTime="03/07/2014 13:46:27" />
@@ -394,7 +394,7 @@
     <file relUrl="Views/Account/Shared/_LayoutAccountList.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-bg_glass_55_D2D2D2_1x400.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/Resources/ContactUs.less" publishTime="03/07/2014 13:46:26" />
-    <file relUrl="_GlobalResources/Js/ErrorMsg/Images/emsg_1_3.gif" publishTime="03/07/2014 13:46:27" />
+    <file relUrl="Views/Account/EditAgentSetting.cshtml" publishTime="04/10/2014 10:49:16" />
     <file relUrl="Views/Instruction/th-TH/AgentBetSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/BetList/Wagers.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="App_Data/PeriodsRange.xml" publishTime="03/07/2014 13:46:26" />
@@ -432,6 +432,7 @@
     <file relUrl="Views/Account/Shared/_Layout.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll" publishTime="03/07/2014 13:46:28" />
     <file relUrl="Views/Instruction/zh-TW/ViewMainShareHolderBetSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
+    <file relUrl="_GlobalResources/Js/ErrorMsg/Images/emsg_1_3.gif" publishTime="03/07/2014 13:46:27" />
     <file relUrl="bin/WebMatrix.WebData.xml" publishTime="03/07/2014 13:46:28" />
     <file relUrl="Views/TotalBets/Resources/TotalBets.less" publishTime="04/10/2014 10:49:18" />
     <file relUrl="Views/Instruction/zh-TW/ViewAgentShareSetting.cshtml" publishTime="03/07/2014 13:46:27" />
@@ -467,21 +468,21 @@
     <file relUrl="_GlobalResources/Js/ErrorMsg/Images/titleHeader.jpg" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-bg_glass_75_dadada_1x400.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="bin/IBCFile.dll" publishTime="03/07/2014 13:46:28" />
-    <file relUrl="Areas/Wagers/Styles/Wagers.less" publishTime="04/10/2014 10:49:16" />
+    <file relUrl="Areas/Wagers/Styles/Wagers.less" publishTime="08/21/2014 13:55:57" />
     <file relUrl="Views/Account/Resources/Images/qa_phone.png" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/ko-KR/Apollo.Age.Resources.resources.dll" publishTime="07/23/2014 09:30:46" />
+    <file relUrl="bin/ko-KR/Apollo.Age.Resources.resources.dll" publishTime="08/21/2014 16:46:47" />
     <file relUrl="Views/Reports/AgentWinloss.cshtml" publishTime="04/10/2014 10:49:17" />
-    <file relUrl="bin/Apollo.BetList.Core.dll" publishTime="07/23/2014 09:30:51" />
+    <file relUrl="bin/Apollo.BetList.Core.dll" publishTime="08/27/2014 10:40:27" />
     <file relUrl="Views/PermissionUserControl/Shared/_Layout.cshtml" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.CustSetting.dll" publishTime="07/23/2014 09:30:50" />
+    <file relUrl="bin/Apollo.CustSetting.dll" publishTime="08/21/2014 16:46:48" />
     <file relUrl="_GlobalResources/Css/Agent.less" publishTime="04/10/2014 10:49:18" />
     <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.dll" publishTime="03/07/2014 13:46:28" />
     <file relUrl="Views/Instruction/en-US/ViewAgentShareSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/vi-VN/MainShareHolderShareSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo-backup/jquery-ui.min.css" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Results/Shared/_Layout.cshtml" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.CustSetting.pdb" publishTime="07/23/2014 09:30:50" />
-    <file relUrl="bin/Apollo.Age.BetList.dll" publishTime="07/23/2014 11:31:58" />
+    <file relUrl="bin/Apollo.CustSetting.pdb" publishTime="08/21/2014 16:46:48" />
+    <file relUrl="bin/Apollo.Age.BetList.dll" publishTime="08/27/2014 10:40:29" />
     <file relUrl="Views/Instruction/vi-VN/AgentWinLossPageInfo.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/AgentTreeList.cshtml" publishTime="03/07/2014 13:46:26" />
     <file relUrl="_GlobalResources/Js/Fanex.Grid/images/sort-icon-new.png" publishTime="03/07/2014 13:46:27" />
@@ -489,11 +490,11 @@
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-icons_222222_256x240.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/Resources/CustSettingEngine/Core.less" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/TotalBets/HomeNoBet.cshtml" publishTime="04/10/2014 10:49:18" />
-    <file relUrl="bin/Apollo.Age.Account.dll" publishTime="07/23/2014 09:31:01" />
+    <file relUrl="bin/Apollo.Age.Account.dll" publishTime="08/27/2014 10:18:54" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo-backup/jquery-ui.css" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.Age.Web.pdb" publishTime="07/23/2014 09:30:53" />
+    <file relUrl="bin/Apollo.Age.Web.pdb" publishTime="08/27/2014 10:18:50" />
     <file relUrl="_GlobalResources/Images/btRefresh_new_disabled.png" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/ja-JP/Apollo.Age.Resources.resources.dll" publishTime="07/23/2014 09:30:46" />
+    <file relUrl="bin/ja-JP/Apollo.Age.Resources.resources.dll" publishTime="08/21/2014 16:46:47" />
     <file relUrl="_GlobalResources/Js/Fanex.Grid/Fanex.Pagination.js" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/Resources/AccountInfo.js" publishTime="04/10/2014 10:49:16" />
     <file relUrl="_GlobalResources/Js/Pager/jquery.sbpager.less" publishTime="03/07/2014 13:46:27" />
@@ -518,7 +519,7 @@
     <file relUrl="Views/Instruction/zh-TW/MemberBetSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Js/Fanex.Grid/Fanex.Grid.Convert.js" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/en-US/MemberCommissionSetting.cshtml" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="App_Code/WagerHelper.cshtml" publishTime="04/10/2014 10:49:16" />
+    <file relUrl="App_Code/WagerHelper.cshtml" publishTime="08/25/2014 11:28:42" />
     <file relUrl="Web.AppSettings.config" publishTime="04/16/2014 14:29:57" />
     <file relUrl="Views/Instruction/vi-VN/MainShareHolderShareSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Js/Fanex.Grid/moment.min.js" publishTime="03/07/2014 13:46:27" />
@@ -567,8 +568,7 @@
     <file relUrl="Views/Instruction/ko-KR/AgentCommissionSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/jquery-ui.min.css" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Forecast/Resources/Images/col_score - Copy.png" publishTime="04/01/2014 12:35:14" />
-    <file relUrl="Views/Instruction/vi-VN/MemberBetSetting.cshtml" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="Views/TotalBets/FirstGoal.cshtml" publishTime="04/10/2014 10:49:18" />
+    <file relUrl="Views/TotalBets/FirstGoal.cshtml" publishTime="08/27/2014 10:26:43" />
     <file relUrl="bin/Microsoft.Web.WebPages.OAuth.dll" publishTime="03/07/2014 13:46:28" />
     <file relUrl="Views/Account/Shared/_CustSettingLayout.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Account/Resources/CustSettingEngine/Images/arrow-up.png" publishTime="03/07/2014 13:46:26" />
@@ -591,7 +591,7 @@
     <file relUrl="bin/WebMatrix.Data.dll" publishTime="03/07/2014 13:46:28" />
     <file relUrl="Views/Internal/SelectAccount.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="_GlobalResources/Js/noty/layouts/topLeft.js" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.Age.WebApp.dll" publishTime="07/23/2014 11:32:00" />
+    <file relUrl="bin/Apollo.Age.WebApp.dll" publishTime="08/27/2014 10:40:32" />
     <file relUrl="Views/Forecast/Resources/Images/center_score.png" publishTime="04/01/2014 12:35:14" />
     <file relUrl="Views/Home/Index.cshtml" publishTime="04/10/2014 10:49:17" />
     <file relUrl="packages.config" publishTime="03/07/2014 13:46:27" />
@@ -658,7 +658,7 @@
     <file relUrl="Views/Account/Shared/_ViewSettingLayout.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/zh-CN/AgentShareSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/Resources/AccountList.js" publishTime="04/10/2014 10:49:16" />
-    <file relUrl="bin/Apollo.Age.pdb" publishTime="07/23/2014 09:30:51" />
+    <file relUrl="bin/Apollo.Age.pdb" publishTime="08/27/2014 10:18:49" />
     <file relUrl="Views/Log/LogActionType2.cshtml" publishTime="06/17/2014 15:51:22" />
     <file relUrl="Views/Account/Resources/CustSettingEngine/Images/pointerDown.png" publishTime="03/07/2014 13:46:26" />
     <file relUrl="Views/BetList/Resources/Images/bg_popup.jpg" publishTime="03/07/2014 13:46:27" />
@@ -666,15 +666,15 @@
     <file relUrl="Views/Message/Images/loading.gif" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/Resources/CustSettingEngine/BettingLimit.js" publishTime="04/10/2014 10:49:17" />
     <file relUrl="_GlobalResources/Images/breadcrumb.gif" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.Age.BetList.pdb" publishTime="07/23/2014 11:31:57" />
+    <file relUrl="bin/Apollo.Age.BetList.pdb" publishTime="08/27/2014 10:40:29" />
     <file relUrl="Views/Forecast/Resources/FC1X2.js" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Instruction/zh-CN/AgentBetSetting.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Js/noty/jquery.noty.ori.js" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Forecast/Resources/FCByMatch.js" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Instruction/vi-VN/MemberShareSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="bin/Microsoft.Web.WebPages.OAuth.xml" publishTime="03/07/2014 13:46:28" />
-    <file relUrl="bin/Apollo.Age.Wagers.pdb" publishTime="07/23/2014 09:30:58" />
-    <file relUrl="bin/Apollo.Age.Wagers.dll" publishTime="07/23/2014 09:30:58" />
+    <file relUrl="bin/Apollo.Age.Wagers.pdb" publishTime="08/27/2014 10:18:52" />
+    <file relUrl="bin/Apollo.Age.Wagers.dll" publishTime="08/27/2014 10:18:52" />
     <file relUrl="bin/System.Web.Http.WebHost.xml" publishTime="03/07/2014 13:46:28" />
     <file relUrl="_GlobalResources/Css/img/info-rhombus-icon.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Log/Resources/images/top-white.png" publishTime="03/07/2014 13:46:27" />
@@ -697,19 +697,19 @@
     <file relUrl="_GlobalResources/Js/Fanex.Grid/images/collapse-icon.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Js/noty/layouts/bottomCenter.js" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Instruction/th-TH/MainShareHolderShareSetting.cshtml" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.UMService.dll" publishTime="07/23/2014 09:30:48" />
+    <file relUrl="bin/Apollo.UMService.dll" publishTime="08/21/2014 16:46:48" />
     <file relUrl="Views/Message/Resources/Announcement.less" publishTime="04/10/2014 10:49:17" />
     <file relUrl="Views/Account/ContactUs.cshtml" publishTime="03/07/2014 13:46:26" />
     <file relUrl="Views/Instruction/ja-JP/MainShareHolderShareSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Images/btnCountDown.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Forecast/Resources/ScoreMap.less" publishTime="04/01/2014 12:35:15" />
-    <file relUrl="bin/zh-CN/Apollo.Age.Resources.resources.dll" publishTime="07/23/2014 09:30:46" />
+    <file relUrl="bin/zh-CN/Apollo.Age.Resources.resources.dll" publishTime="08/21/2014 16:46:47" />
     <file relUrl="Views/Results/Resources/Result.js" publishTime="04/10/2014 10:49:18" />
     <file relUrl="Views/Instruction/zh-TW/ViewAgentShareSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Account/Resources/Images/bg_buttonsite.jpg" publishTime="03/07/2014 13:46:26" />
-    <file relUrl="bin/Apollo.Age.Account.pdb" publishTime="07/23/2014 09:31:01" />
+    <file relUrl="bin/Apollo.Age.Account.pdb" publishTime="08/27/2014 10:18:54" />
     <file relUrl="Views/Account/Resources/Images/tab-arrow_down.png" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.UMService.pdb" publishTime="07/23/2014 09:30:48" />
+    <file relUrl="bin/Apollo.UMService.pdb" publishTime="08/21/2014 16:46:48" />
     <file relUrl="Views/Instruction/en-US/MemberShareSettingAdv.cshtml" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Images/more.gif" publishTime="03/07/2014 13:46:27" />
     <file relUrl="_GlobalResources/Js/Pager/jquery.sbpager.js" publishTime="03/07/2014 13:46:27" />
@@ -719,8 +719,8 @@
     <file relUrl="_GlobalResources/Js/noty/promise.js" publishTime="04/10/2014 10:49:18" />
     <file relUrl="Views/Reports/Resources/Outstanding.js" publishTime="04/10/2014 10:49:17" />
     <file relUrl="bin/System.Web.WebPages.dll" publishTime="03/07/2014 13:46:28" />
-    <file relUrl="_GlobalResources/Js/Fanex.Grid/images/expand-small.png" publishTime="03/07/2014 13:46:27" />
-    <file relUrl="bin/Apollo.Age.Resources.pdb" publishTime="07/23/2014 09:30:45" />
+    <file relUrl="Views/Instruction/vi-VN/MemberBetSetting.cshtml" publishTime="03/07/2014 13:46:27" />
+    <file relUrl="bin/Apollo.Age.Resources.pdb" publishTime="08/21/2014 16:46:47" />
     <file relUrl="_GlobalResources/Css/jquery-ui-1.10.2/apollo/images/ui-icons_4ca300_256x240.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/Log/Resources/monPickr-0.0.3.js" publishTime="04/10/2014 10:49:17" />
     <file relUrl="_GlobalResources/Js/ErrorMsg/Images/succ_2_1.gif" publishTime="03/07/2014 13:46:27" />
@@ -740,6 +740,6 @@
     <file relUrl="Views/Account/Resources/CustSettingEngine/BetType.js" publishTime="04/10/2014 10:49:16" />
     <file relUrl="_GlobalResources/Images/letter_icoconts.png" publishTime="03/07/2014 13:46:27" />
     <file relUrl="Views/TotalBets/MoneyLine.cshtml" publishTime="04/10/2014 10:49:18" />
-    <file relUrl="Views/Message/Resources/Message.js" publishTime="04/22/2014 14:34:45" />
+    <file relUrl="_GlobalResources/Js/Fanex.Grid/images/expand-small.png" publishTime="03/07/2014 13:46:27" />
   </publishProfile>
 </publishData>

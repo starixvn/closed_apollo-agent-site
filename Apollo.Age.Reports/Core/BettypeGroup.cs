@@ -34,6 +34,8 @@ namespace Apollo.Age.Reports.Core
         public const string FirstOddEven = "12";
         public const string FirstOverUnder = "8";
         public const string FirstHalf1X2 = "15";
+        public const string FirstHalfTotalGoal = "126";
+        public const string FirstHalfFirstGoalLastGoal = "127";
         public const string OtherBettype = "11,13,17,18,19,20,21,22,23,24,25,26,27,28,30,121,122,123,124,125,1301,1302,1303,1304,1305,1306,1307,1308,1309,1310,1311,1312,1313,1314,1315,1316,1317,1318,1319,1320,1321,1322,1323,1324,1325,1326,1327,1328,1329,1330,1331,1332,1333,1334";
     }
 }

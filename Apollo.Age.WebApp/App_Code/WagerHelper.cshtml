@@ -209,6 +209,8 @@
 @helper RenderColumnData(string betTeams, int betCount, decimal stake, decimal stakebefore, bool isLive, int leagueId, int matchId, bool hasDownlineDetailsPermission = true)
     {
         string columnData = "{0}<span class='split'>/</span>{1}<span class='split'>/</span>{2}";
+        betTeams = betTeams.Replace('&','_');
+        
         if (betCount != 0
             || stake != 0
             || stakebefore != 0)

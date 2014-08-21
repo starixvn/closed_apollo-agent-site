@@ -280,6 +280,16 @@ namespace Apollo.Age.Enumerations
         Draw_NoDraw = 123,
 
         /// <summary>
+        /// The first total goal.
+        /// </summary>
+        First_Total_Goal = 126,
+
+        /// <summary>
+        /// The first goal last goal.
+        /// </summary>
+        FirstGoal_LastGoal = 127,
+
+        /// <summary>
         /// Hard code for P2P.
         /// </summary>
         P2P = 1000,

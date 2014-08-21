@@ -31,6 +31,12 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
 
         public decimal Total7OverStake { get; set; }
 
+        public decimal HTTotal01Stake { get; set; }
+
+        public decimal HTTotal23Stake { get; set; }
+
+        public decimal HTTotal4OverStake { get; set; }
+
         public decimal HomeStakeBeforeOE { get; set; }
 
         public decimal AwayStakeBeforeOE { get; set; }
@@ -38,6 +44,12 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
         public decimal HomeStakeBeforeHTOE { get; set; }
 
         public decimal AwayStakeBeforeHTOE { get; set; }
+
+        public decimal HTTotal01StakeBefore { get; set; }
+
+        public decimal HTTotal23StakeBefore { get; set; }
+
+        public decimal HTTotal4OverStakeBefore { get; set; }
 
         public decimal Total01StakeBefore { get; set; }
 
@@ -63,6 +75,12 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
 
         public int Total7OverCount { get; set; }
 
+        public int HTTotal01Count { get; set; }
+
+        public int HTTotal23Count { get; set; }
+
+        public int HTTotal4OverCount { get; set; }
+
         public string HomeBetteamOE { get; set; }
 
         public string AwayBetteamOE { get; set; }
@@ -78,5 +96,11 @@ namespace Apollo.Age.Wagers.ViewModels.Soccer
         public string Total46Betteam { get; set; }
 
         public string Total7OverBetteam { get; set; }
+
+        public string HTTotal01Betteam { get; set; }
+
+        public string HTTotal23Betteam { get; set; }
+
+        public string HTTotal4OverBetteam { get; set; }
     }
 }

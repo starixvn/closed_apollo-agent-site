@@ -182,6 +182,8 @@
     <Compile Include="Builder\ChoiceBuilder\Choice89.cs" />
     <Compile Include="Builder\ChoiceBuilder\Choice9.cs" />
     <Compile Include="Builder\ChoiceBuilder\Choice90.cs" />
+    <Compile Include="Builder\ChoiceBuilder\Choice126.cs" />
+    <Compile Include="Builder\ChoiceBuilder\Choice127.cs" />
     <Compile Include="Builder\ChoiceBuilder\IChoice.cs" />
     <Compile Include="Builder\DiscountBuilder\IDiscount.cs" />
     <Compile Include="Builder\DiscountBuilder\Discount.cs" />

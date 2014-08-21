@@ -355,7 +355,7 @@ namespace Apollo.Age.BetList.Controllers
                 LeagueId = leagueId,
                 SportTypes = string.IsNullOrEmpty(sportType) ? "0" : sportType,
                 BetTypes = string.IsNullOrEmpty(betType) ? "0" : betType,
-                BetTeam = betTeam,
+                BetTeam = betTeam.Replace('_', '&'),
                 MatchId = matchId,
                 IsSuperView = CurrentSession.IsSuper
             };

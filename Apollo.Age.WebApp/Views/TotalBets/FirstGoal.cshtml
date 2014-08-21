@@ -16,7 +16,7 @@
         <td class="no-border-bottom  valign-top home-away-team">
             @if (hasDownlineDetailsPermission)
             { 
-                <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
+                <a class="view-bet-list" match-id="@item.MatchId" bet-type="14,127" betlist-type="BettypeMatch" 
                 href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Lang.fglg" title="@Lang.ViewBetList">
                     @item.HomeTeam
                 </a>
@@ -28,7 +28,7 @@
             <br />
             @if (hasDownlineDetailsPermission)
             { 
-                <a class="view-bet-list" match-id="@item.MatchId" bet-type="14" betlist-type="BettypeMatch" 
+                <a class="view-bet-list" match-id="@item.MatchId" bet-type="14,127" betlist-type="BettypeMatch" 
                 href="javascript:void(0);"  league-name="@item.LeagueName" bet-type-name="@Lang.fglg" title="@Lang.ViewBetList">
                     @item.AwayTeam
                 </a>
@@ -37,6 +37,19 @@
             {
                 @item.AwayTeam
             }
+        </td>
+        <td class="fcnum r">
+            @RazorHelper.FormatPositiveNumber(item.HTWinLostHomeFG, numDecimals: 2)
+            <br />
+            @RazorHelper.FormatPositiveNumber(item.HTWinLostAwayFG, numDecimals: 2)
+        </td>
+        <td class="fcnum r">
+            @RazorHelper.FormatPositiveNumber(item.HTWinLostHomeLG, numDecimals: 2)
+            <br />
+            @RazorHelper.FormatPositiveNumber(item.HTWinLostAwayLG, numDecimals: 2)
+        </td>
+        <td class="fcnum r">
+            @RazorHelper.FormatPositiveNumber(item.HTWinLostNoGoal, numDecimals: 2)
         </td>
         <td class="fcnum r">
             @RazorHelper.FormatPositiveNumber(item.WinLostHomeFG, numDecimals: 2)
@@ -56,14 +69,26 @@
 <table class="tblRpt persist-area">
     <thead class="persist-header">
         <tr>
-            <td style="width: 5%;">
-                @Lang.time
+            <td rowspan="2" style="width: 5%;">@Lang.time
             </td>
-            <td style="width: 25%;">
-                @Lang.league
+            <td rowspan="2" style="width: 25%;">@Lang.league
             </td>
-            <td style="width: 15%;">
-                @Lang.homeaway
+            <td rowspan="2" style="width: 15%;">@Lang.homeaway
+            </td>
+            <td colspan="3">@Lang.lbl1sthalf
+            </td>
+            <td colspan="3">@Lang.fulltime
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Lang.firstgoal
+            </td>
+            <td>
+                @Lang.lastgoal
+            </td>
+            <td>
+                @Lang.nogoal
             </td>
             <td>
                 @Lang.firstgoal
@@ -83,7 +108,7 @@
             foreach (var item in Model)
             {
                 rowIndex++;
-				@ShowMatch(rowIndex, item, hasDownlineDetailsPermission)
+            @ShowMatch(rowIndex, item, hasDownlineDetailsPermission)
             }
         }
         else

@@ -124,6 +124,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Away FG.
+        /// </summary>
+        public static string awayfg {
+            get {
+                return ResourceManager.GetString("awayfg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Away LG.
+        /// </summary>
+        public static string awaylg {
+            get {
+                return ResourceManager.GetString("awaylg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Baccarat.
         /// </summary>
         public static string baccarat {
@@ -336,6 +354,24 @@ namespace Apollo.Age.Resources {
         public static string home {
             get {
                 return ResourceManager.GetString("home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home FG.
+        /// </summary>
+        public static string homefg {
+            get {
+                return ResourceManager.GetString("homefg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home LG.
+        /// </summary>
+        public static string homelg {
+            get {
+                return ResourceManager.GetString("homelg", resourceCulture);
             }
         }
         

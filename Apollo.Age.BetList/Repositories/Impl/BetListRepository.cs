@@ -157,9 +157,7 @@ namespace Apollo.Age.BetList.Repositories.Impl
                 MatchID = criteria.MatchId,
                 LoggedId = criteria.LoggedId,
                 AgentId = criteria.AgentId,
-                Bettype = criteria.BetTypes,
-                Liveindicator = criteria.LiveIndicator,
-                Betteam = criteria.BetTeam
+                Bettypes = criteria.BetTypes
             };
 
             try

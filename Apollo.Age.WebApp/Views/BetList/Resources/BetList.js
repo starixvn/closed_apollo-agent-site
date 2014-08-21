@@ -194,7 +194,7 @@ if (typeof jQuery !== "undefined") {
                     }
                 });
 
-                $("form:first").attr("action", "/betlist/transactions");
+                $("form:first").attr("action", APOLLO.resolveUrl("betlist/transactions"));
 
                 
             },
@@ -222,14 +222,16 @@ if (typeof jQuery !== "undefined") {
                     alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
                 }
                 else {
-                    $("form:first").attr("action", "/BetList/AccountInfo?custId=" + $("#custid").val() + "&username=" + $("#username").val());
+                    $("form:first").attr("action", 
+                                    APOLLO.resolveUrl("BetList/AccountInfo?custId=" + $("#custid").val() + "&username=" + $("#username").val()));
                     $("form:first").submit();
                 }
             },
 
             ExportAccountInfo: function () {
                 $("#btnExcelAcountInfo").on("click", function () {
-                    $("form:first").attr("action", "/betlist/AccountInfoExportExcel?custId=" + $("#custid").val() + "&username=" + $("#username").val());
+                    $("form:first").attr("action", 
+                                    APOLLO.resolveUrl("betlist/AccountInfoExportExcel?custId=" + $("#custid").val() + "&username=" + $("#username").val()));
                     $("form:first").submit();
                 });
             },
@@ -244,14 +246,14 @@ if (typeof jQuery !== "undefined") {
                     alert(LANGUAGES.MessageValidateDateRange + " " + BETLIST.DateLimited.val());
                 }
                 else {
-                    $("form:first").attr("action", "/betlist/TicketCancel");
+                    $("form:first").attr("action", APOLLO.resolveUrl("betlist/TicketCancel"));
                     $("form:first").submit();
                 }
             },
 
             ExportTicketCancel: function () {
                 $("#btnExcelTicketCancel").on("click", function () {
-                    $("form:first").attr("action", "/betlist/TicketCancelExportExcel");
+                    $("form:first").attr("action", APOLLO.resolveUrl("betlist/TicketCancelExportExcel"));
                     $("form:first").submit();
                 });
             },
@@ -266,14 +268,14 @@ if (typeof jQuery !== "undefined") {
                     alert(LANGUAGES.MessageValidateWithArchivedDate + " " + BETLIST.BalanceUpDay.val());
                 }
                 else {
-                    $("form:first").attr("action", "/betlist/transactions");
+                    $("form:first").attr("action", APOLLO.resolveUrl("betlist/transactions"));
                     $("form:first").submit();
                 }
             },
 
             ExportTransaction: function () {
                 $("#btnExcelTransaction").on("click", function () {
-                    $("form:first").attr("action", "/betlist/TransactionExportExcel");
+                    $("form:first").attr("action", APOLLO.resolveUrl("betlist/TransactionExportExcel"));
                     $("form:first").submit();
                 });
             },

@@ -44,7 +44,7 @@ namespace Apollo.Age.Criterias
                     case BetTypes.Handicap:
                         return "1,3,7,8";
                     case BetTypes.Total_Goal:
-                        return "6";
+                        return "6,126";
                     case BetTypes.Money_Line:
                         return "20,21";
                     case BetTypes.Odd_Even:
@@ -54,7 +54,7 @@ namespace Apollo.Age.Criterias
                     case BetTypes.Draw_No_Bet:
                         return "25,121,122";
                     case BetTypes.First_Goal_Last_Goal:
-                        return "14";
+                        return "14,127";
                     case BetTypes.Outright:
                         return "10";
                 }

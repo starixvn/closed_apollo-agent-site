@@ -997,7 +997,7 @@
     <value>Contact Us</value>
   </data>
   <data name="lbl7up" xml:space="preserve">
-    <value>7up</value>
+    <value>7&amp;Over</value>
   </data>
   <data name="outstanding" xml:space="preserve">
     <value>Outstanding</value>
@@ -2148,5 +2148,14 @@
   </data>
   <data name="HttpError_408" xml:space="preserve">
     <value>Request timeout</value>
+  </data>
+  <data name="lbl1sttotalgoal" xml:space="preserve">
+    <value>1st Total Goal</value>
+  </data>
+  <data name="lbl4over" xml:space="preserve">
+    <value>4&amp;Over</value>
+  </data>
+  <data name="lblfirstgoallastgoal" xml:space="preserve">
+    <value>1st First Goal/Last Goal</value>
   </data>
 </root>

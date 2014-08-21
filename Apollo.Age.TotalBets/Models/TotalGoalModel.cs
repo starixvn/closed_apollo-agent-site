@@ -48,6 +48,12 @@ namespace Apollo.Age.TotalBets.Models
         /// <value>Decimal value.</value>
         public decimal Total7Over { get; set; }
 
+        public decimal HTTotal01 { get; set; }
+
+        public decimal HTTotal23 { get; set; }
+
+        public decimal HTTotal4Over { get; set; }
+
         public bool IsNeutral { get; set; }
 
         public bool Closed { get; set; }

@@ -8,7 +8,49 @@
     var hasDownlineDetailsPermission = ViewBag.HasDownlineDetailsPermission != null ? (bool)ViewBag.HasDownlineDetailsPermission : false;
 }
 <table class="tblRpt soccer total @((bool)ViewBag.IsEM ? "emw" : string.Empty)">
-    @WagerHelper.RederHeaderColumn(Lang.lblfirsthalfOdd, Lang.lblfirsthalfOven, Lang.lblOdd, Lang.lblEven, Lang.lbl0_1, Lang.lbl2_3, Lang.lbl4_6, Lang.lbl7up)
+    <thead>
+        <tr class="RptHeader">
+            <th rowspan="2" class="width-90">@Lang.TimeGMT8
+            </th>
+            <th rowspan="2">@Lang.lblWagerLeague
+            </th>
+            <th rowspan="2">@Lang.HomeGuest
+            </th>
+            <th colspan="2">@Lang.lbl1sthalf
+            </th>
+            <th colspan="2">@Lang.fulltime
+            </th>
+            <th colspan="3">@Lang.lbl1sthalf
+            </th>
+            <th colspan="4">@Lang.fulltime
+            </th>
+        </tr>
+        <tr class="RptHeader">
+            <th>@Lang.lblOdd
+            </th>
+            <th>@Lang.lblEven
+            </th>
+            <th>@Lang.lblOdd
+            </th>
+            <th>@Lang.lblEven
+            </th>
+            <th>@Lang.lbl0_1
+            </th>
+            <th>@Lang.lbl2_3
+            </th>
+            <th>@Lang.lbl4over
+            </th>
+            <th>@Lang.lbl0_1
+            </th>
+            <th>@Lang.lbl2_3
+            </th>
+            <th>@Lang.lbl4_6
+            </th>
+            <th>@Lang.lbl7up
+            </th>
+        </tr>
+    </thead>
+    @*@WagerHelper.RederHeaderColumn(Lang.lblfirsthalfOdd, Lang.lblfirsthalfOven, Lang.lblOdd, Lang.lblEven, Lang.lbl0_1, Lang.lbl2_3, Lang.lbl4_6, Lang.lbl7up)*@
     @Model.List(
         @<tr class="c">
             @WagerHelper.RenderBaseColumns(item)
@@ -23,6 +65,15 @@
             </td>
             <td class="r red-num vertical-middle nowrap" data-bettype="@((int)BetTypes.Odd_Even)">
                 @WagerHelper.RenderColumnData(item.AwayBetteamOE, item.AwayCountOE, item.AwayStakeOE, item.AwayStakeBeforeOE, item.LiveIndicator, item.LeagueId, item.MatchId, hasDownlineDetailsPermission)
+            </td>
+            <td class="r red-num vertical-middle nowrap" data-bettype="@((int)BetTypes.First_Total_Goal)">
+                @WagerHelper.RenderColumnData(item.HTTotal01Betteam, item.HTTotal01Count, item.HTTotal01Stake, item.HTTotal01StakeBefore, item.LiveIndicator, item.LeagueId, item.MatchId, hasDownlineDetailsPermission)
+            </td>
+            <td class="r red-num vertical-middle nowrap" data-bettype="@((int)BetTypes.First_Total_Goal)">
+                @WagerHelper.RenderColumnData(item.HTTotal23Betteam, item.HTTotal23Count, item.HTTotal23Stake, item.HTTotal23StakeBefore, item.LiveIndicator, item.LeagueId, item.MatchId, hasDownlineDetailsPermission)
+            </td>
+            <td class="r red-num vertical-middle nowrap" data-bettype="@((int)BetTypes.First_Total_Goal)">
+                @WagerHelper.RenderColumnData(item.HTTotal4OverBetteam, item.HTTotal4OverCount, item.HTTotal4OverStake, item.HTTotal4OverStakeBefore, item.LiveIndicator, item.LeagueId, item.MatchId, hasDownlineDetailsPermission)
             </td>
             <td class="r red-num vertical-middle nowrap" data-bettype="@((int)BetTypes.Total_Goal)">
                 @WagerHelper.RenderColumnData(item.Total01Betteam, item.Total01Count, item.Total01Stake, item.Total01StakeBefore, item.LiveIndicator, item.LeagueId, item.MatchId, hasDownlineDetailsPermission)

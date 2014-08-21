@@ -1609,6 +1609,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1st Total Goal.
+        /// </summary>
+        public static string lbl1sttotalgoal {
+            get {
+                return ResourceManager.GetString("lbl1sttotalgoal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1 X 2.
         /// </summary>
         public static string lbl1x2 {
@@ -1690,6 +1699,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 4&amp;Over.
+        /// </summary>
+        public static string lbl4over {
+            get {
+                return ResourceManager.GetString("lbl4over", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 5.
         /// </summary>
         public static string lbl5 {
@@ -1717,7 +1735,7 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7up.
+        ///   Looks up a localized string similar to 7&amp;Over.
         /// </summary>
         public static string lbl7up {
             get {
@@ -2424,6 +2442,15 @@ namespace Apollo.Age.Resources {
         public static string lblfinal {
             get {
                 return ResourceManager.GetString("lblfinal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1st First Goal/Last Goal.
+        /// </summary>
+        public static string lblfirstgoallastgoal {
+            get {
+                return ResourceManager.GetString("lblfirstgoallastgoal", resourceCulture);
             }
         }
         

@@ -37,17 +37,27 @@ namespace Apollo.Age.TotalBets.Models
 
         public int AwayId { get; set; }
 
-        public decimal WinLostHomeFG { get; set; }
+        public DateTime? KickOffTime { get; set; }
 
-        public decimal WinLostHomeLG { get; set; }
+        public decimal WinLostHomeFG { get; set; }
 
         public decimal WinLostAwayFG { get; set; }
 
-        public DateTime? KickOffTime { get; set; }
+        public decimal WinLostHomeLG { get; set; }
 
         public decimal WinLostAwayLG { get; set; }
 
         public decimal WinLostNoGoal { get; set; }
+
+        public decimal HTWinLostHomeFG { get; set; }
+
+        public decimal HTWinLostHomeLG { get; set; }
+
+        public decimal HTWinLostAwayFG { get; set; }
+
+        public decimal HTWinLostAwayLG { get; set; }
+
+        public decimal HTWinLostNoGoal { get; set; }
 
         public string HomeTeam
         {
