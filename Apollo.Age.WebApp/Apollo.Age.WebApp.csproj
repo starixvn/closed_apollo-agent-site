@@ -235,6 +235,12 @@
     <Content Include="App_Data\PeriodsRange.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Data\prod\SpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\uat\SpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Wagers\Configuration\WagerMenus.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -251,7 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Log.txt" />
-    <Content Include="App_Data\SpNames.xml">
+    <Content Include="App_Data\local\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="CustSettingEngine\BettingLimitSportNames.xml" />
@@ -608,6 +614,39 @@
     <Content Include="Views\Account\FundOut.cshtml" />
     <Content Include="ExcelTemplates\LineSportCreditTemplate.xls" />
     <Content Include="Views\Account\EditAllMemberShare.cshtml" />
+    <Content Include="Web.local.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.uat.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.prod.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.ConnectionString.local.config">
+      <SubType>Designer</SubType>
+      <DependentUpon>Web.ConnectionString.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.local.config">
+      <SubType>Designer</SubType>
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.prod.config">
+      <SubType>Designer</SubType>
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.uat.config">
+      <SubType>Designer</SubType>
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <None Include="Web.ConnectionString.uat.config">
+      <SubType>Designer</SubType>
+      <DependentUpon>Web.ConnectionString.config</DependentUpon>
+    </None>
+    <Content Include="Web.ConnectionString.prod.config">
+      <SubType>Designer</SubType>
+      <DependentUpon>Web.ConnectionString.config</DependentUpon>
+    </Content>
     <None Include="Views\BetList\Resources\ErrorPage.less" />
     <None Include="Views\BetList\Resources\Paging.less" />
     <Content Include="Views\BetList\Winloss.cshtml" />
