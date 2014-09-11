@@ -329,7 +329,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                     choice = string.Empty;
                 }
 
-                choice = string.Join(null, new string[] { Template.betTeam.Replace("<span class=\"underdog\">", string.Empty).Replace("</span>", string.Empty).Replace("&nbsp;", string.Empty).Trim() });
+                choice = string.Join(null, new string[] { Template.betTeam.Replace("<span class=\"underdog\">", string.Empty).Replace("</span>", string.Empty).Replace("&nbsp;", " ").Trim() });
 
                 rtfHelper.RTFRenderer.AddText(choice, rtfHelper.Font(HSSFColor.Red.Index, FontBoldWeight.Normal, isTrikeOut));
 
