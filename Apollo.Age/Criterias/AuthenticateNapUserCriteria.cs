@@ -24,13 +24,19 @@ namespace Apollo.Age.Criterias
 
         public string Password { get; set; }
 
+        public int SiteId { get; set; }
+
+        public int ErrCode { get; set; }
+
+        public string ErrMsg { get; set; }
+
         /// <summary>
         /// Gets the setting key of stored procedure setting.
         /// </summary>
         /// <returns> Setting key.</returns>
         public override string GetSettingKey()
         {
-            return "NAP_User_Authenticate";
+            return "NAP_User_CheckSitePermission";
         }
 
         /// <summary>

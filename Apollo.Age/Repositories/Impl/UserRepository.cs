@@ -156,9 +156,13 @@ namespace Apollo.Age.Repositories.Impl
         {
             using (var objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
+                objectDb.ExecuteScalar(criteria.GetSpParams());
                 adminId = Converter.ToInt(objectDb.ExecuteScalar(criteria.GetSpParams()));
 
-                return adminId != 0;
+                var outParams = objectDb.GetOuputParams();
+                int errorCode = Converter.ToInt(outParams["errcode"]);
+
+                return errorCode == 0;
             }
         }
 

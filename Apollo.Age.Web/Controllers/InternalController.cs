@@ -139,7 +139,8 @@ namespace Apollo.Age.Web
                     new AuthenticateNapUserCriteria
                     {
                         Username = model.Username,
-                        Password = model.Password
+                        Password = model.Password,
+                        SiteId = AppSettings.SSOSiteId
                     },
                     ref _adminId);
 
@@ -169,7 +170,14 @@ namespace Apollo.Age.Web
                                     Lang.InvalidUsernameOrPassword);
                     WriteLoginLog(0, _adminId, 7000, doing);
 
-                    ModelState.AddModelError(string.Empty, Lang.InvalidUsernameOrPassword);
+                    if (_adminId == 0)
+                    {
+                        ModelState.AddModelError(string.Empty, Lang.InvalidUsernameOrPassword);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, Lang.strNotAccessPage);
+                    }
                 }
             }
 
