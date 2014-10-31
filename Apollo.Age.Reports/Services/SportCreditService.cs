@@ -35,7 +35,7 @@ namespace Apollo.Age.Reports.Services
         private const int _RowHeader = 4;
         private const int _RowStartBody = 5;
         private const int _RowFooter = 6;
-        private const string _FilePathExcelTemplate = "\\ExcelTemplates\\LineSportCreditTemplate.xls";
+        private const string _FilePathExcelTemplate = "~/ExcelTemplates/LineSportCreditTemplate.xls";
 
         /// <summary>
         /// Get Sport Credits list.

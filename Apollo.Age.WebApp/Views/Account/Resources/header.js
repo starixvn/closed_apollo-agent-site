@@ -31,10 +31,10 @@ var HEADER = (function ($) {
                 if ($(this).attr('id') === 'account-link') {
                     var url = '';
                     if (!DEFAULTS.IsMaster) {
-                        url = "/CustomerSetting/MySetting";
+                        url = APOLLO.resolveUrl("~/CustomerSetting/MySetting");
                     }
                     else {
-                        url = "/Account/AgentList";
+                        url = APOLLO.resolveUrl("~/Account/AgentList");
                     }
 
                     HEADER.oldUrl = url;
@@ -157,7 +157,7 @@ var HEADER = (function ($) {
             );
 
             if (!HEADER.IsLoadTreeView) {
-                parent.document.getElementById('menu').contentWindow.location = APOLLO.resolveUrl("Account/TreeViewList");
+                parent.document.getElementById('menu').contentWindow.location = APOLLO.resolveUrl("~/Account/TreeViewList");
                 HEADER.IsLoadTreeView = true;
             }
         },
