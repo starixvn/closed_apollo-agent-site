@@ -26,7 +26,7 @@ namespace Apollo.Age.Account.Services
     {
         #region const for read XML PTGrid
 
-        private const string _PATH_XML = "\\CustSettingEngine\\PTGrid.xml";
+        private const string _PATH_XML = "~/CustSettingEngine/PTGrid.xml";
 
         private const string _SPORT_TYPE_NODE_XML = "PTGrid/SportType";
 
