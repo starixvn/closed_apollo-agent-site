@@ -369,12 +369,6 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -614,38 +608,33 @@
     <Content Include="Views\Account\FundOut.cshtml" />
     <Content Include="ExcelTemplates\LineSportCreditTemplate.xls" />
     <Content Include="Views\Account\EditAllMemberShare.cshtml" />
-    <Content Include="Web.local.config">
+    <Content Include="Configuration\Web.Local.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.uat.config">
+    <Content Include="Configuration\Web.UAT.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.prod.config">
+    <Content Include="Configuration\Web.AppSettings.Local.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.ConnectionString.local.config">
+    <Content Include="Configuration\Web.AppSettings.UAT.config">
       <SubType>Designer</SubType>
-      <DependentUpon>Web.ConnectionString.config</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.local.config">
+    <Content Include="Configuration\Web.AppSettings.PRO.config">
       <SubType>Designer</SubType>
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.prod.config">
+    <Content Include="Configuration\Web.ConnectionString.Local.config">
       <SubType>Designer</SubType>
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.uat.config">
+    <Content Include="Configuration\Web.ConnectionString.UAT.config">
       <SubType>Designer</SubType>
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionString.uat.config">
+    <Content Include="Configuration\Web.ConnectionString.PRO.config">
       <SubType>Designer</SubType>
-      <DependentUpon>Web.ConnectionString.config</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionString.prod.config">
+    <Content Include="deployment.ignore" />
+    <Content Include="Configuration\Web.PRO.config">
       <SubType>Designer</SubType>
-      <DependentUpon>Web.ConnectionString.config</DependentUpon>
     </Content>
     <None Include="Views\BetList\Resources\ErrorPage.less" />
     <None Include="Views\BetList\Resources\Paging.less" />
