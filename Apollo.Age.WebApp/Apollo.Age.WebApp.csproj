@@ -639,10 +639,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <None Include="Web.ConnectionString.uat.config">
+    <Content Include="Web.ConnectionString.uat.config">
       <SubType>Designer</SubType>
       <DependentUpon>Web.ConnectionString.config</DependentUpon>
-    </None>
+    </Content>
     <Content Include="Web.ConnectionString.prod.config">
       <SubType>Designer</SubType>
       <DependentUpon>Web.ConnectionString.config</DependentUpon>
