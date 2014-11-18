@@ -198,17 +198,9 @@
                             if (Model.ShadowPermissionPolicy >= (byte)Policy.Query)
                             {
                             <a href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
-                                @(Lang.ShadowPermission + " / ")
+                                @(Lang.ShadowPermission)
                             </a>
                             }
-
-                            <a href="">
-                                @(Lang.Deposit + " / ")
-                            </a>
-
-                            <a href="">
-                                @Lang.Draw
-                            </a>
                         }
                     </td>
                 </tr>

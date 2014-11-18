@@ -127,6 +127,10 @@ namespace Apollo.Age.WebApp
             "~/_globalresources/css/jquery-ui-1.10.2/apollo/jquery-ui.css",
            "~/Views/PermissionUserControl/Resources/permissionusercontrol.less");
 
+            bundles.AddAndInclude(
+             "~/css/creditbalance",
+              "~/_globalresources/js/Validation/validationEngine.jquery.css");
+
             // js
             bundles.Add(new ScriptBundle("~/scripts/topbarjs").Include(
                 "~/_globalresources/js/head.js",
@@ -219,7 +223,7 @@ namespace Apollo.Age.WebApp
                 "~/_globalresources/js/head.js",
                 "~/_globalresources/js/jquery.js",
                 "~/_globalresources/js/jquery-ui.js",
-                "~/_globalresources/js/blockui/jquery.blockui.js",                
+                "~/_globalresources/js/blockui/jquery.blockui.js",
                 "~/_globalresources/js/core.js",
                 "~/views/message/resources/message.js"));
 
@@ -378,6 +382,16 @@ namespace Apollo.Age.WebApp
             "~/_globalresources/js/Core.js",
             "~/_globalresources/js/BlockUI/jquery.blockUI.js",
             "~/Views/PermissionUserControl/Resources/AssignFunction.js"));
+
+            bundles.Add(new ScriptBundle("~/scripts/creditbalance").Include(
+            "~/_globalresources/js/jquery.js",
+            "~/_globalresources/js/jquery-ui.js",
+            "~/_globalresources/js/noty/jquery.noty.js",
+            "~/_globalresources/js/Core.js",
+            "~/_globalresources/js/Validation/jquery.validationEngine-en.js",
+            "~/_globalresources/js/Validation/jquery.validationEngine.js",
+            "~/_globalresources/js/autonumeric/autoNumeric.js",
+            "~/views/creditbalance/resources/credit-balance.js"));
 
             bundles.FileSetOrderList.Clear();
         }

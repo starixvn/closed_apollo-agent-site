@@ -77,6 +77,14 @@ namespace Apollo.Age.Web
             }
         }
 
+        protected string GetClientIp
+        {
+            get
+            {
+                return HttpContext.Request.IsLocal ? "127.0.0.1" : Convert.ToString(HttpContext.Request.ServerVariables["REMOTE_ADDR"]);
+            }
+        }
+
         /// <summary>
         /// Gets Current Controller.
         /// </summary>

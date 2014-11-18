@@ -130,6 +130,46 @@ var ACCOUNTLIST = (function ($) {
                 ACCOUNTLIST.agentListSettingTime = setTimeout(function () { ACCOUNTLIST.hideMenuLayout(); }, 10000);
             });
 
+            $('.deposit-agent').on('click', function () {
+                var $this = $(this);
+                var url = APOLLO.resolveUrl("CreditBalance/DepositAgent?agentId=" + $this.attr("agent-id"));
+                APOLLO.openDialogFrame(url, 'Deposit - ' + $this.attr('agent-username'), {
+                    width: 450,
+                    height: 150,
+                    position: { my: "center", at: "center", of: window }
+                });
+            });
+
+            $('.draw-agent').on('click', function () {
+                var $this = $(this);
+                var url = APOLLO.resolveUrl("CreditBalance/DrawAgent?agentId=" + $this.attr("agent-id"));
+                APOLLO.openDialogFrame(url, 'Draw - ' + $this.attr('agent-username'), {
+                    width: 450,
+                    height: 150,
+                    position: { my: "center", at: "center", of: window }
+                });
+            });
+
+            $('.deposit-member').on('click', function () {
+                var $this = $(this);
+                var url = APOLLO.resolveUrl("CreditBalance/DepositMember?custId=" + $this.attr("member-id"));
+                APOLLO.openDialogFrame(url, 'Deposit - ' + $this.attr('member-username'), {
+                    width: 450,
+                    height: 150,
+                    position: { my: "center", at: "center", of: window }
+                });
+            });
+
+            $('.draw-member').on('click', function () {
+                var $this = $(this);
+                var url = APOLLO.resolveUrl("CreditBalance/DrawMember?memberId=" + $this.attr("member-id"));
+                APOLLO.openDialogFrame(url, 'Draw - ' + $this.attr('member-username'), {
+                    width: 450,
+                    height: 150,
+                    position: { my: "center", at: "center", of: window }
+                });
+            });
+
             $('html, body').click(function () {
                 clearTimeout(ACCOUNTLIST.agentListSettingTime);
                 ACCOUNTLIST.hideMenuLayout();

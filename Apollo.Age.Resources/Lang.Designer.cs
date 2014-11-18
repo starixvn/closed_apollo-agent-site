@@ -907,6 +907,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deposit Amount.
+        /// </summary>
+        public static string DepositAmount {
+            get {
+                return ResourceManager.GetString("DepositAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deposit/Draw.
         /// </summary>
         public static string DepositDraw {

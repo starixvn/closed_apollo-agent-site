@@ -96,6 +96,7 @@
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Entities\PeakHour.cs" />
+    <Compile Include="Entities\Result.cs" />
     <Compile Include="Entities\SingbetBettype.cs" />
     <Compile Include="Entities\SingbetSport.cs" />
     <Compile Include="Entities\Sport.cs" />

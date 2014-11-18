@@ -1,0 +1,36 @@
+﻿@using Apollo.Age
+@using Apollo.Age.CreditBalance.ViewModels
+@model CreditBalanceViewModel
+@{
+    Layout = "~/Views/CreditBalance/Shared/_Layout.cshtml";
+    ViewBag.Title = Lang.Draw;
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "credit-form" }))
+{
+    @Html.HiddenFor(m => m.CustomerId)
+
+    <table class="tblRpt">
+        <tbody>
+            <tr>
+                <td>
+                    @Html.Label("draw-amount", @Lang.DrawAmount)
+                </td>
+                <td>
+                    @Html.TextBox("amount", string.Empty, new { data_min = Model.MinAmount, data_max = Model.MaxAmount })
+                </td>
+                <td>
+                    @Html.Label(string.Empty, "[" + @Model.MinAmount + " - " + @Model.MaxAmount.ToString("#,###.##") + "]")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td colspan="2">
+                    <input id="draw-agent-submit" type="button" value="@Lang.SubmitCredit" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="msg">
+    </div>
+}

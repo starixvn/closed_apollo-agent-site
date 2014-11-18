@@ -2164,7 +2164,6 @@
   <data name="Draw" xml:space="preserve">
     <value>Draw</value>
   </data>
-  
   <data name="DepositDraw" xml:space="preserve">
     <value>Deposit/Draw</value>
   </data>
@@ -2191,5 +2190,14 @@
   </data>
   <data name="Remark" xml:space="preserve">
     <value>Remark</value>
+  </data>
+  <data name="DepositAmount" xml:space="preserve">
+    <value>Deposit Amount</value>
+  </data>
+  <data name="DrawAmount" xml:space="preserve">
+    <value>Draw Amount</value>
+  </data>
+  <data name="SubmitCredit" xml:space="preserve">
+    <value>Submit</value>
   </data>
 </root>

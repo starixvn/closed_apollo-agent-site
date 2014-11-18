@@ -19,7 +19,7 @@
     var custSettingPermissionPolicy = (byte)ViewBag.CustomerSettingPermission;
 }
 @using (Html.BeginForm())
-{       
+{
     <div id="function-bar">
         <div class="item">
             <label>@Lang.member</label>:
@@ -27,7 +27,7 @@
                 @foreach (var item in driectAgentList)
                 {
                     if (item.Id == Model.AgentId)
-                    { 
+                    {
                     <option value="@item.Id" selected="selected">@item.Username</option>
                     }
                     else
@@ -55,7 +55,7 @@
 				                }, new { @class = "za_select" })
         </div>
         @if (!ReferenceEquals(memberList, null) && memberList.Any())
-        { 
+        {
             <div class="item">
                 --<label>@Lang.Page</label>:
                 @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
@@ -76,9 +76,9 @@
 @*<img src="/_GlobalResources/Images/top_04.png" alt="">*@
         <div class="end">
         </div>
-    </div>     
+    </div>
     @Html.HiddenFor(m => m.AgentId)
-    @Html.HiddenFor(m => m.ParentAgentId)   
+    @Html.HiddenFor(m => m.ParentAgentId)
 }
 @if (!ReferenceEquals(memberList, null) && memberList.Any() && custSettingPermissionPolicy >= (byte)Policy.Query)
 {
@@ -93,24 +93,24 @@
                 else
                 {
                     @Lang.lblview
-                }</a> 
+                }</a>
             @:&nbsp;/&nbsp;
-		}
+                                                		}
         <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)">@Lang.Detail</a>
         @if (!AppSettings.DisableEditOnMember)
         {
             <div class="list">
                 <ul class="menu-list">
-            @if (agentList.Any())
-            {
-                foreach (var itemAgent in agentList)
-                {
-                    if (itemAgent.Level > AgentLevel.Super)
-                    { 
-                    <li><a class="edit-multiple-member" href="javascript:void(0);" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@itemAgent.Id&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>	 
+                    @if (agentList.Any())
+                    {
+                        foreach (var itemAgent in agentList)
+                        {
+                            if (itemAgent.Level > AgentLevel.Super)
+                            {
+                        <li><a class="edit-multiple-member" href="javascript:void(0);" data-edit-multiple-link="@Url.Content("~/CustomerSetting/EditMemberPositionTaking")?agentId=@itemAgent.Id&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>
+                            }
+                        }
                     }
-                }
-            }
                 </ul>
             </div>
         }
@@ -122,7 +122,7 @@
         <thead>
             <tr>
                 @if (custSettingPermissionPolicy >= (byte)Policy.Query)
-                { 
+                {
                     <td class="width-140">
                         <input type="checkbox" id="cbAllMember" />
                     </td>
@@ -201,9 +201,9 @@
                                         else
                                         {
                                             @Lang.lblview
-                                        }</a> 
+                                        }</a>
                                     @:&nbsp;/&nbsp;
-								}
+                                                                                                                                                                                                								}
                                 <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
                                 @if (!AppSettings.DisableEditOnMember)
                                 {
@@ -214,14 +214,19 @@
                                                 foreach (var itemAgent in agentList)
                                                 {
                                                     if (itemAgent.Level > AgentLevel.Super)
-                                                    { 
-                                                <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@itemAgent.Id&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>	 
+                                                    {
+                                                <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@itemAgent.Id&amp;userName=@item.Username&amp;backLink=@backLink&amp;agentUsername=@itemAgent.Username">@itemAgent.Username</a></li>
                                                     }
                                                 }
                                             }
                                         </ul>
                                     </div>
                                 }
+                                <span class="deposit-member" member-id="@item.MemberId" member-username="@item.Username">
+                                    @(" / " + Lang.Deposit + " / ")
+                                </span><span class="draw-member" member-id="@item.MemberId" member-username="@item.Username">
+                                    @Lang.Draw
+                                </span>
                             </div>
                         </td>
                     }

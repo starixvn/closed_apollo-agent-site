@@ -69,7 +69,5 @@ namespace Apollo.Age.Account.Models
         }
 
         public List<Agent> AgentPathList { get; set; }
-
-        public decimal SportCredit { get; set; }
     }
 }

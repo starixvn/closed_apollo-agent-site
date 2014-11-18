@@ -322,6 +322,7 @@
     <Content Include="Views\BetList\Resources\Images\q_Icon2_1.png" />
     <Content Include="Views\BetList\Resources\Images\q_Icon_2.png" />
     <Content Include="Views\BetList\Resources\Images\ScoreMapWL.png" />
+    <Content Include="Views\CreditBalance\Resources\credit-balance.js" />
     <Content Include="Views\Error\Resources\images\bg-maintenance.png" />
     <Content Include="Views\Error\Resources\images\icon-maintenance.png" />
     <Content Include="Views\Error\Resources\Unauthorized.js" />
@@ -483,6 +484,7 @@
     <Content Include="_GlobalResources\Images\Success.gif" />
     <Content Include="_GlobalResources\Images\tick.png" />
     <Content Include="_GlobalResources\Images\top_04.png" />
+    <Content Include="_GlobalResources\Js\autoNumeric\autoNumeric.js" />
     <Content Include="_GlobalResources\Js\BlockUI\jquery.blockUI.js" />
     <Content Include="_GlobalResources\Js\Core.js" />
     <Content Include="_GlobalResources\Js\ErrorMsg\Images\cross.png" />
@@ -932,6 +934,11 @@
     <Content Include="Views\Forecast\ForecastByMatchContent.cshtml" />
     <Content Include="Views\Forecast\Shared\_Layout.cshtml" />
     <Content Include="Views\Reports\CreditReport.cshtml" />
+    <Content Include="Views\CreditBalance\Shared\_Layout.cshtml" />
+    <Content Include="Views\CreditBalance\DrawAgent.cshtml" />
+    <Content Include="Views\CreditBalance\DepositAgent.cshtml" />
+    <Content Include="Views\CreditBalance\DepositMember.cshtml" />
+    <Content Include="Views\CreditBalance\DrawMember.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />
@@ -940,6 +947,9 @@
     <Content Include="_GlobalResources\Js\ErrorMsg\ErrorMsg.less" />
     <Content Include="_GlobalResources\Js\Fanex.Grid\Fanex.Grid.less" />
     <Content Include="_GlobalResources\Js\Fanex.Grid\Fanex.Pagination.less" />
+    <Content Include="_GlobalResources\Js\Validation\jquery.validationEngine-en.js" />
+    <Content Include="_GlobalResources\Js\Validation\jquery.validationEngine.js" />
+    <Content Include="_GlobalResources\Js\Validation\validationEngine.jquery.css" />
     <Content Include="_GlobalResources\Js\web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -950,6 +960,10 @@
     <ProjectReference Include="..\Apollo.Age.BetList\Apollo.Age.BetList.csproj">
       <Project>{002DFC53-97B7-4516-B2FA-FC0D08F3DC4B}</Project>
       <Name>Apollo.Age.BetList</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apollo.Age.CreditBalance\Apollo.Age.CreditBalance.csproj">
+      <Project>{0FCB279D-0436-440C-88D9-13194A2A24AE}</Project>
+      <Name>Apollo.Age.CreditBalance</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apollo.Age.Forecast\Apollo.Age.Forecast.csproj">
       <Project>{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}</Project>
