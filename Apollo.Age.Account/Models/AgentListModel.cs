@@ -49,5 +49,7 @@ namespace Apollo.Age.Account.Models
         public int NumberOfAgent { get; set; }
 
         public int NumberOfMember { get; set; }
+
+        public decimal SportCredit { get; set; }
     }
 }
