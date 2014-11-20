@@ -28,6 +28,8 @@ namespace Apollo.Age.Services.Interface
 
         User InternalGetAgentByUsername(string username);
 
+        int GetUserIdByUsername(UserIdByUsernameCriteria criteria);
+
         IEnumerable<User> GetUserByAgent(int agentId);
 
         bool AllowLineAccountSSO(string username);

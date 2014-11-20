@@ -257,6 +257,11 @@ namespace Apollo.Age.Services.Impl
             return user;
         }
 
+        public int GetUserIdByUsername(UserIdByUsernameCriteria criteria)
+        {
+            return _userRepository.GetUserId(criteria);
+        }
+
         /// <summary>
         /// Return OnUserId.
         /// </summary>

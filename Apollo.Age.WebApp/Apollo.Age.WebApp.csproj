@@ -359,6 +359,7 @@
     <Content Include="Views\Message\Images\loading_2.gif" />
     <Content Include="Views\Message\Resources\Message.js" />
     <Content Include="Views\PermissionUserControl\Resources\AssignFunction.js" />
+    <Content Include="Views\Reports\Resources\CreditReport.js" />
     <Content Include="Views\Reports\Resources\Outstanding.js" />
     <Content Include="Views\Reports\Resources\Reports.js" />
     <Content Include="Views\Reports\Resources\SportCredit.js" />
@@ -930,6 +931,7 @@
     <Content Include="Views\Forecast\ForecastByMatch.cshtml" />
     <Content Include="Views\Forecast\ForecastByMatchContent.cshtml" />
     <Content Include="Views\Forecast\Shared\_Layout.cshtml" />
+    <Content Include="Views\Reports\CreditReport.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

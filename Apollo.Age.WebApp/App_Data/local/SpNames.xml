@@ -345,7 +345,7 @@
     </Setting>
 
     <Setting Key="Age_Rpt_CustCount" SpName="Age_Rpt_CustCount" DbName="SVRAGE.RepDB.aplweb" Plain="0"/>
-
+    <Setting Key="Age_Rpt_Credit" SpName="Age_Rpt_Credit" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-TotalBets">

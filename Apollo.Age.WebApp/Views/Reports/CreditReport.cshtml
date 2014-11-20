@@ -1,0 +1,177 @@
+﻿@using Apollo.Age.Reports.ViewModels
+@using Apollo.Age.Resources
+@using Apollo.Age.Configurations
+
+@model CreditReportViewModel
+
+@{
+    ViewBag.Title = Lang.agentwinloss;
+    Layout = "~/Views/Reports/Shared/_Layout.cshtml";
+    string rowClass = string.Empty;
+    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
+
+    var hasDownlineDetailsPermission = FunctionPermissions[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+    int counter = 0;
+    var currentDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
+    var currentPeriodClass = string.Empty;
+
+    var currentPeriodFromDate = DateTime.Now;
+    var currentPeriodToDate = DateTime.Now;
+    var oldPeriodFromDate = DateTime.Now;
+    var oldPeriodToDate = DateTime.Now;
+
+    string[] peakHours = AppSettings.ReportPeakHour.Split('>');
+    var fromHour = (int.Parse(peakHours[0]) > 0 && int.Parse(peakHours[0]) < 9 ? "0" + peakHours[0] : peakHours[0]) + ":00";
+    var toHour = (int.Parse(peakHours[1]) > 0 && int.Parse(peakHours[1]) < 9 ? "0" + peakHours[1] : peakHours[1]) + ":00";
+}
+
+@Html.Partial("Menu",
+new ReportMenuViewModel
+{
+    SportList = null,
+    FunctionPolicyList = FunctionPermissions,
+    ReportName = Lang.lblCreditReport,
+    SportDropDownClassName = "menu report-sportcredit"
+})
+
+@section scripts
+{
+    @Scripts.Render("~/scripts/creditreportjs")
+}
+
+<div id="box_header" class="report">
+    <table class="winloss">
+        <tr>
+            <td class="firstcolumn">
+                @Lang.dateRange:
+            </td>
+            <td class="secondcolumn">
+                <div class="row">
+                    <div class="cell">
+                        <div class="editor">
+                            @Html.DatePicker("FromDate", Model.FromDate)
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="label">
+                            <label for="FromDate">
+                                ~
+                            </label>
+                        </div>
+                        <div class="editor">
+                            @Html.DatePicker("ToDate", Model.ToDate)
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <input class="btn dateRange" data-range="1" type="button" value="@Lang.today" />
+                        <input  class="btn dateRange" data-range="2" type="button" value="@Lang.yesterday" />
+                        <input  class="btn dateRange" data-range="4" type="button" value="@Lang.thisWeek" />
+                        <input class="btn dateRange" data-range="5" type="button" value="@Lang.lastWeek" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="firstcolumn">
+                @Html.DropDownListFor(m => m.IsAgent, new List<SelectListItem> {
+					new SelectListItem { Value = "true", Text = Lang.agent },
+					new SelectListItem { Value = "false", Text = Lang.member }
+				}, new { id = "IsAgent" })
+            </td>
+            <td class="secondcolumn">
+                @Html.TextBoxFor(m => m.Username, new { id = "username", maxlength = "50", @class = "username" })
+            </td>
+        </tr>
+    </table>
+    <div>
+        <div class="row bg-action">
+            <div class="item btn-action">
+                <input id="btnSubmit" class="btn" type="button" value="@Lang.search" />
+                <input id="btnCancel" class="btn" type="button" value="@Lang.Cancel" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Hidden("agentId", Model.AgentId)
+@Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
+@Html.Hidden("hdFromDate", Formater.ShortDateFormat(Model.FromDate))
+@Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))
+@Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
+@Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
+@Html.Hidden("tomorrow", Formater.ShortDateFormat(DateTime.Now.AddDays(1)))
+@Html.Hidden("thisWeekFrom", Formater.ShortDateFormat(DateTime.Now.StartOfWeek()))
+@Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
+@Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
+@Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
+
+<div id="container">
+    <div id="navigationAgent" class="nav-outright">
+        <br />
+    </div>
+    <div class="export-excel outright" id="export-excel">
+    </div>
+
+    <table class="tblRpt report tblCreditReport">
+        <thead class="persist-header">
+            <tr>
+                <th style="width: 40px;">
+                    #
+                </th>
+                <th style="width: 100px;">
+                    @Lang.TransNo
+                </th>
+                <th style="width: 140px;">
+                    @Lang.TransDate
+                </th>
+                <th style="width: 80px;">
+                    @Lang.TransType
+                </th>
+                <th style="width: 80px;">
+                    @Lang.Amount
+                </th>
+                <th style="width: 80px;">
+                    @Lang.BalanceAmount
+                </th>
+                <th>
+                    @Lang.Remark
+                </th>
+            </tr>
+        </thead>
+        @if (Model.TransactionList != null && Model.TransactionList.Any())
+        {
+            var i = 0;
+            <tbody>
+                @foreach (var item in Model.TransactionList)
+                {
+                    i++;
+                    <tr>
+                        <td class='c'>
+                            @i
+                        </td>
+                        <td class='c'>
+                            @Html.Raw(item.TransId)
+                        </td>
+                        <td class='c'>
+                            @Html.Raw(item.TransDate)
+                        </td>
+                        <td>
+                            @Html.Raw(item.TransType)
+                        </td>
+                        <td class='r nowrap @(item.Amount < 0 ? "negative" : string.Empty)'>
+                            @Formater.FormatNumber20(item.Amount, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td class='r nowrap @(item.BalanceAmount < 0 ? "negative" : string.Empty)'>
+                            @Formater.FormatNumber20(item.BalanceAmount, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td>
+                            @Html.Raw(item.TransDesc)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        }
+    </table>
+    <iframe id="exportExcelFrame" width="0" height="0" style="display: none"></iframe>
+</div>

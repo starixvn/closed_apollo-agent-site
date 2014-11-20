@@ -52,6 +52,31 @@ namespace Apollo.Age.Repositories.Impl
         }
 
         /// <summary>
+        /// Gets the user status.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Return a user status.</returns>
+        public int GetUserId(UserIdByUsernameCriteria criteria)
+        {
+            int userId = -1;
+
+            if (criteria.IsValid())
+            {
+                using (ObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
+                {
+                    var currentParams = criteria.GetSpParams();
+                    objectDb.ExecuteNonQuery(currentParams);
+
+                    if(criteria.ErrCode == 0){
+                        userId = criteria.IsAgent ? Converter.ToInt(currentParams["agentid"]) : Converter.ToInt(currentParams["custid"]);
+                    }
+                }
+            }
+
+            return userId;
+        }
+
+        /// <summary>
         /// Fetches the specified criteria.
         /// </summary>
         /// <param name="criteria">The criteria.</param>

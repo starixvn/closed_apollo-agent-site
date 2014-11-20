@@ -82,7 +82,14 @@
                     </td>
                 }
                 <td class="policy">
+                @if (string.Equals(itemFunction.FunctionKey, "DepositDraw", StringComparison.OrdinalIgnoreCase))
+                {
+                    <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.Id" value="@itemFunction.Id" checked="checked" disabled="disabled" />
+                }
+                else
+                {
                     <input type="checkbox" name="funcRead" id="funcRead_@itemFunction.Id" value="@itemFunction.Id" @checkRead @disableRead/>
+                }
                 </td>
             </tr>
                 }

@@ -33,6 +33,8 @@ namespace Apollo.Age.Repositories.Interface
         /// <returns>Return a number.</returns>
         int GetUserStatus(ICriteria criteria);
 
+        int GetUserId(UserIdByUsernameCriteria criteria);
+
         /// <summary>
         /// Interface for internal log-in log.
         /// </summary>
