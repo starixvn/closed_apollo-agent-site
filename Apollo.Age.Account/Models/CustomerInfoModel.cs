@@ -59,12 +59,12 @@ namespace Apollo.Age.Account.Models
         {
             get
             {
-                if (!IsMember)
+                if (IsMember)
                 {
-                    return SportCredit;
+                    return CashBalance;
                 }
 
-                return CashBalance;
+                return SportCredit;
             }
         }
 
