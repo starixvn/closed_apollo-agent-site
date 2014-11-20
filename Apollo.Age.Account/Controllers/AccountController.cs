@@ -292,7 +292,11 @@ namespace Apollo.Age.Account.Controllers
         {
             var memberInfo = new CustomerInfoModel();
 
-            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            ViewBag.DepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw];
+
+            var hasDownlineDetailsPermission =  userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             /* Check downline details permission
              * Downline details policy < 1 => Can not search member ( all member)

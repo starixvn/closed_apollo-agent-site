@@ -347,11 +347,12 @@
                             @Lang.ShadowPermission
                         </a>
                         }
-                        // These links are invisible for Main Shareholder level
-                        if (Model.Level >= 2)
-                        {
-                            if (depositDrawPermission == (byte)Policy.Edit)
-                            { 
+                    }
+                    @*These links are invisible for Main Shareholder level*@
+                    @if (Model.Level >= AgentLevel.Shareholder || Model.IsMember)
+                    {
+                        if (depositDrawPermission == (byte)Policy.Edit)
+                        { 
                            
                         <a class="lnk-setting" target="main" href="~/PermissionUserControl/AgentUserList?agentid=@Model.CustId&username=@Model.Username">
                             @Lang.Deposit
@@ -359,7 +360,6 @@
                         <a class="lnk-setting" target="main" href="~/PermissionUserControl/AgentUserList?agentid=@Model.CustId&username=@Model.Username">
                             @Lang.Draw
                         </a>
-                            }
                         }
                     }
                 </div>
