@@ -462,9 +462,9 @@
         {
             <li @classWinlossHistory><a href="~/Reports/AgentWinLoss?ishistory=true">@Lang.lblWinLossHistory</a></li>
         }
-         @if (functionPermissions[ApolloFunctionKeys.WinLoss] >= (byte)Policy.Query)
+         @if (functionPermissions[ApolloFunctionKeys.CreditReport] >= (byte)Policy.Query)
          {
-            <li @classCreditReport><a href="~/Reports/CreditReport?ishistory=true">@Lang.lblCreditReport</a></li>
+            <li @classCreditReport><a href="~/Reports/CreditReport">@Lang.lblCreditReport</a></li>
          }
 
     </ul>
