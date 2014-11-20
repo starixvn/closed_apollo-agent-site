@@ -53,6 +53,21 @@ namespace Apollo.Age.Account.Models
 
         public decimal SportCredit { get; set; }
 
+        public decimal CashBalance { get; set; }
+
+        public decimal UserBalance
+        {
+            get
+            {
+                if (!IsMember)
+                {
+                    return SportCredit;
+                }
+
+                return CashBalance;
+            }
+        }
+
         public List<Agent> AgentPathList { get; set; }
     }
 }

@@ -210,7 +210,7 @@
                             Sport Credit
                         </td>
                         <td class="info-data">
-                            @Model.SportCredit.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)
+                            @Formater.DecFormat(@Model.UserBalance, 2)
                         </td>
                     </tr>
                 </tbody>
