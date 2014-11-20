@@ -297,6 +297,34 @@ html, body {
 		float: right;
 	}
 
+	.status-box
+    {
+		position: relative;
+		border: 1px solid;
+		border-left: 0px;
+		margin-right: 10px;
+		margin-left: 5px;
+		margin-top: 15px;
+		padding: 10px 5px;
+
+		.status-info
+		{
+			width: 199px;
+ 			tr {
+					td {
+						padding: 10px 0;
+						border-top : 1px dashed @borderLightColor;
+					}
+
+					&:first-child td{
+						border-top: none;
+					}
+			}
+
+
+		}
+	}
+
 	#agent-setting {
 		position: absolute;
 		top: 135px;

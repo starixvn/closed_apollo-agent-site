@@ -215,6 +215,7 @@ namespace Apollo.Age.Account.Controllers
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
             ViewBag.CustomerSettingPermission = userPermission[ApolloFunctionKeys.CustomerSetting];
+            ViewBag.DepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw];
             ViewBag.PermissionControl = userPermission[ApolloFunctionKeys.PermissionControl];
             ViewBag.ShadowPermissionControl = userPermission[ApolloFunctionKeys.ShadowPermission];
             ViewBag.ViewLogPermission = userPermission[ApolloFunctionKeys.SystemLog];

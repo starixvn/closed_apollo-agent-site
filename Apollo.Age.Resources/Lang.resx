@@ -2158,4 +2158,10 @@
   <data name="lblfirstgoallastgoal" xml:space="preserve">
     <value>1st First Goal/Last Goal</value>
   </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="Draw" xml:space="preserve">
+    <value>Draw</value>
+  </data>
 </root>

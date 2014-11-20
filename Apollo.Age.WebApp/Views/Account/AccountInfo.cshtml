@@ -9,12 +9,12 @@
     var topMember = (MemberListModel)ViewBag.TopMember;
     var customerSettingPermission = ViewBag.CustomerSettingPermission != null ? (byte)ViewBag.CustomerSettingPermission : -1;
     var permissionControl = ViewBag.PermissionControl != null ? (byte)ViewBag.PermissionControl : -1;
+    var depositDrawPermission = ViewBag.DepositDrawPermission != null ? (byte)ViewBag.DepositDrawPermission : -1;
     var shadowPermissionControl = ViewBag.ShadowPermissionControl != null ? (byte)ViewBag.ShadowPermissionControl : -1;
     var viewLogPermission = ViewBag.ViewLogPermission != null ? (byte)ViewBag.ViewLogPermission : -1;
     var hasDownlineDetailsPermission = ViewBag.DownlineDetailsPolicy != null ? (byte)ViewBag.DownlineDetailsPolicy >= (byte)Policy.Query : false;
     var agentLevelId = new int[4];
 }
-
 <table id="tab-menu">
     <tr>
         <td>
@@ -62,7 +62,6 @@
                             agentLevelId[i] = item.Id;
                         <tr>
                             @RenderAgentLevelName(item.Level, "parent-lbl")
-                           
                             <td class="parent-name">
                                 @if (item.Level == AgentLevel.Super)
                                 {
@@ -186,6 +185,38 @@
                 </a>
             }
         </div>
+        
+        <div class="status-box">
+            <table class="status-info">
+                <tbody>
+                    <tr>
+                        <td>
+                            Account Status
+                        </td>
+                        <td class="account-info">
+                            @Model.Status
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Bet Status
+                        </td>
+                        <td class="bet-info">
+                            @Model.BetStatus
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Sport Credit
+                        </td>
+                        <td class="credit-info">
+                            @Model.SportCredit
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
         <div id="agent-setting">
             <ul class="tabs">
                 <li id="custsettings" class="current"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
@@ -314,7 +345,22 @@
                         { 
                         <a class="lnk-setting" target="main" href="~/PermissionUserControl/AgentUserList?agentid=@Model.CustId&username=@Model.Username">
                             @Lang.ShadowPermission
-                        </a>}
+                        </a>
+                        }
+                        // These links are invisible for Main Shareholder level
+                        if (Model.Level >= 2)
+                        {
+                            if (depositDrawPermission == (byte)Policy.Edit)
+                            { 
+                           
+                        <a class="lnk-setting" target="main" href="~/PermissionUserControl/AgentUserList?agentid=@Model.CustId&username=@Model.Username">
+                            @Lang.Deposit
+                        </a>
+                        <a class="lnk-setting" target="main" href="~/PermissionUserControl/AgentUserList?agentid=@Model.CustId&username=@Model.Username">
+                            @Lang.Draw
+                        </a>
+                            }
+                        }
                     }
                 </div>
                 <div id="agentsTab-content">
@@ -328,7 +374,8 @@
                         <div class="no-data">@Lang.NoneAgent</div>
                     }
                 </div>
-                <div id="membersTab-content"></div>
+                <div id="membersTab-content">
+                </div>
             </div>
         </div>
         }

@@ -21,7 +21,8 @@ var ACCOUNT = (function ($) {
             // Set posituon for agent tab
             var heightSearchBox = $('.search-box').height(),
                 heightButton = $('.btn-list').height(),
-                topAgentList = heightSearchBox + heightButton + 30;
+                heightStatus = $('.status-box').height(),
+                topAgentList = heightSearchBox + heightButton + heightStatus + 67;
             // Check IE
             var version = 999; // we assume a sane browser
             if (navigator.appVersion.indexOf("MSIE") !== -1) {

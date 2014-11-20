@@ -43,6 +43,12 @@ namespace Apollo.Age.Account.Models
 
         public bool IsSuper { get; set; }
 
+        public int Status { get; set; }
+
+        public int BetStatus { get; set; }
+
+        public decimal SportCredit { get; set; }
+
         public List<Agent> AgentPathList { get; set; }
     }
 }
