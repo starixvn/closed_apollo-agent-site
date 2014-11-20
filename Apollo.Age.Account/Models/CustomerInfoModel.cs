@@ -43,9 +43,13 @@ namespace Apollo.Age.Account.Models
 
         public bool IsSuper { get; set; }
 
-        public int Status { get; set; }
+        public byte Status { get; set; }
 
-        public int BetStatus { get; set; }
+        public byte UplineStatus { get; set; }
+
+        public byte BetStatus { get; set; }
+
+        public byte UplineBetStatus { get; set; }
 
         public decimal SportCredit { get; set; }
 

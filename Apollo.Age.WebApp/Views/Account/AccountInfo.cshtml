@@ -193,23 +193,23 @@
                         <td>
                             Account Status
                         </td>
-                        <td class="account-info">
-                            @Model.Status
+                        <td class="info-data">
+                            @Model.Status.ToStringStatus(Model.UplineStatus)
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Bet Status
                         </td>
-                        <td class="bet-info">
-                            @Model.BetStatus
+                        <td class="info-data">
+                            @Model.BetStatus.ToStringStatus(Model.UplineBetStatus)
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Sport Credit
                         </td>
-                        <td class="credit-info">
+                        <td class="info-data">
                             @Model.SportCredit
                         </td>
                     </tr>
