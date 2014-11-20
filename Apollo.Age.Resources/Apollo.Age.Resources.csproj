@@ -264,6 +264,7 @@
     <EmbeddedResource Include="LangMsg.ja-JP.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LangMsg.ja-JP.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LangMsg.ko-KR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -210,7 +210,7 @@
                             Sport Credit
                         </td>
                         <td class="info-data">
-                            @Model.SportCredit
+                            @Model.SportCredit.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)
                         </td>
                     </tr>
                 </tbody>
