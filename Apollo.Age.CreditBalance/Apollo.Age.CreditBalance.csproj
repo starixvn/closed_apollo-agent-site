@@ -57,6 +57,7 @@
     <Compile Include="Criterias\AgentGetMemberRangeInfoCriteria.cs" />
     <Compile Include="Criterias\AgentTransferMemberCriteria.cs" />
     <Compile Include="Entities\AgentBalanceInfo.cs" />
+    <Compile Include="Entities\MemberBalanceInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CreditBalanceService.cs" />
     <Compile Include="Services\ICreditBalanceService.cs" />

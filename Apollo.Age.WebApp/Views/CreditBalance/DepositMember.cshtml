@@ -5,26 +5,34 @@
     Layout = "~/Views/CreditBalance/Shared/_Layout.cshtml";
     ViewBag.Title = Lang.Deposit;
 }
+<div id="function-bar">
+    <div class="item detail-information">
+        <span>
+            @string.Format("{0} - {1}", @Lang.Deposit, @Model.Username)
+        </span><a href="@Model.BackLink">--@Lang.back</a>
+    </div>
+    <div class="end">
+    </div>
+</div>
+<div class="clear-both">
+</div>
+@Html.Hidden("back-link", @Model.BackLink)
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "credit-form" }))
 {
     @Html.HiddenFor(m => m.CustomerId)
 
-    <table class="tblRpt">
+    <table class="credit-balance">
         <tbody>
             <tr>
-                <td>
-                    @Html.Label("deposit-amount", @Lang.DepositAmount)
+                <td class="lbl-amount">
+                    @Html.Label("lbl-amount", @Lang.DepositAmount)
                 </td>
                 <td>
                     @Html.TextBox("amount", string.Empty, new { data_min = Model.MinAmount, data_max = Model.MaxAmount })
-                </td>
-                <td>
-                    @Html.Label(string.Empty, "[" + @Model.MinAmount + " - " + @Model.MaxAmount.ToString("#,###.##") + "]")
+                    @Html.Label(string.Empty, "(" + @Model.MinAmount + " - " + @Model.MaxAmount.ToString("#,###.##") + ")")
                 </td>
             </tr>
-            <tr>
-                <td>
-                </td>
+            <tr class="btn-action">
                 <td colspan="2">
                     <input id="deposit-member-submit" type="button" value="@Lang.SubmitCredit" />
                 </td>

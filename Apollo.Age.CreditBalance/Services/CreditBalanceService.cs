@@ -17,6 +17,11 @@
             return GetListData<AgentBalanceInfo>(criteria).FirstOrDefault();
         }
 
+        public MemberBalanceInfo AgentGetMemberInfo(AgentGetMemberRangeInfoCriteria criteria)
+        {
+            return GetListData<MemberBalanceInfo>(criteria).FirstOrDefault();
+        }
+
         public Result AgentTransferAgent(AgentTransferAgentCriteria criteria)
         {
             return Execute(criteria);

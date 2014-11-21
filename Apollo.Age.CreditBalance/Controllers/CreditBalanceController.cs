@@ -28,10 +28,10 @@
         }
 
         [HttpGet]
-        public ActionResult DepositAgent(int agentId)
+        public ActionResult DepositAgent(int agentId, string username, string backLink)
         {
-            var model = new CreditBalanceViewModel { CustomerId = agentId };
-            var criteria = new AgentGetAgentRangeInfoCriteria { AgentId = CurrentSession.AgentId };
+            var model = new CreditBalanceViewModel { CustomerId = agentId, Username = username, BackLink = backLink };
+            var criteria = new AgentGetAgentRangeInfoCriteria { AgentId = agentId };
             model.MaxAmount = _creditBalanceService.AgentGetAgentInfo(criteria).SportCredit;
 
             return View(model);
@@ -49,10 +49,10 @@
         }
 
         [HttpGet]
-        public ActionResult DrawAgent(int agentId)
+        public ActionResult DrawAgent(int agentId, string username, string backLink)
         {
-            var model = new CreditBalanceViewModel { CustomerId = agentId };
-            var criteria = new AgentGetAgentRangeInfoCriteria { AgentId = CurrentSession.AgentId };
+            var model = new CreditBalanceViewModel { CustomerId = agentId, Username = username, BackLink = backLink };
+            var criteria = new AgentGetAgentRangeInfoCriteria { AgentId = agentId };
             model.MaxAmount = _creditBalanceService.AgentGetAgentInfo(criteria).SportCredit;
 
             return View(model);
@@ -70,11 +70,11 @@
         }
 
         [HttpGet]
-        public ActionResult DepositMember(int custId)
+        public ActionResult DepositMember(int custId, string username, string backLink)
         {
-            var model = new CreditBalanceViewModel { CustomerId = custId };
-            var criteria = new AgentGetAgentRangeInfoCriteria { AgentId = CurrentSession.AgentId };
-            model.MaxAmount = _creditBalanceService.AgentGetAgentInfo(criteria).SportCredit;
+            var model = new CreditBalanceViewModel { CustomerId = custId, Username = username, BackLink = backLink };
+            var criteria = new AgentGetMemberRangeInfoCriteria { CustId = custId };
+            model.MaxAmount = _creditBalanceService.AgentGetMemberInfo(criteria).SportCredit;
 
             return View(model);
         }
@@ -91,11 +91,11 @@
         }
 
         [HttpGet]
-        public ActionResult DrawMember(int custId)
+        public ActionResult DrawMember(int custId, string username, string backLink)
         {
-            var model = new CreditBalanceViewModel { CustomerId = custId };
-            var criteria = new AgentGetAgentRangeInfoCriteria { AgentId = CurrentSession.AgentId };
-            model.MaxAmount = _creditBalanceService.AgentGetAgentInfo(criteria).SportCredit;
+            var model = new CreditBalanceViewModel { CustomerId = custId, Username = username, BackLink = backLink };
+            var criteria = new AgentGetMemberRangeInfoCriteria { CustId = custId };
+            model.MaxAmount = _creditBalanceService.AgentGetMemberInfo(criteria).SportCredit;
 
             return View(model);
         }

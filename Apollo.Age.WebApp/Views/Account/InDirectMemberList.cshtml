@@ -95,7 +95,7 @@
                     @Lang.lblview
                 }</a>
             @:&nbsp;/&nbsp;
-                                                		}
+                                                        		}
         <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)">@Lang.Detail</a>
         @if (!AppSettings.DisableEditOnMember)
         {
@@ -203,7 +203,7 @@
                                             @Lang.lblview
                                         }</a>
                                     @:&nbsp;/&nbsp;
-                                                                                                                                                                                                								}
+                                                                                                                                                                                                                                								}
                                 <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
                                 @if (!AppSettings.DisableEditOnMember)
                                 {
@@ -222,9 +222,9 @@
                                         </ul>
                                     </div>
                                 }
-                                <span class="deposit-member" member-id="@item.MemberId" member-username="@item.Username">
+                                <span class="deposit-member" member-id="@item.MemberId" member-username="@item.Username" back-link="@backLink">
                                     @(" / " + Lang.Deposit + " / ")
-                                </span><span class="draw-member" member-id="@item.MemberId" member-username="@item.Username">
+                                </span><span class="draw-member" member-id="@item.MemberId" member-username="@item.Username" back-link="@backLink">
                                     @Lang.Draw
                                 </span>
                             </div>

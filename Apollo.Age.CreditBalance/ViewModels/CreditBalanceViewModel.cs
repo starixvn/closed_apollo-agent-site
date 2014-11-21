@@ -9,6 +9,10 @@
     {
         public int CustomerId { get; set; }
 
+        public string Username { get; set; }
+
+        public string BackLink { get; set; }
+
         public decimal MinAmount { get; set; }
 
         public decimal MaxAmount { get; set; }

@@ -132,42 +132,26 @@ var ACCOUNTLIST = (function ($) {
 
             $('.deposit-agent').on('click', function () {
                 var $this = $(this);
-                var url = APOLLO.resolveUrl("CreditBalance/DepositAgent?agentId=" + $this.attr("agent-id"));
-                APOLLO.openDialogFrame(url, 'Deposit - ' + $this.attr('agent-username'), {
-                    width: 450,
-                    height: 150,
-                    position: { my: "center", at: "center", of: window }
-                });
+                window.location.href = APOLLO.resolveUrl("CreditBalance/DepositAgent?agentId=" + $this.attr("agent-id") +
+                                                            "&username=" + $this.attr('agent-username') + "&backlink=" + $this.attr('back-link'));
             });
 
             $('.draw-agent').on('click', function () {
                 var $this = $(this);
-                var url = APOLLO.resolveUrl("CreditBalance/DrawAgent?agentId=" + $this.attr("agent-id"));
-                APOLLO.openDialogFrame(url, 'Draw - ' + $this.attr('agent-username'), {
-                    width: 450,
-                    height: 150,
-                    position: { my: "center", at: "center", of: window }
-                });
+                window.location.href = APOLLO.resolveUrl("CreditBalance/DrawAgent?agentId=" + $this.attr("agent-id") +
+                                                            "&username=" + $this.attr('agent-username') + "&backlink=" + $this.attr('back-link'));
             });
 
             $('.deposit-member').on('click', function () {
                 var $this = $(this);
-                var url = APOLLO.resolveUrl("CreditBalance/DepositMember?custId=" + $this.attr("member-id"));
-                APOLLO.openDialogFrame(url, 'Deposit - ' + $this.attr('member-username'), {
-                    width: 450,
-                    height: 150,
-                    position: { my: "center", at: "center", of: window }
-                });
+                window.location.href = APOLLO.resolveUrl("CreditBalance/DepositMember?custId=" + $this.attr("member-id") +
+                                                            "&username=" + $this.attr('member-username') + "&backlink=" + $this.attr('back-link'));
             });
 
             $('.draw-member').on('click', function () {
                 var $this = $(this);
-                var url = APOLLO.resolveUrl("CreditBalance/DrawMember?memberId=" + $this.attr("member-id"));
-                APOLLO.openDialogFrame(url, 'Draw - ' + $this.attr('member-username'), {
-                    width: 450,
-                    height: 150,
-                    position: { my: "center", at: "center", of: window }
-                });
+                window.location.href = APOLLO.resolveUrl("CreditBalance/DrawMember?custId=" + $this.attr("member-id") +
+                                                            "&username=" + $this.attr('member-username') + "&backlink=" + $this.attr('back-link'));
             });
 
             $('html, body').click(function () {

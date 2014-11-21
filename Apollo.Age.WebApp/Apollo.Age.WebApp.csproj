@@ -939,6 +939,7 @@
     <Content Include="Views\CreditBalance\DepositAgent.cshtml" />
     <Content Include="Views\CreditBalance\DepositMember.cshtml" />
     <Content Include="Views\CreditBalance\DrawMember.cshtml" />
+    <Content Include="Views\CreditBalance\Resources\credit-balance.less" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

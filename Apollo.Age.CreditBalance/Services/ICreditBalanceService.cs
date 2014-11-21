@@ -9,6 +9,8 @@
     {
         AgentBalanceInfo AgentGetAgentInfo(AgentGetAgentRangeInfoCriteria criteria);
 
+        MemberBalanceInfo AgentGetMemberInfo(AgentGetMemberRangeInfoCriteria criteria);
+
         Result AgentTransferAgent(AgentTransferAgentCriteria criteria);
 
         Result AgentTransferMember(AgentTransferMemberCriteria criteria);

@@ -129,6 +129,7 @@ namespace Apollo.Age.WebApp
 
             bundles.AddAndInclude(
              "~/css/creditbalance",
+             "~/views/creditbalance/resources/credit-balance.less",
               "~/_globalresources/js/Validation/validationEngine.jquery.css");
 
             // js

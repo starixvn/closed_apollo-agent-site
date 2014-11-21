@@ -73,8 +73,6 @@
                 </th>
                 <th class="width-70">@Lang.member
                 </th>
-                <th class="width-140">@Lang.SportCredit
-                </th>
                 <th class="width-80">@Lang.status
                 </th>
                 <th class="width-80">@Lang.betstatus
@@ -132,9 +130,6 @@
                         {
                             <span>0</span>
                         }
-                    </td>
-                    <td>
-                        @Html.Raw(item.SportCredit.ToString("#,##0.##"))
                     </td>
                     <td>
                         @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))

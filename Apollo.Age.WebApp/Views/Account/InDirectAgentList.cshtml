@@ -96,13 +96,15 @@
                 <th class="width-70">
                     @Lang.member
                 </th>
+                <th class="width-80">@Lang.SportCredit
+                </th>
                 <th class="width-80">
                     @Lang.status
                 </th>
                 <th class="width-80">
                     @Lang.betstatus
                 </th>
-                <th class="width-400">
+                <th class="width-320">
                     @Lang.Feature
                 </th>
             </tr>
@@ -138,6 +140,9 @@
                         {
                             <span>0</span>
                         }
+                    </td>
+                    <td>
+                        @Html.Raw(item.SportCredit.ToString("#,##0.##"))
                     </td>
                     <td>
                         @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
@@ -208,16 +213,11 @@
                                 @Lang.ShadowPermission
                             </a>
                         }
-                        @if (uplineLevel != 1)
-                        {
-                            <span class="deposit-agent" agent-id="@item.AgentId" agent-username="@item.Username">
-                                @(" / " + Lang.Deposit + " / ")
-                            </span>
-
-                            <span class="draw-agent" agent-id="@item.AgentId" agent-username="@item.Username">
-                                @Lang.Draw
-                            </span>
-                        }
+                        <span class="deposit-agent" agent-id="@item.AgentId" agent-username="@item.Username" back-link="@backLink">
+                            @(" / " + Lang.Deposit + " / ")
+                        </span><span class="draw-agent" agent-id="@item.AgentId" agent-username="@item.Username"  back-link="@backLink">
+                            @Lang.Draw
+                        </span>
                     </td>
                 </tr>
             }

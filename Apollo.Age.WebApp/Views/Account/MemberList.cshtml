@@ -36,7 +36,7 @@
 				                }, new { @class = "za_select" })
         </div>
         @if (!ReferenceEquals(memberList, null) && memberList.Any())
-        { 
+        {
             <div class="item">
                 --<label>@Lang.Page</label>:
                 @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
@@ -77,7 +77,7 @@
                     @Lang.lblview
                 }</a>
             @:&nbsp;/&nbsp;
-		}
+                		}
         <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
     </div>
 }
@@ -101,7 +101,7 @@
                 <th class="width-80">@Lang.SportCredit
                 </th>
                 @if (Model.CustomerSettingPolicy >= (byte)Policy.Query && Model.HasDownlineDetailsPermission)
-                { 
+                {
                     <th class="width-140">@Lang.Feature
                         <div class="edit-member-share">
                             <a class="lnk-setting" target="main" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@memberList[0].MemberId&amp;agentId=@Model.AgentId&amp;userName=@memberList[0].Username&amp;agentUsername=@agentUsername&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
@@ -124,7 +124,7 @@
                     }
                     <td>
                         @if (Model.HasDownlineDetailsPermission)
-                        { 
+                        {
                             @item.Username
                         }
                         else
@@ -164,10 +164,15 @@
                                         @Lang.lblview
                                     }</a>
                                 @:&nbsp;/&nbsp;
-							}
+                                                        							}
                             <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
                         </td>
                     }
+                    <span class="deposit-member" member-id="@item.MemberId" member-username="@item.Username">
+                        @(" / " + Lang.Deposit + " / ")
+                    </span><span class="draw-member" member-id="@item.MemberId" member-username="@item.Username">
+                        @Lang.Draw
+                    </span>
                 </tr>
             }
         </tbody>
