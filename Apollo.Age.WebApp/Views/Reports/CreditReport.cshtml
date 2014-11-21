@@ -7,29 +7,13 @@
 @{
     ViewBag.Title = Lang.CreditReport;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
-    string rowClass = string.Empty;
-    Dictionary<string, byte> FunctionPermissions = (Dictionary<string, byte>)ViewBag.allFunctionPermission;
-
-    var hasDownlineDetailsPermission = FunctionPermissions[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
-    int counter = 0;
-    var currentDate = new DateTime(AppSettings.PeriodDateRange.Year, AppSettings.PeriodDateRange.Month, AppSettings.PeriodDateRange.Day);
-    var currentPeriodClass = string.Empty;
-
-    var currentPeriodFromDate = DateTime.Now;
-    var currentPeriodToDate = DateTime.Now;
-    var oldPeriodFromDate = DateTime.Now;
-    var oldPeriodToDate = DateTime.Now;
-
-    string[] peakHours = AppSettings.ReportPeakHour.Split('>');
-    var fromHour = (int.Parse(peakHours[0]) > 0 && int.Parse(peakHours[0]) < 9 ? "0" + peakHours[0] : peakHours[0]) + ":00";
-    var toHour = (int.Parse(peakHours[1]) > 0 && int.Parse(peakHours[1]) < 9 ? "0" + peakHours[1] : peakHours[1]) + ":00";
 }
 
 @Html.Partial("Menu",
 new ReportMenuViewModel
 {
     SportList = null,
-    FunctionPolicyList = FunctionPermissions,
+    FunctionPolicyList = Model.UserPermission,
     ReportName = Lang.lblCreditReport,
     SportDropDownClassName = "menu report-sportcredit"
 })
@@ -100,7 +84,6 @@ new ReportMenuViewModel
 @Html.Hidden("hdToDate", Formater.ShortDateFormat(Model.ToDate))
 @Html.Hidden("today", Formater.ShortDateFormat(DateTime.Now))
 @Html.Hidden("yesterday", Formater.ShortDateFormat(DateTime.Now.AddDays(-1)))
-@Html.Hidden("tomorrow", Formater.ShortDateFormat(DateTime.Now.AddDays(1)))
 @Html.Hidden("thisWeekFrom", Formater.ShortDateFormat(DateTime.Now.StartOfWeek()))
 @Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
 @Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
@@ -111,7 +94,7 @@ new ReportMenuViewModel
         @Lang.exporttoexcel
     </div>
 
-    <table class="tblRpt betlist">
+    <table class="tblRpt tblCreditReport betlist">
         <thead class="persist-header">
             <tr>
                 <th style="width: 50px;">
@@ -133,7 +116,7 @@ new ReportMenuViewModel
                     @Lang.BalanceAmount
                 </th>
                 <th>
-                    @Lang.Remark
+                    @Lang.remark
                 </th>
             </tr>
         </thead>
@@ -149,13 +132,13 @@ new ReportMenuViewModel
                             @i
                         </td>
                         <td class='c'>
-                            @Html.Raw(item.TransId)
+                            @item.TransId
                         </td>
                         <td class='c'>
                             @Formater.FormatDateTimeEn12(item.TransDate)
                         </td>
                         <td>
-                            @Html.Raw(item.TransType)
+                            @item.TransType
                         </td>
                         <td class='r nowrap @(item.Amount < 0 ? "negative" : string.Empty)'>
                             @Formater.FormatNumber20(item.Amount, Formater.CULT_NAME_ENG)
@@ -164,7 +147,7 @@ new ReportMenuViewModel
                             @Formater.FormatNumber20(item.BalanceAmount, Formater.CULT_NAME_ENG)
                         </td>
                         <td>
-                            @Html.Raw(item.TransDesc)
+                            @item.TransDesc
                         </td>
                     </tr>
                 }

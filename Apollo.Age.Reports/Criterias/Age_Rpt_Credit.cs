@@ -3,6 +3,9 @@ namespace Apollo.Age.Reports.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Credit Report Criteria.
+    /// </summary>
     public class CreditReportCriteria : CriteriaBase
     {
         public int AgentId { get; set; }

@@ -3,6 +3,9 @@ namespace Apollo.Age.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// User Id By Username Criteria.
+    /// </summary>
     public class UserIdByUsernameCriteria : CriteriaBase
     {
         public int LoggedId { get; set; }

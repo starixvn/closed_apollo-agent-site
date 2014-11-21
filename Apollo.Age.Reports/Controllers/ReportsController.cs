@@ -57,11 +57,12 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         /// <summary>
-        /// Initializes a new instance of the ReportsController class.
+        /// Initializes a new instance of the <see cref="ReportsController"/> class.
         /// </summary>
-        /// <param name="outstandingService">Outstanding Service.</param>
-        /// <param name="winlossService">Win loss Service.</param>
-        /// <param name="sportCreditService">SportCredit Service.</param>
+        /// <param name="outstandingService">The outstanding service.</param>
+        /// <param name="winlossService">The win loss service.</param>
+        /// <param name="sportCreditService">The sport credit service.</param>
+        /// <param name="creditReportService">The credit report service.</param>
         public ReportsController(
             OutstandingService outstandingService = null,
             WinLossService winlossService = null,

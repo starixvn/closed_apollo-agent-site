@@ -67,7 +67,8 @@ namespace Apollo.Age.Repositories.Impl
                     var currentParams = criteria.GetSpParams();
                     objectDb.ExecuteNonQuery(currentParams);
 
-                    if(criteria.ErrCode == 0){
+                    if (criteria.ErrCode == 0)
+                    {
                         userId = criteria.IsAgent ? Converter.ToInt(currentParams["agentid"]) : Converter.ToInt(currentParams["custid"]);
                     }
                 }

@@ -62,7 +62,6 @@ var CREDITREPORT = (function ($) {
                 /* Range type value
                 + 1 : Today
                 + 2 : Yesterday
-                + 3 : Tomorrow
                 + 4 : This Week
                 + 5 : Last Week
                 */
@@ -107,8 +106,6 @@ var CREDITREPORT = (function ($) {
 } (jQuery));
 
 $(document).ready(function () {
-    // $.blockUI();
     CREDITREPORT.init();
     APOLLO.initPageInfo();
-    // $.unblockUI();
 }).ajaxStart($.blockUI).ajaxStop($.unblockUI);

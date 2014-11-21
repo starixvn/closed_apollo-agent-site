@@ -4240,7 +4240,4 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="BalanceAmount" xml:space="preserve">
     <value>Balance Amount</value>
   </data>
-  <data name="Remark" xml:space="preserve">
-    <value>Remark</value>
-  </data>
 </root>

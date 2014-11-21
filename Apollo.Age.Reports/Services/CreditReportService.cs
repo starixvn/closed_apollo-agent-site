@@ -2,20 +2,14 @@
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.IO;
     using System.Linq;
-    using System.Web;
-    using Apollo.Age.Enumerations;
-    using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
-    using Apollo.Age.Reports.Extension;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Resources;
-    using Apollo.Age.Web;
     using NPOI.HSSF.UserModel;
-    using NPOI.SS.UserModel;
     using NPOI.HSSF.Util;
+    using NPOI.SS.UserModel;
     using NPOI.SS.Util;
 
     /// <summary>
@@ -32,15 +26,11 @@
         }
 
         /// <summary>
-        /// Export Outstanding report excel file.
+        /// Exports the credit report.
         /// </summary>
-        /// <param name="isAgentOutStanding">Is Agent OutStanding.</param>
-        /// <param name="listCreditTrans">List OutStanding data.</param>
-        /// <param name="currentUsername">Current username.</param>
-        /// <param name="sportName">Sport name.</param>
-        /// <param name="betTypeName">Bet type name.</param>
-        /// <param name="isSuper">Is super or no.</param>
-        /// <returns>Outstanding Excel file.</returns>
+        /// <param name="model">The model.</param>
+        /// <param name="listCreditTrans">The list credit trans.</param>
+        /// <returns>Excel file.</returns>
         public HSSFWorkbook ExportCreditReport(
             CreditReportViewModel model,
             IEnumerable<TransactionCreditModel> listCreditTrans)
@@ -49,7 +39,7 @@
             CustomizeColor(hssfworkbook);
             ISheet sheet = hssfworkbook.CreateSheet("Credit Report");
 
-            if (listCreditTrans != null && listCreditTrans.Any())
+            if (listCreditTrans != null)
             {
                 RenderExcelTitle(hssfworkbook, sheet, 1, model);
                 RenderExcelHeader(hssfworkbook, sheet, 4);
@@ -73,6 +63,7 @@
                     RenderExcelBodyRows(
                         sheet,
                         rowIndex + i,
+                        i + 1,
                         currentCreditTrans,
                         numberFormat,
                         bodyStyleLeft,
@@ -85,15 +76,12 @@
         }
 
         /// <summary>
-        /// Render Outstanding Report Title.
+        /// Renders the excel title.
         /// </summary>
-        /// <param name="workBook">HSSF Workbook.</param>
-        /// <param name="sheet">Excel worksheet.</param>
-        /// <param name="fromRow">Row start.</param>
-        /// <param name="isAgent">Is Agent or Member.</param>
-        /// <param name="userName">User name.</param>
-        /// <param name="sportName">Sport group name.</param>
-        /// <param name="betTypeName">Bet type group name.</param>
+        /// <param name="workBook">The work book.</param>
+        /// <param name="sheet">The excel sheet.</param>
+        /// <param name="fromRow">From row index.</param>
+        /// <param name="model">The Credit Report model.</param>
         private void RenderExcelTitle(
             HSSFWorkbook workBook,
             ISheet sheet,
@@ -114,7 +102,8 @@
             var rowFilter = sheet.CreateRow(rownum: 2);
             var fontFilter = CreateFont(workBook, HSSFColor.Blue.Index, 11, true, true);
             var styleFilter = CreateStyle(workBook, font: fontFilter, isBorder: false);
-            CreateStringCell(rowFilter, 0, styleFilter, string.Format("{0} -- {1}: {2} ~ {3}", model.Username, Lang.dateRange, ShortDateFormat(model.FromDate), ShortDateFormat(model.ToDate)));
+            var title = string.Format("{0} -- {1}: {2} ~ {3}", model.Username, Lang.dateRange, ShortDateFormat(model.FromDate), ShortDateFormat(model.ToDate));
+            CreateStringCell(rowFilter, 0, styleFilter, title);
 
             sheet.AddMergedRegion(new CellRangeAddress(fromRow + 1, fromRow + 1, 0, 5));
         }
@@ -135,35 +124,38 @@
             usernameCell.CellStyle = headerStyle;
             usernameCell.SetCellValue(string.Empty);
 
-            CreateStringCell(row, 0, headerStyle, Lang.TransNo);
-            CreateStringCell(row, 1, headerStyle, Lang.TransDate);
-            CreateStringCell(row, 2, headerStyle, Lang.TransType);
-            CreateStringCell(row, 3, headerStyle, Lang.Amount);
-            CreateStringCell(row, 4, headerStyle, Lang.BalanceAmount);
-            CreateStringCell(row, 5, headerStyle, Lang.Remark);
+            CreateStringCell(row, 0, headerStyle, "#");
+            CreateStringCell(row, 1, headerStyle, Lang.TransNo);
+            CreateStringCell(row, 2, headerStyle, Lang.TransDate);
+            CreateStringCell(row, 3, headerStyle, Lang.TransType);
+            CreateStringCell(row, 4, headerStyle, Lang.Amount);
+            CreateStringCell(row, 5, headerStyle, Lang.BalanceAmount);
+            CreateStringCell(row, 6, headerStyle, Lang.remark);
 
             sheet.SetColumnWidth(0, 20 * 256);
-            sheet.SetColumnWidth(1, 30 * 256);
+            sheet.SetColumnWidth(1, 20 * 256);
             sheet.SetColumnWidth(2, 30 * 256);
-            sheet.SetColumnWidth(3, 20 * 256);
+            sheet.SetColumnWidth(3, 30 * 256);
             sheet.SetColumnWidth(4, 20 * 256);
-            sheet.SetColumnWidth(5, 35 * 256);
+            sheet.SetColumnWidth(5, 20 * 256);
+            sheet.SetColumnWidth(6, 35 * 256);
         }
 
         /// <summary>
-        /// Render Excel Outstanding Report body rows.
+        /// Renders the excel body rows.
         /// </summary>
-        /// <param name="sheet">Excel worksheet.</param>
-        /// <param name="rowIndex">Row index.</param>
-        /// <param name="userName">User name.</param>
-        /// <param name="outstandingAmount">Outstanding Amount.</param>
-        /// <param name="shareAmount">Share Amount.</param>
-        /// <param name="numberFormat">Number Format.</param>
+        /// <param name="sheet">The excel sheet.</param>
+        /// <param name="rowIndex">Index of the row.</param>
+        /// <param name="rowNumber">The row number.</param>
+        /// <param name="item">The item transaction.</param>
+        /// <param name="numberFormat">The number format.</param>
         /// <param name="bodyStyleLeft">The body style left.</param>
         /// <param name="bodyStyleRight">The body style right.</param>
+        /// <param name="bodyStyleCenter">The body style center.</param>
         private void RenderExcelBodyRows(
             ISheet sheet,
             int rowIndex,
+            int rowNumber,
             TransactionCreditModel item,
             short numberFormat,
             ICellStyle bodyStyleLeft,
@@ -172,12 +164,13 @@
         {
             IRow row = sheet.CreateRow(rowIndex);
 
-            CreateStringCell(row, 0, bodyStyleCenter, item.TransId.ToString());
-            CreateStringCell(row, 1, bodyStyleLeft, LongDateFormat(item.TransDate));
-            CreateStringCell(row, 2, bodyStyleLeft, item.TransType);
-            CreateNumberCell(row, 3, bodyStyleRight, numberFormat, (double)item.Amount);
-            CreateNumberCell(row, 4, bodyStyleRight, numberFormat, (double)item.BalanceAmount);
-            CreateStringCell(row, 5, bodyStyleLeft, item.TransDesc);
+            CreateStringCell(row, 0, bodyStyleCenter, rowNumber.ToString());
+            CreateStringCell(row, 1, bodyStyleCenter, item.TransId.ToString());
+            CreateStringCell(row, 2, bodyStyleLeft, LongDateFormat(item.TransDate));
+            CreateStringCell(row, 3, bodyStyleLeft, item.TransType);
+            CreateNumberCell(row, 4, bodyStyleRight, numberFormat, (double)item.Amount);
+            CreateNumberCell(row, 5, bodyStyleRight, numberFormat, (double)item.BalanceAmount);
+            CreateStringCell(row, 6, bodyStyleLeft, item.TransDesc);
         }
     }
 }

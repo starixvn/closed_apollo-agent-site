@@ -22,20 +22,24 @@
     /// <summary>
     /// Reports Controller.
     /// </summary>
-    //[SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public partial class ReportsController : BaseController
     {
         /// <summary>
         /// Credits the report.
         /// </summary>
         /// <param name="model">The model.</param>
-        /// <returns></returns>
+        /// <returns>View Result.</returns>
         public ViewResult CreditReport(CreditReportViewModel model)
         {
             // Get user permission
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
             var hasPermission = userPermission[ApolloFunctionKeys.CreditReport] >= (byte)Policy.Query;
-            ViewBag.allFunctionPermission = userPermission;
+            model.UserPermission = userPermission;
+
+            if (!hasPermission)
+            {
+                return View("ReportAccessDenied");
+            }
 
             if (string.IsNullOrEmpty(model.Username))
             {
@@ -45,23 +49,12 @@
                     ToDate = DateTime.Now,
                     Username = string.Empty,
                     IsAgent = true,
-                    TransactionList = new List<TransactionCreditModel>()
+                    TransactionList = new List<TransactionCreditModel>(),
+                    UserPermission = userPermission
                 });
             }
 
-            //if (!hasPermission || (agentId != null && !hasDownlineDetailsPermission))
-            if (!hasPermission)
-            {
-                return View("ReportAccessDenied");
-            }
-
             model.TransactionList = SearchTransaction(model);
-
-            var sessionKey = string.Format(
-                model.IsAgent ? Constants.SessionKeyAgentCreditReport : Constants.SessionKeyMemberCreditReport,
-                this.CurrentSession.UserId);
-
-            HttpContext.Session[sessionKey] = model.TransactionList;
 
             return this.View(model);
         }
@@ -70,43 +63,36 @@
         /// Exports the credit report.
         /// </summary>
         /// <param name="model">The model.</param>
-        /// <returns></returns>
+        /// <returns>Action Result.</returns>
         public ActionResult ExportCreditReport(CreditReportViewModel model)
         {
             // Get user permission.
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
-
             var hasPermission = userPermission[ApolloFunctionKeys.CreditReport] >= (byte)Policy.Query;
-            // var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
-            ViewBag.allFunctionPermission = userPermission;
+            model.UserPermission = userPermission;
 
             if (!hasPermission)
             {
                 return View("ReportAccessDenied");
             }
 
-            var sessionKey = string.Format(
-                model.IsAgent ? Constants.SessionKeyAgentCreditReport : Constants.SessionKeyMemberCreditReport,
-                this.CurrentSession.UserId);
-
-            var listCreditTrans = (List<TransactionCreditModel>)HttpContext.Session[sessionKey];
-
-            if (listCreditTrans == null)
-            {
-                listCreditTrans = SearchTransaction(model);
-            }
+            var listCreditTrans = SearchTransaction(model);
 
             var excelResult = this._creditReportService.ExportCreditReport(model, listCreditTrans);
-
-            return ExcelResult(excelResult, string.Format("CreditReport_{0}_{1}_{2}", model.Username, this._creditReportService.ShortDateFormat(model.FromDate), this._creditReportService.ShortDateFormat(model.ToDate)));
+            var fileName = string.Format(
+                "CreditReport_{0}_{1}_{2}",
+                model.Username,
+                _creditReportService.ShortDateFormat(model.FromDate),
+                _creditReportService.ShortDateFormat(model.ToDate));
+            return ExcelResult(excelResult, fileName);
         }
 
         /// <summary>
         /// Searches the transaction.
         /// </summary>
         /// <param name="model">The model.</param>
-        /// <returns></returns>
+        /// <returns>List Transactions.</returns>
         private List<TransactionCreditModel> SearchTransaction(CreditReportViewModel model)
         {
             var custId = _userService.GetUserIdByUsername(new Age.Criterias.UserIdByUsernameCriteria

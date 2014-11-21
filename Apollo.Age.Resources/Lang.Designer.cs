@@ -5203,9 +5203,9 @@ namespace Apollo.Age.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Remark.
         /// </summary>
-        public static string Remark {
+        public static string remark {
             get {
-                return ResourceManager.GetString("Remark", resourceCulture);
+                return ResourceManager.GetString("remark", resourceCulture);
             }
         }
         

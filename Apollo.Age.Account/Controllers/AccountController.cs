@@ -296,7 +296,7 @@ namespace Apollo.Age.Account.Controllers
 
             ViewBag.DepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw];
 
-            var hasDownlineDetailsPermission =  userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             /* Check downline details permission
              * Downline details policy < 1 => Can not search member ( all member)
