@@ -2200,4 +2200,10 @@
   <data name="SubmitCredit" xml:space="preserve">
     <value>Submit</value>
   </data>
+  <data name="DepositNotAvailable" xml:space="preserve">
+    <value>Your credit is not available to deposit.</value>
+  </data>
+  <data name="DrawNotAvailable" xml:space="preserve">
+    <value>The downline's credit is not available to draw.</value>
+  </data>
 </root>

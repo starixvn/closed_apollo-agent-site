@@ -31,7 +31,8 @@
         public ActionResult DepositAgent(int agentId, string username, string backLink)
         {
             var model = new CreditBalanceViewModel { CustomerId = agentId, Username = username, BackLink = backLink };
-            var criteria = new AgentGetAgentRangeInfoCriteria { AgentId = agentId };
+            var parentId = backLink.Split('&').LastOrDefault().Split('=').LastOrDefault();
+            var criteria = new AgentGetAgentRangeInfoCriteria { AgentId = Convert.ToInt16(parentId) };
             model.MaxAmount = _creditBalanceService.AgentGetAgentInfo(criteria).SportCredit;
 
             return View(model);
@@ -73,8 +74,9 @@
         public ActionResult DepositMember(int custId, string username, string backLink)
         {
             var model = new CreditBalanceViewModel { CustomerId = custId, Username = username, BackLink = backLink };
-            var criteria = new AgentGetMemberRangeInfoCriteria { CustId = custId };
-            model.MaxAmount = _creditBalanceService.AgentGetMemberInfo(criteria).SportCredit;
+            var parentId = backLink.Split('&').LastOrDefault().Split('=').LastOrDefault();
+            var criteria = new AgentGetAgentRangeInfoCriteria { AgentId = Convert.ToInt16(parentId) };
+            model.MaxAmount = _creditBalanceService.AgentGetAgentInfo(criteria).SportCredit;
 
             return View(model);
         }

@@ -1,4 +1,4 @@
-﻿/*global APOLLO, tooltip*/
+﻿/*global APOLLO, Validators*/
 
 var creditBalancePopup = (function ($) {
     'use strict';
@@ -22,7 +22,7 @@ var creditBalancePopup = (function ($) {
 
             $('#deposit-agent-submit').on('click', function () {
                 if ($('#amount').val() === '') {
-                    $('#msg').html(tooltip.show('amount', "Required Field!")).show();
+                    Validators.animate(document.getElementById('amount'));
                     return;
                 }
 
@@ -51,7 +51,7 @@ var creditBalancePopup = (function ($) {
 
             $('#draw-agent-submit').on('click', function () {
                 if ($('#amount').val() === '') {
-                    $('#msg').html(tooltip.show('amount', "Required Field!")).show();
+                    Validators.animate(document.getElementById('amount'));
                     return;
                 }
 
@@ -80,7 +80,7 @@ var creditBalancePopup = (function ($) {
 
             $('#deposit-member-submit').on('click', function () {
                 if ($('#amount').val() === '') {
-                    $('#msg').html(tooltip.show('amount', "Required Field!")).show();
+                    Validators.animate(document.getElementById('amount'));
                     return;
                 }
 
@@ -109,7 +109,7 @@ var creditBalancePopup = (function ($) {
 
             $('#draw-member-submit').on('click', function () {
                 if ($('#amount').val() === '') {
-                    $('#msg').html(tooltip.show('amount', "Required Field!")).show();
+                    Validators.animate(document.getElementById('amount'));
                     return;
                 }
 
@@ -139,7 +139,7 @@ var creditBalancePopup = (function ($) {
         validateAmount: function (target) {
             var newAmount = $(target).autoNumeric('get');
             if (newAmount < minAmount || (!isNaN(maxAmount) && newAmount > maxAmount)) {
-                $('#msg').html(tooltip.show('amount', "Invalid Value!")).show();
+                Validators.animate(document.getElementById('amount'));
                 return false;
             }
 

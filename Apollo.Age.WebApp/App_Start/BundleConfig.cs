@@ -389,6 +389,7 @@ namespace Apollo.Age.WebApp
             "~/_globalresources/js/jquery-ui.js",
             "~/_globalresources/js/noty/jquery.noty.js",
             "~/_globalresources/js/Core.js",
+            "~/views/account/resources/custsettingengine/core.js",
             "~/_globalresources/js/Validation/jquery.validationEngine-en.js",
             "~/_globalresources/js/Validation/jquery.validationEngine.js",
             "~/_globalresources/js/autonumeric/autoNumeric.js",

@@ -29,12 +29,12 @@
                 </td>
                 <td>
                     @Html.TextBox("amount", string.Empty, new { data_min = Model.MinAmount, data_max = Model.MaxAmount })
-                    @Html.Label(string.Empty, "(" + @Model.MinAmount + " - " + @Model.MaxAmount.ToString("#,###.##") + ")")
+                    @Html.Label(string.Empty, @Model.MaxAmount == 0 ? @Lang.DrawNotAvailable : "<= " + @Model.MaxAmount.ToString("#,###.##"))
                 </td>
             </tr>
             <tr class="btn-action">
                 <td colspan="2">
-                    <input id="draw-member-submit" type="button" value="@Lang.SubmitCredit" />
+                    <input id="draw-member-submit" type="button" value="@Lang.SubmitCredit" class="btn" />
                 </td>
             </tr>
         </tbody>

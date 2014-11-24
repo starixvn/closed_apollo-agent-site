@@ -925,6 +925,15 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your credit is not available to deposit..
+        /// </summary>
+        public static string DepositNotAvailable {
+            get {
+                return ResourceManager.GetString("DepositNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DES.
         /// </summary>
         public static string DES {
@@ -993,6 +1002,15 @@ namespace Apollo.Age.Resources {
         public static string DrawAmount {
             get {
                 return ResourceManager.GetString("DrawAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The downline&apos;s credit is not available to draw..
+        /// </summary>
+        public static string DrawNotAvailable {
+            get {
+                return ResourceManager.GetString("DrawNotAvailable", resourceCulture);
             }
         }
         
