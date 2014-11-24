@@ -375,7 +375,7 @@ namespace Apollo.Age.Account.Controllers
 
             if (!PermissionDownlineDetail(agentId))
             {
-                return View("~/Views/Error/AccessDenied.cshtml");                    
+                return View("~/Views/Error/AccessDenied.cshtml");
             }
 
             return View();
@@ -658,7 +658,7 @@ namespace Apollo.Age.Account.Controllers
             {
                 criteria.PageIndex = 0;
             }
-            
+
             criteria.OldPageIndex = criteria.PageIndex;
 
             return RedirectToAction(
