@@ -337,29 +337,26 @@
                         }
                     }
                     @*These links are invisible for Main Shareholder level*@
-                    @if (Model.IsMaster && customerSettingPermission == (byte)Policy.Edit)
+                    @if (depositDrawPermission == (byte)Policy.Edit)
                     {
-                        if (depositDrawPermission == (byte)Policy.Edit)
+                        if (Model.Level >= AgentLevel.Shareholder)
                         {
-                            if (Model.Level >= AgentLevel.Shareholder)
-                            {
-                            <a class="lnk-setting" target="main" href="~/CreditBalance/DepositAgent?agentId=@Model.ParentId">
+                        <a class="lnk-setting" target="main" href="~/CreditBalance/DepositAgent?agentId=@Model.ParentId">
                             @Lang.Deposit
-                            </a>
-                            <a class="lnk-setting" target="main" href="~/CreditBalance/DrawAgent?agentId=@Model.CustId">
-                            @Lang.Draw
-                            </a>
-
-                            }
-                            else if (Model.IsMember)
-                            {
-                            <a class="lnk-setting" target="main" href="~/CreditBalance/DepositAgent?agentId=@Model.ParentId">
-                            @Lang.Deposit
-                            </a>
-                            <a class="lnk-setting" target="main" href="~/CreditBalance/DrawMember?custId=@Model.CustId">
+                        </a>
+                        <a class="lnk-setting" target="main" href="~/CreditBalance/DrawAgent?agentId=@Model.CustId">
                             @Lang.Draw
                         </a>
-                            }
+
+                        }
+                        else if (Model.IsMember)
+                        {
+                        <a class="lnk-setting" target="main" href="~/CreditBalance/DepositAgent?agentId=@Model.ParentId">
+                            @Lang.Deposit
+                        </a>
+                        <a class="lnk-setting" target="main" href="~/CreditBalance/DrawMember?custId=@Model.CustId">
+                            @Lang.Draw
+                        </a>
                         }
                     }
                 </div>
