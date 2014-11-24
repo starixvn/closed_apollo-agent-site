@@ -145,7 +145,8 @@
     <Compile Include="Services\SportSettingService.cs" />
     <Compile Include="Models\AgentLogLoginModel.cs" />
     <Compile Include="ViewModels\AgentShareViewModel.cs" />
-    <Compile Include="ViewModels\CreditBalanceViewModel.cs" />
+    <Compile Include="ViewModels\DrawViewModel.cs" />
+    <Compile Include="ViewModels\DepositViewModel.cs" />
     <Compile Include="ViewModels\FundOutViewModel.cs" />
     <Compile Include="ViewModels\LogSettingViewModel.cs" />
     <Compile Include="ViewModels\ViewCommissionViewModel.cs" />

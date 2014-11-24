@@ -1,6 +1,6 @@
 ﻿@using Apollo.Age
 @using Apollo.Age.Account.ViewModels
-@model CreditBalanceViewModel
+@model DepositViewModel
 @{
     Layout = "Shared/_CreditLayout.cshtml";
     ViewBag.Title = Lang.Deposit;
@@ -9,12 +9,14 @@
     <div class="item detail-information">
         <span>
             @string.Format("{0} - {1}", @Lang.Deposit, @Model.Username)
-        </span><a href="@Model.BackLink">--@Lang.back</a>
+        </span>
+        @if (Model.BackLink != null)
+        {
+            <a href="@Model.BackLink">-- @Lang.back</a>
+        }
     </div>
     <div class="end">
     </div>
-</div>
-<div class="clear-both">
 </div>
 @Html.Hidden("back-link", @Model.BackLink)
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "credit-form" }))
@@ -27,16 +29,15 @@
                 </td>
                 <td>
                     @Html.TextBox("amount", string.Empty, new { data_min = 0, data_max = Model.MaxAmount })
-                    @Html.Label(string.Empty, @Model.MaxAmount == 0 ? @Lang.DepositNotAvailable : "<= " + @Model.MaxAmount.ToString("#,###.##"))
+                    @Html.Raw(Model.ArrangeText)
                 </td>
             </tr>
             <tr class="btn-action">
                 <td colspan="2">
-                    <input id="deposit-member-submit" type="button" value="@Lang.SubmitCredit" class="btn" />
+                    <input id="deposit-member-submit" type="button" value="@Lang.SubmitCredit" class="btn" @(Model.IsDisable ? "disabled" : string.Empty) />
                 </td>
             </tr>
         </tbody>
     </table>
-    <div id="msg">
-    </div>
+
 }

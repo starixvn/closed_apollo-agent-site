@@ -129,8 +129,7 @@ namespace Apollo.Age.WebApp
 
             bundles.AddAndInclude(
              "~/css/creditbalance",
-             "~/views/account/resources/credit-balance.less",
-              "~/_globalresources/js/Validation/validationEngine.jquery.css");
+             "~/views/account/resources/credit-balance.less");
 
             // js
             bundles.Add(new ScriptBundle("~/scripts/topbarjs").Include(
@@ -386,12 +385,9 @@ namespace Apollo.Age.WebApp
 
             bundles.Add(new ScriptBundle("~/scripts/creditbalance").Include(
             "~/_globalresources/js/jquery.js",
-            "~/_globalresources/js/jquery-ui.js",
             "~/_globalresources/js/noty/jquery.noty.js",
             "~/_globalresources/js/Core.js",
             "~/views/account/resources/custsettingengine/core.js",
-            "~/_globalresources/js/Validation/jquery.validationEngine-en.js",
-            "~/_globalresources/js/Validation/jquery.validationEngine.js",
             "~/_globalresources/js/autonumeric/autoNumeric.js",
             "~/views/account/resources/credit-balance.js"));
 

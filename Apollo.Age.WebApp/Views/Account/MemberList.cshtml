@@ -77,7 +77,7 @@
                     @Lang.lblview
                 }</a>
             @:&nbsp;/&nbsp;
-                		}
+                                                                                                                                        		}
         <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)&amp;agentUsername=@agentUsername">@Lang.Detail</a>
     </div>
 }
@@ -139,40 +139,36 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td>
-                        @* @if (allowFundOut && item.CashBalance > 0)
-                        {
-                            <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@Formater.DecFormat(item.CashBalance, 2)</span>
-                        }
-                        else
-                        {
-                            @Formater.DecFormat(item.CashBalance, 2)
-                        }*@
                         @Formater.DecFormat(item.CashBalance, 2)
                     </td>
-                    @if (Model.CustomerSettingPolicy >= (byte)Policy.Query && Model.HasDownlineDetailsPermission)
-                    {
-                        <td class="text-center">
-                            @if (!AppSettings.DisableEditOnMember)
+                    <td class="text-center">
+                        @if (Model.CustomerSettingPolicy >= (byte)Policy.Query && Model.HasDownlineDetailsPermission)
+                        {
+                            if (!AppSettings.DisableEditOnMember)
                             {
-                                <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
-                                    @if (isMaster)
-                                    {
-                                        @Lang.edit
-                                    }
-                                    else
-                                    {
-                                        @Lang.lblview
-                                    }</a>
-                                @:&nbsp;/&nbsp;
-                                                        							}
+                            <a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
+                                @if (isMaster)
+                                {
+                                    @Lang.edit
+                                }
+                                else
+                                {
+                                    @Lang.lblview
+                                }</a>
+                            @:&nbsp;/&nbsp;
+                                                                                                                                                                                                                                                                                                                                                                                                        							}
                             <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username&amp;agentUsername=@agentUsername">@Lang.Detail</a>
-                        </td>
-                    }
-                    <span class="deposit-member" member-id="@item.MemberId" member-username="@item.Username">
-                        @(" / " + Lang.Deposit + " / ")
-                    </span><span class="draw-member" member-id="@item.MemberId" member-username="@item.Username">
-                        @Lang.Draw
-                    </span>
+
+                        }
+                        @if (Model.HasDepositDrawPermission)
+                        {
+                            <a href="~/Account/DepositMember?agentId=@Model.AgentId&custId=@item.MemberId&username=@item.Username&backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
+                                @(" / " + Lang.Deposit + " / ")
+                            </a><a href="~/Account/DrawMember?custId=@item.MemberId&username=@item.Username&backLink=@(Url.Content("~/account/memberlist?agentId=") + Model.AgentId)&amp;agentUsername=@agentUsername">
+                                @Lang.Draw
+                            </a>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>

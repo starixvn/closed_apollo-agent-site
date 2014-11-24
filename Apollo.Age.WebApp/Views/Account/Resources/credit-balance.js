@@ -8,7 +8,7 @@ var creditBalancePopup = (function ($) {
         init: function () {
             minAmount = parseFloat($('#amount').data('min'));
             maxAmount = parseFloat($('#amount').data('max'));
-            jQuery("#credit-form").validationEngine();
+
             $('#amount').autoNumeric('init', {
                 mDec: 0,
                 vMin: 0,
@@ -20,10 +20,16 @@ var creditBalancePopup = (function ($) {
                 creditBalancePopup.validateAmount(this);
             });
 
+            $('#amount').on('keypress', function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                }
+            });
+
             $('#deposit-agent-submit').on('click', function () {
-                if ($('#amount').val() === '') {
+                if ($('#amount').val() === '' || $('#amount').val() === '0') {
                     Validators.animate(document.getElementById('amount'));
-                    return;
+                    return false;
                 }
 
                 if (!creditBalancePopup.validateAmount('#amount')) {
@@ -36,7 +42,7 @@ var creditBalancePopup = (function ($) {
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     async: false,
-                    data: JSON.stringify({ Amount: $('#amount').val(), AgentId: $('#agent-id').val() }),
+                    data: JSON.stringify({ Amount: $('#amount').autoNumeric('get') }),
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Deposit Successfully!", 'success');
@@ -50,9 +56,9 @@ var creditBalancePopup = (function ($) {
             });
 
             $('#draw-agent-submit').on('click', function () {
-                if ($('#amount').val() === '') {
+                if ($('#amount').val() === '' || $('#amount').val() === '0') {
                     Validators.animate(document.getElementById('amount'));
-                    return;
+                    return false;
                 }
 
                 if (!creditBalancePopup.validateAmount('#amount')) {
@@ -65,7 +71,7 @@ var creditBalancePopup = (function ($) {
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     async: false,
-                    data: JSON.stringify({ Amount: $('#amount').val(), AgentId: $('#agent-id').val() }),
+                    data: JSON.stringify({ Amount: $('#amount').autoNumeric('get') }),
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Draw Successfully!", 'success');
@@ -79,9 +85,9 @@ var creditBalancePopup = (function ($) {
             });
 
             $('#deposit-member-submit').on('click', function () {
-                if ($('#amount').val() === '') {
+                if ($('#amount').val() === '' || $('#amount').val() === '0') {
                     Validators.animate(document.getElementById('amount'));
-                    return;
+                    return false;
                 }
 
                 if (!creditBalancePopup.validateAmount('#amount')) {
@@ -94,7 +100,7 @@ var creditBalancePopup = (function ($) {
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     async: false,
-                    data: JSON.stringify({ Amount: $('#amount').val() }),
+                    data: JSON.stringify({ Amount: $('#amount').autoNumeric('get') }),
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Deposit Successfully!", 'success');
@@ -108,9 +114,9 @@ var creditBalancePopup = (function ($) {
             });
 
             $('#draw-member-submit').on('click', function () {
-                if ($('#amount').val() === '') {
+                if ($('#amount').val() === '' || $('#amount').val() === '0') {
                     Validators.animate(document.getElementById('amount'));
-                    return;
+                    return false;
                 }
 
                 if (!creditBalancePopup.validateAmount('#amount')) {
@@ -123,7 +129,7 @@ var creditBalancePopup = (function ($) {
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     async: false,
-                    data: JSON.stringify({ Amount: $('#amount').val() }),
+                    data: JSON.stringify({ Amount: $('#amount').autoNumeric('get') }),
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Draw Successfully!", 'success');

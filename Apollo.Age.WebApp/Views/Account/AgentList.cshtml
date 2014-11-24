@@ -1,6 +1,6 @@
 ﻿@using Apollo.Age.Entities;
 @using Apollo.Age.Web;
-@using Apollo.Age
+@using Apollo.Age;
 @model AgentListCriteria
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.lblAgentList;
@@ -11,6 +11,8 @@
     var AgentLevel = (int)ViewBag.AgentLevel;
     var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
     var parentUsername = ViewBag.AgentUsername ?? string.Empty;
+    var parentId = ViewBag.ParentId != null ? ViewBag.ParentId : -1;
+    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/agentlist?parentAgentId={0}&agentId={1}", parentId, Model.AgentId)));
 }
 @using (Html.BeginForm())
 {
@@ -54,7 +56,6 @@
                 -- <a href="~/Account/MemberList">@Lang.memberList</a>
             </div>
         }
-@*<img src="/_GlobalResources/Images/top_04.png" alt="" />*@
         <div class="end">
         </div>
     </div>
@@ -73,11 +74,16 @@
                 </th>
                 <th class="width-70">@Lang.member
                 </th>
+                @if (AgentLevel >= Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                {
+                    <th class="width-70">@Lang.SportCredit
+                    </th>
+                }
                 <th class="width-80">@Lang.status
                 </th>
                 <th class="width-80">@Lang.betstatus
                 </th>
-                <th class="width-400">@Lang.Feature
+                <th class="width-460">@Lang.Feature
                 </th>
             </tr>
         </thead>
@@ -131,6 +137,12 @@
                             <span>0</span>
                         }
                     </td>
+                    @if (AgentLevel >= Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                    {
+                        <td>
+                            @Html.Raw(item.SportCredit.ToString("#,##0.##"))
+                        </td>
+                    }
                     <td>
                         @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
                     </td>
@@ -194,6 +206,14 @@
                             {
                             <a href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
                                 @(Lang.ShadowPermission)
+                            </a>
+                            }
+                            if (Model.HasDepositDrawPermission && item.AgentLevel >= Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                            {
+                            <a href="~/Account/DepositAgent?parentAgentId=@Model.AgentId&agentId=@item.AgentId&username=@item.Username&agentLevel=@item.AgentLevel&backLink=@backLink">
+                                @(" / " + Lang.Deposit + " / ")
+                            </a><a href="~/Account/DrawAgent?agentId=@item.AgentId&username=@item.Username&backLink=@backLink">
+                                @Lang.Draw
                             </a>
                             }
                         }

@@ -102,7 +102,7 @@
                 <th class="width-70">
                     @Lang.betstatus
                 </th>
-                <th class="width-450">
+                <th class="width-460">
                     @Lang.Feature
                 </th>
             </tr>
@@ -211,11 +211,14 @@
                                 @Lang.ShadowPermission
                             </a>
                         }
-                        <a href="~/Account/DepositAgent?customerId=@item.AgentId&username=@item.Username&backLink=@backLink&AgentLevel=@currentLevel">
-                            @(" / " + Lang.Deposit + " / ")
-                        </a><a href="~/Account/DrawAgent?customerId=@item.AgentId&username=@item.Username&backLink=@backLink&AgentLevel=@currentLevel">
-                            @Lang.Draw
-                        </a>
+                        @if (Model.HasDepositDrawPermission)
+                        {
+                            <a href="~/Account/DepositAgent?parentAgentId=@Model.AgentId&agentId=@item.AgentId&username=@item.Username&agentLevel=@uplineLevel&backLink=@backLink">
+                                @(" / " + Lang.Deposit + " / ")
+                            </a><a href="~/Account/DrawAgent?agentId=@item.AgentId&username=@item.Username&backLink=@backLink">
+                                @Lang.Draw
+                            </a>
+                        }
                     </td>
                 </tr>
             }

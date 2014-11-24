@@ -341,20 +341,19 @@
                     {
                         if (Model.Level >= AgentLevel.Shareholder)
                         {
-                        <a class="lnk-setting" target="main" href="~/CreditBalance/DepositAgent?agentId=@Model.ParentId">
+                        <a class="lnk-setting" target="main" href="~/Account/DepositAgent?parentAgentId=@Model.ParentId&agentId=@Model.CustId&username=@Model.Username&agentLevel=@(Model.Level - 1)">
                             @Lang.Deposit
                         </a>
-                        <a class="lnk-setting" target="main" href="~/CreditBalance/DrawAgent?agentId=@Model.CustId">
+                        <a class="lnk-setting" target="main" href="~/Account/DrawAgent?agentId=@Model.CustId&username=@Model.Username">
                             @Lang.Draw
                         </a>
-
                         }
                         else if (Model.IsMember)
                         {
-                        <a class="lnk-setting" target="main" href="~/CreditBalance/DepositAgent?agentId=@Model.ParentId">
+                        <a class="lnk-setting" target="main" href="~/Account/DepositMember?agentId=@Model.ParentId&custId=@Model.CustId&username=@Model.Username">
                             @Lang.Deposit
                         </a>
-                        <a class="lnk-setting" target="main" href="~/CreditBalance/DrawMember?custId=@Model.CustId">
+                        <a class="lnk-setting" target="main" href="~/Account/DrawMember?custId=@Model.CustId&username=@Model.Username">
                             @Lang.Draw
                         </a>
                         }

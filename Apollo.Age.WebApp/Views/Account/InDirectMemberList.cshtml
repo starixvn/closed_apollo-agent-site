@@ -95,7 +95,7 @@
                     @Lang.lblview
                 }</a>
             @:&nbsp;/&nbsp;
-                                                                                                		}
+                                                                                                                                                        		}
         <a href="javascript:void(0);" id="viewDetailMultiple" data-edit-multiple-link="@Url.Content("~/CustomerSetting/ViewMemberDetails")?agentId=@(Model.AgentId)">@Lang.Detail</a>
         @if (!AppSettings.DisableEditOnMember)
         {
@@ -177,14 +177,6 @@
                         @Html.Raw(item.BetStatus.ToStringStatus(item.UplineBetStatus))
                     </td>
                     <td>
-                        @* @if (allowFundOut && item.CashBalance > 0)
-                        {
-                            <span id="fundout" class="fundout" data-membername="@item.Username" data-memberid="@item.MemberId" data-sportcredit="@item.CashBalance">@Formater.DecFormat(item.CashBalance, 2)</span>
-                        }
-                        else
-                        {
-                            @Formater.DecFormat(item.CashBalance, 2)
-                        }*@
                         @Formater.DecFormat(item.CashBalance, 2)
                     </td>
                     @if (custSettingPermissionPolicy >= (byte)Policy.Query)
@@ -203,7 +195,7 @@
                                             @Lang.lblview
                                         }</a>
                                     @:&nbsp;/&nbsp;
-                                                                                                                                                                                                                                                                                                                                                                                                								}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                								}
                                 <a href="~/CustomerSetting/ViewMemberDetails?memberId=@item.MemberId&amp;agentId=@Model.AgentId&amp;userName=@item.Username">@Lang.Detail</a>
                                 @if (!AppSettings.DisableEditOnMember)
                                 {
@@ -222,11 +214,14 @@
                                         </ul>
                                     </div>
                                 }
-                                <a href="~/Account/DepositMember?custId=@item.MemberId&username=@item.Username&backLink=@backLink">
-                                    @(" / " + Lang.Deposit + " / ")
-                                </a><a href="~/Account/DrawMember?custId=@item.MemberId&username=@item.Username&backLink=@backLink">
-                                    @Lang.Draw
-                                </a>
+                                @if (Model.HasDepositDrawPermission)
+                                {
+                                    <a href="~/Account/DepositMember?agentId=@Model.AgentId&custId=@item.MemberId&username=@item.Username&backLink=@backLink">
+                                        @(" / " + Lang.Deposit + " / ")
+                                    </a><a href="~/Account/DrawMember?custId=@item.MemberId&username=@item.Username&backLink=@backLink">
+                                        @Lang.Draw
+                                    </a>
+                                }
                             </div>
                         </td>
                     }

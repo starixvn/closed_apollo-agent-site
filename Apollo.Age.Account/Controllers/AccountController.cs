@@ -598,6 +598,7 @@ namespace Apollo.Age.Account.Controllers
             criteria.ShadowPermissionPolicy = userPermission[ApolloFunctionKeys.ShadowPermission];
             criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
             criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+            criteria.HasDepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw] == (byte)Policy.Edit;
 
             var agentInfo = _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
             {
@@ -753,6 +754,7 @@ namespace Apollo.Age.Account.Controllers
             criteria.ShadowPermissionPolicy = userPermission[ApolloFunctionKeys.ShadowPermission];
             criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
             criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+            criteria.HasDepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw] == (byte)Policy.Edit;
 
             return View(criteria);
         }
@@ -827,7 +829,7 @@ namespace Apollo.Age.Account.Controllers
 
             criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
             criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
-
+            criteria.HasDepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw] == (byte)Policy.Edit;
             var agentInfo = _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
             {
                 ActorAgentId = CurrentSession.AgentId,
@@ -939,7 +941,8 @@ namespace Apollo.Age.Account.Controllers
             };
 
             IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
-
+            var userPermission = _userService.GetAllUserPermission(CurrentSession.UserId);
+            criteria.HasDepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw] == (byte)Policy.Edit;
             if (!ReferenceEquals(models, null))
             {
                 models = criteria.OrderType == 1 ? models.OrderBy(m => m.Username).ToList() : models.OrderByDescending(m => m.Username).ToList();
