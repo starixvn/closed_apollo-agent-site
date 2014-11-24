@@ -595,7 +595,6 @@
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\Index.cshtml" />
     <Content Include="App_Code\WagerHelper.cshtml" />
-    <Content Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Areas\Wagers\Views\Outright\WagerOutright.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\SpecialBet.cshtml" />
