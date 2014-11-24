@@ -337,7 +337,7 @@
                         }
                     }
                     @*These links are invisible for Main Shareholder level*@
-                    @if (Model.IsMaster)
+                    @if (Model.IsMaster && customerSettingPermission == (byte)Policy.Edit)
                     {
                         if (depositDrawPermission == (byte)Policy.Edit)
                         {
