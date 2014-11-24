@@ -129,7 +129,7 @@ namespace Apollo.Age.WebApp
 
             bundles.AddAndInclude(
              "~/css/creditbalance",
-             "~/views/creditbalance/resources/credit-balance.less",
+             "~/views/account/resources/credit-balance.less",
               "~/_globalresources/js/Validation/validationEngine.jquery.css");
 
             // js
@@ -393,7 +393,7 @@ namespace Apollo.Age.WebApp
             "~/_globalresources/js/Validation/jquery.validationEngine-en.js",
             "~/_globalresources/js/Validation/jquery.validationEngine.js",
             "~/_globalresources/js/autonumeric/autoNumeric.js",
-            "~/views/creditbalance/resources/credit-balance.js"));
+            "~/views/account/resources/credit-balance.js"));
 
             bundles.FileSetOrderList.Clear();
         }

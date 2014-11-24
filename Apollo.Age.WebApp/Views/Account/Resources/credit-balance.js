@@ -32,15 +32,15 @@ var creditBalancePopup = (function ($) {
 
                 $.ajax({
                     type: "POST",
-                    url: APOLLO.resolveUrl("CreditBalance/DepositAgent"),
+                    url: APOLLO.resolveUrl("Account/DepositAgent"),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     async: false,
-                    data: JSON.stringify({ Amount: $('#amount').val() }),
+                    data: JSON.stringify({ Amount: $('#amount').val(), AgentId: $('#agent-id').val() }),
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Deposit Successfully!", 'success');
-                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 5000);
+                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 3000);
                         }
                         else {
                             APOLLO.showMessage(rs.ErrorMsg, 'error');
@@ -61,15 +61,15 @@ var creditBalancePopup = (function ($) {
 
                 $.ajax({
                     type: "POST",
-                    url: APOLLO.resolveUrl("CreditBalance/DrawAgent"),
+                    url: APOLLO.resolveUrl("Account/DrawAgent"),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     async: false,
-                    data: JSON.stringify({ Amount: $('#amount').val() }),
+                    data: JSON.stringify({ Amount: $('#amount').val(), AgentId: $('#agent-id').val() }),
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Draw Successfully!", 'success');
-                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 5000);
+                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 3000);
                         }
                         else {
                             APOLLO.showMessage(rs.ErrorMsg, 'error');
@@ -90,7 +90,7 @@ var creditBalancePopup = (function ($) {
 
                 $.ajax({
                     type: "POST",
-                    url: APOLLO.resolveUrl("CreditBalance/DepositMember"),
+                    url: APOLLO.resolveUrl("Account/DepositMember"),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     async: false,
@@ -98,7 +98,7 @@ var creditBalancePopup = (function ($) {
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Deposit Successfully!", 'success');
-                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 5000);
+                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 3000);
                         }
                         else {
                             APOLLO.showMessage(rs.ErrorMsg, 'error');
@@ -119,7 +119,7 @@ var creditBalancePopup = (function ($) {
 
                 $.ajax({
                     type: "POST",
-                    url: APOLLO.resolveUrl("CreditBalance/DrawMember"),
+                    url: APOLLO.resolveUrl("Account/DrawMember"),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     async: false,
@@ -127,7 +127,7 @@ var creditBalancePopup = (function ($) {
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Draw Successfully!", 'success');
-                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 5000);
+                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 3000);
                         }
                         else {
                             APOLLO.showMessage(rs.ErrorMsg, 'error');

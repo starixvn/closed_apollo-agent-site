@@ -1,14 +1,14 @@
 ﻿@using Apollo.Age
-@using Apollo.Age.CreditBalance.ViewModels
+@using Apollo.Age.Account.ViewModels
 @model CreditBalanceViewModel
 @{
-    Layout = "~/Views/CreditBalance/Shared/_Layout.cshtml";
-    ViewBag.Title = Lang.Deposit;
+    Layout = "Shared/_CreditLayout.cshtml";
+    ViewBag.Title = Lang.Draw;
 }
 <div id="function-bar">
     <div class="item detail-information">
         <span>
-            @string.Format("{0} - {1}", @Lang.Deposit, @Model.Username)
+            @string.Format("{0} - {1}", @Lang.Draw, @Model.Username)
         </span><a href="@Model.BackLink">--@Lang.back</a>
     </div>
     <div class="end">
@@ -19,22 +19,20 @@
 @Html.Hidden("back-link", @Model.BackLink)
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "credit-form" }))
 {
-    @Html.HiddenFor(m => m.CustomerId)
-
     <table class="credit-balance">
         <tbody>
             <tr>
                 <td class="lbl-amount">
-                    @Html.Label("lbl-amount", @Lang.DepositAmount)
+                    @Html.Label("draw-amount", @Lang.DrawAmount)
                 </td>
                 <td>
-                    @Html.TextBox("amount", string.Empty, new { data_min = Model.MinAmount, data_max = Model.MaxAmount })
-                    @Html.Label(string.Empty, @Model.MaxAmount == 0 ? @Lang.DepositNotAvailable : "<= " + @Model.MaxAmount.ToString("#,###.##"))
+                    @Html.TextBox("amount", string.Empty, new { data_min = 0, data_max = Model.MaxAmount })
+                    @Html.Label(string.Empty, @Model.MaxAmount == 0 ? @Lang.DrawNotAvailable : "<= " + @Model.MaxAmount.ToString("#,###.##"))
                 </td>
             </tr>
             <tr class="btn-action">
                 <td colspan="2">
-                    <input id="deposit-member-submit" type="button" value="@Lang.SubmitCredit" class="btn" />
+                    <input id="draw-member-submit" type="button" value="@Lang.SubmitCredit" class="btn" />
                 </td>
             </tr>
         </tbody>

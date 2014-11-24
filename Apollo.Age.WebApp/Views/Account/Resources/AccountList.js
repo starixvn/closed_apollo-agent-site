@@ -130,30 +130,6 @@ var ACCOUNTLIST = (function ($) {
                 ACCOUNTLIST.agentListSettingTime = setTimeout(function () { ACCOUNTLIST.hideMenuLayout(); }, 10000);
             });
 
-            $('.deposit-agent').on('click', function () {
-                var $this = $(this);
-                window.location.href = APOLLO.resolveUrl("CreditBalance/DepositAgent?agentId=" + $this.attr("agent-id") +
-                                                            "&username=" + $this.attr('agent-username') + "&backlink=" + $this.attr('back-link'));
-            });
-
-            $('.draw-agent').on('click', function () {
-                var $this = $(this);
-                window.location.href = APOLLO.resolveUrl("CreditBalance/DrawAgent?agentId=" + $this.attr("agent-id") +
-                                                            "&username=" + $this.attr('agent-username') + "&backlink=" + $this.attr('back-link'));
-            });
-
-            $('.deposit-member').on('click', function () {
-                var $this = $(this);
-                window.location.href = APOLLO.resolveUrl("CreditBalance/DepositMember?custId=" + $this.attr("member-id") +
-                                                            "&username=" + $this.attr('member-username') + "&backlink=" + $this.attr('back-link'));
-            });
-
-            $('.draw-member').on('click', function () {
-                var $this = $(this);
-                window.location.href = APOLLO.resolveUrl("CreditBalance/DrawMember?custId=" + $this.attr("member-id") +
-                                                            "&username=" + $this.attr('member-username') + "&backlink=" + $this.attr('back-link'));
-            });
-
             $('html, body').click(function () {
                 clearTimeout(ACCOUNTLIST.agentListSettingTime);
                 ACCOUNTLIST.hideMenuLayout();

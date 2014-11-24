@@ -211,11 +211,11 @@
                                 @Lang.ShadowPermission
                             </a>
                         }
-                        <span class="deposit-agent" agent-id="@item.AgentId" agent-username="@item.Username" back-link="@backLink">
+                        <a href="~/Account/DepositAgent?customerId=@item.AgentId&username=@item.Username&backLink=@backLink&AgentLevel=@currentLevel">
                             @(" / " + Lang.Deposit + " / ")
-                        </span><span class="draw-agent" agent-id="@item.AgentId" agent-username="@item.Username"  back-link="@backLink">
+                        </a><a href="~/Account/DrawAgent?customerId=@item.AgentId&username=@item.Username&backLink=@backLink&AgentLevel=@currentLevel">
                             @Lang.Draw
-                        </span>
+                        </a>
                     </td>
                 </tr>
             }

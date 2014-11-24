@@ -41,8 +41,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.Forecast", "Apollo.Age.Forecast\Apollo.Age.Forecast.csproj", "{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apollo.Age.CreditBalance", "Apollo.Age.CreditBalance\Apollo.Age.CreditBalance.csproj", "{0FCB279D-0436-440C-88D9-13194A2A24AE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,10 +103,6 @@ Global
 		{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C34DCB1-160F-4628-BED4-7A6D7123A8A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0FCB279D-0436-440C-88D9-13194A2A24AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FCB279D-0436-440C-88D9-13194A2A24AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FCB279D-0436-440C-88D9-13194A2A24AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FCB279D-0436-440C-88D9-13194A2A24AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

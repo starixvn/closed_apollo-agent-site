@@ -1,8 +1,8 @@
 ﻿@using Apollo.Age
-@using Apollo.Age.CreditBalance.ViewModels
+@using Apollo.Age.Account.ViewModels
 @model CreditBalanceViewModel
 @{
-    Layout = "~/Views/CreditBalance/Shared/_Layout.cshtml";
+    Layout = "Shared/_CreditLayout.cshtml";
     ViewBag.Title = Lang.Deposit;
 }
 <div id="function-bar">
@@ -19,8 +19,6 @@
 @Html.Hidden("back-link", @Model.BackLink)
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "credit-form" }))
 {
-    @Html.HiddenFor(m => m.CustomerId)
-
     <table class="credit-balance">
         <tbody>
             <tr>
@@ -28,13 +26,13 @@
                     @Html.Label("lbl-amount", @Lang.DepositAmount)
                 </td>
                 <td>
-                    @Html.TextBox("amount", string.Empty, new { data_min = Model.MinAmount, data_max = Model.MaxAmount })
+                    @Html.TextBox("amount", string.Empty, new { data_min = 0, data_max = Model.MaxAmount })
                     @Html.Label(string.Empty, @Model.MaxAmount == 0 ? @Lang.DepositNotAvailable : "<= " + @Model.MaxAmount.ToString("#,###.##"))
                 </td>
             </tr>
             <tr class="btn-action">
                 <td colspan="2">
-                    <input id="deposit-agent-submit" type="button" value="@Lang.SubmitCredit" class="btn" />
+                    <input id="deposit-member-submit" type="button" value="@Lang.SubmitCredit" class="btn" />
                 </td>
             </tr>
         </tbody>

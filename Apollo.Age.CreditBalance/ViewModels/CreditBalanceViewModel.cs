@@ -9,6 +9,8 @@
     {
         public int CustomerId { get; set; }
 
+        public int AgentLevel { get; set; }
+
         public string Username { get; set; }
 
         public string BackLink { get; set; }

@@ -28,10 +28,10 @@
         }
 
         [HttpGet]
-        public ActionResult DepositAgent(int agentId, string username, string backLink)
+        public ActionResult DepositAgent(CreditBalanceViewModel agent)
         {
-            var model = new CreditBalanceViewModel { CustomerId = agentId, Username = username, BackLink = backLink };
-            var parentId = backLink.Split('&').LastOrDefault().Split('=').LastOrDefault();
+            var model = new CreditBalanceViewModel { CustomerId = agent.CustomerId, Username = agent.Username, BackLink = agent.BackLink };
+            var parentId = agent.BackLink.Split('&').LastOrDefault().Split('=').LastOrDefault();
             var criteria = new AgentGetAgentRangeInfoCriteria { AgentId = Convert.ToInt16(parentId) };
             model.MaxAmount = _creditBalanceService.AgentGetAgentInfo(criteria).SportCredit;
 

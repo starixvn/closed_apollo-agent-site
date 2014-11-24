@@ -1,8 +1,8 @@
 ﻿@using Apollo.Age
-@using Apollo.Age.CreditBalance.ViewModels
+@using Apollo.Age.Account.ViewModels
 @model CreditBalanceViewModel
 @{
-    Layout = "~/Views/CreditBalance/Shared/_Layout.cshtml";
+    Layout = "Shared/_CreditLayout.cshtml";
     ViewBag.Title = Lang.Draw;
 }
 <div id="function-bar">
@@ -19,7 +19,7 @@
 @Html.Hidden("back-link", @Model.BackLink)
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "credit-form" }))
 {
-    @Html.HiddenFor(m => m.CustomerId)
+    @Html.Hidden("agent-id", @Model.CustomerId)
 
     <table class="credit-balance">
         <tbody>
@@ -28,7 +28,7 @@
                     @Html.Label("lbl-amount", @Lang.DrawAmount)
                 </td>
                 <td>
-                    @Html.TextBox("amount", string.Empty, new { data_min = Model.MinAmount, data_max = Model.MaxAmount })
+                    @Html.TextBox("amount", string.Empty, new { data_min = 0, data_max = Model.MaxAmount })
                     @Html.Label(string.Empty, @Model.MaxAmount == 0 ? @Lang.DrawNotAvailable : "<= " + @Model.MaxAmount.ToString("#,###.##"))
                 </td>
             </tr>

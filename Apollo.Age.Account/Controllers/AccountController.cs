@@ -42,7 +42,7 @@ namespace Apollo.Age.Account.Controllers
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
     [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-    public class AccountController : BaseController
+    public partial class AccountController : BaseController
     {
         #region Const for paging
 
