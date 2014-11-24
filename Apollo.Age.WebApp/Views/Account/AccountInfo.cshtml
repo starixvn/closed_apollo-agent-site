@@ -315,7 +315,8 @@
                         <a class="lnk-setting" target="main"
 						href="~/CustomerSetting/ViewCommission?id=@Model.CustId&amp;isMember=@Model.IsMember.ToString()">
                             @Lang.lblComm
-                        </a>}
+                        </a>
+                        }
                         if (viewLogPermission >= (byte)Policy.Query)
                         {
                         <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
@@ -336,30 +337,32 @@
                         }
                     }
                     @*These links are invisible for Main Shareholder level*@
-                    @if (depositDrawPermission == (byte)Policy.Edit)
+                    @if (Model.IsMaster)
                     {
-                        if (Model.Level >= AgentLevel.Shareholder)
+                        if (depositDrawPermission == (byte)Policy.Edit)
                         {
+                            if (Model.Level >= AgentLevel.Shareholder)
+                            {
 
-                        <a class="lnk-setting" target="main" href="~/CreditBalance/DepositAgent?agentId=@Model.ParentId">
+                            <a class="lnk-setting" target="main" href="~/CreditBalance/DepositAgent?agentId=@Model.ParentId">
                             @Lang.Deposit
-                        </a>
-                        <a class="lnk-setting" target="main" href="~/CreditBalance/DrawAgent?agentId=@Model.CustId">
+                            </a>
+                            <a class="lnk-setting" target="main" href="~/CreditBalance/DrawAgent?agentId=@Model.CustId">
+                            @Lang.Draw
+                            </a>
+
+                            }
+                            else if (Model.IsMember)
+                            {
+
+                            <a class="lnk-setting" target="main" href="~/CreditBalance/DepositAgent?agentId=@Model.ParentId">
+                            @Lang.Deposit
+                            </a>
+                            <a class="lnk-setting" target="main" href="~/CreditBalance/DrawMember?custId=@Model.CustId">
                             @Lang.Draw
                         </a>
-
+                            }
                         }
-                        else if (Model.IsMember)
-                        {
-
-                        <a class="lnk-setting" target="main" href="~/CreditBalance/DepositAgent?agentId=@Model.ParentId">
-                            @Lang.Deposit
-                        </a>
-                        <a class="lnk-setting" target="main" href="~/CreditBalance/DrawMember?custId=@Model.CustId">
-                            @Lang.Draw
-                        </a>
-                        }
-
                     }
                 </div>
                 <div id="agentsTab-content">
