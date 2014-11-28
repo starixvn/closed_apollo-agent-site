@@ -11,9 +11,6 @@
 namespace Apollo.Age.BetList.Criterias
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>

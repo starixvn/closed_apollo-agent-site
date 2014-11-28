@@ -9,11 +9,9 @@
 
 namespace Apollo.Age.Wagers.Configuration
 {
-    using System;
     using System.Configuration;
     using System.Web;
     using System.Xml.Linq;
-    using Fanex.Logging;
 
     /// <summary>
     /// Wager menu configuration.

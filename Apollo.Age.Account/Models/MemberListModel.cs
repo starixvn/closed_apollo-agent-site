@@ -6,8 +6,6 @@
 
 namespace Apollo.Age.Account.Models
 {
-    using System;
-
     /// <summary>
     /// Member list model.
     /// </summary>

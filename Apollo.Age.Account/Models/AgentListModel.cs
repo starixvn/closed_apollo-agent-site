@@ -9,8 +9,6 @@
 
 namespace Apollo.Age.Account.Models
 {
-    using System;
-
     /// <summary>
     /// Agent list model.
     /// </summary>

@@ -11,7 +11,6 @@ namespace Apollo.Age.Reports.ViewModels
 {
     using System.Collections.Generic;
     using Apollo.Age.Entities;
-    using Apollo.Age.Models;
 
     /// <summary>
     /// Report menu view model.

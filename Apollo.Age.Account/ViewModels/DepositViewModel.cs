@@ -1,6 +1,5 @@
 ﻿namespace Apollo.Age.Account.ViewModels
 {
-    using System;
     using Apollo.Age.Resources;
 
     /// <summary>

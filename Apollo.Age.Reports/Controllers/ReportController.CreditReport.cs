@@ -2,22 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
-    using Apollo.Age.Configurations;
     using Apollo.Age.Core;
-    using Apollo.Age.Entities;
-    using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Criterias;
     using Apollo.Age.Reports.Models;
-    using Apollo.Age.Reports.Services;
     using Apollo.Age.Reports.ViewModels;
-    using Apollo.Age.Services.Impl;
-    using Apollo.Age.Services.Interface;
     using Apollo.Age.Web;
-    using Apollo.Age.Web.Web.Attribute;
 
     /// <summary>
     /// Reports Controller.

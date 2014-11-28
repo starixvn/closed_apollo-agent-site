@@ -1,7 +1,5 @@
 ﻿namespace Apollo.Age.Account.Controllers
 {
-    using System;
-    using System.Linq;
     using System.Web.Mvc;
     using Apollo.Age.Account.Core;
     using Apollo.Age.Account.Criterias;

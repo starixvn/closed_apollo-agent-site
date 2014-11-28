@@ -13,7 +13,6 @@ namespace Apollo.Age.BetList.ViewModels
     using System.Collections.Generic;
     using Apollo.Age.BetList.Criterias;
     using Apollo.Age.Entities;
-    using Apollo.BetList.Core.Entities;
 
     /// <summary>
     /// Bet list view model.

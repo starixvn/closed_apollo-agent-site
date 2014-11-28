@@ -1,6 +1,5 @@
 namespace Apollo.Age.Criterias
 {
-    using System;
     using Fanex.NAP.Framework.Data;
 
     /// <summary>
