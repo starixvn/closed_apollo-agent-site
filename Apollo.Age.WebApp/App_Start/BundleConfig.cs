@@ -412,14 +412,5 @@ namespace Apollo.Age.WebApp
                 Orderer = new NullOrderer()
             }.Include(virtualPaths));
         }
-
-        public static string RelativeFromAbsolutePath(this HttpContextBase context, string path)
-        {
-            var request = context.Request;
-            var applicationPath = request.PhysicalApplicationPath;
-            var virtualDir = request.ApplicationPath;
-            virtualDir = virtualDir == "/" ? virtualDir : (virtualDir + "/");
-            return path.Replace(applicationPath, virtualDir).Replace(@"\", "/");
-        }
     }
 }

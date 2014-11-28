@@ -241,7 +241,6 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder AddHeader(string columnTitle)
         {
             var font = RTFHelper.Font(HSSFColor.White.Index);
-            var createCellStyle = this.CreateCellStyle();
             var cellStyle = RTFHelper.CellStyle(HorizontalAlignment.Center, VerticalAlignment.Top, font, HSSFColor.Grey50Percent.Index, true);
 
             RTFHelper.RTFRenderer.AddText(columnTitle);
@@ -266,7 +265,6 @@ namespace Apollo.BetList.Core.Builder
         public BetListExcelBuilder AddTotal(string value = "", CellRangeAddress mergeRange = null, bool isformatNumber = false)
         {
             var font = RTFHelper.Font(HSSFColor.Black.Index, FontBoldWeight.Bold);
-            var createCellStyle = this.CreateCellStyle();
             var cellStyle = RTFHelper.CellStyle(
                 HorizontalAlignment.Right,
                 VerticalAlignment.Top,
@@ -448,10 +446,10 @@ namespace Apollo.BetList.Core.Builder
         /// Bet List Excel Builder.
         /// </returns>
         public BetListExcelBuilder AddChoice(
-            ITicket ticket, 
-            ITicketHelper ticketHelper, 
-            List<ITicketData> ticketData, 
-            IList<ITicket> ticketMixParlay, 
+            ITicket ticket,
+            ITicketHelper ticketHelper,
+            List<ITicketData> ticketData,
+            IList<ITicket> ticketMixParlay,
             ICellStyle cellStyle)
         {
             IChoice choiceBuilder = CreateChoiceBuilder(ticket.BetTypeId);
@@ -626,10 +624,10 @@ namespace Apollo.BetList.Core.Builder
         /// Bet List Excel Builder.
         /// </returns>
         public BetListExcelBuilder AddGameType(
-            ITicket ticket, 
-            ITicketHelper ticketHelper, 
-            BetListPage page, 
-            GetCachePropertyById funcGetOddsTypeName, 
+            ITicket ticket,
+            ITicketHelper ticketHelper,
+            BetListPage page,
+            GetCachePropertyById funcGetOddsTypeName,
             ICellStyle cellStyle)
         {
             ITrans transBuilder = this.CreateTransBuilder(ticket.BetTypeId);

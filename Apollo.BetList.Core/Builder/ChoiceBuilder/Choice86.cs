@@ -49,7 +49,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             else
             {
                 bettypeName = BetList.next + "&nbsp;" + bettypeName;
-                liveScore = (!ticket.IsLive || betId == string.Empty) ? " [0]" : string.Join(null, new string[] { " [", betId, "]" });
+                liveScore = (!ticket.IsLive || string.IsNullOrEmpty(betId)) ? " [0]" : string.Join(null, new string[] { " [", betId, "]" });
             }
 
             this.Template.betTeam = betTeam + liveScore;

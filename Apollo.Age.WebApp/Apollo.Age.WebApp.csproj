@@ -947,9 +947,6 @@
     <Content Include="_GlobalResources\Js\ErrorMsg\ErrorMsg.less" />
     <Content Include="_GlobalResources\Js\Fanex.Grid\Fanex.Grid.less" />
     <Content Include="_GlobalResources\Js\Fanex.Grid\Fanex.Pagination.less" />
-    <Content Include="_GlobalResources\Js\Validation\jquery.validationEngine-en.js" />
-    <Content Include="_GlobalResources\Js\Validation\jquery.validationEngine.js" />
-    <Content Include="_GlobalResources\Js\Validation\validationEngine.jquery.css" />
     <Content Include="_GlobalResources\Js\web.config" />
   </ItemGroup>
   <ItemGroup>

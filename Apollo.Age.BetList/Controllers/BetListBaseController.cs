@@ -248,7 +248,7 @@ namespace Apollo.Age.BetList.Controllers
         {
             var balanceUpDay = _reportService.GetBalanceUpDay();
             var moveBetsDay = _reportService.MoveBetsDay();
-            var preBalanceUpDay = balanceUpDay.AddDays(-1);
+
             int agentId, custId;
             int errorCode;
 

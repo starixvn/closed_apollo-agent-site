@@ -344,7 +344,7 @@ namespace Apollo.CustSetting.Service
                 ICriteria criteria = null;
                 XMLStringData xmlStringData = BuildBetLimitSettingXML(settingContext, bettingLimits);
 
-                if (xmlStringData.XMLSetting == string.Empty && xmlStringData.XMLSetting3rd == string.Empty)
+                if (string.IsNullOrEmpty(xmlStringData.XMLSetting) && string.IsNullOrEmpty(xmlStringData.XMLSetting3rd))
                 {
                     return new Result(Constant.WARNING_CODE_DEFAULT, Constant.WARNING_MESSAGE_DEFAULT);
                 }
@@ -403,7 +403,7 @@ namespace Apollo.CustSetting.Service
                 ICriteria criteria = null;
                 XMLStringData xmlStringData = BuildCommissionSettingXML(settingContext, commissionSetting);
 
-                if (xmlStringData.XMLSetting == string.Empty && xmlStringData.XMLSetting3rd == string.Empty)
+                if (string.IsNullOrEmpty(xmlStringData.XMLSetting) && string.IsNullOrEmpty(xmlStringData.XMLSetting3rd))
                 {
                     return new Result(Constant.WARNING_CODE_DEFAULT, Constant.WARNING_MESSAGE_DEFAULT);
                 }
@@ -415,7 +415,7 @@ namespace Apollo.CustSetting.Service
                         ActorAgentId = settingContext.ActorCustId,
                         AgentId = settingContext.TargetCustId,
                         AdminId = settingContext.AdminId,
-                        Discount = xmlStringData.XMLSetting != string.Empty ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
+                        Discount = !string.IsNullOrEmpty(xmlStringData.XMLSetting) ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
                     };
                 }
                 else
@@ -426,7 +426,7 @@ namespace Apollo.CustSetting.Service
                         CustId = settingContext.TargetCustId,
                         UGroup = commissionSetting.UserGroup.ToLower(),
                         AdminId = settingContext.AdminId,
-                        Discount = xmlStringData.XMLSetting != string.Empty ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
+                        Discount = !string.IsNullOrEmpty(xmlStringData.XMLSetting) ? string.Format(Constant.FORMAT_XML_ROOT, xmlStringData.XMLSetting) : string.Empty
                     };
                 }
 
@@ -466,13 +466,13 @@ namespace Apollo.CustSetting.Service
                 var betLimitXmlStringData = BuildBetLimitSettingXML(settingContext, bettingLimits);
                 var positionTakingXmlStringData = BuildPositionTakingSettingXML(settingContext, positionTakingSetting);
 
-                var discountXML = discountXmlStringData.XMLSetting != string.Empty
+                var discountXML = !string.IsNullOrEmpty(discountXmlStringData.XMLSetting)
                     ? string.Format(Constant.FORMAT_XML_ROOT, discountXmlStringData.XMLSetting)
                     : string.Empty;
-                var betLimitXML = betLimitXmlStringData.XMLSetting != string.Empty
+                var betLimitXML = !string.IsNullOrEmpty(betLimitXmlStringData.XMLSetting)
                     ? string.Format(Constant.FORMAT_XML_ROOT, betLimitXmlStringData.XMLSetting)
                     : string.Empty;
-                var positionTakingXML = positionTakingXmlStringData.XMLSetting != string.Empty
+                var positionTakingXML = !string.IsNullOrEmpty(positionTakingXmlStringData.XMLSetting)
                     ? string.Format(Constant.FORMAT_XML_ROOT, positionTakingXmlStringData.XMLSetting)
                     : string.Empty;
 

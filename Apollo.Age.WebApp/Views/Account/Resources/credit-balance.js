@@ -46,7 +46,14 @@ var creditBalancePopup = (function ($) {
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Deposit Successfully!", 'success');
-                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 3000);
+                            setTimeout(function () {
+                                if ($("#back-link").val() === '') {
+                                    location.reload();
+                                }
+                                else {
+                                    window.location.href = $("#back-link").val();
+                                }
+                            }, 3000);
                         }
                         else {
                             APOLLO.showMessage(rs.ErrorMsg, 'error');
@@ -75,7 +82,14 @@ var creditBalancePopup = (function ($) {
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Draw Successfully!", 'success');
-                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 3000);
+                            setTimeout(function () {
+                                if ($("#back-link").val() === '') {
+                                    location.reload();
+                                }
+                                else {
+                                    window.location.href = $("#back-link").val();
+                                }
+                            }, 3000);
                         }
                         else {
                             APOLLO.showMessage(rs.ErrorMsg, 'error');
@@ -104,7 +118,14 @@ var creditBalancePopup = (function ($) {
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Deposit Successfully!", 'success');
-                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 3000);
+                            setTimeout(function () {
+                                if ($("#back-link").val() === '') {
+                                    location.reload();
+                                }
+                                else {
+                                    window.location.href = $("#back-link").val();
+                                }
+                            }, 3000);
                         }
                         else {
                             APOLLO.showMessage(rs.ErrorMsg, 'error');
@@ -133,7 +154,14 @@ var creditBalancePopup = (function ($) {
                     success: function (rs) {
                         if (parseInt(rs.ErrorCode) === 0) {
                             APOLLO.showMessage("Draw Successfully!", 'success');
-                            setTimeout(function () { window.location.href = $("#back-link").val(); }, 3000);
+                            setTimeout(function () {
+                                if ($("#back-link").val() === '') {
+                                    location.reload();
+                                }
+                                else {
+                                    window.location.href = $("#back-link").val();
+                                }
+                            }, 3000);
                         }
                         else {
                             APOLLO.showMessage(rs.ErrorMsg, 'error');

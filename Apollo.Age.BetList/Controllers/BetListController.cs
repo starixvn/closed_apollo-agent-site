@@ -956,8 +956,6 @@ namespace Apollo.Age.BetList.Controllers
         {
             IList<ITicket> listAgentComm;
             var betListService = new BetListService();
-            var balanceUpDay = this._reportService.GetBalanceUpDay();
-            var moveBetsDay = this._reportService.MoveBetsDay();
             var viewModel = new BetListViewModel();
 
             var criteria = new BetListCriteria
