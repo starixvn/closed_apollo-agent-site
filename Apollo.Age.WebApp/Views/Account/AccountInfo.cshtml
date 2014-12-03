@@ -205,14 +205,17 @@
                             @Model.BetStatus.ToStringStatus(Model.UplineBetStatus)
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            Sport Credit
-                        </td>
-                        <td class="info-data">
-                            @Formater.DecFormat(@Model.UserBalance, 2)
-                        </td>
-                    </tr>
+                    @if (Model.Level >= AgentLevel.Shareholder)
+                    {
+                        <tr>
+                            <td>
+                                @Lang.SportCredit
+                            </td>
+                            <td class="info-data">
+                                @Formater.DecFormat(@Model.UserBalance, 2)
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
