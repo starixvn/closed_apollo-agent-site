@@ -205,7 +205,7 @@
                             @Model.BetStatus.ToStringStatus(Model.UplineBetStatus)
                         </td>
                     </tr>
-                    @if (Model.Level >= AgentLevel.Shareholder)
+                    @if (Model.Level >= AgentLevel.Shareholder || Model.IsMember)
                     {
                         <tr>
                             <td>
