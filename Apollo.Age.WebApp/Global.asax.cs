@@ -39,50 +39,50 @@ namespace Apollo.Age.WebApp
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
-            //// Logging
-            //Exception ex = Server.GetLastError().GetBaseException();
+            // Logging
+            Exception ex = Server.GetLastError().GetBaseException();
 
-            //if (!Request.IsLocal)
-            //{
-            //    // Get base exception data
-            //    string message = ex.Message +
-            //        "\r\nType: " + ex.GetType().ToString() +
-            //        "\r\nSource: " + ex.Source +
-            //        "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
-            //        "\r\nForm: " + Request.Form.ToString() +
-            //        "\r\nQueryString: " + Request.QueryString.ToString() +
-            //        "\r\nTargetSite: " + ex.TargetSite +
-            //        "\r\nStackTrace: " + ex.StackTrace;
+            if (!Request.IsLocal)
+            {
+                // Get base exception data
+                string message = ex.Message +
+                    "\r\nType: " + ex.GetType().ToString() +
+                    "\r\nSource: " + ex.Source +
+                    "\r\nDomain: " + HttpContext.Current.Request.Headers["Host"] +
+                    "\r\nForm: " + Request.Form.ToString() +
+                    "\r\nQueryString: " + Request.QueryString.ToString() +
+                    "\r\nTargetSite: " + ex.TargetSite +
+                    "\r\nStackTrace: " + ex.StackTrace;
 
-            //    // Get additional exception data
-            //    if (ex is SqlException)
-            //    {
-            //        message += "\r\nProcedure: " + ((SqlException)ex).Procedure +
-            //            "\r\nLine Number: " + ((SqlException)ex).LineNumber +
-            //            "\r\nServer: " + ((SqlException)ex).Server;
-            //    }
+                // Get additional exception data
+                if (ex is SqlException)
+                {
+                    message += "\r\nProcedure: " + ((SqlException)ex).Procedure +
+                        "\r\nLine Number: " + ((SqlException)ex).LineNumber +
+                        "\r\nServer: " + ((SqlException)ex).Server;
+                }
 
-            //    if (!(ex is HttpException))
-            //    {
-            //        LogService.Error(message);
-            //    }
-            //}
+                if (!(ex is HttpException))
+                {
+                    LogService.Error(message);
+                }
+            }
 
-            //// Redirect to Error pages
-            //var serverError = Server.GetLastError() as HttpException;
-            //string errorCode = string.Empty;
+            // Redirect to Error pages
+            var serverError = Server.GetLastError() as HttpException;
+            string errorCode = string.Empty;
 
-            //// Do not log http exception
-            //if (serverError != null)
-            //{
-            //    errorCode = serverError.GetHttpCode().ToString();
-            //}
+            // Do not log http exception
+            if (serverError != null)
+            {
+                errorCode = serverError.GetHttpCode().ToString();
+            }
 
-            //if (!Request.IsLocal)
-            //{
-            //    Server.ClearError();
-            //    Response.Redirect(string.Format("{0}?err={1}", ApoURLs.URLs.Error, errorCode));
-            //}
+            if (!Request.IsLocal)
+            {
+                Server.ClearError();
+                Response.Redirect(string.Format("{0}?err={1}", ApoURLs.URLs.Error, errorCode));
+            }
         }
 
         /// <summary>
