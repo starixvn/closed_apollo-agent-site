@@ -235,7 +235,7 @@
     <Content Include="App_Data\PeriodsRange.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\prod\SpNames.xml">
+    <Content Include="App_Data\pro\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\uat\SpNames.xml">

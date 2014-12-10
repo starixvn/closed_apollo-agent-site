@@ -342,6 +342,7 @@
     </Setting>
 
     <Setting Key="Age_Rpt_CustCount" SpName="Age_Rpt_CustCount" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_Rpt_Credit" SpName="Age_Rpt_Credit" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-TotalBets">
@@ -414,6 +415,11 @@
     </Setting>
     <Setting Key="Age_AgentUser_GetByAgent" SpName="Age_AgentUser_GetByAgent" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
     <Setting Key="Acc_AgentUser_UpdatePermission" SpName="Acc_AgentUser_UpdatePermission" DbName="SVRCUST.CustDB.aplweb" Plain="0" />
+    <Setting Key="Age_Agent_GetBalance" SpName="Age_Agent_GetBalance" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_Customer_GetBalance" SpName="Age_Customer_GetBalance" DbName="SVRAGE.RepDB.aplweb" Plain="0" />
+    <Setting Key="Age_Transfer_AgentToAgent" SpName="Age_Transfer_AgentToAgent" DbName="SVRTXN.TransDB.aplweb" Plain="0" />
+    <Setting Key="Age_Transfer_AgentToCust" SpName="Age_Transfer_AgentToCust" DbName="SVRTXN.TransDB.aplweb" Plain="0" />
+    <Setting Key="Age_Transfer_CustInsBettrans" SpName="Age_Transfer_CustInsBettrans" DbName="SVRTXN.TransDB.aplweb" Plain="0" />
   </Function>
 
   <Function Name="Agent-Apollo-ForeCast">
