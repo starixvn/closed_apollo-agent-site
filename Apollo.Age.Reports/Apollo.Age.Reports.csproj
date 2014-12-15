@@ -71,7 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Criterias\Age_Rpt_Credit.cs" />
+    <Compile Include="Criterias\CreditReportCriteria.cs" />
     <Compile Include="Controllers\ReportController.CreditReport.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
@@ -79,6 +79,7 @@
     <Compile Include="Core\BettypeGroup.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\AgentWinLossCriteria.cs" />
+    <Compile Include="Criterias\CreditReportOldCriteria.cs" />
     <Compile Include="Criterias\CustomerCounterCriteria.cs" />
     <Compile Include="Criterias\GetMatchResultCriteria.cs" />
     <Compile Include="Criterias\GetResultByMatchCriteria.cs" />

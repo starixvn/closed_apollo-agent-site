@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using Apollo.Age.Core;
     using Apollo.Age.Reports.Criterias;
@@ -92,7 +93,7 @@
                 Username = model.Username
             });
 
-            return _creditReportService.CreditReportTransactions(new CreditReportCriteria
+            var listTrans = _creditReportService.CreditReportTransactions(new CreditReportCriteria
             {
                 AgentId = model.IsAgent ? custId : -1,
                 BalanceUpDay = _creditReportService.GetBalanceUpDay(),
@@ -100,6 +101,22 @@
                 FromDate = model.FromDate,
                 ToDate = model.ToDate
             });
+
+            if (model.FromDate < _creditReportService.GetBalanceUpDay())
+            {
+                var listOldTrans = _creditReportService.CreditReportTransactions(new CreditReportOldCriteria
+                {
+                    AgentId = model.IsAgent ? custId : -1,
+                    BalanceUpDay = _creditReportService.GetBalanceUpDay(),
+                    CustId = model.IsAgent ? -1 : custId,
+                    FromDate = model.FromDate,
+                    ToDate = model.ToDate
+                });
+
+                listTrans = listTrans.Union(listOldTrans).ToList();
+            }
+
+            return listTrans;
         }
     }
 }

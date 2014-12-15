@@ -7,6 +7,7 @@
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Resources;
+    using Fanex.NAP.Framework.Data;
     using NPOI.HSSF.UserModel;
     using NPOI.HSSF.Util;
     using NPOI.SS.UserModel;
@@ -18,7 +19,7 @@
     [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class CreditReportService : ReportService, ICreditReportService
     {
-        public List<TransactionCreditModel> CreditReportTransactions(CreditReportCriteria criteria)
+        public List<TransactionCreditModel> CreditReportTransactions(ICriteria criteria)
         {
             var transactionCreditList = this.GetData<TransactionCreditModel>(criteria).ToList();
 
