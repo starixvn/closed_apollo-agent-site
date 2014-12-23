@@ -210,7 +210,7 @@
                             }
                             if (Model.HasDepositDrawPermission && item.AgentLevel >= Apollo.Age.Enumerations.AgentLevel.Shareholder)
                             {
-                            <a href="~/Account/DepositAgent?parentAgentId=@Model.AgentId&agentId=@item.AgentId&username=@item.Username&agentLevel=@item.AgentLevel&backLink=@backLink">
+                            <a href="~/Account/DepositAgent?parentAgentId=@Model.AgentId&agentId=@item.AgentId&username=@item.Username&agentLevel=@AgentLevel&backLink=@backLink">
                                 @(" / " + Lang.Deposit + " / ")
                             </a><a href="~/Account/DrawAgent?agentId=@item.AgentId&username=@item.Username&backLink=@backLink">
                                 @Lang.Draw
