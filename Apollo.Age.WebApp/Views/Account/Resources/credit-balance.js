@@ -1,4 +1,4 @@
-﻿/*global APOLLO, Validators*/
+﻿/*global APOLLO, Validators, LANGUAGES*/
 
 var creditBalancePopup = (function ($) {
     'use strict';
@@ -56,7 +56,28 @@ var creditBalancePopup = (function ($) {
                             }, 3000);
                         }
                         else {
-                            APOLLO.showMessage(rs.ErrorMsg, 'error');
+                            var errorMessage;
+                            switch (parseInt(rs.ErrorCode)) {
+                                case 8003:
+                                    errorMessage = LANGUAGES.error8003;
+                                    break;
+                                case 8004:
+                                    errorMessage = LANGUAGES.error8004;
+                                    break;
+                                case 8005:
+                                    errorMessage = LANGUAGES.error8005;
+                                    break;
+                                case 8006:
+                                    errorMessage = LANGUAGES.error8006;
+                                    break;
+                                case 8007:
+                                    errorMessage = LANGUAGES.error8007;
+                                    break;
+                                default:
+                                    errorMessage = LANGUAGES.error8012;
+                            }
+
+                            APOLLO.showMessage(errorMessage, 'error');
                         }
                     }
                 });
@@ -92,7 +113,23 @@ var creditBalancePopup = (function ($) {
                             }, 3000);
                         }
                         else {
-                            APOLLO.showMessage(rs.ErrorMsg, 'error');
+                            var errorMessage;
+                            switch (parseInt(rs.ErrorCode)) {
+                                case 8003:
+                                    errorMessage = LANGUAGES.error8003;
+                                    break;
+                                case 8008:
+                                    errorMessage = LANGUAGES.error8004;
+                                    break;
+                                case 8009:
+                                    errorMessage = LANGUAGES.error8005;
+                                    break;
+
+                                default:
+                                    errorMessage = LANGUAGES.error8012;
+                            }
+
+                            APOLLO.showMessage(errorMessage, 'error');
                         }
                     }
                 });
@@ -128,7 +165,22 @@ var creditBalancePopup = (function ($) {
                             }, 3000);
                         }
                         else {
-                            APOLLO.showMessage(rs.ErrorMsg, 'error');
+                            var errorMessage;
+                            switch (parseInt(rs.ErrorCode)) {
+                                case 8003:
+                                    errorMessage = LANGUAGES.error8003;
+                                    break;
+                                case 8006:
+                                    errorMessage = LANGUAGES.error8006;
+                                    break;
+                                case 8007:
+                                    errorMessage = LANGUAGES.error8007;
+                                    break;
+                                default:
+                                    errorMessage = LANGUAGES.error8012;
+                            }
+
+                            APOLLO.showMessage(errorMessage, 'error');
                         }
                     }
                 });
@@ -164,7 +216,23 @@ var creditBalancePopup = (function ($) {
                             }, 3000);
                         }
                         else {
-                            APOLLO.showMessage(rs.ErrorMsg, 'error');
+                            var errorMessage;
+                            switch (parseInt(rs.ErrorCode)) {
+                                case 8003:
+                                    errorMessage = LANGUAGES.error8003;
+                                    break;
+                                case 8008:
+                                    errorMessage = LANGUAGES.error8004;
+                                    break;
+                                case 8009:
+                                    errorMessage = LANGUAGES.error8005;
+                                    break;
+
+                                default:
+                                    errorMessage = LANGUAGES.error8012;
+                            }
+
+                            APOLLO.showMessage(errorMessage, 'error');
                         }
                     }
                 });

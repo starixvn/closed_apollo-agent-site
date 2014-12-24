@@ -1,12 +1,15 @@
 ﻿namespace Apollo.Age.Reports.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using Apollo.Age.Reports.Criterias;
+    using Apollo.Age.Reports.Core;
     using Apollo.Age.Reports.Models;
     using Apollo.Age.Reports.ViewModels;
     using Apollo.Age.Resources;
+    using Apollo.Age.Services;
+    using Apollo.Age.Web;
     using Fanex.NAP.Framework.Data;
     using NPOI.HSSF.UserModel;
     using NPOI.HSSF.Util;
@@ -19,9 +22,33 @@
     [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
     public class CreditReportService : ReportService, ICreditReportService
     {
+        /// <summary>
+        /// Credits the report transactions.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>Transaction Credit Model.</returns>
         public List<TransactionCreditModel> CreditReportTransactions(ICriteria criteria)
         {
             var transactionCreditList = this.GetData<TransactionCreditModel>(criteria).ToList();
+            if (CacheRef.CurrentLanguage.Equals("ch") || CacheRef.CurrentLanguage.Equals("cs"))
+            {
+                foreach (var item in transactionCreditList)
+                {
+                    var langTransType = Constants.ReportCreditTypeDictionary.Where(t => t.Value.Equals(item.TransType, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+
+                    if (langTransType.Key != null)
+                    {
+                        item.TransType = LanguageManager.GetResourceData(langTransType.Key.ToString());
+                    }
+
+                    var langTransDesc = Constants.ReportCreditTransDescDictionary.Where(t => item.TransDesc.Contains(t.Value)).FirstOrDefault();
+
+                    if (langTransDesc.Key != null)
+                    {
+                        item.TransDesc = item.TransDesc.Replace(langTransDesc.Value.ToString(), LanguageManager.GetResourceData(langTransDesc.Key.ToString()));
+                    }
+                }
+            }
 
             return transactionCreditList;
         }
@@ -131,7 +158,7 @@
             CreateStringCell(row, 3, headerStyle, Lang.TransType);
             CreateStringCell(row, 4, headerStyle, Lang.Amount);
             CreateStringCell(row, 5, headerStyle, Lang.BalanceAmount);
-            CreateStringCell(row, 6, headerStyle, Lang.remark);
+            CreateStringCell(row, 6, headerStyle, Lang.lblRemarks);
 
             sheet.SetColumnWidth(0, 20 * 256);
             sheet.SetColumnWidth(1, 20 * 256);

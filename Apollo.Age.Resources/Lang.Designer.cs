@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Apollo.Age.Resources
-{
-
-
+namespace Apollo.Age.Resources {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -925,11 +925,29 @@ namespace Apollo.Age.Resources
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deposit from Upline.
+        /// </summary>
+        public static string DepositFromUpline {
+            get {
+                return ResourceManager.GetString("DepositFromUpline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your credit is not available to deposit..
         /// </summary>
         public static string DepositNotAvailable {
             get {
                 return ResourceManager.GetString("DepositNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deposit to downline.
+        /// </summary>
+        public static string DepositToDownline {
+            get {
+                return ResourceManager.GetString("DepositToDownline", resourceCulture);
             }
         }
         
@@ -1006,11 +1024,29 @@ namespace Apollo.Age.Resources
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Draw from downline.
+        /// </summary>
+        public static string DrawFromDownline {
+            get {
+                return ResourceManager.GetString("DrawFromDownline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The downline&apos;s credit is not available to draw..
         /// </summary>
         public static string DrawNotAvailable {
             get {
                 return ResourceManager.GetString("DrawNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw to Upline.
+        /// </summary>
+        public static string DrawToUpline {
+            get {
+                return ResourceManager.GetString("DrawToUpline", resourceCulture);
             }
         }
         
@@ -5215,15 +5251,6 @@ namespace Apollo.Age.Resources
         public static string RegisterDate {
             get {
                 return ResourceManager.GetString("RegisterDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remark.
-        /// </summary>
-        public static string remark {
-            get {
-                return ResourceManager.GetString("remark", resourceCulture);
             }
         }
         

@@ -1,14 +1,11 @@
 ﻿@using Apollo.Age.Reports.ViewModels
 @using Apollo.Age.Resources
 @using Apollo.Age.Configurations
-
 @model CreditReportViewModel
-
 @{
     ViewBag.Title = Lang.CreditReport;
     Layout = "~/Views/Reports/Shared/_Layout.cshtml";
 }
-
 @Html.Partial("Menu",
 new ReportMenuViewModel
 {
@@ -17,12 +14,10 @@ new ReportMenuViewModel
     ReportName = Lang.lblCreditReport,
     SportDropDownClassName = "menu report-sportcredit"
 })
-
 @section scripts
 {
     @Scripts.Render("~/scripts/creditreportjs")
 }
-
 <div id="box_header" class="report">
     <table class="winloss">
         <tr>
@@ -76,8 +71,6 @@ new ReportMenuViewModel
         </div>
     </div>
 </div>
-
-
 @Html.Hidden("agentId", Model.AgentId)
 @Html.Hidden("balanceUpDay", Model.BalanceUpDay != null ? Formater.ShortDateFormat(Model.BalanceUpDay) : Formater.ShortDateFormat(DateTime.Now))
 @Html.Hidden("hdFromDate", Formater.ShortDateFormat(Model.FromDate))
@@ -88,12 +81,10 @@ new ReportMenuViewModel
 @Html.Hidden("thisWeekTo", Formater.ShortDateFormat(DateTime.Now.EndOfWeek()))
 @Html.Hidden("lastWeekFrom", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).StartOfWeek()))
 @Html.Hidden("lastWeekTo", Formater.ShortDateFormat(DateTime.Now.AddDays(-7).EndOfWeek()))
-
 <div id="container">
     <div class="export-betlist-excel transaction" id="export-excel">
         @Lang.exporttoexcel
     </div>
-
     <table class="tblRpt tblCreditReport betlist">
         <thead class="persist-header">
             <tr>
@@ -116,7 +107,7 @@ new ReportMenuViewModel
                     @Lang.BalanceAmount
                 </th>
                 <th>
-                    @Lang.remark
+                    @Lang.lblRemarks
                 </th>
             </tr>
         </thead>

@@ -2188,9 +2188,7 @@
   <data name="BalanceAmount" xml:space="preserve">
     <value>Balance Amount</value>
   </data>
-  <data name="remark" xml:space="preserve">
-    <value>Remark</value>
-  </data>
+
   <data name="DepositAmount" xml:space="preserve">
     <value>Deposit Amount</value>
   </data>
@@ -2205,5 +2203,17 @@
   </data>
   <data name="DrawNotAvailable" xml:space="preserve">
     <value>The downline's credit is not available to draw.</value>
+  </data>
+  <data name="DepositFromUpline" xml:space="preserve">
+    <value>Deposit from Upline</value>
+  </data>
+  <data name="DepositToDownline" xml:space="preserve">
+    <value>Deposit to downline</value>
+  </data>
+  <data name="DrawToUpline" xml:space="preserve">
+    <value>Draw to Upline</value>
+  </data>
+  <data name="DrawFromDownline" xml:space="preserve">
+    <value>Draw from downline</value>
   </data>
 </root>
