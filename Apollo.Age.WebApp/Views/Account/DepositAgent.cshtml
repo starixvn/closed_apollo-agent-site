@@ -1,0 +1,43 @@
+﻿@using Apollo.Age
+@using Apollo.Age.Account.ViewModels
+@model DepositViewModel
+@{
+    Layout = "Shared/_CreditLayout.cshtml";
+    ViewBag.Title = Lang.Deposit;
+}
+<div id="function-bar">
+    <div class="item detail-information">
+        <span>
+            @string.Format("{0} - {1}", @Lang.Deposit, @Model.Username)
+        </span>
+        @if (Model.BackLink != null)
+        {
+            <a href="@Model.BackLink">-- @Lang.back</a>
+        }
+    </div>
+    <div class="end">
+    </div>
+</div>
+@Html.Hidden("back-link", @Model.BackLink)
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "credit-form" }))
+{
+    <table class="credit-balance">
+        <tbody>
+            <tr>
+                <td class="lbl-amount">
+                    @Html.Label("lbl-amount", @Lang.DepositAmount)
+                </td>
+                <td>
+                    @Html.TextBox("amount", string.Empty, new { data_min = 0, data_max = Model.MaxAmount })
+                    @Html.Raw(Model.ArrangeText)
+                </td>
+            </tr>
+            <tr class="btn-action">
+                <td colspan="2">
+                    <input id="deposit-agent-submit" type="button" value="@Lang.SubmitCredit" class="btn" @(Model.IsDisable ? "disabled" : string.Empty) />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+}

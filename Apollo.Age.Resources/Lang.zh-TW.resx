@@ -1195,7 +1195,7 @@
     <value>時間</value>
   </data>
   <data name="Amount" xml:space="preserve">
-    <value>總額</value>
+    <value>交易金额</value>
   </data>
   <data name="Expand" xml:space="preserve">
     <value>擴大</value>
@@ -2007,5 +2007,65 @@
   </data>
   <data name="peakhourmessage" xml:space="preserve">
     <value>開放查看時段: {0} - {1}(GMT +8)</value>
+  </data>
+  <data name="DepositDraw" xml:space="preserve">
+    <value>Deposit/Draw</value>
+  </data>
+  <data name="CreditReport" xml:space="preserve">
+    <value>點數提存記錄</value>
+  </data>
+  <data name="Credit_Balance" xml:space="preserve">
+    <value>Credit/Balance</value>
+  </data>
+  <data name="lblCreditReport" xml:space="preserve">
+    <value>點數提存記錄</value>
+  </data>
+  <data name="TransNo" xml:space="preserve">
+    <value>交易編號</value>
+  </data>
+  <data name="TransDate" xml:space="preserve">
+    <value>交易日期</value>
+  </data>
+  <data name="TransType" xml:space="preserve">
+    <value>交昜類型</value>
+  </data>
+  <data name="BalanceAmount" xml:space="preserve">
+    <value>總金額</value>
+  </data>
+  <data name="remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>存入</value>
+  </data>
+  <data name="Draw" xml:space="preserve">
+    <value>提出</value>
+  </data>
+  <data name="DrawAmount" xml:space="preserve">
+    <value>提出點數</value>
+  </data>
+  <data name="DepositAmount" xml:space="preserve">
+    <value>存入點數</value>
+  </data>
+  <data name="DepositNotAvailable" xml:space="preserve">
+    <value>沒有足夠點數可存入</value>
+  </data>
+  <data name="DrawNotAvailable" xml:space="preserve">
+    <value>沒有足夠點數可提出</value>
+  </data>
+  <data name="SubmitCredit" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="DepositToDownline" xml:space="preserve">
+    <value>存入到下線</value>
+  </data>
+  <data name="DepositFromUpline" xml:space="preserve">
+    <value>由上線存入</value>
+  </data>
+  <data name="DrawToUpline" xml:space="preserve">
+    <value>上線提出</value>
+  </data>
+  <data name="DrawFromDownline" xml:space="preserve">
+    <value>由上線提出</value>
   </data>
 </root>

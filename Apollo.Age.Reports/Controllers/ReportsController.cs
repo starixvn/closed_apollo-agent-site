@@ -38,9 +38,10 @@ namespace Apollo.Age.Reports.Controllers
     /// </summary>
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Reviewed. Suppression is OK here.")]
-    public class ReportsController : BaseController
+    public partial class ReportsController : BaseController
     {
         private readonly SportCreditService _sportCreditService;
+        private readonly CreditReportService _creditReportService;
         private readonly WinLossService _winLossService;
         private readonly OutstandingService _outstandingService;
         private readonly IUserService _userService;
@@ -56,19 +57,22 @@ namespace Apollo.Age.Reports.Controllers
         }
 
         /// <summary>
-        /// Initializes a new instance of the ReportsController class.
+        /// Initializes a new instance of the <see cref="ReportsController"/> class.
         /// </summary>
-        /// <param name="outstandingService">Outstanding Service.</param>
-        /// <param name="winlossService">Win loss Service.</param>
-        /// <param name="sportCreditService">SportCredit Service.</param>
+        /// <param name="outstandingService">The outstanding service.</param>
+        /// <param name="winlossService">The win loss service.</param>
+        /// <param name="sportCreditService">The sport credit service.</param>
+        /// <param name="creditReportService">The credit report service.</param>
         public ReportsController(
             OutstandingService outstandingService = null,
             WinLossService winlossService = null,
-            SportCreditService sportCreditService = null)
+            SportCreditService sportCreditService = null,
+            CreditReportService creditReportService = null)
         {
             this._sportCreditService = sportCreditService ?? new SportCreditService();
             this._winLossService = winlossService ?? new WinLossService();
             this._outstandingService = outstandingService ?? new OutstandingService();
+            _creditReportService = creditReportService ?? new CreditReportService();
             _userService = new UserService();
             _periodDateRangeSerivce = new PeriodDateRangeService();
         }

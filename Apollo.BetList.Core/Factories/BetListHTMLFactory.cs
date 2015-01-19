@@ -11,7 +11,6 @@
 namespace Apollo.BetList.Core.Factories
 {
     using Apollo.BetList.Core.Builder;
-    using Apollo.BetList.Core.Entities;
 
     /// <summary>
     /// Class BetListHTMLFactory.

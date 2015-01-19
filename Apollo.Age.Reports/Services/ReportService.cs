@@ -383,5 +383,20 @@ namespace Apollo.Age.Reports.Services
 
             return string.Format(new System.Globalization.CultureInfo("en-US"), "{0:yyyy-MM-dd}", dt);
         }
+
+        /// <summary>
+        /// Get Date Format (year-month-day).
+        /// </summary>
+        /// <param name="dt">Object date need format.</param>
+        /// <returns>Return string date.</returns>
+        public string LongDateFormat(object dt)
+        {
+            if (Convert.IsDBNull(dt) || dt == null)
+            {
+                return string.Empty;
+            }
+
+            return string.Format(new System.Globalization.CultureInfo("en-US"), "{0:yyyy-MM-dd h:mm:ss tt}", dt);
+        }
     }
 }

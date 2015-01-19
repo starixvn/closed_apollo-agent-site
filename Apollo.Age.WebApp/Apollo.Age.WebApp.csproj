@@ -235,7 +235,7 @@
     <Content Include="App_Data\PeriodsRange.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\prod\SpNames.xml">
+    <Content Include="App_Data\pro\SpNames.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\uat\SpNames.xml">
@@ -265,6 +265,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Views\Account\Resources\credit-balance.js" />
     <Content Include="Views\Account\Resources\Images\bg-logo.png" />
     <Content Include="Views\Account\Resources\Images\btn-arrow.png" />
     <Content Include="Views\Account\Resources\Images\icon-subMenu.png" />
@@ -359,6 +360,7 @@
     <Content Include="Views\Message\Images\loading_2.gif" />
     <Content Include="Views\Message\Resources\Message.js" />
     <Content Include="Views\PermissionUserControl\Resources\AssignFunction.js" />
+    <Content Include="Views\Reports\Resources\CreditReport.js" />
     <Content Include="Views\Reports\Resources\Outstanding.js" />
     <Content Include="Views\Reports\Resources\Reports.js" />
     <Content Include="Views\Reports\Resources\SportCredit.js" />
@@ -482,6 +484,7 @@
     <Content Include="_GlobalResources\Images\Success.gif" />
     <Content Include="_GlobalResources\Images\tick.png" />
     <Content Include="_GlobalResources\Images\top_04.png" />
+    <Content Include="_GlobalResources\Js\autoNumeric\autoNumeric.js" />
     <Content Include="_GlobalResources\Js\BlockUI\jquery.blockUI.js" />
     <Content Include="_GlobalResources\Js\Core.js" />
     <Content Include="_GlobalResources\Js\ErrorMsg\Images\cross.png" />
@@ -592,7 +595,6 @@
     <Content Include="Areas\Wagers\Views\Soccer\Total.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\Index.cshtml" />
     <Content Include="App_Code\WagerHelper.cshtml" />
-    <Content Include="Views\Account\Resources\CustomerSetting.less" />
     <Content Include="Areas\Wagers\Views\Outright\WagerOutright.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\RunningBall.cshtml" />
     <Content Include="Areas\Wagers\Views\Wager\SpecialBet.cshtml" />
@@ -636,6 +638,12 @@
     <Content Include="Configuration\Web.PRO.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Account\DepositAgent.cshtml" />
+    <Content Include="Views\Account\DrawMember.cshtml" />
+    <Content Include="Views\Account\DepositMember.cshtml" />
+    <Content Include="Views\Account\DrawAgent.cshtml" />
+    <Content Include="Views\Account\Resources\credit-balance.less" />
+    <Content Include="Views\Account\Shared\_CreditLayout.cshtml" />
     <None Include="Views\BetList\Resources\ErrorPage.less" />
     <None Include="Views\BetList\Resources\Paging.less" />
     <Content Include="Views\BetList\Winloss.cshtml" />
@@ -930,6 +938,7 @@
     <Content Include="Views\Forecast\ForecastByMatch.cshtml" />
     <Content Include="Views\Forecast\ForecastByMatchContent.cshtml" />
     <Content Include="Views\Forecast\Shared\_Layout.cshtml" />
+    <Content Include="Views\Reports\CreditReport.cshtml" />
     <None Include="_GlobalResources\Css\jquery-ui-1.10.2\apollo-backup\jquery-ui.min.less" />
     <Content Include="_GlobalResources\Css\mixins.less" />
     <Content Include="_GlobalResources\Css\RefreshCountDown.less" />

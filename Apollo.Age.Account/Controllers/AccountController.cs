@@ -42,7 +42,7 @@ namespace Apollo.Age.Account.Controllers
     /// </summary>
     [SessionState(SessionStateBehavior.ReadOnly)]
     [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules", "SP2101:MethodMustNotContainMoreLinesThan", Justification = "Need to review here.")]
-    public class AccountController : BaseController
+    public partial class AccountController : BaseController
     {
         #region Const for paging
 
@@ -215,6 +215,7 @@ namespace Apollo.Age.Account.Controllers
             var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
 
             ViewBag.CustomerSettingPermission = userPermission[ApolloFunctionKeys.CustomerSetting];
+            ViewBag.DepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw];
             ViewBag.PermissionControl = userPermission[ApolloFunctionKeys.PermissionControl];
             ViewBag.ShadowPermissionControl = userPermission[ApolloFunctionKeys.ShadowPermission];
             ViewBag.ViewLogPermission = userPermission[ApolloFunctionKeys.SystemLog];
@@ -291,7 +292,11 @@ namespace Apollo.Age.Account.Controllers
         {
             var memberInfo = new CustomerInfoModel();
 
-            var hasDownlineDetailsPermission = _userService.GetUserPolicy(this.CurrentSession.UserId, ApolloFunctionKeys.DownlineDetails) >= (byte)Policy.Query;
+            var userPermission = _userService.GetAllUserPermission(this.CurrentSession.UserId);
+
+            ViewBag.DepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw];
+
+            var hasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
 
             /* Check downline details permission
              * Downline details policy < 1 => Can not search member ( all member)
@@ -370,7 +375,7 @@ namespace Apollo.Age.Account.Controllers
 
             if (!PermissionDownlineDetail(agentId))
             {
-                return View("~/Views/Error/AccessDenied.cshtml");                    
+                return View("~/Views/Error/AccessDenied.cshtml");
             }
 
             return View();
@@ -593,6 +598,7 @@ namespace Apollo.Age.Account.Controllers
             criteria.ShadowPermissionPolicy = userPermission[ApolloFunctionKeys.ShadowPermission];
             criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
             criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+            criteria.HasDepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw] == (byte)Policy.Edit;
 
             var agentInfo = _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
             {
@@ -653,7 +659,7 @@ namespace Apollo.Age.Account.Controllers
             {
                 criteria.PageIndex = 0;
             }
-            
+
             criteria.OldPageIndex = criteria.PageIndex;
 
             return RedirectToAction(
@@ -748,6 +754,7 @@ namespace Apollo.Age.Account.Controllers
             criteria.ShadowPermissionPolicy = userPermission[ApolloFunctionKeys.ShadowPermission];
             criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
             criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
+            criteria.HasDepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw] == (byte)Policy.Edit;
 
             return View(criteria);
         }
@@ -822,7 +829,7 @@ namespace Apollo.Age.Account.Controllers
 
             criteria.CustomerSettingPolicy = userPermission[ApolloFunctionKeys.CustomerSetting];
             criteria.HasDownlineDetailsPermission = userPermission[ApolloFunctionKeys.DownlineDetails] >= (byte)Policy.Query;
-
+            criteria.HasDepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw] == (byte)Policy.Edit;
             var agentInfo = _accountService.GetAgentInfo(new GetAgentAllInfoCriteria
             {
                 ActorAgentId = CurrentSession.AgentId,
@@ -934,7 +941,8 @@ namespace Apollo.Age.Account.Controllers
             };
 
             IEnumerable<MemberListModel> models = _accountService.GetCustomerList(ref criteria);
-
+            var userPermission = _userService.GetAllUserPermission(CurrentSession.UserId);
+            criteria.HasDepositDrawPermission = userPermission[ApolloFunctionKeys.DepositDraw] == (byte)Policy.Edit;
             if (!ReferenceEquals(models, null))
             {
                 models = criteria.OrderType == 1 ? models.OrderBy(m => m.Username).ToList() : models.OrderByDescending(m => m.Username).ToList();

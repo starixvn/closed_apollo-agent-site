@@ -88,6 +88,9 @@ namespace Apollo.Age.Account.Criterias
         [SpParam(Ignored = true)]
         public bool HasDownlineDetailsPermission { get; set; }
 
+        [SpParam(Ignored = true)]
+        public bool HasDepositDrawPermission { get; set; }
+
         /// <summary>
         /// Get setting key of agent list.
         /// </summary>

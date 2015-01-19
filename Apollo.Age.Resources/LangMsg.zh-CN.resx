@@ -192,4 +192,37 @@
   <data name="MessageSingGameMinLimit" xml:space="preserve">
     <value>單場上限必需大於</value>
   </data>
+  <data name="error_8000" xml:space="preserve">
+    <value>备注号码错误</value>
+  </data>
+  <data name="error_8003" xml:space="preserve">
+    <value>金额错误</value>
+  </data>
+  <data name="error_8004" xml:space="preserve">
+    <value>代理新增额度结余失败</value>
+  </data>
+  <data name="error_8005" xml:space="preserve">
+    <value>代理更新额度结余失败</value>
+  </data>
+  <data name="error_8006" xml:space="preserve">
+    <value>存入到下线失败</value>
+  </data>
+  <data name="error_8007" xml:space="preserve">
+    <value>由上线存入失败</value>
+  </data>
+  <data name="error_8008" xml:space="preserve">
+    <value>由上线提出失败</value>
+  </data>
+  <data name="error_8009" xml:space="preserve">
+    <value>从下线提出失败</value>
+  </data>
+  <data name="error_8010" xml:space="preserve">
+    <value>交易类型错误</value>
+  </data>
+  <data name="error_8011" xml:space="preserve">
+    <value>重复的备注号码</value>
+  </data>
+  <data name="error_8012" xml:space="preserve">
+    <value>新增交易失败</value>
+  </data>
 </root>

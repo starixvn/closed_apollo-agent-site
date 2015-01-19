@@ -70,6 +70,7 @@
     <Compile Include="Criterias\SSOCheckInCriteria.cs" />
     <Compile Include="Criterias\SSOGetTimeCriteria.cs" />
     <Compile Include="Criterias\UserAssignFunctionCriteria.cs" />
+    <Compile Include="Criterias\UserGetByIdCriteria.cs" />
     <Compile Include="Criterias\UserGetUserByAgentCriteria.cs" />
     <Compile Include="Criterias\UserGetAllUserPolicyCriteria.cs" />
     <Compile Include="Criterias\UserGetUserFunctionPolicyCriteria.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="Criterias\AuthenticateNapUserCriteria.cs" />
     <Compile Include="Criterias\CheckDownlineBelongToAgentCriteria.cs" />
     <Compile Include="Criterias\GetAllMainShareHolderCriteria.cs" />
-    <Compile Include="Criterias\UserGetByIdCriteria.cs" />
     <Compile Include="Criterias\UserGetByUsernameCriteria.cs" />
     <Compile Include="Entities\Agent.cs" />
     <Compile Include="Entities\Customer.cs" />
@@ -96,6 +96,7 @@
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Entities\PeakHour.cs" />
+    <Compile Include="Entities\Result.cs" />
     <Compile Include="Entities\SingbetBettype.cs" />
     <Compile Include="Entities\SingbetSport.cs" />
     <Compile Include="Entities\Sport.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Services\Impl\UserService.cs" />
     <Compile Include="Services\Interface\IFunctionService.cs" />
     <Compile Include="Services\Interface\IUserService.cs" />
+    <Compile Include="Criterias\UserIdByUsernameCriteria.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apollo.Age.Resources\Apollo.Age.Resources.csproj">

@@ -1,6 +1,6 @@
 ﻿@using Apollo.Age.Entities;
 @using Apollo.Age.Web;
-@using Apollo.Age
+@using Apollo.Age;
 @model AgentListCriteria
 @{
     ViewBag.Title = Apollo.Age.Resources.Lang.lblAgentList;
@@ -11,6 +11,8 @@
     var AgentLevel = (int)ViewBag.AgentLevel;
     var hasMemberDownline = ViewBag.HasMemberDownline != null ? (bool)ViewBag.HasMemberDownline : false;
     var parentUsername = ViewBag.AgentUsername ?? string.Empty;
+    var parentId = ViewBag.ParentId != null ? ViewBag.ParentId : -1;
+    var backLink = HttpUtility.UrlEncode(Url.Content(string.Format("~/account/agentlist?parentAgentId={0}&agentId={1}", parentId, Model.AgentId)));
 }
 @using (Html.BeginForm())
 {
@@ -36,7 +38,7 @@
 				                }, new { @class = "za_select" })
         </div>
         @if (!ReferenceEquals(agentList, null) && agentList.Any())
-        { 
+        {
             <div class="item">
                 --<label>@Lang.Page</label>:
                 @Html.DropDownListFor(m => m.PageIndex, (List<SelectListItem>)ViewBag.ListPage, new { @class = "za_select" })
@@ -54,7 +56,6 @@
                 -- <a href="~/Account/MemberList">@Lang.memberList</a>
             </div>
         }
-@*<img src="/_GlobalResources/Images/top_04.png" alt="" />*@
         <div class="end">
         </div>
     </div>
@@ -73,11 +74,16 @@
                 </th>
                 <th class="width-70">@Lang.member
                 </th>
+                @if (AgentLevel >= Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                {
+                    <th class="width-70">@Lang.SportCredit
+                    </th>
+                }
                 <th class="width-80">@Lang.status
                 </th>
                 <th class="width-80">@Lang.betstatus
                 </th>
-                <th class="width-400">@Lang.Feature
+                <th class="width-460">@Lang.Feature
                 </th>
             </tr>
         </thead>
@@ -87,7 +93,7 @@
                 <tr>
                     <td>
                         @if (Model.HasDownlineDetailsPermission)
-                        { 
+                        {
                             @item.Username
                         }
                         else
@@ -99,12 +105,12 @@
                         @if (item.NumberOfAgent != 0)
                         {
                             if (Model.HasDownlineDetailsPermission)
-                            { 
+                            {
                             @Html.ActionLink(item.NumberOfAgent.ToString(), "IndirectAgentList",
                         new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                             }
                             else
-                            { 
+                            {
                             @item.NumberOfAgent
                             }
                         }
@@ -117,7 +123,7 @@
                         @if (item.NumberOfMember != 0)
                         {
                             if (Model.HasDownlineDetailsPermission)
-                            { 
+                            {
                             @Html.ActionLink(item.NumberOfMember.ToString(), "IndirectMemberList",
                         new { parentAgentId = Model.AgentId, agentId = item.AgentId })
                             }
@@ -131,6 +137,12 @@
                             <span>0</span>
                         }
                     </td>
+                    @if (AgentLevel >= Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                    {
+                        <td>
+                            @Html.Raw(item.SportCredit.ToString("#,##0.##"))
+                        </td>
+                    }
                     <td>
                         @Html.Raw(item.Status.ToStringStatus(item.UplineStatus))
                     </td>
@@ -141,8 +153,8 @@
                         @if (Model.HasDownlineDetailsPermission)
                         {
                             if (Model.CustomerSettingPolicy >= (byte)Policy.Query)
-                            { 
-                                <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;parentUsername=@parentUsername&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
+                            {
+                            <a href="~/CustomerSetting/EditAgentPositionTaking?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username&amp;parentUsername=@parentUsername&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
                                 @if (isMaster && Model.CustomerSettingPolicy == (byte)Policy.Edit)
                                 {
                                     @(Lang.edit + " / ")
@@ -151,51 +163,58 @@
                                 {
                                     @(Lang.lblview + " / ")
                                 }
-                                </a>
-                                <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">                                                                
-                                        @if (Model.PermissionControlPolicy < (byte)Policy.Query && Model.ShadowPermissionPolicy < (byte)Policy.Query)
-                                        {
-                                            if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
-                                            { 
-                                                @(Lang.Detail + " / ")
-                                            }
-                                            else
-                                            {
-                                                @(Lang.Detail)
-                                            }
-                                        }
-                                        else
-                                        {
-                                            @(Lang.Detail + " / ")
-                                        }
-                                </a>
-                                        if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
-                                        {                            
-                                    <a href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
-                                        @(Lang.lblMemberShare + " / ")
-
-                                    </a>
-                                        }
+                            </a>
+                            <a href="~/CustomerSetting/ViewAgentDetails?agentId=@item.AgentId&amp;agentLevel=@item.AgentLevel&amp;userName=@item.Username">
+                                @if (Model.PermissionControlPolicy < (byte)Policy.Query && Model.ShadowPermissionPolicy < (byte)Policy.Query)
+                                {
+                                    if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                                    {
+                                    @(Lang.Detail + " / ")
+                                    }
+                                    else
+                                    {
+                                    @(Lang.Detail)
+                                    }
+                                }
+                                else
+                                {
+                                    @(Lang.Detail + " / ")
+                                }
+                            </a>
+                                if (item.AgentLevel > Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                                {
+                            <a href="~/CustomerSetting/EditAllMemberShare?agentId=@item.AgentId&amp;agentUsername=@item.Username&amp;backLink=@(Url.Content("~/account/agentlist?agentId=") + @Model.AgentId)">
+                                @(Lang.lblMemberShare + " / ")
+                            </a>
+                                }
                             }
 
                             if (Model.PermissionControlPolicy >= (byte)Policy.Query)
                             {
-                                <a href="~/PermissionUserControl/AssignPermissionControl?parentAgentId=@Model.ParentAgentId&agentuserid=@item.AgentId">
-                                    @if (Model.ShadowPermissionPolicy < (byte)Policy.Query)
-                                    { 
-                                        @(Lang.Permission)
-                                    }
-                                    else
-                                    {
-                                        @(Lang.Permission + " / ")
-                                    }
-                                </a>
+                            <a href="~/PermissionUserControl/AssignPermissionControl?parentAgentId=@Model.ParentAgentId&agentuserid=@item.AgentId">
+                                @if (Model.ShadowPermissionPolicy < (byte)Policy.Query)
+                                {
+                                    @(Lang.Permission)
+                                }
+                                else
+                                {
+                                    @(Lang.Permission + " / ")
+                                }
+                            </a>
                             }
                             if (Model.ShadowPermissionPolicy >= (byte)Policy.Query)
                             {
-                                <a href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
-                                    @Lang.ShadowPermission
-                                </a>
+                            <a href="~/PermissionUserControl/AgentUserList?agentid=@item.AgentId&username=@item.Username">
+                                @(Lang.ShadowPermission)
+                            </a>
+                            }
+                            if (Model.HasDepositDrawPermission && item.AgentLevel >= Apollo.Age.Enumerations.AgentLevel.Shareholder)
+                            {
+                            <a href="~/Account/DepositAgent?parentAgentId=@Model.AgentId&agentId=@item.AgentId&username=@item.Username&agentLevel=@AgentLevel&backLink=@backLink">
+                                @(" / " + Lang.Deposit + " / ")
+                            </a><a href="~/Account/DrawAgent?agentId=@item.AgentId&username=@item.Username&backLink=@backLink">
+                                @Lang.Draw
+                            </a>
                             }
                         }
                     </td>

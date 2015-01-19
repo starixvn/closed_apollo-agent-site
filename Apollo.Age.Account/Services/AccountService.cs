@@ -14,6 +14,7 @@ namespace Apollo.Age.Account.Services
     using System.Collections.Generic;
     using System.Linq;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Entities;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Account.Repositories.Impl;
     using Apollo.Age.Account.Repositories.Interface;
@@ -325,6 +326,26 @@ namespace Apollo.Age.Account.Services
             {
                 return false;
             }
+        }
+
+        public AgentBalanceInfo AgentGetAgentInfo(AgentGetAgentRangeInfoCriteria criteria)
+        {
+            return GetListData<AgentBalanceInfo>(criteria).FirstOrDefault();
+        }
+
+        public MemberBalanceInfo AgentGetMemberInfo(AgentGetMemberRangeInfoCriteria criteria)
+        {
+            return GetListData<MemberBalanceInfo>(criteria).FirstOrDefault();
+        }
+
+        public Result AgentTransferAgent(AgentTransferAgentCriteria criteria)
+        {
+            return Execute(criteria);
+        }
+
+        public Result AgentTransferMember(AgentTransferMemberCriteria criteria)
+        {
+            return Execute(criteria);
         }
     }
 }

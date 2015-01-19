@@ -9,12 +9,12 @@
     var topMember = (MemberListModel)ViewBag.TopMember;
     var customerSettingPermission = ViewBag.CustomerSettingPermission != null ? (byte)ViewBag.CustomerSettingPermission : -1;
     var permissionControl = ViewBag.PermissionControl != null ? (byte)ViewBag.PermissionControl : -1;
+    var depositDrawPermission = ViewBag.DepositDrawPermission != null ? (byte)ViewBag.DepositDrawPermission : -1;
     var shadowPermissionControl = ViewBag.ShadowPermissionControl != null ? (byte)ViewBag.ShadowPermissionControl : -1;
     var viewLogPermission = ViewBag.ViewLogPermission != null ? (byte)ViewBag.ViewLogPermission : -1;
     var hasDownlineDetailsPermission = ViewBag.DownlineDetailsPolicy != null ? (byte)ViewBag.DownlineDetailsPolicy >= (byte)Policy.Query : false;
     var agentLevelId = new int[4];
 }
-
 <table id="tab-menu">
     <tr>
         <td>
@@ -62,7 +62,6 @@
                             agentLevelId[i] = item.Id;
                         <tr>
                             @RenderAgentLevelName(item.Level, "parent-lbl")
-                           
                             <td class="parent-name">
                                 @if (item.Level == AgentLevel.Super)
                                 {
@@ -129,7 +128,7 @@
                                 </a>
                             </td>
                         </tr>
-                                
+
                     }
                 </tbody>
             </table>
@@ -186,6 +185,41 @@
                 </a>
             }
         </div>
+
+        <div class="status-box">
+            <table class="status-info">
+                <tbody>
+                    <tr>
+                        <td>
+                            Account Status
+                        </td>
+                        <td class="info-data">
+                            @Model.Status.ToStringStatus(Model.UplineStatus)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Bet Status
+                        </td>
+                        <td class="info-data">
+                            @Model.BetStatus.ToStringStatus(Model.UplineBetStatus)
+                        </td>
+                    </tr>
+                    @if (Model.Level >= AgentLevel.Shareholder || Model.IsMember)
+                    {
+                        <tr>
+                            <td>
+                                @Lang.SportCredit
+                            </td>
+                            <td class="info-data">
+                                @Formater.DecFormat(@Model.UserBalance, 2)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
         <div id="agent-setting">
             <ul class="tabs">
                 <li id="custsettings" class="current"><a class="show-section" data-agentid="@Model.CustId" href="javascript:void(0);">
@@ -226,28 +260,15 @@
                                     foreach (var itemAgent in listAgent)
                                     {
                                         if (itemAgent.Level > AgentLevel.Super)
-                                        { 
-                                    <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@itemAgent.Username" target="main">@itemAgent.Username</a></li>	 
+                                        {
+                                    <li><a href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@itemAgent.Id&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@itemAgent.Username" target="main">@itemAgent.Username</a></li>
                                         }
                                     }
                                 }
                             </ul>
                         </div>
                         }
-                        else
-                        {
-@*  <a class="lnk-setting" target="main" href="~/CustomerSetting/EditMemberPositionTaking?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.ParentName">
-                            @if (Model.IsMaster)
-                            {
-                                @Lang.lblEditMemberShare
-                            }
-                            else
-                            {
-                                @Lang.lblViewMemberShare
-                            }
-                            </a>*@
-                        }
-                        
+
                         <a class="lnk-setting" target="main" href="~/CustomerSetting/ViewMemberDetails?memberId=@Model.CustId&amp;agentId=@Model.ParentId&amp;userName=@Model.Username&amp;fromLeftMenu=true">
                             @Lang.ViewDetails
                         </a>
@@ -286,7 +307,7 @@
                         </a>
                             if (Model.Level > AgentLevel.Shareholder && hasDownlineDetailsPermission)
                             {
-                        <a class="lnk-setting" target="main" 
+                        <a class="lnk-setting" target="main"
                             href="~/CustomerSetting/EditAllMemberShare?agentId=@Model.CustId&amp;fromLeftMenu=true&amp;reload=true&amp;agentUsername=@Model.Username">
                             @Lang.lblMemberShare
                         </a>
@@ -297,9 +318,10 @@
                         <a class="lnk-setting" target="main"
 						href="~/CustomerSetting/ViewCommission?id=@Model.CustId&amp;isMember=@Model.IsMember.ToString()">
                             @Lang.lblComm
-                        </a>}
+                        </a>
+                        }
                         if (viewLogPermission >= (byte)Policy.Query)
-                        { 
+                        {
                         <a class="lnk-setting" target="main" href="~/Log/ViewLog?IsAgent=true&Username=@Model.Username">
                             @Lang.viewlog
                         </a>
@@ -311,10 +333,33 @@
                         </a>
                         }
                         if (shadowPermissionControl >= (byte)Policy.Query)
-                        { 
+                        {
                         <a class="lnk-setting" target="main" href="~/PermissionUserControl/AgentUserList?agentid=@Model.CustId&username=@Model.Username">
                             @Lang.ShadowPermission
-                        </a>}
+                        </a>
+                        }
+                    }
+                    @*These links are invisible for Main Shareholder level*@
+                    @if (depositDrawPermission == (byte)Policy.Edit)
+                    {
+                        if (Model.Level >= AgentLevel.Shareholder)
+                        {
+                        <a class="lnk-setting" target="main" href="~/Account/DepositAgent?parentAgentId=@Model.ParentId&agentId=@Model.CustId&username=@Model.Username&agentLevel=@(Model.Level - 1)">
+                            @Lang.Deposit
+                        </a>
+                        <a class="lnk-setting" target="main" href="~/Account/DrawAgent?agentId=@Model.CustId&username=@Model.Username">
+                            @Lang.Draw
+                        </a>
+                        }
+                        else if (Model.IsMember)
+                        {
+                        <a class="lnk-setting" target="main" href="~/Account/DepositMember?agentId=@Model.ParentId&custId=@Model.CustId&username=@Model.Username">
+                            @Lang.Deposit
+                        </a>
+                        <a class="lnk-setting" target="main" href="~/Account/DrawMember?custId=@Model.CustId&username=@Model.Username">
+                            @Lang.Draw
+                        </a>
+                        }
                     }
                 </div>
                 <div id="agentsTab-content">
@@ -328,7 +373,8 @@
                         <div class="no-data">@Lang.NoneAgent</div>
                     }
                 </div>
-                <div id="membersTab-content"></div>
+                <div id="membersTab-content">
+                </div>
             </div>
         </div>
         }
@@ -355,7 +401,7 @@
     <button type="button" class="btn search-button">
         <i class="icon-search"></i>
     </button>
-    <input id="enterUsernameValue" type="hidden" value="@Lang.enterusername"/>
+    <input id="enterUsernameValue" type="hidden" value="@Lang.enterusername" />
 }
 @helper RenderAgentLevelName(int agentLevel, string classObject = "")
     {

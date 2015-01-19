@@ -53,7 +53,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                                                                     { "4-2", "2,7,12,17,22,27,32,37,42,47,52,57,62,67,72" },
                                                                     { "4-3", "3,8,13,18,23,28,33,38,43,48,53,58,63,68,73" },
                                                                     { "4-4", "4,9,14,19,24,29,34,39,44,49,54,59,64,69,74" },
-                                                                    { "4-5", "5,10,15,20,25,30,35,40,45,50,55,60,65,70,75" } 
+                                                                    { "4-5", "5,10,15,20,25,30,35,40,45,50,55,60,65,70,75" }
         };
 
         #endregion BETTEAM MAP
@@ -69,7 +69,7 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
             base.BuildChoice(ticket, ticketHelper, ticketData);
 
             string betId = ticket.BetId.ToString();
-            string liveScore = (!ticket.IsLive || betId == string.Empty) ? string.Empty : " [" + betId + "]";
+            string liveScore = (!ticket.IsLive || string.IsNullOrEmpty(betId)) ? string.Empty : " [" + betId + "]";
             int betteam;
 
             int.TryParse(ticket.BetTeam, out betteam);

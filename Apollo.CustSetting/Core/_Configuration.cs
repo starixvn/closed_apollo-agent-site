@@ -9,10 +9,8 @@
 
 namespace Apollo.CustSetting.Core
 {
-    using System;
     using System.Web;
     using System.Xml.Linq;
-    using Fanex.Logging;
 
     /// <summary>
     /// Configuration Class, read Xml file and save XDocument object.

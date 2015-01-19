@@ -40,25 +40,25 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 betId = string.Empty;
             }
 
-            string liveScore = (!ticket.IsLive || betId == string.Empty) ? " [0]" : string.Join(null, new string[] { " [", betId, "]" });
+            string liveScore = (!ticket.IsLive || string.IsNullOrEmpty(betId)) ? " [0]" : string.Join(null, new string[] { " [", betId, "]" });
 
             string betTeam = string.Empty;
 
             switch (ticket.BetTeam)
             {
-                case "1:1": 
+                case "1:1":
                     betTeam = BetList.lblOverOdd;
                     break;
 
-                case "1:2": 
+                case "1:2":
                     betTeam = BetList.lblOverEven;
                     break;
 
-                case "2:1": 
+                case "2:1":
                     betTeam = BetList.lblUnderOdd;
                     break;
 
-                case "2:2": 
+                case "2:2":
                     betTeam = BetList.lblUnderEven;
                     break;
             }

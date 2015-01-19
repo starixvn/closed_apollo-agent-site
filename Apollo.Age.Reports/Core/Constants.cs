@@ -27,6 +27,8 @@ namespace Apollo.Age.Reports.Core
         public const string SessionKeyMemberWinLossReport = "MemberWinLossReport-{0}";
         public const string SessionKeyAgentOutstandingReport = "AgentOutStandingReport-{0}";
         public const string SessionKeyMemberOutstandingReport = "MemberOutStandingReport-{0}";
+        public const string SessionKeyAgentCreditReport = "AgentCreditReport-{0}";
+        public const string SessionKeyMemberCreditReport = "MemberCreditReport-{0}";
         public const string SessionKeyLineSportCreditReport = "LineSportCreditReport-{0}";
 
         /// <summary>
@@ -55,6 +57,24 @@ namespace Apollo.Age.Reports.Core
             { 2, "lblShareholderLevel" },
             { 3, "lblMainAgent" },
             { 4, "agent" }
+        };
+
+        public static readonly Dictionary<string, string> ReportCreditTypeDictionary = new
+
+        Dictionary<string, string>
+        {
+            { "Deposit", "Deposit" },
+            { "Draw", "Draw" }
+        };
+
+        public static readonly Dictionary<string, string> ReportCreditTransDescDictionary = new
+
+        Dictionary<string, string>
+        {
+            { "DepositFromUpline", "Deposit from Upline" },
+            { "DepositToDownline", "Deposit to downline" },
+            { "DrawToUpline", "Draw to Upline" },
+            { "DrawFromDownline", "Draw from downline" }
         };
     }
 }

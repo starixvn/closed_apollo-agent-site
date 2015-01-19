@@ -24,6 +24,10 @@ namespace Apollo.Age.Account.Core
 
         public const string Private = "private";
 
+        public const int Deposit = 1;
+
+        public const int Draw = 2;
+
         public static readonly Dictionary<int, string> AgentLevelDictionary = new Dictionary<int, string>
         {
             { 0, "lblSuper" },

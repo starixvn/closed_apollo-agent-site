@@ -404,6 +404,7 @@
         var classTicketsCancelled = string.Empty;
         var classSportCredit = string.Empty;
         var classWinlossHistory = string.Empty;
+        var classCreditReport = string.Empty;
 
         if (currentLink.ToUpper().Equals(Lang.lblWinLoss.ToUpper()))
         {
@@ -428,6 +429,10 @@
         else if (currentLink.ToUpper().Equals(Lang.lblWinLossHistory.ToUpper()))
         {
             classWinlossHistory = "class=active";
+        }
+        else if (currentLink.ToUpper().Equals(Lang.lblCreditReport.ToUpper()))
+        {
+            classCreditReport = "class=active";
         }
 
     <ul class="@reportclass">
@@ -457,6 +462,10 @@
         {
             <li @classWinlossHistory><a href="~/Reports/AgentWinLoss?ishistory=true">@Lang.lblWinLossHistory</a></li>
         }
+         @if (functionPermissions[ApolloFunctionKeys.CreditReport] >= (byte)Policy.Query)
+         {
+            <li @classCreditReport><a href="~/Reports/CreditReport">@Lang.lblCreditReport</a></li>
+         }
 
     </ul>
 }

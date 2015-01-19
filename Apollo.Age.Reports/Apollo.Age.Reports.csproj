@@ -71,12 +71,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criterias\CreditReportCriteria.cs" />
+    <Compile Include="Controllers\ReportController.CreditReport.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\BettypeGroup.cs" />
     <Compile Include="Criterias\AgentDownlinePathCriteria.cs" />
     <Compile Include="Criterias\AgentWinLossCriteria.cs" />
+    <Compile Include="Criterias\CreditReportOldCriteria.cs" />
     <Compile Include="Criterias\CustomerCounterCriteria.cs" />
     <Compile Include="Criterias\GetMatchResultCriteria.cs" />
     <Compile Include="Criterias\GetResultByMatchCriteria.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="Criterias\SportCreditCriteria.cs" />
     <Compile Include="Extension\HSSFSheetExtensions.cs" />
     <Compile Include="Models\AgentWinLossModel.cs" />
+    <Compile Include="Models\TransactionCreditModel.cs" />
     <Compile Include="Models\DateRangesModel.cs" />
     <Compile Include="Models\OutrightResultModel.cs" />
     <Compile Include="Models\OutstandingModel.cs" />
@@ -100,12 +104,15 @@
     <Compile Include="Models\MemberWinLossModel.cs" />
     <Compile Include="Models\SportCreditModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CreditReportService.cs" />
+    <Compile Include="Services\ICreditReportService.cs" />
     <Compile Include="Services\ISportCreditService.cs" />
     <Compile Include="Services\IWinLossService.cs" />
     <Compile Include="Services\OutstandingService.cs" />
     <Compile Include="Services\PeriodDateRangeService.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\SportCreditService.cs" />
+    <Compile Include="ViewModels\CreditReportViewModel.cs" />
     <Compile Include="ViewModels\CustomerCounterViewModel.cs" />
     <Compile Include="ViewModels\MemberOutstandingViewModel.cs" />
     <Compile Include="ViewModels\OutrightResultViewModel.cs" />

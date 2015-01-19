@@ -9,7 +9,6 @@
 
 namespace Apollo.Age.WebApp
 {
-    using System.Web;
     using System.Web.Mvc;
 
     /// <summary>

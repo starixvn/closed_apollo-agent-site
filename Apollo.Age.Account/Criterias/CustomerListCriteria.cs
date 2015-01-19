@@ -82,6 +82,9 @@ namespace Apollo.Age.Account.Criterias
         [SpParam(Ignored = true)]
         public bool HasDownlineDetailsPermission { get; set; }
 
+        [SpParam(Ignored = true)]
+        public bool HasDepositDrawPermission { get; set; }
+
         public override string GetSettingKey()
         {
             return "Age_Customer_GetByAgent";

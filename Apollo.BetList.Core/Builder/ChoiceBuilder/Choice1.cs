@@ -408,12 +408,12 @@ namespace Apollo.BetList.Core.Builder.ChoiceBuilder
                 awayFGLG += "<div class=\"lastGoal\">&nbsp;</div>";
             }
 
-            if (!homeFGLG.Equals(string.Empty))
+            if (!string.IsNullOrEmpty(homeFGLG))
             {
                 homeFGLG = string.Join(null, new string[] { "&nbsp;", homeFGLG });
             }
 
-            if (!awayFGLG.Equals(string.Empty))
+            if (!string.IsNullOrEmpty(awayFGLG))
             {
                 awayFGLG = string.Join(null, new string[] { "&nbsp;", awayFGLG });
             }

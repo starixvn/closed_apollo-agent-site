@@ -12,6 +12,7 @@ namespace Apollo.Age.Account.Services
 {
     using System.Collections.Generic;
     using Apollo.Age.Account.Criterias;
+    using Apollo.Age.Account.Entities;
     using Apollo.Age.Account.Models;
     using Apollo.Age.Entities;
     using Apollo.CustSetting.ViewData;
@@ -53,5 +54,13 @@ namespace Apollo.Age.Account.Services
         bool HasMember(int agentId);
 
         bool IsInPeakHours(int agentLevel);
+
+        AgentBalanceInfo AgentGetAgentInfo(AgentGetAgentRangeInfoCriteria criteria);
+
+        MemberBalanceInfo AgentGetMemberInfo(AgentGetMemberRangeInfoCriteria criteria);
+
+        Result AgentTransferAgent(AgentTransferAgentCriteria criteria);
+
+        Result AgentTransferMember(AgentTransferMemberCriteria criteria);
     }
 }

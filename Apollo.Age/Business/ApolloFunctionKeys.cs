@@ -13,7 +13,9 @@
 public static class ApolloFunctionKeys
 {
     public const string CancelledTickets = "CancelledTickets";
+    public const string CreditReport = "CreditReport";
     public const string CustomerSetting = "CustomerSetting";
+    public const string DepositDraw = "DepositDraw";
     public const string DownlineDetails = "DownlineDetails";
     public const string EMWagers = "EMWagers";
     public const string Forecast = "Forecast";
