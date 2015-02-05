@@ -61,6 +61,24 @@ namespace Apollo.Age.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid agent ID..
+        /// </summary>
+        public static string error_5106 {
+            get {
+                return ResourceManager.GetString("error_5106", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid customer ID.
+        /// </summary>
+        public static string error_5220 {
+            get {
+                return ResourceManager.GetString("error_5220", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid RefNo.
         /// </summary>
         public static string error_8000 {

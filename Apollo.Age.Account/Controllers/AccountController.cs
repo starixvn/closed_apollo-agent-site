@@ -58,6 +58,8 @@ namespace Apollo.Age.Account.Controllers
 
         #endregion Const for paging
 
+        private const byte CanNotDepositDrawForMyself = 1;
+
         /// <summary>
         /// Service account.
         /// </summary>
@@ -277,6 +279,11 @@ namespace Apollo.Age.Account.Controllers
 
             //// Get Top Member
             ViewBag.TopMember = _accountService.GetTopMember(agentInfo.CustId);
+
+            if (this.CurrentSession.UserId == agentInfo.CustId)
+            {
+                ViewBag.DepositDrawPermission = CanNotDepositDrawForMyself;
+            }
 
             return View("AccountInfo", agentInfo);
         }
