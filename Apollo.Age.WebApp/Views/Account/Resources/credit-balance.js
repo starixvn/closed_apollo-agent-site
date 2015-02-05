@@ -73,6 +73,12 @@ var creditBalancePopup = (function ($) {
                                 case 8007:
                                     errorMessage = LANGUAGES.error8007;
                                     break;
+                                case 5220:
+                                    errorMessage = LANGUAGES.error5220;
+                                    break;
+                                case 5106:
+                                    errorMessage = LANGUAGES.error5106;
+                                    break;
                                 default:
                                     errorMessage = LANGUAGES.error8012;
                             }
@@ -175,6 +181,12 @@ var creditBalancePopup = (function ($) {
                                     break;
                                 case 8007:
                                     errorMessage = LANGUAGES.error8007;
+                                    break;
+                                case 5220:
+                                    errorMessage = LANGUAGES.error5220;
+                                    break;
+                                case 5106:
+                                    errorMessage = LANGUAGES.error5106;
                                     break;
                                 default:
                                     errorMessage = LANGUAGES.error8012;

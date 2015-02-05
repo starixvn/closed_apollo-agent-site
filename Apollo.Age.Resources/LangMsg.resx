@@ -228,4 +228,10 @@
   <data name="error_8012" xml:space="preserve">
     <value>Insert transaction into bettrans failed</value>
   </data>
+  <data name="error_5220" xml:space="preserve">
+    <value>Invalid customer ID</value>
+  </data>
+  <data name="error_5106" xml:space="preserve">
+    <value>Invalid agent ID.</value>
+  </data>
 </root>
