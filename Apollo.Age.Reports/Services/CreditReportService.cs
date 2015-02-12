@@ -158,7 +158,8 @@
             CreateStringCell(row, 3, headerStyle, Lang.TransType);
             CreateStringCell(row, 4, headerStyle, Lang.Amount);
             CreateStringCell(row, 5, headerStyle, Lang.BalanceAmount);
-            CreateStringCell(row, 6, headerStyle, Lang.lblRemarks);
+            CreateStringCell(row, 6, headerStyle, Lang.Creator);
+            CreateStringCell(row, 7, headerStyle, Lang.lblRemarks);
 
             sheet.SetColumnWidth(0, 20 * 256);
             sheet.SetColumnWidth(1, 20 * 256);
@@ -166,7 +167,8 @@
             sheet.SetColumnWidth(3, 30 * 256);
             sheet.SetColumnWidth(4, 20 * 256);
             sheet.SetColumnWidth(5, 20 * 256);
-            sheet.SetColumnWidth(6, 35 * 256);
+            sheet.SetColumnWidth(6, 20 * 256);
+            sheet.SetColumnWidth(7, 35 * 256);
         }
 
         /// <summary>
@@ -198,7 +200,8 @@
             CreateStringCell(row, 3, bodyStyleLeft, item.TransType);
             CreateNumberCell(row, 4, bodyStyleRight, numberFormat, (double)item.Amount);
             CreateNumberCell(row, 5, bodyStyleRight, numberFormat, (double)item.BalanceAmount);
-            CreateStringCell(row, 6, bodyStyleLeft, item.TransDesc);
+            CreateStringCell(row, 6, bodyStyleLeft, item.CreatorName);
+            CreateStringCell(row, 7, bodyStyleLeft, item.TransDesc);
         }
     }
 }

@@ -106,6 +106,9 @@ new ReportMenuViewModel
                 <th style="width: 120px;">
                     @Lang.BalanceAmount
                 </th>
+                <th style="width: 120px;">
+                    @Lang.Creator
+                </th>
                 <th>
                     @Lang.lblRemarks
                 </th>
@@ -136,6 +139,9 @@ new ReportMenuViewModel
                         </td>
                         <td class='r nowrap @(item.BalanceAmount < 0 ? "negative" : string.Empty)'>
                             @Formater.FormatNumber20(item.BalanceAmount, Formater.CULT_NAME_ENG)
+                        </td>
+                        <td>
+                            @item.CreatorName
                         </td>
                         <td>
                             @item.TransDesc
