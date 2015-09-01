@@ -20,8 +20,8 @@
     <Period Key="period3" FromDate="2015-03-02" ToDate="2015-04-05" />
     <Period Key="period4" FromDate="2015-04-06" ToDate=" 2015-05-03" />
     <Period Key="period5" FromDate="2015-05-04" ToDate="2015-05-31" />
-    <Period Key="period6" FromDate="2015-06-01" ToDate="2015-07-05" />
-    <Period Key="period7" FromDate="2015-07-06" ToDate="2015-08-02" />
+    <Period Key="period6" FromDate="2015-06-01" ToDate="2015-06-30" />
+    <Period Key="period7" FromDate="2015-07-01" ToDate="2015-08-02" />
     <Period Key="period8" FromDate="2015-08-03" ToDate="2015-09-06" />
     <Period Key="period9" FromDate="2015-09-07" ToDate="2015-10-04" />
     <Period Key="period10" FromDate="2015-10-05" ToDate="2015-11-01" />
